@@ -6,152 +6,441 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
+            #region Level I
+            Console.WriteLine("--- Level I ----------------------\n");
 
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
+            #region Task 3
+            Console.WriteLine("Task 3 \n");
 
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            double a, b;
+
+            Console.Write("Enter a: ");
+            if (!double.TryParse(Console.ReadLine(), out a))
             {
-                // will be done, because 4th condition provide true
+                Console.WriteLine("Value has an incorrect format!");
+                return;
             }
 
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
+            Console.Write("Enter b: ");
+            if (!double.TryParse(Console.ReadLine(), out b))
             {
-                // never will be done because 1st condition is false
+                Console.WriteLine("Value has an incorrect format!");
+                return;
             }
 
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
+            if (a > 0)
             {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
-            }
-
-            #endregion
-
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
-            {
-                if (request.StartsWith('I'))
-                {
-                    // positive result
-                    if (request.EndsWith('!'))
-                    {
-                        // very positive result
-                    }
-                }
+                if (a >= b)
+                    Console.WriteLine($"Max is a: {a}");
                 else
-                {
-                    // negative result
-                }
-                // addition work
-            }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
-            #endregion
-
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
+                    Console.WriteLine($"Max is b: {b}");
             }
             else
             {
-                a = 30;
+                if (a < b)
+                    Console.WriteLine($"Min is a: {a}");
+                else
+                    Console.WriteLine($"Min is b: {b}");
             }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
+            #endregion
+
+            #region Task 4
+            Console.WriteLine("\nTask 4 \n");
+
+            double c;
+            double min;
+
+            Console.Write("Enter c: ");
+            if (!double.TryParse(Console.ReadLine(), out c))
             {
-                a = 20;
+                Console.WriteLine("Value has an incorrect format!");
+                return;
             }
 
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
+            if (a < b)
+                min = a;
+            else
+                min = b;
+
+            if (c >= min)
+                Console.WriteLine($"Max is: {c}");
+            else
+                Console.WriteLine($"Max is : {min}");
 
             #endregion
 
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
-            {
+            #region Task 7
+            Console.WriteLine("\nTask 7 \n");
 
+            double x;
+            double xAbs;
+
+            Console.Write("Enter x: ");
+            if (!double.TryParse(Console.ReadLine(), out x))
+            {
+                Console.WriteLine("Value has an incorrect value!");
+                return;
             }
-            else
-            {
-                if (1 == (int)'a')
-                {
 
+            xAbs = Math.Abs(x);
+
+            if (xAbs > 1)
+                Console.WriteLine($"y = {1}");
+            else
+                Console.WriteLine($"y = {xAbs}");
+            #endregion
+
+            #endregion
+
+            #region Level II
+            Console.WriteLine("\n--- Level II ----------------------\n");
+
+            int n = 5;
+
+            #region Task 1
+            Console.WriteLine("Task 1\n");
+
+            double heightSum = 0;
+            double height;
+            double avgHeight;
+
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write($"Enter height of {i} student: ");
+
+                if (!double.TryParse(Console.ReadLine(), out height))
+                {
+                    Console.WriteLine("Value has incorrect format!");
+                    return;
+                }
+                if (height <= 0)
+                {
+                    Console.WriteLine("Height must be greater than 0!");
+                    return;
+                }
+
+                heightSum += height;
+            }
+
+            avgHeight = heightSum / n;
+
+            Console.WriteLine($"Average height is: {Math.Round(avgHeight, 2)}");
+            #endregion
+
+            #region Task 9
+            Console.WriteLine("\nTask 9\n");
+
+            double result;
+            double bestResult = -1;
+
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write($"Enter {i} result: ");
+
+                if (!double.TryParse(Console.ReadLine(), out result))
+                {
+                    Console.WriteLine("Value has incorrect format!");
+                    return;
+                }
+                if (result <= 0)
+                {
+                    Console.WriteLine("Result must be greater than 0!");
+                    return;
+                }
+
+                if (result < bestResult || bestResult == -1)
+                    bestResult = result;
+            }
+
+            Console.WriteLine($"Best result is {Math.Round(bestResult, 3)}");
+            #endregion
+
+            #endregion
+
+            #region Level III
+            Console.WriteLine("\n--- Level III ----------------------\n");
+
+            #region Task 4
+            Console.WriteLine("Task 4\n");
+            // circle formula x^2 + y^2 = r^2
+            double y = 0;
+            double r1, r2;
+            double point;
+
+            string input;
+
+            x = 0;
+            n = 1;
+            int belongingCount = 0;
+
+            Console.Write("Enter r1: ");
+            if (!double.TryParse(Console.ReadLine(), out r1))
+            {
+                Console.WriteLine("Value has an incorrect format!");
+                return;
+            }
+
+            Console.Write("Enter r2: ");
+            if (!double.TryParse(Console.ReadLine(), out r2))
+            {
+                Console.WriteLine("Value has an incorrect format!");
+                return;
+            }
+
+            if (r2 < r1)
+            {
+                Console.WriteLine("Outer radius can not be less than inner!");
+                return;
+            }
+
+            Console.WriteLine("\nWrite $ to stop.");
+
+            for (; ; n++)
+            {
+                Console.WriteLine($"\nEnter coordinates №{n}:");
+
+                Console.Write("   x: ");
+                input = Console.ReadLine();
+                if (input == "$")
+                    break;
+
+                if (!double.TryParse(input, out x))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                Console.Write("   y: ");
+                input = Console.ReadLine();
+                if (input == "$")
+                    break;
+
+                if (!double.TryParse(input, out x))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                point = (x * x) + (y * y);
+
+                if (point <= r2 * r2 && point >= r1 * r1)
+                    belongingCount++;
+            }
+
+            Console.WriteLine($"\nPoints belonging to circle: {belongingCount}");
+            #endregion
+
+            #region Task 11
+            Console.WriteLine("\nTask 11\n");
+
+            int mark;
+            double marksSum = 0;
+            double avgMarksSum = 0;
+            double groupAverageMark;
+            int badStudentsCount = 0;
+            bool continueInput = true;
+            bool hasBadGrade = false;
+
+            n = 0;
+
+            Console.WriteLine("Write $ to stop.");
+
+            for (; continueInput; n++)
+            {
+                Console.WriteLine($"\nEnter {n + 1} student marks:");
+
+                marksSum = 0;
+
+                for (int i = 1; i <= 4; i++)
+                {
+                    Console.Write($"   Mark #{i}: ");
+                    input = Console.ReadLine();
+
+                    if (input == "$")
+                    {
+                        continueInput = false;
+                        break;
+                    }
+
+                    if (!int.TryParse(input, out mark))
+                    {
+                        Console.WriteLine("Value has an incorrect format!");
+                        return;
+                    }
+
+                    if (mark < 2 || mark > 5)
+                    {
+                        Console.WriteLine("Mark value must be between 2 and 5");
+                        return;
+                    }
+
+                    if (mark == 2)
+                        hasBadGrade = true;
+
+                    marksSum += mark;
+                }
+
+                if (!continueInput)
+                    break;
+
+                if (hasBadGrade)
+                    badStudentsCount++;
+
+                avgMarksSum += marksSum / 4;
+            }
+
+            if (n == 0)
+                groupAverageMark = 0;
+            else
+                groupAverageMark = avgMarksSum / n;
+
+            Console.WriteLine($"\nBad students count: {badStudentsCount}");
+            Console.WriteLine($"Group average mark: {Math.Round(groupAverageMark, 3)}");
+            #endregion
+
+            #region Task 12
+            Console.WriteLine("\nTask 12");
+
+            double r;
+            double area = 0;
+            double rootOf3 = Math.Sqrt(3);
+            int choice;
+
+            while (true)
+            {
+                Console.WriteLine("\nWhich area I should calculate?:");
+                Console.WriteLine("[1] - Square, [2] - Circle, [3] - Triangle\n");
+                Console.Write("Your choice: ");
+
+                if (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                if (choice < 1 || choice > 3)
+                {
+                    Console.WriteLine("You can choose olny 1, 2 or 3!");
+                    return;
+                }
+
+                Console.Write("\nEnter r (must be positive): ");
+                if (!double.TryParse(Console.ReadLine(), out r))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                if (r < 0)
+                {
+                    Console.WriteLine("Value of r must be positive!");
+                    return;
+                }
+
+                switch (choice)
+                {
+                    case 1:
+                        area = r * r;
+                        break;
+                    case 2:
+                        area = Math.PI * r * r;
+                        break;
+                    case 3:
+                        area = r * r * rootOf3 / 4;
+                        break;
+                }
+
+                Console.WriteLine($"Area is: {Math.Round(area, 3)}\n");
+                Console.Write("Do this again? [y/n]: ");
+
+                input = Console.ReadLine().ToLower();
+                if (input == "n")
+                    break;
+                else if (input != "y")
+                {
+                    Console.WriteLine("You need to enter y or n!");
+                    return;
                 }
             }
-
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
             #endregion
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
+            #region Task 13
+            Console.WriteLine("\nTask 13:");
 
-            switch ((int)Console.ReadLine().Length)
+            while (true)
             {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
+                Console.WriteLine("\nWhich area I should calculate?:");
+                Console.WriteLine("[1] - Rectangle, [2] - Ring, [3] - Isosceles triangle\n");
+                Console.Write("Your choice: ");
+
+                if (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                if (choice < 1 || choice > 3)
+                {
+                    Console.WriteLine("You can choose olny 1, 2 or 3!");
+                    return;
+                }
+
+                Console.Write("   Enter a (must be positive): ");
+                if (!double.TryParse(Console.ReadLine(), out a))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                if (a < 0)
+                {
+                    Console.WriteLine("Value of a must be positive!");
+                    return;
+                }
+
+                Console.Write("   Enter b (must be positive): ");
+                if (!double.TryParse(Console.ReadLine(), out b))
+                {
+                    Console.WriteLine("Value has an incorrect format!");
+                    return;
+                }
+
+                if (b < 0)
+                {
+                    Console.WriteLine("Value of a must be positive!");
+                    return;
+                }
+
+                switch (choice)
+                {
+                    case 1:
+                        area = a * b;
+                        break;
+                    case 2:
+                        if (a >= b)
+                            area = Math.PI * (a * a - b * b);
+                        else
+                            area = Math.PI * (b * b - a * a);
+                        break;
+                    case 3:
+                        double h = Math.Sqrt((b * b) - 0.25 * a * a);
+                        area = 0.5 * a * h;
+                        break;
+                }
+
+                Console.WriteLine($"\nArea is: {Math.Round(area, 3)}\n");
+                Console.Write("Do this again? [y/n]: ");
+
+                input = Console.ReadLine().ToLower();
+                if (input == "n")
                     break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
+                else if (input != "y")
+                {
+                    Console.WriteLine("You need to enter y or n!");
+                    return;
+                }
             }
-            Console.WriteLine(request);
-
             #endregion
-
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
 
             #endregion
         }
