@@ -1,0 +1,496 @@
+using System;
+
+namespace Lab2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            #region Task1_L1
+            static void L1N1()
+            {
+                
+                const double d1x = 0; const double d2x = 1.5; const double d3x = 1; const double d4x = 3; 
+                const double d1y = 2; const double d2y = 0.7; const double d3y = 1; const double d4y = 0;
+
+                static void Func(double x, double y, int r = 2)
+                {
+                    if (Math.Abs(x*x + y*y - r*r) <= 0.001)
+                    {
+                        Console.WriteLine($"Точка с координатами({x},{y}) лежит в окружности r");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Точка НЕ лежит на окружности r");
+                    }
+                }
+                Func(d1x,d1y);
+                Func(d2x, d2y);
+                Func(d3x, d3y);
+                Func(d4x, d4y);
+            }
+            #endregion
+            #region Task3_L1
+            static void L1N3()
+            {
+                #region MIN
+                static double MIN(double a, double b)
+                {         
+                    double c;
+                    if (a < b)
+                    {
+                        c = a;
+                    }
+                    else if (a > b)
+                    {
+                        c = b;
+                    }
+                    else
+                    {
+                        c = a;
+                    }
+                    return c;            
+                }
+                #endregion
+                #region MAX
+                static double MAX(double a, double b)
+                {
+                    double c;
+                    if (a < b)
+                    {
+                        c = b;
+                    }
+                    else if (a > b)
+                    {
+                        c = a;
+                    }
+                    else
+                    {
+                        c = a;
+                    }
+                    return c;
+                }
+                #endregion
+                double c, a, b;
+               
+                Console.WriteLine("Введите число a");
+                bool normA = double.TryParse(Console.ReadLine(), out a);
+                Console.WriteLine("Введите число b");
+                bool normB = double.TryParse(Console.ReadLine(), out b);
+                bool norm = normA & normB;
+                if (norm)
+                {
+                    if (a > 0)
+                    {
+                        c = MAX(a,b);
+                        Console.WriteLine($"a > 0  |  c = {c}");
+                    }
+                    else if (a <= 0)
+                    {
+                        c = MIN(a, b);
+                        Console.WriteLine($"a <= 0  |  c = {c}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели не числа");
+                }
+            }
+            #endregion
+            #region Task1_L2
+            static void L2N1()
+            {
+                int count;
+                Console.WriteLine("Введите кол-во детей");
+                bool norm = int.TryParse(Console.ReadLine(), out count);
+                if (norm)
+                {
+                    if (count > 0)
+                    {
+                        double heightSum = 0;
+                        double srHeight;
+                        int counter = 0;
+                        do
+                        {
+                            Console.WriteLine("Введите рост ребенка в см:");
+
+                            bool rost = double.TryParse(Console.ReadLine(), out double height);
+                            if (rost)
+                            {
+                                if (height > 0)
+                                {
+                                    heightSum += height;
+                                    counter += 1;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Вы ввели невозможный рост");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Вы ввели что-то не так.");
+                            }
+                        } 
+                        while (counter != count) ;
+                        srHeight = heightSum / count;
+                        Console.WriteLine($"Средний рост детей {srHeight}см");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Кол-во детей не может быть <= 0");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели не int");
+                }
+            }
+            #endregion
+            #region Task11_L2
+            static void L2N11()
+            {
+                int count;
+                Console.WriteLine("Введите кол-во студентов");
+                bool norm = int.TryParse(Console.ReadLine(), out count);
+                if (norm)
+                {
+                    if (count > 0)
+                    {
+                        int counter = 1;
+                        double sredVoobsche = 0;
+                        double summaVoobsche = 0;
+                        int ammount = 0;
+                        do
+                        {
+                            int summaStud = 0;
+                            
+                            double sredStud = 0;
+
+                            Console.WriteLine($"Студент {counter}");
+                            for (int i = 1; i <= 4; i++)
+                            {
+                                Console.WriteLine($"Введите оценку за {i}-й экзамен студента {counter}");
+                                bool normality = int.TryParse(Console.ReadLine(), out int schet);
+                                if (normality)
+                                {
+                                    if ((schet >= 0) & (schet <= 5))
+                                    {
+                                        summaStud += schet;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Вы ввели что-то неправильно");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Вы ввели что-то не так");
+                                }
+                            }
+                            sredStud = summaStud / 4;
+                            summaVoobsche += summaStud;
+                            sredVoobsche = summaVoobsche / (count * 4);
+                            counter += 1;
+                            if (sredStud < 3)
+                            {
+                                ammount += 1;
+                            }
+                        }
+                        while (counter != count + 1);
+                        Console.WriteLine($"Кол-во неуспевающих студентов: {ammount}");
+                        Console.WriteLine($"Средний бал студентов: {sredVoobsche}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Кол-во студентов не может быть <= 0");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели не int");
+                }
+            }
+            #endregion
+            #region Task4_L3
+            static void L3N4()
+            {
+                ConsoleKeyInfo cki;
+                int r1 = 2;
+                int r2 = 7;
+                do
+                {
+                    double A, B;
+                    Console.WriteLine("Вы хотите продолжить? Если да, нажмите любую клавишу. Если хотите выйти, нажмите Enter");
+                    cki = Console.ReadKey();
+                    if (cki.Key != ConsoleKey.Enter)
+                    {
+                        Console.WriteLine("\nВведите координату x точки:");
+                        bool adekv = double.TryParse(Console.ReadLine(), out A);
+                        Console.WriteLine("Введите координату у точки:");
+                        bool adekvatik = double.TryParse(Console.ReadLine(), out B);
+                        if (adekv & adekvatik)
+                        {
+                            if ((A * A + B * B <= r2 * r2) & (A * A + B * B >= r1 * r1))
+                            {
+                                Console.WriteLine($"Точка({A},{B}) ЛЕЖИТ между окружностями");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Точка({A},{B}) НЕ лежит между окружностями");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели что-то не так");
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы вышли");
+                    }
+                } while (cki.Key != ConsoleKey.Enter);
+            }
+            #endregion
+            #region Task11_L3
+            static void L3N11()
+            {
+                ConsoleKeyInfo cki;
+                int countik = 0;
+                double summaVoobsche = 0;
+                
+                int ammount = 0;
+                int schet;
+                do
+                {
+                    countik += 1;
+                   
+                    Console.WriteLine("Вы хотите продолжить? Если да, нажмите напишите что-то. Если хотите выйти, нажмите Enter");
+                    cki = Console.ReadKey();
+                    if (cki.Key != ConsoleKey.Enter)
+                    {
+                        int summaStud = 0;
+                        double sredStud = 0;
+                        Console.WriteLine($"\nСтудент {countik}");
+                        for (int i = 1; i <= 4; i++)
+                        {
+                            Console.WriteLine($"Введите оценку за {i}-й экзамен студента {countik}");
+                            bool normality = int.TryParse(Console.ReadLine(), out schet);
+                            if (normality)
+                            {
+                                if ((schet >= 0) & (schet <= 5))
+                                {
+                                    summaStud += schet;
+                                    Console.WriteLine(summaStud);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Вы ввели что-то неправильно");
+                                    Console.WriteLine("Значит оценка 0");
+                                    summaStud += 0;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Вы ввели что-то не так");
+                                Console.WriteLine("Значит оценка 0");
+                                summaStud += 0;
+                            }
+                        }
+                        sredStud = summaStud / 4;
+                        summaVoobsche += summaStud;
+                        if (sredStud < 3)
+                        {
+                            ammount += 1;
+                        }
+
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы вышли");
+                        //Console.WriteLine(summaVoobsche);
+                        Console.WriteLine($"Средний балл группы:{summaVoobsche / ((countik - 1) * 4)}");
+                        Console.WriteLine($"Кол-во неуспевающих:{ammount}");
+                    }
+
+
+                    
+                } while (cki.Key != ConsoleKey.Enter);
+            }
+            #endregion
+            #region Task12_L3
+            static void L3N12()
+            {
+                ConsoleKeyInfo cki;
+                int countik = 0;
+                do
+                {
+                    double r;
+                    Console.WriteLine("Вы хотите продолжить? Если да, нажмите любую клавишу. Если хотите выйти, нажмите Enter");
+                    cki = Console.ReadKey();
+                    if (cki.Key != ConsoleKey.Enter)
+                    {
+                        Console.WriteLine("\nВведите r");
+                        bool adekv = double.TryParse(Console.ReadLine(), out r);
+                        if (adekv)
+                        {
+                            if (r > 0)
+                            {
+                                int a;
+                                Console.WriteLine("Выберите одно из действий:\n1)S-квадрата\t2)S-круга\t3)S-треугольника");
+                                bool adekvat = int.TryParse(Console.ReadLine(), out a);
+                                if (adekvat)
+                                {
+                                    switch (a)
+                                    {
+                                        case 1:
+                                            {
+                                                Console.WriteLine($"Площадь квадрата: {r * r}");
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                Console.WriteLine($"Площадь круга: {Math.PI * r * r}");
+                                                break;
+                                            }
+                                        case 3:
+                                            {
+                                                Console.WriteLine($"Площадь треугольника: {Math.Sqrt(3) * (r * r) / 4}");
+                                                break;
+                                            }
+                                        default:
+                                            Console.WriteLine("Вы ввели несуществующее значение");
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Вы ввели что-то не то");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Такого радиуса быть не может");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели что-то не так");
+                            continue;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы вышли");
+                    }
+
+
+                } while (cki.Key != ConsoleKey.Enter);
+            }
+            #endregion
+            #region Task13_L3
+            static void L3N13()
+            {
+                ConsoleKeyInfo cki;
+                int countik = 0;
+                do
+                {
+                    double A, B;
+                    
+                    Console.WriteLine("Вы хотите продолжить? Если да, нажмите любую клавишу. Если хотите выйти, нажмите Enter");
+                    cki = Console.ReadKey();
+                    if (cki.Key != ConsoleKey.Enter)
+                    {
+                        Console.WriteLine("\nВведите A");
+                        bool adekv = double.TryParse(Console.ReadLine(), out A);
+                        Console.WriteLine("Введите B");
+                        bool adekvatik = double.TryParse(Console.ReadLine(), out B );
+                        if (adekv & adekvatik)
+                        {
+                            if ((A > 0)&(B > 0))
+                            {
+                                int a;
+                                Console.WriteLine("Выберите одно из действий:\n1)S-прямоугольника\t2)S-кольца\t3)S-треугольника");
+                                bool adekvat = int.TryParse(Console.ReadLine(), out a);
+                                if (adekvat)
+                                {
+                                    switch (a)
+                                    {
+                                        case 1:
+                                            {
+                                                Console.WriteLine($"Площадь прямоугольника: {B * A}");
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                double big = Math.Max(A, B);
+                                                double mal = Math.Min(A, B);
+                                                Console.WriteLine($"Площадь кольца: {(Math.PI * big * big)-(Math.PI * mal * mal)}");
+                                                break;
+                                            }
+                                        case 3:
+                                            {
+                                                if ((A < B + B)&(B < A + B))
+                                                {
+                                                    Console.WriteLine($"Площадь треугольника: {(A * Math.Sqrt(4*B*B-A*A))/4}");
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Такого треугольика не существует");
+                                                }
+                                                
+                                                break;
+                                            }
+                                        default:
+                                            Console.WriteLine("Вы ввели несуществующее значение");
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Вы ввели что-то не то");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Таких значений быть не может");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели что-то не так");
+                            continue;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы вышли");
+                    }
+
+
+                } while (cki.Key != ConsoleKey.Enter);
+            }
+            #endregion
+            //L1N1();
+            //L1N3();
+            //L2N1();
+            //L2N11();
+            //L3N11();
+            //L3N12();
+            //L3N13();
+            //L3N4();
+            L1N1();
+            L1N3();
+            L2N1();
+            L2N11();
+            L3N11();
+            L3N12();
+            L3N13();
+            L3N4();
+        }
+    }
+}
