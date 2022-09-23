@@ -1,0 +1,308 @@
+using System;
+
+namespace Lab_2_1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            // 1st lvl (1, 2, 3)
+
+            #region 1
+            Console.WriteLine("1st lvl\n\n1st:\n");
+            double r = 2;
+            Console.WriteLine("x:");
+            double x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("y:");
+            double y = Convert.ToDouble(Console.ReadLine());
+            if (Math.Abs(x * x + y * y - r * r) <= 0.001)
+            {
+                Console.WriteLine("\nYes");
+            }
+            else
+            {
+                Console.WriteLine("\nNo");
+            }
+            #endregion
+
+            #region 2
+            Console.WriteLine("\n\n2nd:\n");
+            Console.WriteLine("x:");
+            x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("y:");
+            y = Convert.ToDouble(Console.ReadLine());
+            if (y >= 0 && y + Math.Abs(x) <= 1)
+            {
+                Console.WriteLine("\nYes");
+            }
+            else
+            {
+                Console.WriteLine("\nNo");
+            }
+            #endregion
+
+            #region 3
+            Console.WriteLine("\n\n3rd:\n");
+            Console.WriteLine("a:");
+            double a = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("b:");
+            double b = Convert.ToDouble(Console.ReadLine());
+            if (a > 0)
+            {
+                Console.WriteLine("\nc = " + Math.Max(a, b));
+            }
+            else
+            {
+                Console.WriteLine("\nc = " + Math.Min(a, b));
+            }
+            #endregion
+
+
+            // 2nd lvl (1, 2)
+
+            #region 1
+            Console.WriteLine("\n\n2nd lvl\n\n1st:\n");
+            Console.WriteLine("How many students are in your class rn?");
+            double n = Convert.ToDouble(Console.ReadLine()), v, s = 0;
+            if (n <= 0)
+            {
+                Console.WriteLine("Nope");
+            }
+            else
+            {
+                for (int i = 1; i <= n; i++)
+                {
+                    Console.WriteLine(i + " student's height (sm) is:");
+                    v = Convert.ToDouble(Console.ReadLine());
+                    s += v;
+                }
+                Console.WriteLine("\nThe awerage height of your class is " + (s / n));
+            }
+            #endregion
+
+            #region 2
+            Console.WriteLine("\n\n2nd:\n");
+            Console.WriteLine("Let's enter the circle\nThe radius:");
+            r = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("\nCenter coordinates\nx:");
+            x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("y:");
+            y = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("How many points do you want here?");
+            n = Convert.ToDouble(Console.ReadLine());
+            double x1, y1;
+            s = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                Console.WriteLine("\n" + i + " point:");
+                Console.WriteLine("x:");
+                x1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("y:");
+                y1 = Convert.ToDouble(Console.ReadLine());
+                if (Math.Pow(x1 - x, 2) + Math.Pow(y1 - y, 2) <= r * r)
+                {
+                    s += 1;
+                }
+            }
+            Console.WriteLine("\nThere are " + s + " of them, who are in the circle");
+            #endregion
+
+            //3rd lvl (4, 11, 12, 13)
+
+            #region 4
+            Console.WriteLine("\n\n3rd lvl\n\n4th:\n");
+            Console.WriteLine("Let's enter the ring\nThe 'in' radius:");
+            double r1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("The 'out' radius:");
+            double r2 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Now, start typing coordinates\nIf you want to stop, type 'stop'");
+            s = 0;
+            for (int i = 0; i <= 1; i++)
+            {
+                Console.WriteLine("\nx:");
+                string f = Console.ReadLine();
+                if (f == "stop" || f == "Stop")
+                {
+                    break;
+                }
+                else
+                {
+                    i -= 1;
+                    double m = Convert.ToDouble(f);
+                    Console.WriteLine("y:");
+                    double p = Convert.ToDouble(Console.ReadLine());
+                    if (Math.Pow(m, 2) + Math.Pow(p, 2) <= r2 * r2 && Math.Pow(m, 2) + Math.Pow(p, 2) >= r1 * r1)
+                    {
+                        s += 1;
+                    }
+                }
+            }
+            Console.WriteLine("\nThere are " + s + " of them, who are in the ring");
+            #endregion
+
+            #region 11
+            // Предисловие: код огромный из-за того, что я учёл абсолютно все возмжные исходы (я Доктор Стрендж)
+            Console.WriteLine("\n\n11th:\n");
+            Console.WriteLine("Start typing grades\nIf you want to stop, type 'stop'");
+            s = 0;
+            double k = 0, s1 = 0, d = 0, s2 = 0, z = 0, f1 = 0, s3 = 0, k1 = 0;
+            for (int i = 0; i <= 1; i++)
+            {
+                k += 1;
+                z += 1;
+                Console.WriteLine("\n" + z + " student:");
+                Console.WriteLine("1st grade:");
+                string f = Console.ReadLine();
+                if (f == "stop" || f == "Stop")
+                {
+                    break;
+                }
+                else
+                {
+                    k = 1;
+                    s1 = 0;
+                    s = 0;
+                    d = 1;
+                    i -= 1;
+                    double m = Convert.ToDouble(f);
+                    if (m <= 2)
+                    {
+                        s = 1;
+                    }
+                    if (m <= 0 || m > 5)
+                    {
+                        Console.WriteLine("You don't understand the rules, try again");
+                        f1 = 1;
+                        break;
+                    }
+                    s1 += m;
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Console.WriteLine((j + 2) + " grade:");
+                        m = Convert.ToDouble(Console.ReadLine());
+                        if (m <= 2)
+                        {
+                            s = 1;
+                        }
+                        if (m <= 0 || m > 5)
+                        {
+                            Console.WriteLine("You don't understand the rules, try again");
+                            f1 = 1;
+                            break;
+                            
+                        }
+                         k += 1;
+                         s1 += m;
+                    } 
+                }
+                if (s == 1)
+                {
+                    s2 += 1;
+                }
+                else
+                {
+                    k1 += k;
+                    s3 += s1;
+                }
+                if (f1 == 1)
+                {
+                    break;
+                }
+            }
+            if (d == 0)
+            {
+                Console.WriteLine("\nType at least 1 student's grade");
+            }
+            if (d != 0 && f1 == 0)
+            {
+                Console.WriteLine("\nThere are " + s2 + " lozers with low grade and the awerage grade is " + (s3 / (k1)));
+            }
+            #endregion
+
+            #region 12
+            Console.WriteLine("\n\n12th:\n");
+            Console.WriteLine("Start typing 'r'\nIf you want to stop, type 'stop'");
+            k = 0;
+            for (int i = 0; i <= 1; i++)
+            {
+                k += 1;
+                Console.WriteLine("\n" + k + " r:");
+                string f = Console.ReadLine();
+                if (f == "stop" || f == "Stop")
+                {
+                    break;
+                }
+                else
+                {
+                    i -= 1;
+                    double m = Convert.ToDouble(f);
+
+                    Console.WriteLine("If you want square, type '1'\ncircle - '2'\ntriangle - '3'");
+                    double p = Convert.ToDouble(Console.ReadLine());
+                    if (p == 1)
+                    {
+                        Console.WriteLine("\nS = " + (m * m));
+                    }
+                    if (p == 2)
+                    {
+                        Console.WriteLine("\nS = " + (Math.PI * m * m));
+                    }
+                    if (p == 3)
+                    {
+                        Console.WriteLine("\nS = " + (Math.Pow(3, 0.5)/4 * m * m));
+                    }
+                    if (p != 1 && p != 2 && p != 3)
+                    {
+                        Console.WriteLine("What?");
+                        break;
+                    }
+                }
+            }
+            #endregion
+
+            #region 13
+            Console.WriteLine("\n\n12th:\n");
+            Console.WriteLine("Start typing 'A' and 'B'\nIf you want to stop, type 'stop'");
+            k = 0;
+            for (int i = 0; i <= 1; i++)
+            {
+                k += 1;
+                Console.WriteLine("\n" + k + " A:");
+                string f = Console.ReadLine();
+                if (f == "stop" || f == "Stop")
+                {
+                    break;
+                }
+                else
+                {
+                    i -= 1;
+                    double A = Convert.ToDouble(f);
+                    Console.WriteLine("B:");
+                    double B = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("If you want rectangle, type '1'\nring - '2'\ntriangle - '3'");
+                    double p = Convert.ToDouble(Console.ReadLine());
+                    if (p == 1)
+                    {
+                        Console.WriteLine("\nS = " + (A * B));
+                    }
+                    if (p == 2)
+                    {
+                        Console.WriteLine("\nS = " + (Math.PI * Math.Max(A, B) * Math.Max(A, B) - Math.PI * Math.Min(A, B) * Math.Min(A, B)));
+                    }
+                    if (p == 3)
+                    {
+                        Console.WriteLine("\nS = " + (B / 4 * Math.Pow(4 * A * A - B * B, 0.5)));
+                    }
+                    if (p != 1 && p != 2 && p != 3)
+                    {
+                        Console.WriteLine("What?");
+                        break;
+                    }
+                }
+            }
+            #endregion
+        }
+    }
+}
