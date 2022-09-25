@@ -30,7 +30,7 @@ namespace Lab_2
                 }
                 else Console.WriteLine("Введите допустимое значение у");
 
-                }
+            }
             else Console.WriteLine("Введите допустимое значение х");
             #endregion
 
@@ -94,227 +94,249 @@ namespace Lab_2
 
             #region 2 level 1
             int n = 5;
-                Console.WriteLine("Сколько девочек в классе?");
-                vvod = Console.ReadLine();
-                if (int.TryParse(vvod, out int deva) && deva >= 0 && deva <= n)
+            Console.WriteLine("Сколько девочек в классе?");
+            vvod = Console.ReadLine();
+            if (int.TryParse(vvod, out int girl) && girl >= 0 && girl <= n)
+            {
+                double s_m = 0, s_d = 0; int error_d = 0, error_m = 0;
+                for (int i = 1; i <= girl; i++)
                 {
-                    double s_m = 0, s_d = 0; int oshibka_d = 0, oshibka_m = 0;
-                    for (int i = 1; i <= deva; i++)
+                    Console.WriteLine($"Введите рост {i}й девочки (в см)");
+                    vvod = Console.ReadLine();
+                    if (int.TryParse(vvod, out int hight) && hight > 0)
                     {
-                        Console.WriteLine($"Введите рост {i}й девочки (в см)");
-                        vvod = Console.ReadLine();
-                        if (int.TryParse(vvod, out int rost) && rost > 0)
-                        {
-                            s_d = s_d + rost;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Некорректно");
-                            oshibka_d ++;
-                        }
+                        s_d = s_d + hight;
                     }
-
-                    for (int i = 1; i <= (n-deva); i++)
+                    else
                     {
-                        Console.WriteLine($"Введите рост {i}го мальчика (в см)");
-                        vvod = Console.ReadLine();
-                        if (int.TryParse(vvod, out int rost))
-                        {
-                            s_m = s_m + rost;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Некорректно");
-                            oshibka_m ++;
-                        }
-                    }
-                    if (deva > 0)
-                    {
-                        double sr_rost = s_d / (deva - oshibka_d);
-                        Console.WriteLine($"Cредний рост девочек - {sr_rost}");
-                    }
-                    else Console.WriteLine("Девочек нет");
-                    if (n - deva > 0)
-                    {
-                        double sr_rost = s_m / (n - deva - oshibka_m);
-                        Console.WriteLine(sr_rost);
+                        Console.WriteLine("Некорректно");
+                        error_d++;
                     }
                 }
-                else Console.WriteLine("Вы ввели недопустимое значение");
+
+                for (int i = 1; i <= (n - girl); i++)
+                {
+                    Console.WriteLine($"Введите рост {i}го мальчика (в см)");
+                    vvod = Console.ReadLine();
+                    if (int.TryParse(vvod, out int hight))
+                    {
+                        s_m = s_m + hight;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Некорректно");
+                        error_m++;
+                    }
+                }
+                if (girl > 0)
+                {
+                    double sr_hight = s_d / (girl - error_d);
+                    Console.WriteLine($"Cредний рост девочек - {sr_hight}");
+                }
+                else Console.WriteLine("Девочек нет");
+                if (n - girl > 0)
+                {
+                    double sr_hight = s_m / (n - girl - error_m);
+                    Console.WriteLine($"Cредний рост мальчиков - {sr_hight}");
+                }
+            }
+            else Console.WriteLine("Вы ввели недопустимое значение");
 
             #endregion
 
             #region 2 level 9
             n = 5;
-                double min = 1000000;
-                for (int i = 1; i <= n; i++)
+            double min = 1000000;
+            for (int i = 1; i <= n; i++)
+            {
+                Console.WriteLine($"Введите время, за которое проплыл 200м {i}й пловец");
+                vvod = Console.ReadLine();
+                if (double.TryParse(vvod, out double time) && time > 0)
                 {
-                    Console.WriteLine($"Введите время, за которое проплыл 200м {i}й пловец");
-                    vvod = Console.ReadLine();
-                    if (double.TryParse(vvod, out double time) && time > 0)
-                    {
-                        if (time < min) min = time;
-                    }
-                    else Console.WriteLine("Введено неверно - в базу не внесено");
+                    if (time < min) min = time;
                 }
-                Console.WriteLine($"Лучший результат - {min}");
+                else Console.WriteLine("Введено неверно - в базу не внесено");
+            }
+            Console.WriteLine($"Лучший результат - {min}");
             #endregion
 
             #region 3 level 4
-            const int r1 = 5, r2 = 10; int popadet = 0;
-            Console.WriteLine("Cколько будет точек?");
-            vvod = Console.ReadLine();
-            if (int.TryParse(vvod, out n) && n >= 0)
+            const int r1 = 5, r2 = 10; int hit = 0; n = 0;
+            while (vvod != "Стоп" && vvod != "стоп")
             {
-                for (int i = 1; i <= n; i++)
+                n = n + 1;
+                Console.WriteLine($"Координата x {n}й точки (если не хотите продолжать, напишите 'Cтоп')");
+                vvod = Console.ReadLine();
+                if (double.TryParse(vvod, out x))
                 {
-                    Console.WriteLine($"Координата x {i}й точки");
+                    Console.WriteLine($"Координата у {n}й точки");
                     vvod = Console.ReadLine();
-                    if (double.TryParse(vvod, out x))
+                    if (double.TryParse(vvod, out double y))
                     {
-                        Console.WriteLine($"Координата у {i}й точки");
-                        vvod = Console.ReadLine();
-                        if (double.TryParse(vvod, out double y))
-                        {
-                            if (x * x + y * y >= r1*r1 && x * x + y * y <= r2*r2 && r1 < r2) popadet++;
-                        }
-                        else Console.WriteLine("Неверный y");
+                        if (x * x + y * y >= r1 * r1 && x * x + y * y <= r2 * r2 && r1 < r2) hit++;
                     }
-                    else Console.WriteLine("Неверный х");
+                    else Console.WriteLine("Неверный y");
                 }
-                Console.WriteLine($"Будут внутри кольца - {popadet} точек");
+                else if (vvod == "Стоп" || vvod == "стоп") continue;
+                else Console.WriteLine("Неверный х");
             }
-            else Console.WriteLine("Неверное значение");
+            Console.WriteLine($"Будут внутри кольца - {hit} точек");
             #endregion
-            
-            #region 3 level 11
-            double s_ocen = 0; int ploxo = 0, oshib = 0;
-            Console.WriteLine("Сколько студентов?");
-            vvod = Console.ReadLine();
-            if (int.TryParse(vvod, out n) && n >= 1)
-            {
-                for (int i = 1; i <= n; i++)
-                {
-                    Console.WriteLine($"Введите 4 оценки {i}го студента");
-                    vvod = Console.ReadLine();
-                    if (int.TryParse(vvod, out int ocenka1) && ocenka1 > 1 && ocenka1 <= 5)
-                    {
-                        s_ocen = s_ocen + ocenka1;
-                    }
-                    else oshib++;
-                    vvod = Console.ReadLine();
-                    if (int.TryParse(vvod, out int ocenka2) && ocenka2 > 1 && ocenka2 <= 5)
-                    {
-                        s_ocen = s_ocen + ocenka2;
-                    }
-                    else oshib++;
-                    vvod = Console.ReadLine();
-                    if (int.TryParse(vvod, out int ocenka3) && ocenka3 > 1 && ocenka3 <= 5)
-                    {
-                        s_ocen = s_ocen + ocenka3;
-                    }
-                    else
-                        oshib++;
-                    vvod = Console.ReadLine();
-                    if (int.TryParse(vvod, out int ocenka4) && ocenka4 > 1 && ocenka4 <= 5)
-                    {
-                        s_ocen = s_ocen + ocenka4;
-                    }
 
-                    else
-                        oshib++;
-                    if ((ocenka1 == 2) || (ocenka2 == 2) || (ocenka3 == 2) || (ocenka4 == 2))
-                    {
-                        ploxo++;
-                    }
+            #region 3 level 11
+            double s_grade = 0, s_student; int bad = 0, error = 0;
+            n = 0;
+            vvod = "";
+            while (vvod != "Стоп" && vvod != "стоп")
+            {
+                s_student = 0;
+                n = n + 1;
+                Console.WriteLine($"Введите 4 оценки {n}го студента (если ученики закончились, то напишите 'Стоп')");
+                vvod = Console.ReadLine();
+                if (int.TryParse(vvod, out int grade1) && grade1 > 1 && grade1 <= 5)
+                {
+                    s_student = s_student + grade1;
                 }
-                Console.WriteLine($"Неуспевающих учеников (у кого хоть 1 экзамен на 2) - {ploxo}. Cредний балл - {s_ocen / (4 * n - oshib)}");
+                else if (vvod == "Стоп" || vvod == "стоп") continue;
+                else error++;
+
+                vvod = Console.ReadLine();
+                if (int.TryParse(vvod, out int grade2) && grade2 > 1 && grade2 <= 5)
+                {
+                    s_student = s_student + grade2;
+                }
+                else error++;
+                vvod = Console.ReadLine();
+                if (int.TryParse(vvod, out int grade3) && grade3 > 1 && grade3 <= 5)
+                {
+                    s_student = s_student + grade3;
+                }
+                else error++;
+                vvod = Console.ReadLine();
+                if (int.TryParse(vvod, out int grade4) && grade4 > 1 && grade4 <= 5)
+                {
+                    s_student = s_student + grade4;
+                }
+                else error++;
+                if ((grade1 == 2) || (grade2 == 2) || (grade3 == 2) || (grade4 == 2))
+                {
+                    bad++;
+                }
+                else s_grade = s_grade + s_student;
             }
-            else Console.WriteLine("Некорректно");
+            Console.WriteLine($"Неуспевающих учеников (у кого хоть 1 экзамен на 2) - {bad}. Cредний балл - {s_grade / (4 * (n - 1) - error - bad * 4)} ");
             #endregion
 
             #region 3 level 12
-            Console.WriteLine("Сколько значений будет у r?");
-            vvod = Console.ReadLine();
-            double S;
-            if (int.TryParse(vvod, out n) && n >= 0)
+            double S; vvod = ""; n = 0;
+            while (vvod != "Стоп" && vvod != "стоп")
             {
-                for (int i = 1; i <= n; i++)
+                n = n + 1;
+                Console.WriteLine($"Введите {n}e значение r (для прекращения напишите 'Стоп')");
+                vvod = Console.ReadLine();
+                if (double.TryParse(vvod, out double r) && r > 0)
                 {
-                    Console.WriteLine($"Введите {i}e значение r");
+                    Console.WriteLine("Площадь чего вы хотите посчитать? Варианты: 'квадрат','круг','треугольник'");
                     vvod = Console.ReadLine();
-                    if (double.TryParse(vvod,out double r) && r > 0)
+                    switch (vvod)
                     {
-                        Console.WriteLine("Площадь чего вы хотите посчитать? Варианты: 'квадрат','круг','треугольник'");
-                        vvod = Console.ReadLine();
-                        if (vvod == "квадрат")
-                        {
+                        case ("квадрат"):
+
                             S = r * r;
                             Console.WriteLine($"Площадь квадрата с данной стороной - {S}");
-                        }
-                        else if (vvod == "круг")
-                        {
+                            break;
+
+                        case ("круг"):
+
                             S = Math.PI * r * r;
                             Console.WriteLine($"Площадь круга с данным радиусом - {S}");
-                        }
-                        else if (vvod == "треугольник")
-                        {
+                            break;
+
+                        case ("треугольник"):
+
                             S = r * r * Math.Sqrt(3) / 2;
                             Console.WriteLine($"Площадь треугольника с данной стороной - {S}");
-                        }
-                        else Console.WriteLine($"Введите заново, пожалуйста");
-                    }
+                            break;
 
+                        case ("Стоп"):
+
+                            goto Exit;
+
+                        case ("стоп"):
+
+                            goto Exit;
+
+                        default:
+                            Console.WriteLine($"Неверно введено название");
+                            break;
+
+
+
+                    }
                 }
+                else if (vvod == "Стоп" || vvod == "стоп") break;
+                else Console.WriteLine("Неверное значение r");
+
             }
-            else Console.WriteLine("Некорректно");
+        Exit:
             #endregion
 
             #region 3 level 13
-            Console.WriteLine("Сколько значений будет у A и В?");
-            vvod = Console.ReadLine();
-            if (int.TryParse(vvod, out n) && n >= 0 )
+            vvod = ""; n = 0;
+            while (vvod != "Стоп" && vvod != "стоп")
             {
-                for (int i = 1; i <= n; i++)
+                n = n + 1;
+                Console.WriteLine($"Введите {n}e значение А (если хотите прекратить - 'Стоп')");
+                vvod = Console.ReadLine();
+                if (double.TryParse(vvod, out double A) && A > 0)
                 {
-                    Console.WriteLine($"Введите {i}e значение А");
+                    Console.WriteLine($"Введите {n}e значение B");
                     vvod = Console.ReadLine();
-                    if (double.TryParse(vvod, out double A) && A > 0)
+                    if (double.TryParse(vvod, out double B) && B > 0)
                     {
-                        Console.WriteLine($"Введите {i}e значение B");
+                        Console.WriteLine("Площадь чего вы хотите посчитать? Варианты: 'прямоугольник','кольцо','треугольник'");
                         vvod = Console.ReadLine();
-                        if (double.TryParse(vvod, out double B) && B > 0)
+                        switch (vvod)
                         {
-                            Console.WriteLine("Площадь чего вы хотите посчитать? Варианты: 'прямоугольник','кольцо','треугольник'");
-                            vvod = Console.ReadLine();
-                            if (vvod == "прямоугольник")
-                            {
-                                S = A*B;
+                            case ("прямоугольник"):
+                                S = A * B;
                                 Console.WriteLine($"Площадь прямоугольника с данными сторонами - {S}");
-                            }
-                            else if (vvod == "кольцо")
-                            {
+                                break;
+
+                            case ("кольцо"):
+
                                 S = Math.Abs(Math.PI * A * A - Math.PI * B * B);
                                 Console.WriteLine($"Площадь кольца с данными радиусами - {S}");
-                            }
-                            else if (vvod == "треугольник")
-                            {
-                                S = A * 0.5 * Math.Sqrt(B*B - (A*A/4));
+                                break;
+
+                            case ("треугольник"):
+
+                                S = A * 0.5 * Math.Sqrt(B * B - (A * A / 4));
                                 Console.WriteLine($"Площадь треугольника с данными сторонами - {S}");
-                            }
-                            else Console.WriteLine($"Введите заново, пожалуйста");
+                                break;
+                            case ("Стоп"):
+                                goto Exit2;
+                            case ("стоп"):
+                                goto Exit2;
+                            default:
+                                Console.WriteLine("Неправильный указатель");
+                                break;
                         }
-                        else Console.WriteLine("Неверное значение В");
-
                     }
-                    else Console.WriteLine("Неверное значение А -> значение В пропущено автоматически");
-
+                    else Console.WriteLine("Неверное значение В");
                 }
+                else if (vvod == "стоп" || vvod == "Стоп") continue;
+                else Console.WriteLine("Неверное значение А -> значение В пропущено автоматически");
             }
-            else Console.WriteLine("Некорректно");
+
+            Exit2:;          
+
+        }
+                    
+    }
+}
+
             #endregion
 
             
-        }
-    }
-}
+       
