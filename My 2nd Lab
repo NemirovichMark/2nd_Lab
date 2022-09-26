@@ -1,0 +1,227 @@
+#region // level 1 Task 1
+Console.WriteLine($"Enter x");
+double x = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine($"Enter y");
+double y = Convert.ToDouble(Console.ReadLine());
+int r = 2;
+double a;
+a = (Math.Pow(x, 2)) + (Math.Pow(y, 2)) - (Math.Pow(r, 2));
+if (Math.Abs(a) <= 0.001)
+{
+    Console.WriteLine($"Poin ({x} , {y}) lies on a circle");
+}
+else
+{
+    Console.WriteLine($"Poin ({x} , {y} ) doen't lie on a circle");
+}
+
+#endregion
+
+
+
+#region // level 1 Task 3
+Console.WriteLine($"Enter a");
+double a = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine($"Enter b");
+double b = Convert.ToDouble(Console.ReadLine());
+double c;
+if (a > 0)
+{
+    c = Math.Max(a, b);
+}
+else
+{
+    c = Math.Min(a, b);
+}
+Console.WriteLine($" C = {c}");
+#endregion
+
+
+
+#region // level 1 Task 4
+Console.WriteLine($"Enter a");
+double a = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine($"Enter b");
+double b = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine($"Enter c");
+double c = Convert.ToDouble(Console.ReadLine());
+double z;
+z = Math.Max(Math.Min(a, b), c);
+Console.WriteLine($"Z = {z}");
+
+#endregion
+
+
+
+#region // level 2 Task 1
+Console.WriteLine($"Enter n");
+int n = Convert.ToInt32(Console.ReadLine());
+Random rnd = new Random();
+int girls = rnd.Next(0, n);
+int boys = n - girls;
+int summG = 0;
+int summB = 0;
+int[] GirlsHight = new int[girls];
+int[] BoysHight = new int[boys];
+Random rand = new Random();
+for (int x = 0; x < GirlsHight.Length; x++)
+{
+    GirlsHight[x] = rnd.Next(150, 180);
+}
+for (int x = 0; x < BoysHight.Length; x++)
+{
+    BoysHight[x] = rnd.Next(170, 200);
+}
+for (int i = 0; i < GirlsHight.Length; i++)
+{
+    summG += GirlsHight[i];
+}
+int AverageG = summG / girls;
+for (int i = 0; i < BoysHight.Length; i++)
+{
+    summB += BoysHight[i];
+}
+int AverageB = summB / boys;
+Console.WriteLine($"Number of girls i n the class is {girls} and Number of boys i n the class is {boys}");
+Console.WriteLine($"Average hight of girls is {AverageG} and Average hight of boys is {AverageB}");
+#endregion
+
+
+
+#region // level 2 Task 5
+Console.WriteLine($"Enter Standart");
+double Standart = Convert.ToDouble(Console.ReadLine());
+double Res;
+int GoodRes = 0;
+for (int i = 0; i < 30; i++)
+{
+    Console.WriteLine("Enter sportsman's resolt");
+    Res = Convert.ToDouble(Console.ReadLine());
+    if (Res <= Standart)
+    {
+        GoodRes += 1;
+    }
+}
+Console.WriteLine($"The numbers of athletes who have fulfilled the standart is {GoodRes}");
+#endregion
+
+
+
+#region // level 3 Task 4
+Console.WriteLine($"Enter inner radius");
+double R1 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine($"Enter outer radius");
+double R2 = Convert.ToDouble(Console.ReadLine());
+int n = 0, k = 0;
+double x, y;
+do
+{
+    Console.WriteLine("Enter x, to finish enter 1000");
+    x = Convert.ToDouble(Console.ReadLine());
+    if (x >= 1000)
+    {
+        break;
+    }
+    Console.WriteLine("Enter y, to finish enter 1000");
+    y = Convert.ToDouble(Console.ReadLine());
+    n += 1;
+    if (x * x + y * y <= R1 * R1 && x * x + y * y <= R2 * R2)
+    {
+        k += 1;
+    }
+} while (x < 1000);
+Console.WriteLine($" In total is {n} poins, and {k} points got into the ring");
+#endregion
+
+
+
+#region // level 3 Task 11
+int ex1, ex2, ex3, ex4;
+Console.WriteLine($"Enter numbers of studens");
+int n = Convert.ToInt32(Console.ReadLine());
+double sum, summa = 0, cnt = 0, cntk = 0;
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine($"Enter grade for 4 exams");
+    ex1 = int.Parse(Console.ReadLine());
+    ex2 = int.Parse(Console.ReadLine());
+    ex3 = int.Parse(Console.ReadLine());
+    ex4 = int.Parse(Console.ReadLine());
+    if ((ex1 != 2) && (ex2 != 2) && (ex3 != 2) && (ex4 != 2))
+    {
+        cnt += 1;
+        sum = (ex1 + ex2 + ex3 + ex4) / 4;
+        summa = summa + sum;
+    }
+    if ((ex1 <= 2) || (ex2 <= 2) || (ex3 <= 2) || (ex4 <= 2))
+    {
+        cntk += 1;
+    }
+
+}
+Console.WriteLine($"Number of underachievers = {cntk}\t Average score = {summa / cnt}");
+#endregion
+
+
+
+
+#region // level 3 Task 12
+Console.WriteLine($"Enter numbers of meaning R");
+int n = Convert.ToInt32(Console.ReadLine());
+
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine("Enter R");
+    double R = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine($"If you want to now squere area tap 1, if area of circle tap 2, area of triangle tap 3");
+    double ind = Convert.ToDouble(Console.ReadLine());
+    if (ind == 1)
+    {
+        Console.WriteLine($" The squere area = {R * R}");
+    }
+    if (ind == 2)
+    {
+        Console.WriteLine($" The area of circle = {Math.PI * R * R}");
+    }
+    if (ind == 3)
+    {
+        Console.WriteLine($" The area of triangle = {Math.Sqrt(3) * R * R / 4}");
+    }
+}
+#endregion
+
+
+
+#region // level 3 Task 13
+using System;
+
+Console.WriteLine($"Enter numbers of meaning A and B");
+int n = Convert.ToInt32(Console.ReadLine());
+double h;
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine("Enter A");
+    double A = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine("Enter B");
+    double B = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine($"If you want to now rectangle area tap 1, if ring area tap 2, area of isisceles triangle tap 3");
+    double ind = Convert.ToDouble(Console.ReadLine());
+    if (ind == 1)
+    {
+        Console.WriteLine($" The rectangle area = {A * B}");
+    }
+    if (ind == 2)
+    {
+        if (A > B)
+        {
+            Console.WriteLine($" The ring area = {Math.PI * A * A - Math.PI * B * B}");
+        }
+        else Console.WriteLine($" The ring area = {Math.PI * B * B - Math.PI * A * A}");
+    }
+    if (ind == 3)
+    {
+        h = Math.Sqrt(B * B - (A * A / 4));
+        Console.WriteLine($" The area of isisceles triangle = {0.5 * A * h}");
+    }
+}
+#endregion
