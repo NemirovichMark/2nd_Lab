@@ -40,7 +40,7 @@ namespace _2nd_Lab
             }
             #endregion
             #region Task1.3
-            double a, b, c;
+            double a, b, c=0;
             Console.WriteLine("Input a");
             bool s3=double.TryParse(Console.ReadLine(), out a);
             if (s3)
@@ -49,29 +49,15 @@ namespace _2nd_Lab
                 bool s4=double.TryParse(Console.ReadLine(), out b);
                 if (s4)
                 {
-                    if (a > 0)
+                    if ((a > 0 && a > b) || (a <= 0 && a < b))
                     {
-                        if (a > b)
-                        {
-                            c = a;
-                        }
-                        else
-                        {
-                            c = b;
-                        }
+                        c = a;
                     }
-                    else
+                    if ((a<=0 && a>b)||(a>0 && a<b))
                     {
-                        if (a < b)
-                        {
-                            c = a;
-                        }
-                        else
-                        {
-                            c = b;
-                        }
+                        c = b;
+                    }
 
-                    }
                     Console.WriteLine($"Answer for the 1.3 is {c}");
                 }
                 else
@@ -160,10 +146,12 @@ namespace _2nd_Lab
                         double.TryParse(Console.ReadLine(), out r01);
                         if (r01>0)
                         {
+                            r01 = r01 * r01;
                             Console.WriteLine("Enter radius2 bigger than r1 of ellipse");
                             double.TryParse(Console.ReadLine(), out r02);
                             if (r02>0)
                             {
+                                r02 = r02 * r02;
                                 Console.WriteLine("Enter number of dots");
                                 bool success5 = int.TryParse(Console.ReadLine(), out n2);
                                 if (success5)
@@ -178,7 +166,7 @@ namespace _2nd_Lab
                                             Console.WriteLine("Enter y");
                                             double.TryParse(Console.ReadLine(), out y2);
                                             nn2 += 1;
-                                            if ((((x2 - x02) * (x2 - x02) + (y2 - y02) * (y2 - y02)) > r01*r01) && (((x2 - x02) * (x2 - x02) + (y2 - y02) * (y2 - y02)) < r02*r02)) ;
+                                            if ((((x2 - x02) * (x2 - x02) + (y2 - y02) * (y2 - y02)) > r01) && (((x2 - x02) * (x2 - x02) + (y2 - y02) * (y2 - y02)) < r02)) ;
                                             {
                                                 ans++;
                                             }
@@ -233,10 +221,12 @@ namespace _2nd_Lab
                         double.TryParse(Console.ReadLine(), out r013);
                         if (r013 > 0)
                         {
+                            r013 = r013 * r013;
                             Console.WriteLine("Enter radius2 bigger than r1 of ellipse");
                             double.TryParse(Console.ReadLine(), out r023);
                             if (r023 > 0)
                             {
+                                r023 = r023 * r023;
                                 do
                                 {
                                     Console.WriteLine("Enter x of dot,to end press 10000");
@@ -244,7 +234,7 @@ namespace _2nd_Lab
                                     if (x32 == 10000) break;
                                     Console.WriteLine("Enter y of dot");
                                     double.TryParse(Console.ReadLine(), out y32);
-                                    if (((x32 - x03) * (x32 - x03) + (y32 - y03) * (y32 - y03) > r013 * r013) && ((x32 - x03) * (x32 - x03) + (y32 - y03) * (y32 - y03) > r023 * r023)) ;
+                                    if (((x32 - x03) * (x32 - x03) + (y32 - y03) * (y32 - y03) > r013) && ((x32 - x03) * (x32 - x03) + (y32 - y03) * (y32 - y03) > r023)) ;
                                     {
                                         ans3++;
                                     }
@@ -287,11 +277,9 @@ namespace _2nd_Lab
                         if (m1 == 0) break;
                         if (m1 > 0)
                         {
-                            if (m1 == 2 || m1 == 1)
+                            if (m1 == 2 || m1 == 1 )
                             {
                                 bad++;
-                                oz += m1;
-                                kolvo++;
                             }
                             else
                             {
@@ -307,13 +295,14 @@ namespace _2nd_Lab
                                     if (m2 == 2 || m2 == 1)
                                     {
                                         bad++;
-                                        oz += m2;
-                                        kolvo++;
                                     }
                                     else
                                     {
-                                        oz += m2;
-                                        kolvo++;
+                                        if (bad==0)
+                                        {
+                                            oz += m2;
+                                            kolvo++;
+                                        }
                                     }
                                     Console.WriteLine("Enter the mark of the 3rd exam");
                                     bool succes3=int.TryParse(Console.ReadLine(), out m3);
@@ -324,13 +313,14 @@ namespace _2nd_Lab
                                             if (m3 == 2 || m3 == 1)
                                             {
                                                 bad++;
-                                                oz += m3;
-                                                kolvo++;
                                             }
                                             else
                                             {
-                                                oz += m3;
-                                                kolvo++;
+                                                if (bad==0)
+                                                {
+                                                    oz += m3;
+                                                    kolvo++;
+                                                }
                                             }
                                             Console.WriteLine("Enter the mark of the 4th exam");
                                             bool succes4 = int.TryParse(Console.ReadLine(), out m4);
@@ -341,13 +331,14 @@ namespace _2nd_Lab
                                                     if (m4 == 2 || m4 == 1)
                                                     {
                                                         bad++;
-                                                        oz += m4;
-                                                        kolvo++;
                                                     }
                                                     else
                                                     {
-                                                        oz += m4;
-                                                        kolvo++;
+                                                        if (bad==0)
+                                                        {
+                                                            oz += m4;
+                                                            kolvo++;
+                                                        }
                                                     }
                                                     if (bad>=1)
                                                     {
@@ -420,27 +411,38 @@ namespace _2nd_Lab
                         if (r12 == -10) break;
                         if (r12 > 0)
                         {
-                            Console.WriteLine("Treygolnik=1, Kvadrat=2, Krug=3");
+                            Console.WriteLine("Triangle=1, Square=2, Circle=3");
                             Console.WriteLine("Enter type of figure");
                             int type;
                             bool suces2 = int.TryParse(Console.ReadLine(), out type);
                             if (suces2)
                             {
-                                if (type == 1)
+                                switch(type)
                                 {
-                                    answ = r12 * r12 * Math.Pow(3, 0.5) / 4;
-                                    Console.WriteLine($"Treugolnik {answ}");
+                                    case 1:
+                                        {
+                                            answ = r12 * r12 * Math.Pow(3, 0.5) / 4;
+                                            Console.WriteLine($"Triangle {answ}");
+                                            break;
+                                        }
+
+                                    case 2:
+                                        {
+                                            answ = r12 * r12;
+                                            Console.WriteLine($"Square {answ}");
+                                            break;
+                                        }
+                                    case 3:
+                                        {
+                                            answ = Math.PI * r12 * r12;
+                                            Console.WriteLine($"Circle {answ}");
+                                            break;
+                                        }
+                                    default:
+                                        Console.WriteLine("You entered incorrect value");
+                                        break;
                                 }
-                                if (type == 2)
-                                {
-                                    answ = r12 * r12;
-                                    Console.WriteLine($"Kvadrat {answ}");
-                                }
-                                if (type == 3)
-                                {
-                                    answ = Math.PI * r12 * r12;
-                                    Console.WriteLine($"Krug {answ}");
-                                }
+
                             }
                             else
                             {
@@ -472,7 +474,7 @@ namespace _2nd_Lab
                         if (A == -1) break;
                         if (A==0)
                         {
-                            Console.WriteLine("Square is 0");
+                            Console.WriteLine("Area is 0");
                         }
                         if (A>0)
                         {
@@ -487,20 +489,31 @@ namespace _2nd_Lab
                                     bool suc=int.TryParse(Console.ReadLine(), out figura);
                                     if (suc)
                                     {
-                                        if (figura==1)
+                                        switch (figura)
                                         {
-                                            otvet = A * B;
-                                            Console.WriteLine($"Area of rectangle is {otvet}");
-                                        }
-                                        if (figura==2)
-                                        {
-                                            otvet =Math.Abs(Math.PI*A*A-Math.PI*B*B);
-                                            Console.WriteLine($"Area of circle is {otvet}");
-                                        }
-                                        if (figura==3)
-                                        {
-                                            otvet = Math.Pow(B * B - (A / 2) * (A / 2), 0.5) * (A / 2);
-                                            Console.WriteLine($"Area of triangle is {otvet}");
+                                            case 1:
+                                                {
+                                                    otvet = A * B;
+                                                    Console.WriteLine($"Area of rectangle is {otvet}");
+                                                    break;
+                                                }
+                                            case 2:
+                                                {
+                                                    otvet = Math.Abs(Math.PI * A * A - Math.PI * B * B);
+                                                    Console.WriteLine($"Area of circle is {otvet}");
+                                                    break;
+                                                }
+                                            case 3:
+                                                {
+                                                    otvet = Math.Pow(B * B - (A / 2) * (A / 2), 0.5) * (A / 2);
+                                                    Console.WriteLine($"Area of triangle is {otvet}");
+                                                    break;
+                                                }
+                                            default:
+                                                {
+                                                    Console.WriteLine("You entered incorrect type of figure");
+                                                    break;
+                                                }
                                         }
                                     }
                                 }
