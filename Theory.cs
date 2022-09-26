@@ -72,7 +72,7 @@ namespace laba2
             Console.WriteLine($"Введите n");
             n1= double.Parse(Console.ReadLine());
             Random rnd1 = new Random();
-            for (int i = 1; i <= n1; i++) ;
+            for (int i = 1; i <= n1; i++) 
             {
                 rez = rnd1.Next(110, 180);
                 if (rez < max)
@@ -83,7 +83,7 @@ namespace laba2
             Console.WriteLine($"Лучший результат {max} сек");
 
 
-            double r1, r2,n2,x2,y2,kol=0;//3.4
+            double r1, r2,n2,x2,y2,kol=0,length=0;//3.4
             Console.WriteLine($"Введите кол-во точек");
             n2 = double.Parse(Console.ReadLine());
             Random rnd2 = new Random();
@@ -97,7 +97,8 @@ namespace laba2
                 x2 = double.Parse(Console.ReadLine());
                 Console.WriteLine($"Введите координату y");
                 y2 = double.Parse(Console.ReadLine());
-                if ((x2*x2+y2*y2>=r1*r1)&&(x2*x2+y2*y2<=r2*r2))
+                length = x2 * x2 + y2 * y2;
+                if ((length>=r1*r1)&&(length<=r2*r2))
                 {
                     kol = kol + 1;
                 }
@@ -105,89 +106,114 @@ namespace laba2
             Console.WriteLine($"Количество точек ={kol}");
 
 
-            double n3,sum,summa=0,kolvo=0,kolv=0;//3.11
-            int ekz1, ekz2, ekz3, ekz4;
-            Console.WriteLine($"Введите кол-во студентов");
-            n3 = double.Parse(Console.ReadLine());
+            double sum,summa=0,kolvo=0,kolv=0;//3.11
+            string v;
+            double ekz1, ekz2, ekz3, ekz4;
             Random rnd3 = new Random();
-            for (int i=1;i<=n3;i++)
+            bool trigger = true;
+            while (trigger)
             {
-                ekz1 = rnd3.Next(2, 5);
-                ekz2 = rnd3.Next(2, 5);
-                ekz3 = rnd3.Next(2, 5);
-                ekz4 = rnd3.Next(2, 5);
-                
-                if ((ekz1!=2)&&(ekz2!=2)&&(ekz3!=2)&&(ekz4!=2))
+                Console.WriteLine("если хотите закончить введите #, если хотите продолжить введите $ (3.11)");
+                v = Console.ReadLine();
+                if (v=="#")
                 {
-                    kolv = kolv + 1;
-                    sum = (ekz1 + ekz2 + ekz3 + ekz4)/4 ;
-                    summa = summa + sum;
+                    trigger=false;
                 }
-                if ((ekz1<=2)||(ekz2<=2)||(ekz3<=2)||(ekz4<=2))
+                if (v=="$")
                 {
-                    kolvo = kolvo + 1;
-                }
-            }
-            Console.WriteLine($"Количество неуспевающих = {kolvo}\t Средний балл = {summa / kolv}");
-
-
-            double n4,R,g;//3.12
-            Console.WriteLine("Введите n значений r");
-            n4=double.Parse(Console.ReadLine());
-            for (int i=1;i<=n4 ;i++)
-            {
-                Console.WriteLine("Введите r");
-                R=double.Parse(Console.ReadLine());
-                Console.WriteLine("Если хотите узнать площади квадрата - нажмите 1\t Если хотите узнать площадь круга нажмите 2\t Если хотите узнать площадь треугольника нажмите 3");
-                g=double.Parse(Console.ReadLine());
-                if ((g>=1)&&(g<=1))
-                {
-                    Console.WriteLine($" Площадь квадрата = {R * R}");
-                }
-                if ((g>=2)&&(g<=2))
-                {
-                    Console.WriteLine($"Площадь круга = {Math.PI * R * R}");
-                }
-                if ((g>=3)&&(g<=3))
-                {
-                    Console.WriteLine($"Площадь треугольника = {Math.Sqrt(3) * R * R / 4}");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-
-
-            double n5, A, g1,B,h;//3.13
-            Console.WriteLine("Введите n значений A и B");
-            n5 = double.Parse(Console.ReadLine());
-            for (int i = 1; i <= n5; i++)
-            {
-                Console.WriteLine("Введите A");
-                A = double.Parse(Console.ReadLine());
-                Console.WriteLine("Введите B");
-                B=double.Parse(Console.ReadLine()); 
-                Console.WriteLine("Если хотите узнать площади прямоугольника - нажмите 1\t Если хотите узнать площадь кольца нажмите 2\t Если хотите узнать площадь треугольника нажмите 3");
-                g1 = double.Parse(Console.ReadLine());
-                if ((g1 >= 1) && (g1 <= 1))
-                {
-                    Console.WriteLine($" Площадь прямоугольника = {A * B}");
-                }
-                if ((g1 >= 2) && (g1 <= 2))
-                {
-                    if (A > B)
+                    Console.WriteLine("Введите оценки за 4 экзамена");
+                    ekz1 = double.Parse(Console.ReadLine());
+                    ekz2=double.Parse(Console.ReadLine());
+                    ekz3=double.Parse(Console.ReadLine());
+                    ekz4=double.Parse(Console.ReadLine());
+                    if ((ekz1 != 2) && (ekz2 != 2) && (ekz3 != 2) && (ekz4 != 2))
                     {
-                        Console.WriteLine($"Площадь кольца = {Math.PI * A * A - Math.PI * B * B}");
+                        kolv = kolv + 1;
+                        sum = (ekz1 + ekz2 + ekz3 + ekz4) / 4;
+                        summa = summa + sum;
                     }
-                    else Console.WriteLine($"Площадь кольца = {Math.PI * B * B - Math.PI * A * A}");
+                    if ((ekz1 <= 2) || (ekz2 <= 2) || (ekz3 <= 2) || (ekz4 <= 2))
+                    {
+                        kolvo = kolvo + 1;
+                    }
+                    Console.WriteLine($"Количество неуспевающих = {kolvo}\t Средний балл = {summa / kolv}");
                 }
-                if ((g1 >= 3) && (g1 <= 3))
+            }
+
+
+            double R ,g;//3.12
+            string c;
+            bool trigger1 = true;
+            while (trigger1)
+            {
+                Console.WriteLine("если хотите закончить введите #, если хотите продолжить введите $ (3.12)");
+                c = Console.ReadLine();
+                if (c == "#")
                 {
-                    h= Math.Sqrt(B*B-(A*A/4));
-                    Console.WriteLine($"Площадь треугольника = {0.5*A*h}");
+                    trigger1 = false;
+                }
+                if (c == "$")
+                {
+                    Console.WriteLine("Введите r");
+                    R = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Если хотите узнать площади квадрата - нажмите 1\t Если хотите узнать площадь круга нажмите 2\t Если хотите узнать площадь треугольника нажмите 3");
+                    g = double.Parse(Console.ReadLine());
+                    switch (g)
+                    {
+                        case 1:
+                            Console.WriteLine($"Площадь квадрата = {R * R}");
+                            break;
+                        case 2:
+                            Console.WriteLine($"Площадь круга = {Math.PI * R * R}");
+                            break;
+                        case 3:
+                            Console.WriteLine($"Площадь треугольника = {Math.Sqrt(3) * R * R / 4}");
+                            break;
+                    }
+                }
+            }
+            Console.WriteLine();
+
+
+            double  A, g1,B,h;//3.13
+            string f;
+            bool trigger2=true;
+            while (trigger2)
+            {
+                Console.WriteLine("если хотите закончить введите #, если хотите продолжить введите $ (3.13)");
+                f = Console.ReadLine();
+                if (f == "#")
+                {
+                    trigger2 = false;
+                }
+                if (f == "$")
+                {
+                    Console.WriteLine("Введите A");
+                    A = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Введите B");
+                    B = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Если хотите узнать площади прямоугольника - нажмите 1\t Если хотите узнать площадь кольца нажмите 2\t Если хотите узнать площадь треугольника нажмите 3");
+                    g1 = double.Parse(Console.ReadLine());
+                    switch (g1)
+                    {
+                        case 1:
+                            Console.WriteLine($" Площадь прямоугольника = {A * B}");
+                            break;
+                        case 2:
+                            if (A > B)
+                            {
+                                Console.WriteLine($"Площадь кольца = {Math.PI * A * A - Math.PI * B * B}");
+                            }
+                            else Console.WriteLine($"Площадь кольца = {Math.PI * B * B - Math.PI * A * A}");
+                            break;
+                        case 3:
+                            h = Math.Sqrt(B * B - (A * A / 4));
+                            Console.WriteLine($"Площадь треугольника = {0.5 * A * h}");
+                            break;
+                    }
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine();
 
         }
 
