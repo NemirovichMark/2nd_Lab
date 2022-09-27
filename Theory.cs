@@ -1,158 +1,310 @@
-﻿using System;
+using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace _2nd_Lab
+namespace lab1s
 {
-    class Theory
+    internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
-
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            #region task 1_1
+            Console.WriteLine("task 1_1");
+            double r = 2;
+            double point1x=0, point1y=2;
+            if (Math.Abs(point1x * point1x + point1y * point1y - r * r) <= 0.001)
             {
-                // will be done, because 4th condition provide true
-            }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
+                Console.WriteLine("first Point is in circle");
             }
             else
             {
-                // do work
+                Console.WriteLine("first Point is not in circle");
+            }
+            double point2x = 1.5, point2y = 0.7;
+            if (Math.Abs(point2x * point2x + point2y * point2y - r * r) <= 0.001)
+            {
+                Console.WriteLine("second Point is in circle");
+            }
+            else
+            {
+                Console.WriteLine("second Point is not in circle");
+            }
+            double point3x = 1, point3y = 1;
+            if (Math.Abs(point3x * point3x + point3y * point3y - r * r) <= 0.001)
+            {
+                Console.WriteLine("third Point is in circle");
+            }
+            else
+            {
+                Console.WriteLine("third Point is not in circle");
+            }
+            double point4x = 3, point4y = 0;
+            if (Math.Abs(point4x * point4x + point4y * point4y - r * r) <= 0.001)
+            {
+                Console.WriteLine("fourth Point is in circle");
+            }
+            else
+            {
+                Console.WriteLine("fourth Point is not in circle");
             }
 
             #endregion
-
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
-            {
-                if (request.StartsWith('I'))
+            #region task 1_2
+            Console.WriteLine("task 1_2");
+            Console.WriteLine("Enter point coordinates");
+            int x = Convert.ToInt32(Console.ReadLine());
+            int y = Convert.ToInt32(Console.ReadLine());
+            if (y>=-0 && y+Math.Abs(x)<=1)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
+                Console.WriteLine("the point is in circle");
+            }
+            else
+            {
+                Console.WriteLine("the point is not in circle");
+            }
+            #endregion
+            #region task 2_1
+            Console.WriteLine("Task 2_1");
+            Console.WriteLine("Enter amount of boys in class");
+            double i;
+            double s = 0;
+            double n = Convert.ToInt32(Console.ReadLine());
+            if (n == 0) Console.WriteLine("Enter normal number");
+            else
+            {
+                i = n;
+                Console.WriteLine("Enter Boys height");
+                while (i > 0)
+                {
+                    x = Convert.ToInt32(Console.ReadLine());
+                    s += x;
+                    i = i - 1;
+                }
+                Console.WriteLine($"Boys average height - {s/n} ");
+            }
+            s = 0;
+            Console.WriteLine("Enter amount of girls in class");
+            double g=Convert.ToInt32(Console.ReadLine());
+            if (g == 0) Console.WriteLine("Enter normal number");
+            else
+            {
+                i = g;
+                Console.WriteLine("Enter girls height");
+                while (i>0)
+                {
+                    x=Convert.ToInt32(Console.ReadLine());
+                    s += x;
+                    i = i - 1;
+                }
+                Console.WriteLine($"Girls average height - {s / g}");
+            }
+            #endregion
+            #region task 2_2
+            Console.WriteLine("Task 2_2");
+            double a1, b1;
+            n = 0;
+            Console.WriteLine("Write amount of points");
+            n = double.Parse(Console.ReadLine());
+            Console.WriteLine("write r of circle");
+            r = 0;
+            r=double.Parse(Console.ReadLine());
+            Console.WriteLine("write centre coordinates of circle");
+            double a = double.Parse(Console.ReadLine());
+            double b = double.Parse(Console.ReadLine());
+            i = n;
+            int kol = 0;
+            while (i>0)
+            {
+                Console.WriteLine("Write point coordinates");
+                a1 = double.Parse(Console.ReadLine());
+                b1 = double.Parse(Console.ReadLine());
+                if ((a1 - a) * (a1 - a) + (b1 - b) * (b1 - b) <= r * r)
+                {
+                    kol++;
+                }
+                i--;
+            }
+            Console.WriteLine($"amount of points in circle - {kol}");
+            #endregion
+            #region task 3_4
+            Console.WriteLine("Task 3_4");
+            Console.WriteLine("Write abscissa of centre ring");
+            double x0 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Write ordinate of centre ring");
+            double y0 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Write r1");
+            double r1=double.Parse(Console.ReadLine());
+            Console.WriteLine("Write r2");
+            double r2=double.Parse(Console.ReadLine());
+            n = 0;
+            double flag = 0;
+            double  x3 = 0;
+            double y3 = 0;
+            kol = 0;
+            do
+            {
+                Console.WriteLine("Write abscissa of point or if you want to end prog write - 0.123");
+                x3 = double.Parse(Console.ReadLine());
+                if (x3 == 0.123) break;
+                Console.WriteLine("Write ordinate of point");
+                y3 = double.Parse(Console.ReadLine());
+                if ((x3 - x0) * (x3 - x0) + (y3 - y0) * (y3 - y0) >= r1 * r1 && (x3 - x0) * (x3 - x0) + (y3 - y0) * (y3 - y0) <= r2 * r2)
+                {
+                    kol++;
+                }
+            } while (flag != 1);
+            Console.WriteLine($"amount of points in ring - {kol}");
+            #endregion
+            #region task 3_11
+            Console.WriteLine("Task 3_11");
+            n = 0;
+            double dva = 0;
+            s = 0;
+            kol = 0;
+            double neyt=0;
+            flag = 0;
+            do
+            {
+                dva = 0;
+
+                Console.WriteLine("Write max of student, if you want to end programm write 0");
+                for (i = 1; i <= 4; i++)
+                {
+                    n = double.Parse(Console.ReadLine());
+                    if (n == 0) break;
+                    if (n == 2) dva++;
+                    s += n;
+                }
+                if (n == 0) break;
+                kol += 1;
+                if (dva == 0) neyt++;
+            } while (flag != 1);
+            if (kol == 0)
+            { Console.WriteLine("No students"); }
+            else
+            {
+                 double gda = s / (kol * 4);
+                Console.WriteLine($"amount of losers - {neyt}, grade point avarage - {gda}");
+            }
+            #endregion
+            #region task 3_12
+            string area;
+            flag = 0;
+            r = 0;
+            s = 0;
+            Console.WriteLine("Task 3_12");
+            do
+            {
+                Console.WriteLine("Which shape you want to calculate area of - square, triangle, circle. If you want to stop prog write - end");
+                area = Console.ReadLine();
+                if (area == "end") break;
+                if (area == "square")
+                {
+                    Console.WriteLine("Write side length");
+                    r = double.Parse(Console.ReadLine());
+                    if (r == 0)
                     {
-                        // very positive result
+                        Console.WriteLine("Write correct length");
+                    }
+                    else
+                    {
+                        s = r * r;
+                        Console.WriteLine($"square area - {s}");
                     }
                 }
-                else
+                if (area == "triangle")
                 {
-                    // negative result
+                    Console.WriteLine("Write side of length");
+                    r = double.Parse(Console.ReadLine());
+                    if (r == 0)
+                    {
+                        Console.WriteLine("Write correct length");
+                    }
+                    else
+                    {
+                        s = Math.Sqrt(3) / 4 * r * r;
+                        Console.WriteLine("triangle area - {0:f4}",s);
+                    }
                 }
-                // addition work
-            }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
-            #endregion
-
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
-            {
-
-            }
-            else
-            {
-                if (1 == (int)'a')
+                if (area == "circle")
                 {
-
+                    Console.WriteLine("Write side of length");
+                    r = double.Parse(Console.ReadLine());
+                    if (r == 0)
+                    {
+                        Console.WriteLine("Write correct length");
+                    }
+                    else
+                    {
+                        s = Math.PI * r * r;
+                        Console.WriteLine("circle area - {0:f4}",s);
+                    }
                 }
-            }
-
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
+                        
+                    
+                
+            } while (flag != 1);
             #endregion
-
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
+            #region task 3_13
+            a = 0;
+            b = 0;
+            s = 0;
+            flag = 0;
+            Console.WriteLine("Task 3_13");
+            do
             {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
+                Console.WriteLine("Which shape you want to calculate area of rectangle, triangle, ring. If you want to end prog write - end");
+                area = Console.ReadLine();
+                if (area == "end")
+                {
                     break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
+                }
+                if (area == "rectangle")
+                {
+                    Console.WriteLine("Write side lengths a and b");
+                    a = double.Parse(Console.ReadLine());
+                    b = double.Parse(Console.ReadLine());
+                    if (a == 0 || b == 0) Console.WriteLine("Write correct length");
+                    else
+                    {
+                        s = a * b;
+                        Console.WriteLine($"rectangle area - {s}");
+                    }
+                }
+                if (area == "triangle")
+                {
+                    Console.WriteLine("Write side lengths a and b");
+                    a = double.Parse(Console.ReadLine());
+                    b = double.Parse(Console.ReadLine());
+                    if (a == 0 || b == 0) Console.WriteLine("Write correct length");
+                    else
+                    {
+                        s = b / 4 * (Math.Sqrt(4 * a * a - b * b));
+                        Console.WriteLine("triangle area - {0:f4}", s);
+                    }
+                }
+                if (area == "ring")
+                {
+                    Console.WriteLine("Write two radius a and b");
+                    a = double.Parse(Console.ReadLine());
+                    b = double.Parse(Console.ReadLine());
+                    if (a == 0 || b == 0) Console.WriteLine("write correct lenght");
+                    else
+                    {
+                        if (a > b) s = Math.PI * (a - b);
+                        else s = Math.PI * (b - a);
+                        Console.WriteLine("ring area - {0:f4}", s);
+                    }
+                }
 
-            #endregion
-
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
-
+            } while (flag != 1);
             #endregion
         }
     }
