@@ -6,154 +6,306 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
+            #region task 2.1.2
 
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            double x, y;
+            bool l = false;
+            Console.WriteLine("enter x");
+            double.TryParse(Console.ReadLine(), out x);
+            Console.WriteLine("enter y");
+            double.TryParse(Console.ReadLine(), out y);
+            if (y >= 0 && y + Math.Abs(x) <= 1)
             {
-                // will be done, because 4th condition provide true
+                l = !l;
             }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
-            }
+            Console.WriteLine($"the dot lies inside the triangle - {l}");
 
             #endregion
 
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
+
+            #region task 2.1.3
+
+            double a, b, c;
+            Console.WriteLine("enter a");
+            double.TryParse(Console.ReadLine(), out a);
+            Console.WriteLine("enter b");
+            double.TryParse(Console.ReadLine(), out b);
+            if (a > 0 && a > b)
             {
-                if (request.StartsWith('I'))
+                c = a;
+            }
+            else if (a <= 0 && a < b)
+            {
+                c = a;
+            }
+            else
+            {
+                c = b;
+            }
+            Console.WriteLine(c);
+
+            #endregion
+
+
+            #region task 2.2.1
+
+            double h, sh, s = 0;
+            int n, i;
+            Console.WriteLine("enter n");
+            int.TryParse(Console.ReadLine(), out n);
+            while (n <= 0)
+            {
+                Console.WriteLine("n must be positive");
+                int.TryParse(Console.ReadLine(), out n);
+            }
+            for (i = 0; i < n; i++)
+            {
+                Console.WriteLine("enter height");
+                double.TryParse(Console.ReadLine(), out h);
+                s = s + h;
+            }
+            sh = s / n;
+            Console.WriteLine($"average height is {sh}");
+
+            #endregion
+
+
+            #region task 2.2.4
+
+            double r1, r2, x_q, y_q;
+            int i_q, n_q, k = 0;
+            Console.WriteLine("enter r1");
+            double.TryParse(Console.ReadLine(), out r1);
+            Console.WriteLine("enter r2");
+            double.TryParse(Console.ReadLine(), out r2);
+            while (r1 < 0 || r2 < 0)
+            {
+                Console.WriteLine("r1 an r2 must not be negative");
+                Console.WriteLine("enter r1");
+                double.TryParse(Console.ReadLine(), out r1);
+                Console.WriteLine("enter r2");
+                double.TryParse(Console.ReadLine(), out r2);
+            }
+            while (r1 > r2)
+            {
+                Console.WriteLine("r2 >= r1");
+                Console.WriteLine("enter r2");
+                double.TryParse(Console.ReadLine(), out r2);
+            }
+            Console.WriteLine("enter n");
+            int.TryParse(Console.ReadLine(), out n_q);
+            while (n_q <= 0)
+            {
+                Console.WriteLine("n must be positive");
+                int.TryParse(Console.ReadLine(), out n_q);
+            }
+            for (i_q = 0; i_q < n_q; i_q++)
+            {
+                Console.WriteLine("enter x");
+                double.TryParse(Console.ReadLine(), out x_q);
+                Console.WriteLine("enter y");
+                double.TryParse(Console.ReadLine(), out y_q);
+                if (x_q * x_q + y_q * y_q <= r2 * r2 && x_q * x_q + y_q * y_q >= r1 * r1)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
+                    k = k + 1;
+                }
+            }
+            Console.WriteLine($"points in the ring - {k}");
+
+            #endregion
+
+
+            #region task 2.3.4
+
+            double k1, k2, x_w, y_w;
+            int k_w = 0;
+            Console.WriteLine("enter r1");
+            double.TryParse(Console.ReadLine(), out k1);
+            Console.WriteLine("enter r2");
+            double.TryParse(Console.ReadLine(), out k2);
+            while (k1 < 0 || k2 < 0)
+            {
+                Console.WriteLine("r1 an r2 must not be negative");
+                Console.WriteLine("enter r1");
+                double.TryParse(Console.ReadLine(), out k1);
+                Console.WriteLine("enter r2");
+                double.TryParse(Console.ReadLine(), out k2);
+            }
+            while (k1 > k2)
+            {
+                Console.WriteLine("r2 >= r1");
+                Console.WriteLine("enter r2");
+                double.TryParse(Console.ReadLine(), out k2);
+            }
+            do
+            {
+                Console.WriteLine("enter x or enter 1000 (or more) to end");
+                double.TryParse(Console.ReadLine(), out x_w);
+                if (x_w >= 1000) break;
+                Console.WriteLine("enter y");
+                double.TryParse(Console.ReadLine(), out y_w);
+                if (x_w * x_w + y_w * y_w <= k2 * k2 && x_w * x_w + y_w * y_w >= k1 * k1)
+                {
+                    k_w = k_w + 1;
+                }
+            } while (x_w < 1000);
+            Console.WriteLine($"points in the ring - {k_w}");
+
+            #endregion
+
+
+            #region task 2.3.11
+
+            double srb = 0, ssb = 0, nb = 0;
+            int j, po, an = 0, sb, ann = 0;
+            do
+            {
+                sb = 0;
+                ann = 0;
+                Console.WriteLine($"enter points for exam 1 or type smth not in [2:5]");
+                int.TryParse(Console.ReadLine(), out po);
+                if (po < 2 || po > 5)
+                {
+                    break;
+                }
+                if (po == 2)
+                {
+                    ann++;
+                }
+                sb = sb + po;
+                for (j = 2; j < 5; j++)
+                {
+                    Console.WriteLine($"enter points for exam {j}");
+                    int.TryParse(Console.ReadLine(), out po);
+                    while (po < 2 || po > 5)
                     {
-                        // very positive result
+                        Console.WriteLine("points can be only 2-5");
+                        Console.WriteLine($"enter points for exam {j}");
+                        int.TryParse(Console.ReadLine(), out po);
                     }
+                    if (po == 2)
+                    {
+                        ann++;
+                    }
+                    sb = sb + po;
                 }
-                else
+                if (ann > 0)
                 {
-                    // negative result
+                    an++;
                 }
-                // addition work
+                ssb = ssb + sb;
+                nb++;
+            } while (po >= 2 && po <= 5);
+            if (nb > 0)
+            {
+                srb = ssb / nb / 4;
             }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
+            Console.WriteLine($"number of loosers - {an}, average points - {srb}");
 
             #endregion
 
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
+            #region task 2.3.12
 
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
+            double r, g;
+            int key;
+            do
             {
-
-            }
-            else
-            {
-                if (1 == (int)'a')
+                Console.WriteLine("enter positive r or enter negative to end");
+                double.TryParse(Console.ReadLine(), out r);
+                if (r < 0)
                 {
-
+                    break;
                 }
-            }
+                Console.WriteLine("attribute: 1 = square area," + "2 = circle area," + "3 = triangle area");
+                Console.WriteLine("enter attribute 1, 2 or 3: ");
+                int.TryParse(Console.ReadLine(), out key);
+                while (key < 1 || key > 3)
+                {
+                    Console.WriteLine("not the right attribute - enter attribute 1, 2 or 3:");
+                    int.TryParse(Console.ReadLine(), out key);
+                }
+                switch (key)
+                {
+                    case 1:
+                        g = r * r;
+                        Console.WriteLine($"square area - {g}");
 
-            // Transforming to
+                        break;
 
-            if (0 != 0)
-            {
+                    case 2:
+                        g = Math.PI * r * r;
+                        Console.WriteLine($"circle area - {g}");
 
-            }
-            else if (1 == (int)'a')
-            {
+                        break;
 
-            }
+                    case 3:
+                        g = Math.Sqrt(3) * r * r / 4;
+                        Console.WriteLine($"triangle area - {g}");
 
-            // But if int this else can be more than 1 if operator, do not do so!
-            #endregion
+                        break;
+                }
+            } while (r >= 0);
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
-            {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
 
             #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
+            #region task 2.3.13
 
-            #endregion
+            double A, B, G;
+            int ke;
+            do
+            {
+                Console.WriteLine("enter positive A or enter negative to end");
+                double.TryParse(Console.ReadLine(), out A);
+                if (A < 0)
+                {
+                    break;
+                }
+                Console.WriteLine("enter B");
+                double.TryParse(Console.ReadLine(), out B);
+                while (B < 0)
+                {
+                    Console.WriteLine("B cannot be negative");
+                    double.TryParse(Console.ReadLine(), out B);
+                }
+                Console.WriteLine("attribute: 1 = rectangle area," + "2 = ring area," + "3 = triangle area");
+                Console.WriteLine("enter attribute 1, 2 or 3: ");
+                int.TryParse(Console.ReadLine(), out ke);
+                while (ke < 1 || ke > 3)
+                {
+                    Console.WriteLine("not the right attribute - enter attribute 1, 2 or 3:");
+                    int.TryParse(Console.ReadLine(), out ke);
+                }
+                switch (ke)
+                {
+                    case 1:
+                        G = A * B;
+                        Console.WriteLine($"rectangle area - {G}");
+
+                        break;
+
+                    case 2:
+                        G = Math.Abs(Math.PI * A * A - Math.PI * B * B);
+                        Console.WriteLine($"ring area - {G}");
+
+                        break;
+
+                    case 3:
+                        G = Math.Sqrt(B * B - A * A / 4) * A / 2;
+                                    if (B + B < A)
+                                    {
+                                        Console.WriteLine("impossible");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"triangle area - {G}"); 
+                                    }
+
+                        break;
+                }
+            } while (A >= 0);
+
+            #endregion  
         }
     }
 }
