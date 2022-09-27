@@ -1,0 +1,226 @@
+#region task1in1
+Console.WriteLine("Task at level 1");
+double x11, y11, r11;
+Console.WriteLine("Write R");
+r11 = double.Parse(Console.ReadLine());
+for (int i11 = 0; i11 < 4; i11++)
+{
+    Console.WriteLine("Write X");
+    x11 = double.Parse(Console.ReadLine());
+    Console.WriteLine("Write Y");
+    y11 = double.Parse(Console.ReadLine());
+    if ((-0.001 <= (x11 * x11) + (y11 * y11) - (r11 * r11)) & ((x11 * x11) + (y11 * y11) - (r11 * r11) <= 0.001))
+    {
+        Console.WriteLine("Inside for (" + x11 + ", " + y11 + ")");
+    }
+    else
+    {
+        Console.WriteLine("Outside for (" + x11 + ", " + y11 + ")");
+    }
+}
+# endregion
+Console.WriteLine(" ");
+
+#region task2in1
+Console.WriteLine("Task 2 at level 1");
+double x21, y21;
+for (int i11 = 0; i11 < 3; i11++)
+{
+    Console.WriteLine("Write X");
+    x21 = double.Parse(Console.ReadLine());
+    Console.WriteLine("Write Y");
+    y21 = double.Parse(Console.ReadLine());
+    if ((y21 >= 0) & (y21 + Math.Abs(x21) <= 1))
+    {
+        Console.WriteLine("Inside for (" + x21 + ", " + y21 + ")");
+    }
+    else
+    {
+        Console.WriteLine("Outside for (" + x21 + ", " + y21 + ")");
+    }
+}
+# endregion
+Console.WriteLine(" ");
+
+#region task3in1
+Console.WriteLine("Task 3 at level 1");
+double a31, b31, c31;
+Console.WriteLine("Write A");
+a31 = double.Parse(Console.ReadLine());
+Console.WriteLine("Write B");
+b31 = double.Parse(Console.ReadLine());
+if (a31 > 0)
+{
+    if (b31 > a31)
+    {
+        c31 = b31;
+    }
+    else
+    {
+        c31 = a31;
+    }
+}
+else
+{
+    if (b31 > a31)
+    {
+        c31 = a31;
+    }
+    else
+    {
+        c31 = b31;
+    }
+}
+Console.WriteLine(c31);
+# endregion
+Console.WriteLine(" ");
+
+#region task1in2
+Console.WriteLine("Task 1 at level 2");
+int n12;
+double c12, s12 = 0;
+Console.WriteLine("Write how many students");
+n12 = Int32.Parse(Console.ReadLine());
+for (int i12 = 0; i12 < n12; i12++)
+{
+    Console.WriteLine("Write height");
+    c12 = double.Parse(Console.ReadLine());
+    s12 += c12;
+}
+Console.WriteLine(s12 / n12);
+# endregion
+Console.WriteLine(" ");
+
+#region task2in2
+Console.WriteLine("Task 2 at level 2");
+int n22;
+double r22, mr22 = 0;
+Console.WriteLine("Write how many students");
+n22 = Int32.Parse(Console.ReadLine());
+for (int i22 = 0; i22 < n22; i22++)
+{
+    Console.WriteLine("Write the result");
+    r22 = double.Parse(Console.ReadLine());
+    if (r22 >= mr22)
+    {
+        mr22 = r22;
+    }
+}
+Console.WriteLine(mr22);
+# endregion
+Console.WriteLine(" ");
+
+#region task4in3
+Console.WriteLine("Task 4 at level 3");
+Console.WriteLine("Write the inner radius");
+double r143 = double.Parse(Console.ReadLine());
+Console.WriteLine("Write the outer radius");
+double r243 = double.Parse(Console.ReadLine());
+double x43, y43;
+int s43 = 0;
+string str43;
+Console.WriteLine("Write X");
+while ((str43 = Console.ReadLine()) != "")
+{
+    x43 = double.Parse(str43);
+    Console.WriteLine("Write Y");
+    y43 = double.Parse(Console.ReadLine());
+    if ((((x43 * x43) + (y43 * y43)) <= (r243 * r243)) & (((x43 * x43) + (y43 * y43)) >= (r143 * r143)))
+    {
+        s43++;
+    }
+    Console.WriteLine("Write X");
+}
+Console.WriteLine(s43);
+#endregion
+Console.WriteLine(" ");
+
+
+#region task11in3
+Console.WriteLine("Task 11 at level 3");
+double c1113, c2113, c3113, c4113, gpa = 0;
+int s113 = 0;
+string str113;
+Console.WriteLine("Write the first mark");
+while ((str113 = Console.ReadLine()) != "")
+{
+    c1113 = double.Parse(str113);
+    Console.WriteLine("Write the second mark");
+    c2113 = double.Parse(Console.ReadLine());
+    Console.WriteLine("Write the third mark");
+    c3113 = double.Parse(Console.ReadLine());
+    Console.WriteLine("Write the fourth mark");
+    c4113 = double.Parse(Console.ReadLine());
+    if ((c1113 < 3) | (c2113 < 3) | (c3113 < 3) | (c4113 < 3))
+    {
+        s113++;
+    }
+    else
+    {
+        gpa += (c1113 + c2113 + c3113 + c4113) / 4;
+    }
+    Console.WriteLine("Write the first mark");
+}
+Console.WriteLine("Number of underachieving students " + s113 + ", group average " + gpa);
+# endregion
+Console.WriteLine(" ");
+
+
+#region task12in3
+Console.WriteLine("Task 12 at level 3");
+string input123, choice123;
+double square123 = 0, r123;
+Console.WriteLine("Write R");
+while ((input123 = Console.ReadLine()) != "")
+{
+    r123 = double.Parse(input123);
+    Console.WriteLine("You want to find the area of a square/circle/triangle?");
+    choice123 = Console.ReadLine().ToLower();
+    switch (choice123)
+    {
+        case "square":
+            square123 = r123 * r123;
+            break;
+        case "circle":
+            square123 = (Math.PI * r123 * r123);
+            break;
+        case "triangle":
+            square123 = ((r123 * r123 * Math.Pow(3, 0.5)) / 4);
+            break;
+    }
+    Console.WriteLine(square123);
+    Console.WriteLine("Write R");
+}
+# endregion
+Console.WriteLine(" ");
+
+
+#region task13in3
+Console.WriteLine("Task 13 at level 3");
+string input133, choice133;
+double square133 = 0, a133, b133;
+Console.WriteLine("Write A");
+while ((input133 = Console.ReadLine()) != "")
+{
+    a133 = double.Parse(input133);
+    Console.WriteLine("Write B");
+    b133 = double.Parse(Console.ReadLine());
+    Console.WriteLine("You want to find the area of a square/circle/triangle?");
+    choice133 = Console.ReadLine().ToLower();
+    switch (choice133)
+    {
+        case "square":
+            square133 = a133 * b133;
+            break;
+        case "circle":
+            square133 = Math.Abs((Math.PI * a133 * a133) - (Math.PI * b133 * b133));
+            break;
+        case "triangle":
+            square133 = (0.5 * a133 * Math.Pow((b133 * b133 - a133 * a133), 0.5));
+            break;
+    }
+    Console.WriteLine(square133);
+    Console.WriteLine("Write A");
+}
+# endregion
+Console.WriteLine(" ");
