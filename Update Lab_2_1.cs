@@ -147,10 +147,9 @@ Console.WriteLine(count2);
 string[] marks2;
 string line2 = Console.ReadLine();
 string mark21, mark22, mark23, mark24;
-double mid_mark1;
-double mid_mark2 = 0;
-int count3 = 0;
-int count4 = 0;
+double mid_mark = 0;
+int count_n = 0;
+int total_c = 0;
 while (line2 != "")
 {
     marks2 = line2.Split();
@@ -158,18 +157,19 @@ while (line2 != "")
     mark22 = marks2[1];
     mark23 = marks2[2];
     mark24 = marks2[3];
-    mid_mark1 = (double.Parse(mark21) + double.Parse(mark22) + double.Parse(mark23) + double.Parse(mark24)) / 4;
-    if (mid_mark1 < 2.5)
+    if ((int.Parse(mark21) == 2) || (int.Parse(mark22) == 2) || (int.Parse(mark23) == 2) || (int.Parse(mark24) == 2))
     {
-        count3++;
+        count_n++;
     }
-    count4++;
-    mid_mark2 += mid_mark1;
+    else
+    {
+        total_c++;
+        mid_mark += (double.Parse(mark21) + double.Parse(mark22) + double.Parse(mark23) + double.Parse(mark24)) / 4;
+    }
+
     line2 = Console.ReadLine();
 }
-mid_mark2 /= count4;
-
-Console.WriteLine(count3 + " " + mid_mark2);
+Console.WriteLine(count_n + " " + mid_mark / total_c);
 #endregion
 
 #region Task 3 - 12
@@ -211,7 +211,7 @@ while (line3 != "")
         case 1:
             Console.WriteLine(A * B);
             break;
-        case 2: 
+        case 2:
             Console.WriteLine(Math.Pow(Math.Max(A, B), 2) * Math.PI - Math.Pow(Math.Min(A, B), 2) * Math.PI);
             break;
         case 3:
