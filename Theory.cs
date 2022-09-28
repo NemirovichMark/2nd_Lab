@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Threading.Channels;
 
 namespace _2nd_Lab
 {
@@ -6,152 +7,262 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
+            Console.WriteLine("First level");
 
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
+            #region 4Task
 
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            double z, a, b, c;
+            Console.WriteLine("Введите a, b, c:");
+            if (double.TryParse(Console.ReadLine(), out a) && double.TryParse(Console.ReadLine(), out b) &&
+                double.TryParse(Console.ReadLine(), out c))
             {
-                // will be done, because 4th condition provide true
+                z = Math.Max(Math.Min(a, b), c);
+                Console.WriteLine("Z равно:");
+                Console.WriteLine(z);
             }
+            
+            
+            #endregion
 
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
+            #region 5Task
 
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
+            double r, s;
+            r = 70;
+            s = 36.74;
+            if (r >= s * Math.PI / 2)
             {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
+                Console.WriteLine("Поместится");
             }
             else
             {
-                // do work
+                Console.WriteLine("Не поместится");
             }
-
+            r = 0.86;
+            s = 0.74;
+            if (r >= s * Math.PI / 2)
+            {
+                Console.WriteLine("Поместится");
+            }
+            else
+            {
+                Console.WriteLine("Не поместится");
+            }
             #endregion
 
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
+            s = 0;
+            Console.WriteLine("Second level");
+            
+            #region 1Task
+
+            Console.WriteLine("Введите количество учеников:");
+            double n, height;
+            if (double.TryParse(Console.ReadLine(), out n))
             {
-                if (request.StartsWith('I'))
+                if (n == 0)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
-                    {
-                        // very positive result
-                    }
+                    Console.WriteLine("Невозможно посчитать рост 0 человек :(");
                 }
                 else
                 {
-                    // negative result
+                    for (int i = 1; i <= n; i++)
+                    {
+                        Console.WriteLine("Введите рост:");
+                        double.TryParse(Console.ReadLine(), out height);
+                        s += height;
+                    }
+                    Console.WriteLine($"Средний рост учеников: {s / n}");
                 }
-                // addition work
             }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
+            
             #endregion
 
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
+            #region 9Task
 
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
+            double result, bestresult = Math.Pow(10, 10);
+            Console.WriteLine("Введите количество участников:");
+            if (double.TryParse(Console.ReadLine(), out n))
             {
-
-            }
-            else
-            {
-                if (1 == (int)'a')
+                if (n == 0)
                 {
-
+                    Console.WriteLine("Количество участников не может быть ноль");
                 }
+                else
+                {
+                    for (int i = 1; i <= n; i++)
+                    {
+                        Console.WriteLine("Введите результат:");
+                        if (double.TryParse(Console.ReadLine(), out result))
+                        {
+                            bestresult = Math.Min(result, bestresult); 
+                        }
+                        
+                    }
+                
+                }
+
+                Console.WriteLine($"Лучший результат: {bestresult}");
             }
-
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
-            #endregion
-
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
-            {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
+            
 
             #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
+            Console.WriteLine("Third level");
+
+            #region 4Task
+
+            double Radius1, Radius2, x, y, XofE, YofE;
+            int count = 0;
+            Console.WriteLine("Введите радиус внутреннего кольца, радиус внешнего кольца, x и y центра этих колец");
+            if (double.TryParse(Console.ReadLine(), out Radius1) && double.TryParse(Console.ReadLine(), out Radius2)
+                && double.TryParse(Console.ReadLine(), out XofE) && double.TryParse(Console.ReadLine(), out YofE))
             {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
+                if (Radius1 <= 0 || Radius2 <= 0){
+                    Console.WriteLine("This is bad :(");
+                }
+                else
+                {
+                    Radius1 = Radius1 * Radius1;
+                    Radius2 = Radius2 * Radius2;
+                    do
+                    {
+                        Console.WriteLine("Enter x and y of point:");
+                        Console.WriteLine("If you want to stop, enter x = -100");
+                        if (double.TryParse(Console.ReadLine(), out x) && double.TryParse(Console.ReadLine(), out y))
+                        {
+                            if (x == -100)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if ((x - XofE) * (x - XofE) + (y - YofE) * (y - YofE) < Radius1 &&
+                                    (x - XofE) * (x - XofE) + (y - YofE) * (y - YofE) < Radius2) count++;
+
+                            }
+                        }
+                        else break;
+                    } while (x != -100);
+
+                    Console.WriteLine(count);
+                }
+                
+            }
+
+
+            #endregion
+            
+            
+            #region 11Task
+
+            double mark1, mark2, mark3, mark4;
+            double underachievers = 0, allmarks = 0, Count = 0;
+            do
+            {
+                Console.WriteLine("Enter the mark of first exam:");
+                Console.WriteLine("If you want to stop enter 0");
+                if (double.TryParse(Console.ReadLine(), out mark1))
+                {
+                    if (mark1 == 1 || mark1 == 2) underachievers++;
+                    else if (mark1 == 0) break;
+                    else
+                    {
+                        allmarks += mark1;
+                        Count++;
+                    }
+                    Console.WriteLine("Enter the mark of second exam:");
+                    if (double.TryParse(Console.ReadLine(), out mark2))
+                    {
+                        if (mark2 == 1 || mark2 == 2) underachievers++;
+                        else
+                        {
+                            allmarks += mark2;
+                            Count++;
+                        }
+                        Console.WriteLine("Enter the mark of third exam:");
+                        if (double.TryParse(Console.ReadLine(), out mark3))
+                        {
+                            if (mark3 == 1 || mark3 == 2) underachievers++;
+                            else
+                            {
+                                allmarks += mark3;
+                                Count++;
+                            }
+                            Console.WriteLine("Enter the mark of fourth exam:");
+                            if (double.TryParse(Console.ReadLine(), out mark4))
+                            {
+                                if (mark4 == 1 || mark4 == 2) underachievers++;
+                                else
+                                {
+                                    allmarks += mark4;
+                                    Count++;
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                }
+            } while (mark1 != 0);
+
+            Console.WriteLine($"Count of underachiviers - {underachievers}, average mark - {allmarks / count}");
+            #endregion
+
+            r = 0;
+            s = 0;
+            #region 12Task
+            do
+            {
+                Console.WriteLine("If you want to stop enter 0");
+                Console.WriteLine("Enter variable r:");
+                if (double.TryParse(Console.ReadLine(), out r))
+                {
+                    if (r == 0) break;
+                    Console.WriteLine("Enter square, circle or triangle according to what you want to find");
+                    switch (Console.ReadLine())
+                    {
+                        case "square":
+                            Console.WriteLine($"Square of square is - {r * r}");
+                            break;
+                        case "circle":
+                            Console.WriteLine($"Square of circle is - {r * r * Math.PI}");
+                            break;
+                        case "triangle":
+                            Console.WriteLine($"Square of triangle is - {r * r * Math.Sin(Math.PI / 3) / 2}");
+                            break;
+                    }
+                }
+            } while (r != 0);
+
+            #endregion
+
+            #region 13Task
+
+            double A = 0, B = 0, perimeter;
+            do
+            {
+                Console.WriteLine("Enter A or B. If you want to stop enter A = 0 or B = 0");
+                if (double.TryParse(Console.ReadLine(), out A) && double.TryParse(Console.ReadLine(), out B))
+                {
+                    if (A == 0 || B == 0) break;
+                    Console.WriteLine("Enter rectangle, circle or triangle according to what you want to find");
+                    switch (Console.ReadLine())
+                    {
+                        case "rectangle":
+                            Console.WriteLine($"Square of rectangle is - {A * B}");
+                            break;
+                        case "circle":
+                            Console.WriteLine($"Square of circle is - {Math.Abs(Math.PI * A * A - Math.PI * B * B)}");
+                            break;
+                        case "triangle":
+                            perimeter = (A + B + B) / 2;
+                            s = Math.Sqrt(perimeter * (perimeter - A) * (perimeter - B) * (perimeter - B));
+                            Console.WriteLine($"Square of triangle is - {s}");
+                            break;
+                    }
+                }
+            } while (A != 0 || B != 0);
+
+
 
             #endregion
         }
