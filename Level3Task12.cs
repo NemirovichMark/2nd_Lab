@@ -24,29 +24,29 @@ class HelloWorld
             if (strf == "END") break;
             else
             {
-                if (strf == "1")
+                switch (strf)
                 {
+                case "1":
                     Console.WriteLine("Enter the side of the square:");
                     r = Convert.ToDouble(Console.ReadLine());
                     S = r * r;
-                }
-                if (strf == "2")
-                {
+                    break;
+                case "2":
                     Console.WriteLine("Enter the radius of the circle:");
                     r = Convert.ToDouble(Console.ReadLine());
                     S = r * r * Math.PI;
-                }
-                if (strf == "3")
-                {
+                break;
+                case "3":
                     Console.WriteLine("Enter the side of the equilateral triangle:");
                     r = Convert.ToDouble(Console.ReadLine());
                     S = r * r * Math.Sqrt(3) / 4;
+                break;
                 }
                 Console.WriteLine("The area of figure number " + t + ": " + S);
                 Console.WriteLine();
             }
             t++;
-        } 
+        }
         return 0;
     }
 }
