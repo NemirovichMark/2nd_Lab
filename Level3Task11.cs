@@ -22,39 +22,25 @@ class HelloWorld
         double sum3 = 0;
         double sum4 = 0;
         double p = 0;
-        Console.WriteLine("To finish the input, write 'END' instead of any of the marks.");
+        string kot;
+        Console.WriteLine("Enter the students' grades for 4 exams. The scores should take values from 2 to 5.");
+
         while (proverka == 0)
         {
             Console.WriteLine("The student number: " + t);
-            
+
             Console.WriteLine("Enter student's number " + t + " grade for exam number 1: ");
             str1 = Console.ReadLine();
-            if (str1 == "END") break;
-            else
-            {
-                ex1 = Convert.ToDouble(str1);
-            }
+            ex1 = Convert.ToDouble(str1);
             Console.WriteLine("Enter student's number " + t + " grade for exam number 2: ");
             str2 = Console.ReadLine();
-            if (str2 == "END") break;
-            else
-            {
-                ex2 = Convert.ToDouble(str2);
-            }
+            ex2 = Convert.ToDouble(str2);
             Console.WriteLine("Enter student's number " + t + " grade for exam number 3: ");
             str3 = Console.ReadLine();
-            if (str3 == "END") break;
-            else
-            {
-                ex3 = Convert.ToDouble(str3);
-            }
+            ex3 = Convert.ToDouble(str3);
             Console.WriteLine("Enter student's number " + t + " grade for exam number 4: ");
             str4 = Console.ReadLine();
-            if (str4 == "END") break;
-            else
-            {
-                ex4 = Convert.ToDouble(str4);
-            }
+            ex4 = Convert.ToDouble(str4);
             t++;
             if (ex1 == 2 || ex2 == 2 || ex3 == 2 || ex4 == 2) count++;
             else
@@ -65,13 +51,25 @@ class HelloWorld
                 sum4 = sum4 + ex4;
                 p++;
             }
+            Console.WriteLine("Do you want to continue entering student grades ?");
+            Console.WriteLine("1) Yes.");
+            Console.WriteLine("2) No.");
+            Console.WriteLine("Enter the number of your choice: ");
+            kot = Console.ReadLine();
+            if (kot == "2") break;
+
+
 
         }
-        Console.WriteLine("Number of underachievers: " + count);
-        Console.WriteLine("Average score for exam number " + 1 + ": " + sum1 / p);
-        Console.WriteLine("Average score for exam number " + 2 + ": " + sum2 / p);
-        Console.WriteLine("Average score for exam number " + 3 + ": " + sum3 / p);
-        Console.WriteLine("Average score for exam number " + 4 + ": " + sum4 / p);
+        if (p == 0) Console.WriteLine("All students are lagging behind, their number: " + count);
+        else
+        {
+            Console.WriteLine("Number of underachievers: " + count);
+            Console.WriteLine("Average score for exam number " + 1 + ": " + sum1 / p);
+            Console.WriteLine("Average score for exam number " + 2 + ": " + sum2 / p);
+            Console.WriteLine("Average score for exam number " + 3 + ": " + sum3 / p);
+            Console.WriteLine("Average score for exam number " + 4 + ": " + sum4 / p);
+        }
         return 0;
     }
 }
