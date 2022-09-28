@@ -1,159 +1,332 @@
 ﻿using System;
-
-namespace _2nd_Lab
+namespace Lab_1
 {
-    class Theory
+    
+    class Main_Prog
     {
+
         static void Main(string[] args)
+            
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
+            //In all my homework, I most often resorted to an eternal cycle until everything was entered in the right format. I don't think this is the right decision, but it easily helps to avoid typing errors. 
+            #region First_Lvl_3
 
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
-            {
-                // will be done, because 4th condition provide true
+            double a = 0;
+            double b = 0;
+            while ((a==0) || (b==0)){
+                Console.WriteLine("Please, enter correct parameters!");
+                a = Convert.ToDouble(Console.ReadLine());
+                b = Convert.ToDouble(Console.ReadLine());
             }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
+            if(a>0){
+                double c = Math.Max(a, b);
+                Console.WriteLine(c);
+            } else {
+                double c = Math.Min(a, b);
+                Console.WriteLine(c);
             }
 
             #endregion
 
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
+
+
+
+
+
+            #region First_Lvl_5
+            double a = 0; //I decided not to bother with declarations of values from the task book and just wrote a program where you can use these
+            double b = 0; // values. I hope this could have been done
+            while ((a == 0) || (b == 0))
             {
-                if (request.StartsWith('I'))
+                Console.WriteLine("Please, enter correct parameters!");
+                a = Convert.ToDouble(Console.ReadLine());
+                b = Convert.ToDouble(Console.ReadLine());
+            }
+            if ((Math.Sqrt(a) * Math.Sqrt(2)) <= (Math.Sqrt(b/Math.PI)*2))
+            {
+                Console.WriteLine("Да, поместится");
+            }
+            else
+            {
+                Console.WriteLine("Нет, не поместится");
+            }
+
+            #endregion
+
+
+
+
+
+
+            #region First_Lvl_6
+
+            double a = 0;
+            double b = 0;
+            while ((a == 0) || (b == 0))
+            {
+                Console.WriteLine("Please, enter correct parameters!");
+                a = Convert.ToDouble(Console.ReadLine());
+                b = Convert.ToDouble(Console.ReadLine());
+            }
+            if (Math.Sqrt(a/Math.PI) <= Math.Sqrt(b) / 2)
+            {
+                Console.WriteLine("Да, поместится");
+            }
+            else
+            {
+                Console.WriteLine("Нет, не поместится");
+            }
+
+            #endregion
+
+
+
+
+
+
+            #region Second_Lvl_1
+
+            int n = 0;
+
+            do{
+                Console.WriteLine("Please, enter real number")
+                n = Convert.ToInt32(Console.ReadLine());
+            }while(n<=0);
+
+            double sum_b = 0;
+            double amount_b = 0;
+            double sum_g = 0;
+            double amount_g = 0;
+
+            do
+            {
+                int s = 0;
+                do {
+                    Console.WriteLine("Please, enter 1 if HE. Enter 0 if SHE");
+                    s = Convert.ToInt32(Console.ReadLine());
+                }while ((s != 0) && (s != 1));
+
+                if (s == 0)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
-                    {
-                        // very positive result
+                    amount_g += 1;
+                    Console.WriteLine("Please, enter correct height of person"); //I did not prescribe a check here, because purely theoretically, negative or zero growth will not affect anything
+                    sum_g += Convert.ToDouble(Console.ReadLine());
+                } else
+                {
+                    amount_b += 1;
+                    Console.WriteLine("Please, enter correct height of person");
+                    sum_b += Convert.ToDouble(Console.ReadLine());
+                }
+
+                n -= 1;
+
+            } while (n != 0);
+
+            Console.WriteLine($"Average height of girls in the class is {sum_g/amount_g}");
+            Console.WriteLine($"Average height of boys in the class is {sum_b/amount_b}");
+
+            #endregion
+
+
+
+
+
+
+            #region Second_Lvl_9
+
+            int n = 0;
+
+            do
+            {
+                Console.WriteLine("Please, enter real number");
+                n = Convert.ToDouble(Console.ReadLine());
+            } while (n <= 0);
+
+            
+            double best_result = 0;
+
+            do
+            {
+                Console.WriteLine("Please, enter correct result of a person");
+                best_result = Convert.ToDouble(Console.ReadLine());
+            } while (best_result <= 0);
+
+           
+            do
+            {
+                double res = Convert.ToDouble(Console.ReadLine());
+
+                if (res < 0)
+                {
+                    Console.WriteLine("Please, enter correct result of a person");
+                    continue;
+                }
+                else if (res < best_result)
+                    best_result = res;
+                    
+                n -= 1;
+            } while (n != 0);
+
+            #endregion
+
+
+
+
+
+
+            #region Third_Lvl_4
+
+            double r1 = 0;
+            double r2 = 0;
+
+            do{
+                Console.WriteLine("Please, enter correct parameters");
+                r1 = Convert.ToDouble(Console.ReadLine());
+                r2 = Convert.ToDouble(Console.ReadLine());
+            }while((r1<=0)||(r2<=0));
+
+            int sum = 0;
+
+            while (true)
+            {
+                string x = Console.ReadLine();
+                string y = Console.ReadLine();
+
+                if ((x == "") || (y == ""))
+                    break;
+
+                double Point_X = Convert.ToDouble(x);
+                double Point_Y = Convert.ToDouble(y);
+                double r = Math.Sqrt(Point_X * Point_X + Point_Y * Point_Y);
+
+                if ((r1 < r) && (r2 > r))
+                {
+                    sum += 1;
+                }
+            }
+
+            Console.WriteLine($"Only {sum} points belong this zone");
+
+            #endregion
+
+
+
+            #region Third_Lvl_11
+            double sum = 0;//I didn't quite understand the meaning of the task, but I tried to do
+            int amount = 0;
+            int amount_of_bad_students = 0;
+            while (true)
+            {
+                double pre_sum = 0;
+                bool key1 = true;
+                bool key2 = true;
+                Console.WriteLine("Please, enter person`s marks one by one");
+                try //I understand perfectly well that then I started to freak out using the try/catch block and creating a special error to exit this block. I just wanted to provide all the input options
+                { //I was still thinking about the option of creating a method for the try/catch block to exit by simply returning, but this would most likely be even more cumbersome
+                    for (int i = 0; i <= 3; i += 1) {
+                        string row = Console.ReadLine();
+                        if (row == "")
+                        {
+                            key1 = false;
+                            break;
+                        }
+                        int grade = Convert.ToInt32(row);
+                        if ((grade > 5) || (grade < 2))
+                        {
+                            throw new Exception();
+                        }
+                        if(grade == 2) key = false;
+                        pre_sum += grade;
                     }
-                }
-                else
+                } catch
                 {
-                    // negative result
+                    Console.WriteLine("Wrong format!!!");
+                    continue;
                 }
-                // addition work
+
+                if (key1 == false) break;
+                if (key2 == false) amount_of_bad_students+=1;
+                sum += pre_sum/4;
+                amount += 1;
             }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
+            Console.WriteLine($"Average grade in the class is {sum/amount}. And amount of bad students is {amount_of_bad_students}");
             #endregion
 
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
 
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
 
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
+            #region Third_Lvl_12
+            while (true)
             {
-
-            }
-            else
-            {
-                if (1 == (int)'a')
+                double R = 0;
+                try
                 {
-
+                    string Re = Console.ReadLine();
+                    if (Re == "")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        R = Convert.ToDouble(Re);
+                    }
+                } catch
+                {
+                    Console.WriteLine("Wrong format!!!!!");
+                    continue;
                 }
+                Console.WriteLine("Please, use only 3 types of messages: triangle, circle, square");
+                string message = Console.ReadLine();
+                double S = 0;
+                switch(message){
+                case "triangle": S = R * Math.Sqrt(3)/4; break;
+                case "circle": S = Math.PI * R * R; break;
+                case "square": S = R * R; break;
+                default: Console.WriteLine("Wrong format! Please, try again!"); continue; break;
+                }
+                Console.WriteLine(S);
             }
-
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
             #endregion
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
 
-            switch ((int)Console.ReadLine().Length)
+
+            #region Third_Lvl_13
+            while (true)
             {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
+                double A = 0;
+                double B = 0;
+                try
+                {
+                    string A1 = Console.ReadLine();
+                    string B1 = Console.ReadLine();
+                    if (A1 == "")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        A = Convert.ToDouble(A1);
+                        B = Convert.ToDouble(B1);
+                    }
+                } catch
+                {
+                    Console.WriteLine("Wrong format!!!!!");
+                    continue;
+                }
+                Console.WriteLine("Please, use only 3 types of messages: triangle, circle, rectangle");
+                string message = Console.ReadLine();
+                double S = 0;
+                switch(message){
+                case "triangle": S = A * (Math.Sqrt(B * B - 0.25 * A * A)); break;
+                case "circle": S = Math.Abs(Math.PI * A * A - Math.PI * B * B); break;
+                case "rectangle": S = A * B; break;
+                default: Console.WriteLine("Wrong format! Please, try again!"); continue; break;
+                }
+                Console.WriteLine(S);
             }
-            Console.WriteLine(request);
-
             #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
+            
 
-            #endregion
         }
     }
 }
