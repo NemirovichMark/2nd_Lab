@@ -13,12 +13,14 @@ class HelloWorld
         double countGIIIIIIIRLs = 0;
         Console.WriteLine("To enter the height of a boy, enter the letter 'B', to enter the height of a girl, enter the letter 'G'.");
         Console.WriteLine("Enter height in the format: 'Gender' + 'Growth' (Ordinary quotation marks are not required).");
-        for (int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
         {
             char a = Convert.ToChar(Console.Read());
             double x = Convert.ToDouble(Console.ReadLine());
-            if (a == 'B') {sumBOOOOOYs = sumBOOOOOYs + x;countBOOOOOOOYs++;}
-            else  {sumGIIIIIIRls = sumGIIIIIIRls + x; countGIIIIIIIRLs++;}
+            if (x <= 0) { Console.WriteLine("The height must be greater than 0!!!"); n++; }
+            if (a == 'B') { sumBOOOOOYs = sumBOOOOOYs + x; countBOOOOOOOYs++; }
+            if (a == 'G') { sumGIIIIIIRls = sumGIIIIIIRls + x; countGIIIIIIIRLs++; }
+            if (a != 'B' && a != 'G') { Console.WriteLine("There are only two genders!!!"); n++; }
         }
         if (countBOOOOOOOYs == 0)
         {
@@ -30,7 +32,7 @@ class HelloWorld
             Console.WriteLine("Average height of Boys = " + sumBOOOOOYs / countBOOOOOOOYs);
             return 0;
         }
-        Console.WriteLine("Average height of Boys = " + sumBOOOOOYs/countBOOOOOOOYs);
+        Console.WriteLine("Average height of Boys = " + sumBOOOOOYs / countBOOOOOOOYs);
         Console.WriteLine("Average height of Girls = " + sumGIIIIIIRls / countGIIIIIIIRLs);
         return 0;
     }
