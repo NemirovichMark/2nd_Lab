@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace _2nd_Lab
 {
@@ -6,154 +8,276 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
-
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            // in all tasks you have to use comma if you want to enter double numbers
+            static void task_1_3()
             {
-                // will be done, because 4th condition provide true
-            }
 
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
-            }
-
-            #endregion
-
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
-            {
-                if (request.StartsWith('I'))
+                double a;
+                double b;
+                Console.Write("enter a: ");
+                bool res_1 = double.TryParse(Console.ReadLine(), out a);
+                Console.Write("enter b: ");
+                bool res_2 = double.TryParse(Console.ReadLine(), out b);
+                if (res_1 && res_2)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
+                    if (a > 0)
                     {
-                        // very positive result
+                        Console.WriteLine("a > 0");
+                        if (a > b) Console.WriteLine($"c = {a}");
+                        else if (a == b) Console.WriteLine("a = b");
+                        else Console.WriteLine($"c = {b}");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("a <= 0");
+                        if (a < b) Console.WriteLine($"c = {a}");
+                        else if (a == b) Console.WriteLine("a = b");
+                        else Console.WriteLine($"c = {b}");
+
                     }
                 }
-                else
+                else return;
+
+            }
+            static void task_1_4()
+            {
+                double a;
+                double b;
+                double c;
+                Console.Write("enter a: ");
+                bool res_1 = double.TryParse(Console.ReadLine(), out a);
+                Console.Write("enter b: ");
+                bool res_2 = double.TryParse(Console.ReadLine(), out b);
+                Console.Write("enter c: ");
+                bool res_3 = double.TryParse(Console.ReadLine(), out c);
+                if (res_1 && res_2 && res_2)
                 {
-                    // negative result
+                    if (a < b)
+                    {
+                        if (a > c) Console.WriteLine($"z = {a}");
+                        else Console.WriteLine($"z = {c}");
+                    }
+                    else
+                    {
+                        if (b > c) Console.WriteLine($"z = {b}");
+                        else Console.WriteLine($"z = {c}");
+                    }
                 }
-                // addition work
-            }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
-            #endregion
-
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
-            {
+                else return;
 
             }
-            else
+            static void task_1_7()
             {
-                if (1 == (int)'a')
+                double x;
+                Console.Write("enter x: ");
+                bool res = double.TryParse(Console.ReadLine(), out x);
+                if (res)
                 {
+                    if (Math.Abs(x) > 1) Console.WriteLine("y = 1");
+                    else Console.WriteLine($"y = {Math.Abs(x)}");
+                }
+                else return;
+            }
+            static void task_2_1()
+            {
+
+                uint students = 5;
+                double heights = 0;
+                double result = 0;
+                for (int i = 1; i <= +students; i++)
+                {
+                    double height;
+                    Console.WriteLine($"enter height of student {i:f0}: ");
+                    bool res_ = double.TryParse(Console.ReadLine(), out height);
+                    if (!(res_ && height > 0)) return;
+                    heights = heights + height;
+
+                }
+                result = heights / students;
+                Console.WriteLine($"average height:{result}");
+
+            }
+            static void task_2_9()
+            {
+                uint sportsmen = 5;
+
+                double result = 0;
+                for (int i = 1; i <= +sportsmen; i++)
+                {
+                    double time;
+                    Console.WriteLine($"enter time of sportsman {i:f0}: ");
+                    bool res_ = double.TryParse(Console.ReadLine(), out time);
+                    if (i == 1) result = time;
+                    if (res_ && time > 0)
+                    {
+                        if (time < result) result = time;
+                    }
+                    else return;
+                    if (i == sportsmen) Console.WriteLine($"the best time:{result}");
+
+                }
+
+
+            }
+
+            static void task_3_4()
+            {
+
+                double x;
+                double y;
+                double r_1 = 2;
+                double r_2 = 4;
+                double result = 0;
+                uint n;
+                Console.WriteLine("points quality:");
+                bool points = uint.TryParse(Console.ReadLine(), out n);
+                if (points && n != 0)
+                {
+                    for (int i = 1; i <= n; i++)
+                    {
+                        Console.WriteLine($"enter x of point {i:f0}: ");
+                        bool res_1 = double.TryParse(Console.ReadLine(), out x);
+                        Console.WriteLine($"enter y of point {i:f0}: ");
+                        bool res_2 = double.TryParse(Console.ReadLine(), out y);
+                        if (!(res_1 && res_2)) return;
+                        double s = Math.Sqrt(x * x + y * y);
+                        if (r_1 <= s && s <= r_2) result += 1;
+
+                    }
+                    Console.WriteLine($"quality:{result}");
+                }
+
+            }
+            static void task_3_11()
+            {
+                uint m1;
+                uint m2;
+                uint m3;
+                uint m4;
+                double result = 0;
+                double all_marks = 0;
+                uint n;
+                Console.WriteLine("students quality:");
+                bool res = uint.TryParse(Console.ReadLine(), out n);
+                if (res && n != 0)
+                {
+                    for (int i = 1; i <= n; i++)
+                    {
+                        Console.WriteLine($"1 mark of student {i:f0}: ");
+                        bool res_1 = uint.TryParse(Console.ReadLine(), out m1);
+                        Console.WriteLine($"2 mark of student {i:f0}: ");
+                        bool res_2 = uint.TryParse(Console.ReadLine(), out m2);
+                        Console.WriteLine($"2 mark of student {i:f0}: ");
+                        bool res_3 = uint.TryParse(Console.ReadLine(), out m3);
+                        Console.WriteLine($"2 mark of student {i:f0}: ");
+                        bool res_4 = uint.TryParse(Console.ReadLine(), out m4);
+                        if (!(res_1 && res_2 && res_3 && res_4)) return;
+                        if (m1 < 3 || m2 < 3 || m3 < 3 || m4 < 3)
+                        {
+                            result += 1;
+                            continue;
+                        }
+                         // i do not calc dvoechnicov
+                         all_marks += (double)m1 + m2 + m3 + m4;
+                            
+                        
+                    }
+                    double ball = all_marks / 4 / (n-result);// i do not calc dvoechnicov
+                    Console.WriteLine($"dvoechniki:{result}");
+                    Console.WriteLine($"average ball: {ball}");
+                }
+
+            }
+            static void task_3_12()
+            {
+                double r = 0;                
+                double result = 0;
+
+                uint n;
+                Console.WriteLine("operations quality:");
+                bool operations = uint.TryParse(Console.ReadLine(), out n);
+                if (operations && n != 0)
+                {
+                    for (int i = 1; i <= n; i++)
+                    {
+                        Console.WriteLine($"enter r for trial {i:f0}: ");
+                        bool res_1 = double.TryParse(Console.ReadLine(), out r);                       
+                        if (!(res_1 && r>0)) return;
+                        Console.WriteLine("choose operation, you have to enter number:\n1)square area\n2)circle area\n3)triangle area");
+                        uint operation;
+                        bool res = uint.TryParse(Console.ReadLine(), out operation);
+                        if (!(res && operation != 0 && operation <= 3)) return;
+                        switch (operation)
+                        {
+                            case 1:
+                                {
+                                    result = r * r;
+                                    Console.WriteLine($"square area:{result}");
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    result = Math.PI * r*r;
+                                    Console.WriteLine($"circle area:{result}");
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    result = r*r*Math.Sqrt(3)/4;
+                                    Console.WriteLine($"triangle area:{result}");
+                                    break;
+                                }
+                        }
+                    }
+                   
+                }
+            }
+            static void task_3_13()
+            {
+                double a = 0;
+                double b = 0;
+                double result = 0;
+
+                uint n;
+                Console.WriteLine("operations quality:");
+                bool operations = uint.TryParse(Console.ReadLine(), out n);
+                if (operations && n != 0)
+                {
+                    for (int i = 1; i <= n; i++)
+                    {
+                        Console.WriteLine($"enter a for trial {i:f0}: ");
+                        bool res_1 = double.TryParse(Console.ReadLine(), out a);
+                        Console.WriteLine($"enter b for trial {i:f0}: ");
+                        bool res_2 = double.TryParse(Console.ReadLine(), out b);
+                        if (!(res_1 && res_2 && b>0 && a > 0)) return;
+                        Console.WriteLine("choose operation, you have to enter number:\n1)ring area\n2)triangle area");
+                        uint operation;
+                        bool res = uint.TryParse(Console.ReadLine(), out operation);
+                        if (!(res && operation != 0 && operation <= 2)) return;
+                        switch (operation)
+                        {
+                            case 1:
+                                {
+                                    result = Math.Abs(Math.PI*a*a - Math.PI * b * b);
+                                    Console.WriteLine($"ring area:{result}");
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    result = a*Math.Sqrt(b*b - a*a/4)/2;
+                                    Console.WriteLine($"triangle area:{result}");
+                                    break;
+                                }
+                            
+                        }
+                    }
 
                 }
             }
+            
 
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
-            #endregion
-
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
-            {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
-
-            #endregion
-
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
-
-            #endregion
         }
     }
 }
+
