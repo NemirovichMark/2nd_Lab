@@ -1,0 +1,42 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введите количество учеников");
+        double n = Convert.ToDouble(Console.ReadLine());
+        double summM = 0;
+        double summD = 0;
+        double schetM = 0;
+        double schetD = 0;
+        Console.WriteLine("Если вы хотите записать рост мальчика, тогда введите букву 'M', а если девочку, тогда 'D' (В одну строку).");
+        for (int i = 0; i < n; i++)
+        {
+            char gend = Convert.ToChar(Console.Read());
+            double rost = Convert.ToDouble(Console.ReadLine());
+            if (gend == 'M')
+            {
+                summM = summM + rost;
+                schetM++;
+            }
+            if (gend == 'D')
+            {
+                summD = summD + rost;
+                schetD++;
+            }
+            if (gend != 'M' && gend != 'D')
+            {
+                Console.WriteLine("Введите пол или мальчика = 'M', или девочки = 'D'");
+                n = n + 1;
+            }
+            if (rost <= 0)
+            {
+                Console.WriteLine("Введите корректный рос");
+            }
+        }
+        Console.WriteLine("Средний рост мальчиков " + summM / schetM);
+        Console.WriteLine("Средний рост девочек " + summD / schetD);
+    }
+}
