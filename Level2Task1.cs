@@ -11,16 +11,25 @@ class HelloWorld
         double sumGIIIIIIRls = 0;
         double countBOOOOOOOYs = 0;
         double countGIIIIIIIRLs = 0;
+        char a;
         Console.WriteLine("To enter the height of a boy, enter the letter 'B', to enter the height of a girl, enter the letter 'G'.");
         Console.WriteLine("Enter height in the format: 'Gender' + 'Growth' (Ordinary quotation marks are not required).");
         for (int i = 0; i < n; i++)
         {
-            char a = Convert.ToChar(Console.Read());
+            a = Convert.ToChar(Console.Read());
             double x = Convert.ToDouble(Console.ReadLine());
             if (x <= 0) { Console.WriteLine("The height must be greater than 0!!!"); n++; }
-            if (a == 'B') { sumBOOOOOYs = sumBOOOOOYs + x; countBOOOOOOOYs++; }
-            if (a == 'G') { sumGIIIIIIRls = sumGIIIIIIRls + x; countGIIIIIIIRLs++; }
             if (a != 'B' && a != 'G') { Console.WriteLine("There are only two genders!!!"); n++; }
+            switch (a)
+            {
+                case ('B'):
+                sumBOOOOOYs = sumBOOOOOYs + x;
+                countBOOOOOOOYs++;
+                break;
+                case ('G'):
+                sumGIIIIIIRls = sumGIIIIIIRls + x; countGIIIIIIIRLs++;
+                break;
+            }
         }
         if (countBOOOOOOOYs == 0)
         {
