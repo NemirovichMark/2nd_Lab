@@ -8,16 +8,14 @@ namespace Lab_2
         static void Main(string[] args)
             
         {
-            //In all my homework, I most often resorted to an eternal cycle until everything was entered in the right format. I don't think this is the right decision, but it easily helps to avoid typing errors. 
+             
             #region First_Lvl_3
 
             double a = 0;
             double b = 0;
-            while ((a==0) || (b==0)){
-                Console.WriteLine("Please, enter correct parameters!");
-                a = Convert.ToDouble(Console.ReadLine());
-                b = Convert.ToDouble(Console.ReadLine());
-            }
+            Console.WriteLine("Please, enter correct parameters!");
+            a = Convert.ToDouble(Console.ReadLine());
+            b = Convert.ToDouble(Console.ReadLine());
             if(a>0){
                 double c = Math.Max(a, b);
                 Console.WriteLine(c);
@@ -31,12 +29,10 @@ namespace Lab_2
 
 
 
-
-
             #region First_Lvl_5
-            double a = 0; //I decided not to bother with declarations of values from the task book and just wrote a program where you can use these
-            double b = 0; // values. I hope this could have been done
-            while ((a == 0) || (b == 0))
+            double a = 0; 
+            double b = 0; 
+            while ((a <= 0) || (b <= 0))
             {
                 Console.WriteLine("Please, enter correct parameters!");
                 a = Convert.ToDouble(Console.ReadLine());
@@ -62,7 +58,7 @@ namespace Lab_2
 
             double a = 0;
             double b = 0;
-            while ((a == 0) || (b == 0))
+            while ((a <= 0) || (b <= 0))
             {
                 Console.WriteLine("Please, enter correct parameters!");
                 a = Convert.ToDouble(Console.ReadLine());
@@ -109,13 +105,17 @@ namespace Lab_2
                 if (s == 0)
                 {
                     amount_g += 1;
-                    Console.WriteLine("Please, enter correct height of person"); //I did not prescribe a check here, because purely theoretically, negative or zero growth will not affect anything
-                    sum_g += Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Please, enter correct height of person");
+                    point = Convert.ToDouble(Console.ReadLine());
+                    if (point<=0) continue;
+                    sum_g += point;
                 } else
                 {
                     amount_b += 1;
                     Console.WriteLine("Please, enter correct height of person");
-                    sum_b += Convert.ToDouble(Console.ReadLine());
+                    point = Convert.ToDouble(Console.ReadLine());
+                    if (point<=0) continue;
+                    sum_b += point;
                 }
 
                 n -= 1;
@@ -126,6 +126,8 @@ namespace Lab_2
             Console.WriteLine($"Average height of boys in the class is {sum_b/amount_b}");
 
             #endregion
+
+
 
 
 
@@ -143,14 +145,7 @@ namespace Lab_2
             } while (n <= 0);
 
             
-            double best_result = 0;
-
-            do
-            {
-                Console.WriteLine("Please, enter correct result of a person");
-                best_result = Convert.ToDouble(Console.ReadLine());
-            } while (best_result <= 0);
-
+            double best_result = int32.maxvalue;
            
             do
             {
@@ -212,7 +207,7 @@ namespace Lab_2
 
 
             #region Third_Lvl_11
-            double sum = 0;//I didn't quite understand the meaning of the task, but I tried to do
+            double sum = 0;
             int amount = 0;
             int amount_of_bad_students = 0;
             while (true)
@@ -221,9 +216,10 @@ namespace Lab_2
                 bool key1 = true;
                 bool key2 = true;
                 Console.WriteLine("Please, enter person`s marks one by one");
-                try //I understand perfectly well that then I started to freak out using the try/catch block and creating a special error to exit this block. I just wanted to provide all the input options
-                { //I was still thinking about the option of creating a method for the try/catch block to exit by simply returning, but this would most likely be even more cumbersome
-                    for (int i = 0; i <= 3; i += 1) {
+                try
+                {
+                    for (int i = 0; i <= 3; i += 1)
+                    {
                         string row = Console.ReadLine();
                         if (row == "")
                         {
@@ -235,21 +231,25 @@ namespace Lab_2
                         {
                             throw new Exception();
                         }
-                        if(grade == 2) key = false;
-                        pre_sum += grade;
+                        if (grade == 2)
+                        {
+                            key2 = false;
+                            break;
+                        } else pre_sum += grade;
                     }
-                } catch
+                }
+                catch
                 {
                     Console.WriteLine("Wrong format!!!");
                     continue;
                 }
 
                 if (key1 == false) break;
-                if (key2 == false) amount_of_bad_students+=1;
-                sum += pre_sum/4;
+                if (key2 == false) amount_of_bad_students += 1;
+                sum += pre_sum / 4;
                 amount += 1;
             }
-            Console.WriteLine($"Average grade in the class is {sum/amount}. And amount of bad students is {amount_of_bad_students}");
+            Console.WriteLine($"Average grade in the class is {sum / amount}. And amount of bad students is {amount_of_bad_students}");
             #endregion
 
 
