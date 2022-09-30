@@ -48,3 +48,27 @@ if (x10 > 1)
 }
 Console.WriteLine($"y = {y10}");
 #endregion
+
+#region lvl2Task4
+int n = Convert.ToInt32(Console.ReadLine());
+Random rnd = new Random();
+int[] array = new int[n];
+for (int i = 0; i < n; i++)
+{
+    // Не знаю, какой минимальный/максимальный рост может быть, поэтому навскидку ставлю диапазон 100-210
+    array[i] = rnd.Next(100,210);
+}
+Console.WriteLine(array.Sum()/array.Length);
+#endregion
+
+#region lvl2Task9
+int n9 = Convert.ToInt32(Console.ReadLine());
+Random rnd9 = new Random();
+int[] array9 = new int[n9];
+for (int i = 0; i < n; i++)
+{
+    // 10-40 условный диапазон скорости преодоления дистанции
+    array9[i] = rnd.Next(10, 40);
+}
+Console.WriteLine(array9.Max());
+#endregion
