@@ -168,13 +168,14 @@ using static System.Math;
             hf++;
         }
     }
-    if (hh.Length % 2 == 0 & hf==0)
+    if (hh.Length % 2 == 0 & hf==0 )
     {
         Console.WriteLine($"N3.12:");
         while (w < hh.Length)
         {
             double r = Convert.ToDouble(hh[w]);
-            double dd = Convert.ToDouble(hh[w + 1]);    
+            double dd = Convert.ToDouble(hh[w + 1]);
+            r=abs(r);
             switch (dd)
             {
                 case 1:
@@ -229,6 +230,8 @@ using static System.Math;
             double a = Convert.ToDouble(er[z]);
             double b = Convert.ToDouble(er[z + 1]);
             double uu = Convert.ToDouble(er[z + 2]);
+            a = abs(a);
+            b = abs(b);
             switch (uu)
             {
                 case 1:
