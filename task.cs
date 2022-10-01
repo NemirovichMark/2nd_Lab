@@ -72,3 +72,36 @@ for (int i = 0; i < n; i++)
 }
 Console.WriteLine(array9.Max());
 #endregion
+
+#region lvl3Task11
+double m1, m2, m3, m4;
+double[] marks = new double[4];
+double student_count = 0;
+double count_of_normal_student = 0;
+double count_of_unnormal_student = 0;
+Console.WriteLine("Enter student count:");
+student_count = Convert.ToInt32(Console.ReadLine());
+
+for (int i = 0; i < student_count; i++)
+{
+    Console.WriteLine($"Enter marks for student {i + 1}");
+    m1 = Convert.ToInt32(Console.ReadLine());
+    m2 = Convert.ToInt32(Console.ReadLine());
+    m3 = Convert.ToInt32(Console.ReadLine());
+    m4 = Convert.ToInt32(Console.ReadLine());
+    if (m1 > 2 & m2 > 2 & m3 > 2 & m4 > 2)
+    {
+        marks[0] += m1;
+        marks[1] += m2;
+        marks[2] += m3;
+        marks[3] += m4;
+        count_of_normal_student++;
+    }
+    else
+    {
+        count_of_unnormal_student++;
+    }
+    
+}
+Console.WriteLine($"Count of unnormal students - {count_of_unnormal_student}, Group average - {marks.Sum() / (4 * count_of_normal_student)}");
+#endregion
