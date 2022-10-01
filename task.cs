@@ -77,7 +77,6 @@ Console.WriteLine(array9.Max());
 double m1, m2, m3, m4;
 double[] marks = new double[4];
 double student_count = 0;
-double count_of_normal_student = 0;
 double count_of_unnormal_student = 0;
 Console.WriteLine("Enter student count:");
 student_count = Convert.ToInt32(Console.ReadLine());
@@ -95,7 +94,6 @@ for (int i = 0; i < student_count; i++)
         marks[1] += m2;
         marks[2] += m3;
         marks[3] += m4;
-        count_of_normal_student++;
     }
     else
     {
@@ -103,5 +101,5 @@ for (int i = 0; i < student_count; i++)
     }
     
 }
-Console.WriteLine($"Count of unnormal students - {count_of_unnormal_student}, Group average - {marks.Sum() / (4 * count_of_normal_student)}");
+Console.WriteLine($"Count of unnormal students - {count_of_unnormal_student}, Group average - {marks.Sum() / (4 * (student_count - count_of_unnormal_student))}");
 #endregion
