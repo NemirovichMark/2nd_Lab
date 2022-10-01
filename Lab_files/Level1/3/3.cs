@@ -30,6 +30,12 @@ namespace LaboratoryL1N3
 
         static int Main(string[] args)
         {
+            #region inputs
+
+            /*I'm wondering, can i make a function out of this lines? 
+            with like any fancy self-written data structure or smth?
+            */
+
             Console.Write("Input a: ");
             string input_1 = Console.ReadLine();
             bool result_1 = double.TryParse(input_1, out var a);
@@ -38,7 +44,7 @@ namespace LaboratoryL1N3
                 Console.WriteLine("Incorrect data");
                 return 1;
             }
-            
+
             Console.Write("Input b: ");
             string input_2 = Console.ReadLine();
             bool result_2 = double.TryParse(input_2, out var b);
@@ -48,6 +54,8 @@ namespace LaboratoryL1N3
                 return 1;
             }
             
+            #endregion
+
             if (a > 0)
             {
                 c_max(a,b);
