@@ -1,3 +1,245 @@
-You can come to class to defend 1st lab.
-You can make a fork of next lab and send the request to your branch:
-https://github.com/NemirovichMark/2nd_Lab
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            #region №1.2
+            {
+                Console.WriteLine("Введите х и у");
+                if (double.TryParse(Console.ReadLine(), out double y) && double.TryParse(Console.ReadLine(), out double x))
+                {
+                    string inside = "Inside";
+                    string outside = "Outside";
+                    if (y >= 0 && y + Math.Abs(x) <= 1)
+                        Console.WriteLine(inside);
+                    else
+                        Console.WriteLine(outside);
+                }
+                else
+                    Console.WriteLine("Error");
+            }
+            #endregion
+            #region №1.3
+            {
+                Console.WriteLine("Введите а и b");
+                if (double.TryParse(Console.ReadLine(), out double a) && double.TryParse(Console.ReadLine(), out double b))
+                {
+                    if (a > 0)
+                    {
+                        var u = b;
+                        if (u > a)
+                            Console.WriteLine($"Число b = {u} больше");
+                        else
+                            Console.WriteLine($"Число a = {a} больше");
+
+                    }
+                    else
+                    {
+                        var u = b;
+                        if (u > a)
+                            Console.WriteLine($"Число a = {a} меньше");
+                        else
+                            Console.WriteLine($"Число b = {u} меньше");
+                    }
+                }
+                else
+                    Console.WriteLine("Error");
+            }
+            #endregion
+            #region №1.4
+            {
+                Console.WriteLine("Введите a,b,c");
+                if (double.TryParse(Console.ReadLine(), out double a) && double.TryParse(Console.ReadLine(), out double b) && double.TryParse(Console.ReadLine(), out double c))
+                {
+                    var u = a;
+                    if (b < a)
+                        u = b;
+                    if (u > c)
+                        Console.WriteLine(u);
+                    else
+                        Console.WriteLine(c);
+
+                }
+            }
+            #endregion
+            #region №2.1
+            {
+                Console.WriteLine("Введите кол-во девочек, а затем мальчиков");
+                if (int.TryParse(Console.ReadLine(), out int countg) && int.TryParse(Console.ReadLine(), out int countb) && countg >= 0 && countb >= 0)
+                {
+                    double sr1 = 0;
+                    for (int i1 = 0; i1 < countg; i1++)
+                    {
+                        Console.WriteLine("Введите рост девочки");
+                        if (double.TryParse(Console.ReadLine(), out double height) && height > 0)
+                        {
+                            sr1 += height;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                            i1 -= 1;
+                        }
+                    }
+                    double sr2 = 0;
+                    for (int i2 = 0; i2 < countb; i2++)
+                    {
+                        Console.WriteLine("Введите рост мальчика");
+                        if (double.TryParse(Console.ReadLine(), out double height) && height > 0)
+                        {
+                            sr2 += height;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                            i2 -= 1;
+                        }
+                    }
+                    Console.WriteLine($"Средний рост девочек = {sr1 / countg}");
+                    Console.WriteLine($"Средний рост мальчиков = {sr2 / countb}");
+                }
+                else
+                    Console.WriteLine("Error");
+            }
+            #endregion
+            #region №2.9
+            {
+                Console.WriteLine("Введите кол-во спортсменов");
+                if (int.TryParse(Console.ReadLine(), out int x) && x > 0)
+                {
+                    double u = 0;
+                    for (int i = 0; i < x; i++)
+                    {
+                        Console.WriteLine("Введите время спортсмена");
+                        if (double.TryParse(Console.ReadLine(), out double time) && time >= 0)
+                        {
+                            if (u < time) ;
+                            {
+                                u = time;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                            i -= 1;
+                        }
+                    }
+                    Console.WriteLine($"Лучшее время спортмена {u}");
+                }
+                else
+                    Console.WriteLine("Error");
+            }
+            #endregion
+            #region №2.4(3 level)
+            {
+                int count = 0;
+                double x, y;
+                Console.WriteLine("Введите сначала внешний, внутренний радиусы");
+                if (double.TryParse(Console.ReadLine(), out double r1) && (double.TryParse(Console.ReadLine(), out double r2)) && r1 > 0 && r2 > 0)
+                {
+                    do
+                    {
+                        Console.WriteLine("Введите х, для окончания значение большее 10000");
+                        x = double.Parse(Console.ReadLine());
+                        if (x >= 10000) break;
+                        Console.WriteLine("Введите у");
+                        y = double.Parse(Console.ReadLine());
+                        if ((x * x + y * y >= r1 * r1) && (x * x + y * y <= r2 * r2)) count += 1;
+                    } while (x < 10000);
+                    Console.WriteLine($"В круг попало {count} точек");
+                }
+                else
+                    Console.WriteLine("Error");
+                #endregion
+            #region №2.11(3 level)
+                {
+                    int s1, s2, s3, s4, c = 0, c1 = 0;
+                    double sr = 0, sr1 = 0;
+                    Console.WriteLine("Для окончания работы введите число большее 20000");
+                    do
+                    {
+                        Console.WriteLine("Введите результаты 1-го экзамена");
+                        s1 = int.Parse(Console.ReadLine());
+                        if (s1 >= 10000) break;
+                        Console.WriteLine("Введите результаты 2-го экзамена");
+                        s2 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Введите результаты 3-го экзамена");
+                        s3 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Введите результаты 4-го экзамена");
+                        s4 = int.Parse(Console.ReadLine());
+                        sr1 = (s1 + s2 + s3 + s4) / 4;
+                        if (s1 <= 2 || s2 <= 2 || s3 <= 2 || s4 <= 2) c++;
+                        sr += sr1;
+                        c1++;
+                    } while (s1 < 20000);
+                    Console.WriteLine($"Кол-во неуспевающих учеников {c}, средний балл группы {sr / c1}");
+
+                }
+                #endregion
+            #region №2.12(3 level)
+                {
+                    Console.WriteLine("Введите R");
+                    if (double.TryParse(Console.ReadLine(), out double r))
+                    {
+                        Console.WriteLine("Для подсчёта площади квадрата нажмите 1, круга - 2, равностроннего треугольника - 3");
+                        int a = int.Parse(Console.ReadLine());
+                        switch (a)
+                        {
+                            case 1:
+                                Console.WriteLine($"Прощадь квадрата {r * r}");
+                                break;
+                            case 2:
+                                Console.WriteLine($"Площадь круга {Math.PI * r * r}");
+                                break;
+                            case 3:
+                                Console.WriteLine($"Площадь треугольника {r * r * Math.Pow(3, 1 / 2) / 4}");
+                                break;
+                            default:
+                                Console.WriteLine("Error");
+                                break;
+                        }
+                    }
+                    else
+                        Console.WriteLine("Error");
+                }
+                #endregion
+            #region №2.13
+                {
+                    Console.WriteLine("Введите значения A и B");
+                    if (double.TryParse(Console.ReadLine(), out double A) && double.TryParse(Console.ReadLine(), out double B))
+                        {
+                        Console.WriteLine("Для подсчёта площади прямоугольника введите - 1, площади кольца - 2, площади равнобедренного треугольника - 3");
+                        int a = int.Parse(Console.ReadLine());
+                        switch (a)
+                            {
+                            case 1:
+                                Console.WriteLine($"Площадь прямоугольника {Math.Abs(A * B)}");
+                                break;
+                            case 2:
+                                Console.WriteLine($"Площадь кольца {Math.Abs(Math.PI * (A - B))}");
+                                break;
+                            case 3:
+                                Console.WriteLine($"Площадь равнобедренного треугольника {Math.Abs(A * Math.Sqrt(Math.Pow(B,2) - Math.Pow(A,2) / 4) / 2)}");
+                                break;
+                            default :
+                                Console.WriteLine("Error");
+                                break;
+                        }
+                    }
+                    else
+                        Console.WriteLine("Error");
+                }
+                #endregion
+            }
+        }
+    }
+}
