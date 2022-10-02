@@ -106,7 +106,8 @@ Console.WriteLine($"{d} точек не попали в кольцо");
 #region ex.11
 Console.WriteLine("Введите количество студентов:");
 int n = int.Parse(Console.ReadLine());
-int b, s = 0, d = 0, k = 0; ;
+int b, k = 0;
+double s = 0;
 int[] a = new int[4];
 for (int i = 0; i < n; i++)
 {
@@ -119,14 +120,17 @@ for (int i = 0; i < n; i++)
             Console.WriteLine("У нас максимальная оценка - 5");
         }
         a[j] = b;
-        s += b;
     }
     if (a.Min() == 1 || a.Min() == 2 || a.Min() == 3)
     {
         k++;
     }
+    else
+    {
+        s += a.Sum();
+    }
 }
-Console.WriteLine($"Успешно сдали {n-k} студентов, средний балл группы равен {s/(n*4)}");
+Console.WriteLine($"Успешно сдали {n-k} студентов, средний балл группы равен {s/((n-k)*4)}");
 #endregion
 #region ex.12
 double r;
