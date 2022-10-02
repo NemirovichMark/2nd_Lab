@@ -81,9 +81,18 @@ while (n == 0)
 }
 
 double mid_tall = 0;
+double tall;
 for (int i = 0; i < n; i++)
 {
-    mid_tall += Convert.ToDouble(Console.ReadLine());
+    tall = Convert.ToDouble(Console.ReadLine());
+    while (tall < 0)
+    {
+        Console.WriteLine("Введите корректный рост");
+        tall = Convert.ToDouble(Console.ReadLine());
+    }
+
+    mid_tall += tall;
+
 }
 
 mid_tall /= n;
@@ -100,6 +109,12 @@ string[] marks1;
 for (int i = 0; i < n2; i++)
 {
     marks1 = Console.ReadLine().Split();
+    while (int.Parse(marks1[0]) <= 0 || int.Parse(marks1[0]) > 5 || int.Parse(marks1[1]) <= 0 || int.Parse(marks1[1]) > 5 || int.Parse(marks1[2]) <= 0 || int.Parse(marks1[2]) > 5 || int.Parse(marks1[3]) <= 0 || int.Parse(marks1[3]) > 5)
+    {
+        Console.WriteLine("Введите коректные оценки");
+        marks1 = Console.ReadLine().Split();
+
+    }
     mark1 = int.Parse(marks1[0]);
     mark2 = int.Parse(marks1[1]);
     mark3 = int.Parse(marks1[2]);
@@ -108,7 +123,6 @@ for (int i = 0; i < n2; i++)
     {
         cout1 += 1;
     }
-    marks1 = Array.Empty<string>();
 
 }
 
@@ -118,8 +132,18 @@ Console.WriteLine(cout1);
 
 
 #region Task 3 - 4
-int r1 = Convert.ToInt16(Console.ReadLine());
-int r2 = Convert.ToInt16(Console.ReadLine());
+string[] line_kord;
+line_kord = Console.ReadLine().Split();
+int r1 = Convert.ToInt16(line_kord[0]);
+int r2 = Convert.ToInt16(line_kord[1]);
+while (r1 < 0 || r2 < 0)
+{
+    Console.WriteLine("Введите корректные данные");
+    line_kord = Console.ReadLine().Split();
+    r1 = Convert.ToInt16(line_kord[0]);
+    r2 = Convert.ToInt16(line_kord[1]);
+}
+
 string x1, y1;
 string line1 = Console.ReadLine();
 string[] coord;
@@ -130,13 +154,11 @@ while (line1 != "")
     coord = line1.Split();
     x1 = coord[0];
     y1 = coord[1];
-    if ((Math.Abs(int.Parse(x1)) <= r2) && (Math.Abs(int.Parse(y1)) >= r1) && (Math.Abs(int.Parse(y1)) <= r2))
+    if (!(((Math.Abs(int.Parse(x1)) > r2 || Math.Abs(int.Parse(y1)) > r2)) || (Math.Abs(int.Parse(x1)) < r1 && Math.Abs(int.Parse(y1)) < r1)))
     {
         count2++;
     }
-
     line1 = Console.ReadLine();
-
 }
 
 Console.WriteLine(count2);
@@ -153,11 +175,16 @@ int total_c = 0;
 while (line2 != "")
 {
     marks2 = line2.Split();
+    while (int.Parse(marks2[0]) <= 0 || int.Parse(marks2[0]) > 5 || int.Parse(marks2[1]) <= 0 || int.Parse(marks2[1]) > 5 || int.Parse(marks2[2]) <= 0 || int.Parse(marks2[2]) > 5 || int.Parse(marks2[3]) <= 0 || int.Parse(marks2[3]) > 5)
+    {
+        Console.WriteLine("Введите коректные оценки");
+        marks2 = Console.ReadLine().Split();
+    }
     mark21 = marks2[0];
     mark22 = marks2[1];
     mark23 = marks2[2];
     mark24 = marks2[3];
-    if ((int.Parse(mark21) == 2) || (int.Parse(mark22) == 2) || (int.Parse(mark23) == 2) || (int.Parse(mark24) == 2))
+    if ((int.Parse(mark21) < 3) || (int.Parse(mark22) < 3) || (int.Parse(mark23) < 3) || (int.Parse(mark24) < 3))
     {
         count_n++;
     }
@@ -174,6 +201,11 @@ Console.WriteLine(count_n + " " + mid_mark / total_c);
 
 #region Task 3 - 12
 double r = Convert.ToDouble(Console.ReadLine());
+while (r < 0)
+{
+    Console.WriteLine("Введите корректные данные");
+    r = Convert.ToDouble(Console.ReadLine());
+}
 Console.WriteLine("Выберете площадь, которую хотите посчитать: 1 - площадь квадрата; 2 - площадь круга; 3 - площадь равностороннего треугольника");
 int choice = Convert.ToInt16(Console.ReadLine());
 switch (choice)
@@ -204,8 +236,18 @@ while (line3 != "")
     sides = line3.Split();
     A = double.Parse(sides[0]);
     B = double.Parse(sides[1]);
+    if (A < 0 || B < 0)
+    {
+        Console.WriteLine("Введите корректные данные");
+        line3 = Console.ReadLine();
+        sides = line3.Split();
+        A = double.Parse(sides[0]);
+        B = double.Parse(sides[1]);
+    }
+
     Console.WriteLine("Выберете плозадь, которую хотите посчитать: 1 - площадь прямоугольника; 2 - площадь кольца; 3 - площадь равнобедренного треугольника");
     choice2 = Convert.ToInt32(Console.ReadLine());
+
     switch (choice2)
     {
         case 1:
@@ -218,6 +260,7 @@ while (line3 != "")
             Console.WriteLine(B * Math.Sqrt(4 * Math.Pow(A, 2) - Math.Pow(B, 2)) / 4);
             break;
     }
+
     line3 = Console.ReadLine();
 }
 
