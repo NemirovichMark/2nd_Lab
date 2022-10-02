@@ -1,25 +1,266 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2nd_Lab", "2nd_Lab.csproj", "{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5E38B41D-9AF1-4BC0-89F6-2D9FE63484C0}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Transactions;
+using static System.Net.Mime.MediaTypeNames;
+
+public class Proga
+{
+
+    public static void Main(string[] args)
+    {
+        //resh.FIRSTlvlex1();
+        //resh.FIRSTlvlex5();
+        //resh.SECONDlvlex1();
+        //resh.SECONDlvlex10();
+        //resh.THIRDlvlex4();
+        //resh.RHIRDlvlex12();
+        //resh.THIRDlvlex13();
+        //resh.THIRDlvlex11();
+    }
+
+    public class resh
+    {
+        public static void OnCircle(double x, double y, double r)
+        {
+
+            if ((x * x + y * y) == r * r)
+            {
+                Console.WriteLine($"Point ({x}, {y}) lies on a circle");
+            }
+            else
+            {
+                Console.WriteLine($"Point ({x}, {y}) doesn't lies on a circle");
+            }
+        }
+        public static void FIRSTlvlex1()
+        {
+            double r = 2;
+            double x1 = 0, y1 = 2, x2 = 1.5, y2 = 0.7, x3 = 1, y3 = 1, x4 = 3, y4 = 0;
+            OnCircle(x1, y1, r);
+            OnCircle(x2, y2, r);
+            OnCircle(x3, y3, r);
+            OnCircle(x4, y4, r);
+        }
+
+        public static void trinCircle(double x, double y)
+        {
+            if (Math.Sqrt(x / Math.PI) * 2 >= (Math.Sqrt(y * 2)))
+            {
+                Console.WriteLine("Square fits in circle");
+            }
+            else
+            {
+                Console.WriteLine("Square doesn't fits in circle");
+            }
+        }
+
+        public static void FIRSTlvlex5()
+        {
+            double Ssqure1 = 36.74, Scircle1 = 70, Ssqure2 = 0.74, Scircle2 = 0.86;
+            trinCircle(Scircle1, Ssqure1);
+            trinCircle(Scircle2, Ssqure2);
+        }
+
+        public static void SECONDlvlex1()
+        {
+            Console.WriteLine("Enter the amount of students");
+            double n = Convert.ToDouble(Console.ReadLine());
+            double sumage = 0;
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"Enter age of student № {i + 1}");
+                sumage += Convert.ToDouble(Console.ReadLine());
+            }
+            Console.WriteLine($"Avarage age is {sumage / n}");
+        }
+
+        public static void SECONDlvlex10()
+        {
+            Console.WriteLine("Enter the amount of students");
+            double n = Convert.ToDouble(Console.ReadLine());
+            double sum = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                bool flag = true;
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.WriteLine($"Enter the score № {j + 1} of student № {i + 1}");
+                    int a = Convert.ToInt32(Console.ReadLine());
+                    if (a == 2 || a == 3)
+                    {
+                        flag = false;
+                    }
+                }
+                if (flag == true)
+                {
+                    sum += 1;
+                }
+            }
+            Console.WriteLine($"Amount of students who didn't det 2 or 3 is {sum}");
+
+        }
+
+
+        public static void THIRDlvlex4()
+        {
+            double r1, r2;
+            Console.WriteLine("Enter first R");
+            r1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter second R");
+            r2 = Convert.ToDouble(Console.ReadLine());
+
+            while (r1 > r2 || r1 <= 0)
+            {
+                if (r1 > r2)
+                {
+                    Console.WriteLine("Enter second R more than first R");
+                    r2 = Convert.ToDouble(Console.ReadLine());
+                }
+
+                if (r1 <= 0)
+                {
+                    Console.WriteLine("Enter first more than 0");
+                    r1 = Convert.ToDouble(Console.ReadLine());
+                }
+            }
+
+            double x = 0, y = 0;
+            while (true)
+            {
+                Console.WriteLine("Enter X");
+                x = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter Y");
+                y = Convert.ToDouble(Console.ReadLine());
+
+                if (x * x + y * y > r1 * r1 && x * x + y * y < r2 * r2)
+                {
+                    Console.WriteLine($"Dote ({x}, {y}) fits in ring");
+                }
+                else
+                {
+                    Console.WriteLine($"Dote ({x}, {y}) doesnt fit in ring");
+                }
+            }
+        }
+
+
+        public static void RHIRDlvlex12()
+        {
+            double r, vibor;
+            while (true)
+            {
+                Console.WriteLine("Enter R. When you want to end enter -");
+                r = Convert.ToDouble(Console.ReadLine());
+                vibor = 1;
+                while (vibor != 0)
+                {
+                    Console.WriteLine("If you want to know S of squre enter 1, S of circle enter 2, S of triengle enter 3. At the ned enter 0");
+                    vibor = Convert.ToDouble(Console.ReadLine());
+                    if (vibor == 1)
+                    {
+                        Console.WriteLine(r * r);
+                    }else if (vibor == 2)
+                    {
+                        Console.WriteLine(r * r * Math.PI);
+                    }else if (vibor == 3)
+                    {
+                        Console.WriteLine(r * r * Math.Sqrt(3) * 0.25);
+                    }
+                }
+            }
+        }
+
+
+        public static void THIRDlvlex13()
+        {
+            double a, b, vibor13;
+            while (true)
+            {
+                Console.WriteLine("Enter a and b. When you want to end enter -");
+                a = Convert.ToDouble(Console.ReadLine());
+                b = Convert.ToDouble(Console.ReadLine());
+                while (a <= 0 || b <= 0)
+                {
+                    if (a <= 0)
+                    {
+                        Console.WriteLine("Enter a > 0");
+                        a = Convert.ToDouble(Console.ReadLine());
+                    }
+                    if (b <= 0)
+                    {
+                        Console.WriteLine("Enter b > 0");
+                        b = Convert.ToDouble(Console.ReadLine());
+                    }
+                }
+                vibor13 = 1;
+                while (vibor13 != 0)
+                {
+                    Console.WriteLine("If you want to know S of rectangle enter 1, S of ring enter 2, S of triengle enter 3. At the ned enter 0");
+                    vibor13 = Convert.ToDouble(Console.ReadLine());
+                    if (vibor13 == 1)
+                    {
+                        Console.WriteLine(a * b);
+                    }
+                    else if (vibor13 == 2)
+                    {
+                        if (a > b)
+                        {
+                            double tmp = 0;
+                            tmp = b;
+                            b = a;
+                            a = tmp;
+                        }
+                        Console.WriteLine((b - a) * Math.PI);
+                    }
+                    else if (vibor13 == 3)
+                    {
+                        if (b * 2 <= a)
+                        {
+                            Console.WriteLine("For this pair you can't count S of triengle");
+                            continue;
+                        }
+                        else
+                        {
+                            double p = (a + b * 2) / 2;
+                            Console.WriteLine(Math.Sqrt(p * (p - a) * (p - b) * (p - b)));
+                        }
+                    }
+                }
+            }
+        }
+
+
+        public static void THIRDlvlex11()
+        {
+            double sum11 = 0;
+            int m = 1;
+            bool flag;
+            double tmp11 = 1;
+            bool cont = true;
+            while (cont == true)
+            {
+                flag = true; 
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.WriteLine($"Enter score № {i + 1} of sudent № {m}. Enter 0 if you want to see result");
+                    tmp11 = Convert.ToDouble(Console.ReadLine());
+                    if (tmp11 == 2 || tmp11 == 3)
+                    {
+                        flag = false;
+                    }
+                }
+                if (flag == false)
+                {
+                    sum11++;
+                }
+                m++;
+                Console.WriteLine("To add student enter 1, to see result enter 0");
+                if (Convert.ToDouble(Console.ReadLine()) == 0)
+                {
+                    cont = false;
+                }
+            }
+            Console.WriteLine($"Sum of bad students is {sum11}");
+        }
+    }
+}
