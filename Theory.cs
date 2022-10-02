@@ -62,6 +62,10 @@ namespace _2nd_Lab
                 {
                     Console.WriteLine("Невозможно посчитать рост 0 человек :(");
                 }
+                else if (n < 0)
+                {
+                    Console.WriteLine("Отрицательное тоже не может быть :(");
+                }
                 else
                 {
                     for (int i = 1; i <= n; i++)
@@ -85,6 +89,10 @@ namespace _2nd_Lab
                 if (n == 0)
                 {
                     Console.WriteLine("Количество участников не может быть ноль");
+                }
+                else if (n < 0)
+                {
+                    Console.WriteLine("Отрицательное тоже не может быть :(");
                 }
                 else
                 {
@@ -110,6 +118,7 @@ namespace _2nd_Lab
 
             #region 4Task
 
+            bool flag = true;
             double Radius1, Radius2, x, y, XofE, YofE;
             int count = 0;
             Console.WriteLine("Введите радиус внутреннего кольца, радиус внешнего кольца, x и y центра этих колец");
@@ -141,7 +150,7 @@ namespace _2nd_Lab
                             }
                         }
                         else break;
-                    } while (x != -100);
+                    } while (flag);
 
                     Console.WriteLine(count);
                 }
@@ -154,57 +163,53 @@ namespace _2nd_Lab
             
             #region 11Task
 
-            double mark1, mark2, mark3, mark4;
+            count = 0;
+            flag = true;
+            double mark, marks = 0;
+            double underachiever = 0;
             double underachievers = 0, allmarks = 0, Count = 0;
             do
             {
-                Console.WriteLine("Enter the mark of first exam:");
                 Console.WriteLine("If you want to stop enter 0");
-                if (double.TryParse(Console.ReadLine(), out mark1))
+                for (int i = 1; i <= 4; i++)
                 {
-                    if (mark1 == 1 || mark1 == 2) underachievers++;
-                    else if (mark1 == 0) break;
-                    else
+                    Console.WriteLine($"Enter the mark of {i} exam");
+                    if (double.TryParse(Console.ReadLine(), out mark))
                     {
-                        allmarks += mark1;
-                        Count++;
-                    }
-                    Console.WriteLine("Enter the mark of second exam:");
-                    if (double.TryParse(Console.ReadLine(), out mark2))
-                    {
-                        if (mark2 == 1 || mark2 == 2) underachievers++;
+                        if (mark == 2)
+                        {
+                            underachiever++;
+                            count = 0;
+                            marks = 0;
+                        }
+                        else if (mark == 0)
+                        {
+                            flag = false;
+                            break;
+                        }
                         else
                         {
-                            allmarks += mark2;
-                            Count++;
-                        }
-                        Console.WriteLine("Enter the mark of third exam:");
-                        if (double.TryParse(Console.ReadLine(), out mark3))
-                        {
-                            if (mark3 == 1 || mark3 == 2) underachievers++;
-                            else
-                            {
-                                allmarks += mark3;
-                                Count++;
-                            }
-                            Console.WriteLine("Enter the mark of fourth exam:");
-                            if (double.TryParse(Console.ReadLine(), out mark4))
-                            {
-                                if (mark4 == 1 || mark4 == 2) underachievers++;
-                                else
-                                {
-                                    allmarks += mark4;
-                                    Count++;
-                                }
-                            }
+                            count++;
+                            marks += mark;
                         }
                     }
-                    
-                    
                 }
-            } while (mark1 != 0);
 
-            Console.WriteLine($"Count of underachiviers - {underachievers}, average mark - {allmarks / count}");
+                if (underachiever != 0)
+                {
+                    underachievers++;
+                }
+                else
+                {
+                    allmarks += marks;
+                    Count += count;
+                }
+                underachiever = 0;
+                marks = 0;
+                count = 0;
+            } while (flag);
+
+            Console.WriteLine($"Count of underachiviers - {underachievers}, average mark - {allmarks / Count}");
             #endregion
 
             r = 0;
@@ -241,7 +246,8 @@ namespace _2nd_Lab
             do
             {
                 Console.WriteLine("Enter A or B. If you want to stop enter A = 0 or B = 0");
-                if (double.TryParse(Console.ReadLine(), out A) && double.TryParse(Console.ReadLine(), out B))
+                if (double.TryParse(Console.ReadLine(), out A) && double.TryParse(Console.ReadLine(), out B) &&
+                    (A > 0 && B > 0))
                 {
                     if (A == 0 || B == 0) break;
                     Console.WriteLine("Enter rectangle, circle or triangle according to what you want to find");
