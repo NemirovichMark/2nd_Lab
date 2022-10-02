@@ -1,0 +1,38 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("1 task");
+        double r1 = 70;
+        double s1 = 36.74;
+        double diametr1 = Math.Sqrt(r1 / Math.PI);
+        double diagonal1 = Math.Sqrt(s1 * 2);
+        if (diametr1 >= diagonal1)
+        {
+            Console.WriteLine("Yes");
+        }
+        else
+        {
+            Console.WriteLine("No");
+        }
+
+
+
+        Console.WriteLine("2 task");
+        double r2 = 0.86;
+        double s2 = 0.74;
+        double diametr2 = Math.Sqrt(r2 / Math.PI);
+        double diagonal2 = Math.Sqrt(s2 * 2);
+        if (diametr1 >= diagonal1)
+        {
+            Console.WriteLine("Yes");
+        }
+        else
+        {
+            Console.WriteLine("No");
+        }
+    }
+}

@@ -1,0 +1,43 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+        for (int i = 0; i >= 0; i++)
+        {
+            double s = 0;
+            Console.WriteLine("Вы хотите узнать площадь фигур? Да = '+'; Нет = '-'");
+            string a = Console.ReadLine();
+            if (a == "-") { break; }
+            Console.WriteLine("Выберете площадь, котору хотите найти: 1) Прямоугольник = '1'; 2) Кольцо = '2'; 3) Равнобедренный треугольник = '3'");
+            string figura = (Console.ReadLine());
+        link1:
+            Console.WriteLine("Введите A (>= 0):");
+            double A = Convert.ToDouble(Console.ReadLine());
+            if (A < 0) goto link1;
+        link2:
+            Console.WriteLine("Введите B (>= 0):");
+            double B = Convert.ToDouble(Console.ReadLine());
+            if (B < 0) goto link2;
+            switch (figura)
+            {
+                case "1":
+                    s = A * B;
+                    Console.WriteLine(s);
+                    break;
+                case "2":
+                    double s0 = Math.PI * A * A;
+                    double s1 = Math.PI * B * B;
+                    s = s1 - s0;
+                    Console.WriteLine(s);
+                    break;
+                case "3":
+                    s = (A * Math.Sqrt(4 * B * B - A * A)) / 4;
+                    Console.WriteLine(s);
+                    break;
+            }
+        }
+    }
+}
