@@ -130,3 +130,38 @@ for (int i = 0; i < n; i+=1)
     }
 }
 #endregion
+
+#region lvl3Task13
+
+Console.WriteLine($"Enter N");
+int n = Convert.ToInt32(Console.ReadLine());
+double m;
+for (int i = 0; i < n; i+= 1)
+{
+    Console.WriteLine("Enter A");
+    double A = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine("Enter B");
+    double B = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine($"Press 1 if you want search rectangle area, 2 if reng area, 3 if issisceles triangle area");
+    double ind = Convert.ToDouble(Console.ReadLine());
+    switch (ind)
+    {
+        case 1:
+            Console.WriteLine($"Rectangle area = {A * B}");
+            break;
+        case 2:
+            if (A > B)
+            {
+                Console.WriteLine($"Ring area = {Math.PI * A * A - Math.PI * B * B}");
+            }
+            else Console.WriteLine($"Ring area = {Math.PI * B * B - Math.PI * A * A}");
+            break;
+        case 3:
+            m = Math.Sqrt(B * B - (A * A / 4));
+            Console.WriteLine($"Isisceles triangle area = {0.5 * A * m}");
+            break;
+        default:
+            break;
+    }
+}
+#endregion
