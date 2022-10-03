@@ -103,3 +103,30 @@ for (int i = 0; i < student_count; i++)
 }
 Console.WriteLine($"Count of unnormal students - {count_of_unnormal_student}, Group average - {marks.Sum() / (4 * (student_count - count_of_unnormal_student))}");
 #endregion
+
+#region // level 3 Task 12
+Console.WriteLine($"Enter N");
+int n = Convert.ToInt32(Console.ReadLine());
+
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine("Enter R");
+    double r = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine($"Press 1 if you want search area of square, 2 if circle, 3 if triangle");
+    double x = Convert.ToDouble(Console.ReadLine());
+    switch (x)
+    {
+        case 1:
+            Console.WriteLine($"Squere = {r * r}");
+            break;
+        case 2:
+            Console.WriteLine($"Circle = {Math.PI * r * r}");
+            break;
+        case 3:
+            Console.WriteLine($"Triangle = {Math.Sqrt(3) * r * r / 4}");
+            break;
+        default:
+            break;
+    }
+}
+#endregion
