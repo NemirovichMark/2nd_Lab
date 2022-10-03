@@ -108,7 +108,7 @@ Console.WriteLine($"Count of unnormal students - {count_of_unnormal_student}, Gr
 Console.WriteLine($"Enter N");
 int n = Convert.ToInt32(Console.ReadLine());
 
-for (int i = 0; i < n; i++)
+for (int i = 0; i < n; i+=1)
 {
     Console.WriteLine("Enter R");
     double r = Convert.ToDouble(Console.ReadLine());
