@@ -104,7 +104,7 @@ for (int i = 0; i < student_count; i++)
 Console.WriteLine($"Count of unnormal students - {count_of_unnormal_student}, Group average - {marks.Sum() / (4 * (student_count - count_of_unnormal_student))}");
 #endregion
 
-#region // level 3 Task 12
+#region lvl3Task12
 Console.WriteLine($"Enter N");
 int n = Convert.ToInt32(Console.ReadLine());
 
