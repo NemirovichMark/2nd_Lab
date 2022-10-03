@@ -1,8 +1,19 @@
 #region lvl.1 ex.1
 Console.WriteLine("Введите x:");
-double x = double.Parse(Console.ReadLine());
+double x, y;
+bool result = double.TryParse(Console.ReadLine(), out x);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 Console.WriteLine("Введите y:");
-double y = double.Parse(Console.ReadLine());
+result = double.TryParse(Console.ReadLine(), out y);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 double r = 2;
 if (Math.Abs(x * x + y * y - r * r) <= 0.001)
 {
@@ -18,10 +29,21 @@ else
 }
 #endregion
 #region ex.2
-Console.WriteLine("Введите x:\t");
-double x = double.Parse(Console.ReadLine());
-Console.WriteLine("Введите y:\t");
-double y  = double.Parse(Console.ReadLine());
+double x, y;
+Console.WriteLine("Введите x:");
+bool result = double.TryParse(Console.ReadLine(), out x);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
+Console.WriteLine("Введите y:");
+result = double.TryParse(Console.ReadLine(), out y);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 if (y>=0 & y+ Math.Abs(x)<=1)
 {
     Console.WriteLine("Точка находится в треугольнике");
@@ -33,13 +55,29 @@ else
 #endregion
 #region #region lvl.2 ex.1
 Console.WriteLine("Введите количество учеников в классе:");
-int n = int.Parse(Console.ReadLine()), i = 0;
+int n, i = 0;
+bool result = int.TryParse(Console.ReadLine(), out n);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
+if (n<0)
+{
+    Console.WriteLine("Количество не может быть отрицаиельным");
+    Environment.Exit(0);
+}
 double h, sum = 0;
 do
 {
     i++;
     Console.WriteLine($"Введите рост {i} ребенка:");
-    h = double.Parse(Console.ReadLine());
+    result = double.TryParse(Console.ReadLine(), out h);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        Environment.Exit(0);
+    }
     if (h <= 0)
     {
         Console.WriteLine("Рост должен быть больше нуля.");
@@ -51,16 +89,38 @@ Console.WriteLine($"Средний рост {i} детей равен {sum/i}");
 #endregion
 #region ex.2
 Console.WriteLine("Введите количество точек:");
-int n = int.Parse(Console.ReadLine());
-int a = 3, b = 2, r = 3;
+int n, a = 3, b = 2, r = 3;
+bool result = int.TryParse(Console.ReadLine(), out n);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
+if(n<0)
+{
+    Console.WriteLine("Количество не может быть отрицаиельным");
+    Environment.Exit(0);
+}
 double x = 0, y = 0;
 for (int i = 0; i < n; i++)
 {
     Console.WriteLine($"Введите x{i}:");
-    x = double.Parse(Console.ReadLine());
+    result = double.TryParse(Console.ReadLine(), out x);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        Environment.Exit(0);
+    }
+
+
     Console.WriteLine($"Введите y{i}:");
-    y = double.Parse(Console.ReadLine());
-    x -= a; y -= b;
+result = double.TryParse(Console.ReadLine(), out y);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
+x -= a; y -= b;
     if (Math.Sqrt(x * x + y * y) <= r)
     {
         Console.WriteLine("точка лежит в окружности");
@@ -72,13 +132,29 @@ for (int i = 0; i < n; i++)
 }
 #endregion
 #region lvl.3 ex.4
+int n;
+double r1, r2, x, y;
 Console.WriteLine("Введите количество точек:");
-int n = int.Parse (Console.ReadLine());
+bool result = int.TryParse(Console.ReadLine(), out n);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 Console.WriteLine("Введите внутренний радиус:");
-double r1 = double.Parse(Console.ReadLine());
+result = double.TryParse(Console.ReadLine(), out r1);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 Console.WriteLine("Введите внешний радиус:");
-double r2 = double.Parse(Console.ReadLine());
-double x, y;
+result = double.TryParse(Console.ReadLine(), out r2);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 int s = 0, d = 0;
 if (r2 <= r1)
 {
@@ -88,9 +164,23 @@ if (r2 <= r1)
 for (int i = 1; i <= n; i++)
 {
     Console.WriteLine($"Введите х{i}:");
-    x = double.Parse(Console.ReadLine());
+    result = double.TryParse(Console.ReadLine(), out x);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        while (result == false)
+        {
+            Console.WriteLine($"Введите х{i}:")
+            result = int.TryParse(Console.ReadLine(), out x);
+        }
+    }
     Console.WriteLine($"Введите y{i}:");
-    y = double.Parse(Console.ReadLine());
+    result = double.TryParse(Console.ReadLine(), out y);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        Environment.Exit(0);
+    }
     if (Math.Sqrt(x * x + y * y) >= r1 && Math.Sqrt(x * x + y * y) <= r2)
     {
         s += 1;
@@ -104,9 +194,14 @@ Console.WriteLine($"{s} точек попали в кольцо");
 Console.WriteLine($"{d} точек не попали в кольцо");
 #endregion
 #region ex.11
+int b, k = 0, n;
 Console.WriteLine("Введите количество студентов:");
-int n = int.Parse(Console.ReadLine());
-int b, k = 0;
+bool result = int.TryParse(Console.ReadLine(), out n);
+if (result == false)
+{
+    Console.WriteLine("Не удалось конвертировать!");
+    Environment.Exit(0);
+}
 double s = 0;
 int[] a = new int[4];
 for (int i = 0; i < n; i++)
@@ -114,10 +209,33 @@ for (int i = 0; i < n; i++)
     for (int j = 0; j < 4; j++)
     {
         Console.WriteLine($"Введите {j} оценку {i} ученика");
-        b = int.Parse(Console.ReadLine());
-        if (b > 6)
+        result = int.TryParse(Console.ReadLine(), out b);
+        if (result == false)
+        {
+            Console.WriteLine("Не удалось конвертировать!");
+            while (result == false)
+            {
+                Console.WriteLine($"Введите {j} оценку {i} ученика");
+                result = int.TryParse(Console.ReadLine(), out b);
+            }
+        }
+        if (b > 5)
         {
             Console.WriteLine("У нас максимальная оценка - 5");
+            while (b >5)
+            {
+                Console.WriteLine($"Введите {j} оценку {i} ученика, не больше 5");
+                result = int.TryParse(Console.ReadLine(), out b);
+                if (result == false)
+                {
+                    Console.WriteLine("Не удалось конвертировать!");
+                    while (result == false)
+                    {
+                        Console.WriteLine($"Введите {j} оценку {i} ученика, не больше 5");
+                        result = int.TryParse(Console.ReadLine(), out b);
+                    }
+                }
+            }
         }
         a[j] = b;
     }
@@ -137,7 +255,16 @@ double r;
 do
 {
     Console.WriteLine("Введите значение r, для окончания введите 0:");
-    r = double.Parse(Console.ReadLine());
+    bool result = double.TryParse(Console.ReadLine(), out r);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        while (result == false)
+        {
+            Console.WriteLine("Не удалось конвертировать! Введите значение r:");
+            result = double.TryParse(Console.ReadLine(), out r);
+        }
+    }
     if (r <= 0)
     {
         Console.WriteLine("Программа завершена.");
@@ -170,14 +297,33 @@ do
 {
     double p = 0;
     Console.WriteLine("Введите значение А, для завершения программы введите 0 или отрицательное число:");
-    a = double.Parse(Console.ReadLine());
+    bool result = double.TryParse(Console.ReadLine(), out a);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        while (result == false)
+        {
+            Console.WriteLine("Не удалось конвертировать! Введите значение A:");
+            result = double.TryParse(Console.ReadLine(), out a);
+        }
+    }
     if (a <= 0)
     {
-        Console.WriteLine($"Программа завершена, цикл выполнен {i} раз") ;
+        Console.WriteLine($"Программа завершена, цикл выполнен {i} раз");
         break;
     }
+    double b;
     Console.WriteLine("Введите значение B:");
-    double b = double.Parse(Console.ReadLine());
+    result = double.TryParse(Console.ReadLine(), out b);
+    if (result == false)
+    {
+        Console.WriteLine("Не удалось конвертировать!");
+        while (result == false)
+        {
+            Console.WriteLine("Не удалось конвертировать! Введите значение B:");
+            result = double.TryParse(Console.ReadLine(), out b);
+        }
+    }
     if (b <= 0)
     {
         Console.WriteLine("Введите число болше нуля");
