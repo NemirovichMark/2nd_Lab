@@ -165,3 +165,29 @@ for (int i = 0; i < n; i+= 1)
     }
 }
 #endregion
+
+#region lvl3Task4
+int r1 = Convert.ToInt32(Console.ReadLine());
+int r2 = Convert.ToInt32(Console.ReadLine());
+string x, y;
+string line = Console.ReadLine();
+string[] coordinats;
+int count = 0;
+
+while (line != "")
+{
+    coordinats = line.Split();
+    x = coordinats[0];
+    y = coordinats[1];
+    if ((Math.Abs(Convert.ToInt32(x)) <= r2) && (Math.Abs(Convert.ToInt32(y)) >= r1) && (Math.Abs(Convert.ToInt32(y)) <= r2))
+    {
+        count+=1;
+    }
+
+    line = Console.ReadLine();
+
+}
+
+Console.WriteLine(count);
+
+#endregion
