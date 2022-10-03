@@ -71,8 +71,14 @@ namespace _2nd_Lab
                     for (int i = 1; i <= n; i++)
                     {
                         Console.WriteLine("Введите рост:");
-                        double.TryParse(Console.ReadLine(), out height);
-                        s += height;
+                        if (double.TryParse(Console.ReadLine(), out height) && height > 0)
+                        {
+                            s += height;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Либо рост отрицителен, либо это не число");
+                        }
                     }
                     Console.WriteLine($"Средний рост учеников: {s / n}");
                 }
@@ -82,7 +88,7 @@ namespace _2nd_Lab
 
             #region 9Task
 
-            double result, bestresult = Math.Pow(10, 10);
+            double result, bestresult = Int32.MaxValue;
             Console.WriteLine("Введите количество участников:");
             if (double.TryParse(Console.ReadLine(), out n))
             {
@@ -99,7 +105,7 @@ namespace _2nd_Lab
                     for (int i = 1; i <= n; i++)
                     {
                         Console.WriteLine("Введите результат:");
-                        if (double.TryParse(Console.ReadLine(), out result))
+                        if (double.TryParse(Console.ReadLine(), out result) && result > 0)
                         {
                             bestresult = Math.Min(result, bestresult); 
                         }
@@ -123,7 +129,8 @@ namespace _2nd_Lab
             int count = 0;
             Console.WriteLine("Введите радиус внутреннего кольца, радиус внешнего кольца, x и y центра этих колец");
             if (double.TryParse(Console.ReadLine(), out Radius1) && double.TryParse(Console.ReadLine(), out Radius2)
-                && double.TryParse(Console.ReadLine(), out XofE) && double.TryParse(Console.ReadLine(), out YofE))
+                && double.TryParse(Console.ReadLine(), out XofE) && double.TryParse(Console.ReadLine(), out YofE)
+                && (Radius2 > Radius1))
             {
                 if (Radius1 <= 0 || Radius2 <= 0){
                     Console.WriteLine("This is bad :(");
@@ -176,22 +183,28 @@ namespace _2nd_Lab
                     Console.WriteLine($"Enter the mark of {i} exam");
                     if (double.TryParse(Console.ReadLine(), out mark))
                     {
-                        if (mark == 2)
+                        if (2 <= mark && mark <= 5 || mark == 0)
                         {
-                            underachiever++;
-                            count = 0;
-                            marks = 0;
+                            if (mark == 2)
+                            {
+                                underachiever++;
+                                count = 0;
+                                marks = 0;
+                                break;
+                            }
+                            else if (mark == 0)
+                            {
+                                flag = false;
+                                break;
+                            }
+                            else
+                            {
+                                count++;
+                                marks += mark;
+                            }
                         }
-                        else if (mark == 0)
-                        {
-                            flag = false;
-                            break;
-                        }
-                        else
-                        {
-                            count++;
-                            marks += mark;
-                        }
+                        else break;
+
                     }
                 }
 
@@ -249,7 +262,6 @@ namespace _2nd_Lab
                 if (double.TryParse(Console.ReadLine(), out A) && double.TryParse(Console.ReadLine(), out B) &&
                     (A > 0 && B > 0))
                 {
-                    if (A == 0 || B == 0) break;
                     Console.WriteLine("Enter rectangle, circle or triangle according to what you want to find");
                     switch (Console.ReadLine())
                     {
