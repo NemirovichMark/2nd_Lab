@@ -81,7 +81,11 @@ do
     if (h <= 0)
     {
         Console.WriteLine("Рост должен быть больше нуля.");
-        h = double.Parse(Console.ReadLine());
+        while(h<=0)
+        {
+             Console.WriteLine($"Введите рост {i} ребенка, рост должен быть больше нуля:");
+            h = double.Parse(Console.ReadLine());
+        }
     }
     sum += h;
 } while (i < n);
@@ -210,31 +214,13 @@ for (int i = 0; i < n; i++)
     {
         Console.WriteLine($"Введите {j} оценку {i} ученика");
         result = int.TryParse(Console.ReadLine(), out b);
-        if (result == false)
+        if (result == false || 1>b>5)
         {
-            Console.WriteLine("Не удалось конвертировать!");
-            while (result == false)
+            Console.WriteLine("Не удалось конвертировать, или Вы ввели больше 5 или меньше двух! Введите верный формат, целые числа не больше 5, и только числа:");
+            while (result == false || 1>b>5)
             {
                 Console.WriteLine($"Введите {j} оценку {i} ученика");
                 result = int.TryParse(Console.ReadLine(), out b);
-            }
-        }
-        if (b > 5)
-        {
-            Console.WriteLine("У нас максимальная оценка - 5");
-            while (b >5)
-            {
-                Console.WriteLine($"Введите {j} оценку {i} ученика, не больше 5");
-                result = int.TryParse(Console.ReadLine(), out b);
-                if (result == false)
-                {
-                    Console.WriteLine("Не удалось конвертировать!");
-                    while (result == false)
-                    {
-                        Console.WriteLine($"Введите {j} оценку {i} ученика, не больше 5");
-                        result = int.TryParse(Console.ReadLine(), out b);
-                    }
-                }
             }
         }
         a[j] = b;
