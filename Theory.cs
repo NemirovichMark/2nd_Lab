@@ -10,8 +10,8 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            //Level1();
-            //Level2();
+            Level1();
+            Level2();
             Level3();
         }
 
