@@ -35,11 +35,7 @@ namespace LaboratoryL3N4
                 Console.Write("Input x: ");
                 string input_x = Console.ReadLine();
                 bool result_x = double.TryParse(input_x, out var x);
-                if (input_x == " ")
-                {
-                    goto end;
-                }
-                else if (result_x == false)
+                if (result_x == false)
                 {
                     Console.WriteLine($"Incorrect data");
                     goto end;
@@ -48,11 +44,7 @@ namespace LaboratoryL3N4
                 Console.Write("Input y: ");
                 string input_y = Console.ReadLine();
                 bool result_y = double.TryParse(input_y, out var y);
-                if (input_y == " ")
-                {
-                    goto end;
-                }
-                else if (result_y == false) //I do not like those huge inputs ._. 
+                if (result_y == false) //I do not like those huge inputs ._. 
                 {
                     Console.WriteLine($"Incorrect data");
                     goto end;
