@@ -234,7 +234,15 @@ namespace _2nd_lab
                                 break;
                             case 3:
                                 h = Math.Sqrt(B * B - (A * A / 4));
-                                Console.WriteLine($"square of a triangle = {0.5 * A * h}");
+                                if (h >= 0)
+                                {
+                                    Console.WriteLine($"square of a triangle = {0.5 * A * h}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("подкоренное отрицательное");
+                                    break;
+                                }
                                 break;
                         }
                     }
