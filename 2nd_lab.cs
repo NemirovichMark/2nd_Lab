@@ -196,7 +196,7 @@ namespace _2nd_lab
             bool trigger_nigger = true;
             while (trigger_nigger)
             {
-                Console.WriteLine("to continue +, to leave $ ");
+                Console.WriteLine("to continue +, to leave - ");
                 f = Console.ReadLine();
                 if (f == "-")
                 {
