@@ -8,60 +8,62 @@ namespace _2nd_lab
         static void Main()
         {
             #region 1.7
-            double x_1_7, y_1_7;
+            double x, y;
             Console.WriteLine("enter x");
-            x_1_7 = double.Parse(Console.ReadLine());
-            if (Math.Abs(x_1_7) > 1)
+            double.TryParse(Console.ReadLine(), out x);
+            if (Math.Abs(x) > 1)
             {
-                y_1_7 = 1;
+                y = 1;
             }
             else
             {
-                y_1_7 = Math.Abs(x_1_7); 
+                y = Math.Abs(x);
             }
-            Console.WriteLine(y_1_7);
+            Console.WriteLine(y);
             #endregion
 
             #region 1.8
-            double y_1_8, x_1_8;
+            y = 0;
+            x = 0;
             Console.WriteLine("enter x");
-            x_1_8 = double.Parse(Console.ReadLine());
-            if (Math.Abs(x_1_8) >= 1)
+            double.TryParse(Console.ReadLine(), out x);
+            if (Math.Abs(x) >= 1)
             {
-                y_1_8 = 0;
+                y = 0;
             }
             else
             {
-                y_1_8 = Math.Pow(x_1_8, 2) - 1;
+                y = Math.Pow(x, 2) - 1;
             }
-            Console.WriteLine(y_1_8);
+            Console.WriteLine(y);
             #endregion
 
             #region 1.9
-            double y_1_9, x_1_9;
+            y = 0;
+            x = 0;
             Console.WriteLine("enter x");
-            x_1_9 = double.Parse(Console.ReadLine());
-            if (x_1_9 <= -1)
+            double.TryParse(Console.ReadLine(), out x);
+            if (x <= -1)
             {
-                y_1_9 = 0;
+                y = 0;
             }
-            else 
-                if((x_1_9 > -1) && (x_1_9 <= 0));
+            else
+                if ((x > -1) && (x <= 0)) ;
             {
-                y_1_9 = 1 + x_1_9;
+                y = 1 + x;
             }
-            Console.WriteLine(y_1_9);
+            Console.WriteLine(y);
             #endregion
 
             #region 2.1
             double count, count_g, count_m, sd = 0, sm = 0;
             Console.WriteLine("enter count");
-            count = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out count);
             Random rnd = new Random();
             Console.WriteLine("enter count of girls");
-            count_g = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out count_g);
             Console.WriteLine("enter count of boys");
-            count_m = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out count_m);
             if ((count_m + count_g <= count) && (count_m > 0) && (count_g > 0))
             {
                 for (int i = 1; i <= count_g; i++)
@@ -82,7 +84,7 @@ namespace _2nd_lab
             #region 2.9
             double n1, max_dist = 200, res;
             Console.WriteLine("enter count of swimmers ");
-            n1 = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out n1);
             Random rnd1 = new Random();
             for (int i = 1; i <= n1; i++)
             {
@@ -96,20 +98,22 @@ namespace _2nd_lab
             #endregion
 
             #region 3.4
-            double r1, r2, n, x, y, ct = 0, len = 0;
+            double r1, r2, n, ct = 0, len = 0;
+            x = 0;
+            y = 0;
             Console.WriteLine("input  count of dots");
-            n = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out n);
             Random rnd2 = new Random();
             Console.WriteLine("enter r1");
-            r1 = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out r1);
             Console.WriteLine("enter r2");
-            r2 = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out r2);
             for (int i = 1; i <= n; i++)
             {
                 Console.WriteLine("enter coordinate х");
-                x = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out x);
                 Console.WriteLine("enter coordinate y");
-                y = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out y);
                 len = x * x + y * y;
                 if ((len >= r1 * r1) && (len <= r2 * r2))
                 {
@@ -127,7 +131,7 @@ namespace _2nd_lab
             bool trigger = true;
             while (trigger)
             {
-                Console.WriteLine("to continue enter +, to leave enter - ");
+                Console.WriteLine("to continue enter +, to leave enter -  (3.11)");
                 key = Console.ReadLine();
                 if (key == "-")
                 {
@@ -136,102 +140,108 @@ namespace _2nd_lab
                 if (key == "+")
                 {
                     Console.WriteLine("enter marks for 4 exams");
-                    ex1 = double.Parse(Console.ReadLine());
-                    ex2 = double.Parse(Console.ReadLine());
-                    ex3 = double.Parse(Console.ReadLine());
-                    ex4 = double.Parse(Console.ReadLine());
-                    if ((ex1 != 2) && (ex2 != 2) && (ex3 != 2) && (ex4 != 2))
+                    double.TryParse(Console.ReadLine(), out ex1);
+                    double.TryParse(Console.ReadLine(), out ex2);
+                    double.TryParse(Console.ReadLine(), out ex3);
+                    double.TryParse(Console.ReadLine(), out ex4);
+                    if ((ex1 >= 2) && (ex1 <= 5) && (ex2 >= 2) && (ex2 <= 5) && (ex3 >= 2) && (ex3 <= 5) && (ex4 >= 2) && (ex4 <= 5))
                     {
-                        cnt_good = cnt_good + 1;
-                        sum = (ex1 + ex2 + ex3 + ex4) / 4;
-                        summa = summa + sum;
+                        if ((ex1 != 2) && (ex2 != 2) && (ex3 != 2) && (ex4 != 2))
+                        {
+                            cnt_good = cnt_good + 1;
+                            sum = (ex1 + ex2 + ex3 + ex4) / 4;
+                            summa = summa + sum;
+                        }
+                        if ((ex1 <= 2) || (ex2 <= 2) || (ex3 <= 2) || (ex4 <= 2))
+                        {
+                            cnt_bad = cnt_bad + 1;
+                        }
+                        Console.WriteLine($"count of failed = {cnt_bad}\t avg of good marks = {summa / cnt_good}");
                     }
-                    if ((ex1 <= 2) || (ex2 <= 2) || (ex3 <= 2) || (ex4 <= 2))
+                    else
                     {
-                        cnt_bad = cnt_bad + 1;
+                        Console.WriteLine("MARKS ONLY FROM 1 TO 5");
                     }
-                    Console.WriteLine($"count of failed = {cnt_bad}\t avg of good marks = {summa / cnt_good}");
                 }
-            }
-            #endregion
+                #endregion
 
-            #region 3.12
-            double R, g;
-            string c;
-            bool trigger1 = true;
-            while (trigger1)
-            {
-                Console.WriteLine("to continue +, to leave - ");
-                c = Console.ReadLine();
-                if (c == "-")
+                #region 3.12
+                double R, g;
+                string c;
+                bool trigger1 = true;
+                while (trigger1)
                 {
-                    trigger1 = false;
-                }
-                if (c == "+")
-                {
-                    Console.WriteLine("enter r");
-                    R = double.Parse(Console.ReadLine());
-                    Console.WriteLine("to get a square of a square enter 1\t to get a square of circle enter 2\t to get a square of triangle enter 3");
-                    g = double.Parse(Console.ReadLine());
-                    switch (g)
+                    Console.WriteLine("to continue +, to leave - (3.12)");
+                    c = Console.ReadLine();
+                    if (c == "-")
                     {
-                        case 1:
-                            Console.WriteLine($"square of a square = {R * R}");
-                            break;
-                        case 2:
-                            Console.WriteLine($"square of a circle = {Math.PI * R * R}");
-                            break;
-                        case 3:
-                            Console.WriteLine($"square of a triangle = {Math.Sqrt(3) * R * R / 4}");
-                            break;
+                        trigger1 = false;
                     }
-                }
-            }
-            Console.WriteLine();
-            #endregion
-
-            #region 3.13
-            double A, g1, B, h;
-            string f;
-            bool trigger_nigger = true;
-            while (trigger_nigger)
-            {
-                Console.WriteLine("to continue +, to leave - ");
-                f = Console.ReadLine();
-                if (f == "-")
-                {
-                    trigger_nigger = false;
-                }
-                if (f == "+")
-                {
-                    Console.WriteLine("enter A");
-                    A = double.Parse(Console.ReadLine());
-                    Console.WriteLine("enter B");
-                    B = double.Parse(Console.ReadLine());
-                    Console.WriteLine("to get a square of a rectangle press 1\t to get a square of a ring press 2\t to get a square of a triangle press 3");
-                    g1 =
-                    double.Parse(Console.ReadLine());
-                    switch (g1)
+                    if (c == "+")
                     {
-                        case 1:
-                            Console.WriteLine($" square of a rectangle = {A * B}");
-                            break;
-                        case 2:
-                            if (A > B)
-                            {
-                                Console.WriteLine($"square of a ring = {Math.PI * A * A - Math.PI * B * B}");
-                            }
-                            else Console.WriteLine($"square of a ring = {Math.PI * B * B - Math.PI * A * A}");
-                            break;
-                        case 3:
-                            h = Math.Sqrt(B * B - (A * A / 4));
-                            Console.WriteLine($"square of a triangle = {0.5 * A * h}");
-                            break;
+                        Console.WriteLine("enter r");
+                        double.TryParse(Console.ReadLine(), out R);
+                        Console.WriteLine("to get a square of a square enter 1\t to get a square of circle enter 2\t to get a square of triangle enter 3");
+                        double.TryParse(Console.ReadLine(), out g);
+                        switch (g)
+                        {
+                            case 1:
+                                Console.WriteLine($"square of a square = {R * R}");
+                                break;
+                            case 2:
+                                Console.WriteLine($"square of a circle = {Math.PI * R * R}");
+                                break;
+                            case 3:
+                                Console.WriteLine($"square of a triangle = {Math.Sqrt(3) * R * R / 4}");
+                                break;
+                        }
                     }
                 }
                 Console.WriteLine();
+                #endregion
+
+                #region 3.13
+                double A, g1, B, h;
+                string f;
+                bool trigger_nigger = true;
+                while (trigger_nigger)
+                {
+                    Console.WriteLine("to continue +, to leave - (3.13)");
+                    f = Console.ReadLine();
+                    if (f == "-")
+                    {
+                        trigger_nigger = false;
+                    }
+                    if (f == "+")
+                    {
+                        Console.WriteLine("enter A");
+                        double.TryParse(Console.ReadLine(), out A);
+                        Console.WriteLine("enter B");
+                        double.TryParse(Console.ReadLine(), out B);
+                        Console.WriteLine("to get a square of a rectangle press 1\t to get a square of a ring press 2\t to get a square of a triangle press 3");
+                        double.TryParse(Console.ReadLine(), out g1);
+                        switch (g1)
+                        {
+                            case 1:
+                                Console.WriteLine($" square of a rectangle = {A * B}");
+                                break;
+                            case 2:
+                                if (A > B)
+                                {
+                                    Console.WriteLine($"square of a ring = {Math.PI * A * A - Math.PI * B * B}");
+                                }
+                                else Console.WriteLine($"square of a ring = {Math.PI * B * B - Math.PI * A * A}");
+                                break;
+                            case 3:
+                                h = Math.Sqrt(B * B - (A * A / 4));
+                                Console.WriteLine($"square of a triangle = {0.5 * A * h}");
+                                break;
+                        }
+                    }
+                    Console.WriteLine();
+                }
+                #endregion
             }
-            #endregion
         }
     }
 }
