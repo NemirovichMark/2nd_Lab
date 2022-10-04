@@ -1,0 +1,266 @@
+namespace ConsoleApp1 {
+    internal class Program {
+        static void Main(int num) {
+            #region 1-1
+            int x, y;
+            Console.WriteLine("Pls enter x");
+            x=Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Pls enter y");
+            y=Convert.ToInt32(Console.ReadLine());
+            if (x * x + y * y - 4 <= 0.001)
+            {
+                Console.WriteLine("Yes");
+            }
+            else {
+                Console.WriteLine("No");
+            }
+
+            #endregion
+            #region 1-2
+            double x1, y1;
+            Console.WriteLine("Pls enter x");
+            x1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Pls enter y");
+            y1 = Convert.ToDouble(Console.ReadLine());
+            if (y1 >= 0 && y + Math.Abs(x1) <= 1)
+            {
+                Console.WriteLine("Yeah");
+
+            }
+            else {
+                Console.WriteLine("Nope");
+            }
+
+            #endregion
+            #region 1-3
+            double a,b;
+            Console.WriteLine("Pls enter a");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Pls enter b");
+            b = Convert.ToDouble(Console.ReadLine());
+            if (a > 0)
+            {
+                Console.WriteLine("c=" + Math.Max(a, b));
+            }
+            else { 
+                Console.WriteLine("c=" + Math.Max(a,b));
+            }
+
+
+
+
+            #endregion
+            #region 2-1
+            int cl,cl1;
+            double sumr=0, r;
+            Console.WriteLine("Pls enter cnt of your classmates");
+            cl = Convert.ToInt32(Console.ReadLine());
+            cl1 = cl;
+            for (int i = 0; i < cl; i++) { 
+                r=Convert.ToDouble(Console.ReadLine());
+                if (r <= 0) {
+                    Console.WriteLine("OOOOPS, some bad");
+                    cl1 += 1;
+                    sumr -= r;
+                }
+                sumr += r;
+                
+            }
+            cl -= cl1;
+            if (cl != 0)
+            {
+
+
+                Console.WriteLine(sumr / cl);
+            }
+            else { 
+                Console.WriteLine("Error");
+            }
+            #endregion
+            #region 2-3
+            int classmates;
+            double weight,milkcnt=0;
+            Console.WriteLine("Pls enter cnt of your classmates");
+            classmates = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < classmates; i++) {
+                Console.WriteLine("Pls enter ves of your classmate");
+                weight = Convert.ToDouble(Console.ReadLine());
+                if (weight >= 0 && weight<30) {
+                    milkcnt += 200;
+
+                }
+
+
+            }
+            if (milkcnt == 0) {
+                Console.WriteLine("Good class");
+            }
+            if (milkcnt != 0)
+            {
+                Console.WriteLine("You need " + milkcnt / 1000 + "l of milk");
+            }
+            #endregion
+            #region 3-4
+            double x4, y4,r14,r24;
+            string stap;
+            int cnt4 = 0;
+            Console.WriteLine("if u want to stop, pls enter 'stop' ");
+            r14=Convert.ToDouble(Console.ReadLine());
+            r24 = Convert.ToDouble(Console.ReadLine());
+            r14 = r14 * r14;
+            r24 = r24 * r24;
+            while (true) { 
+                Console.WriteLine("pls enter stop or x");
+                stap=Console.ReadLine();
+                if (stap == "stop" || stap == "Stop")
+                {
+                    Console.WriteLine("Ok ,gg wp");
+                }
+                else {
+                    x4 = Convert.ToDouble(stap);
+                    Console.WriteLine("Enter y");
+                    y4 = Convert.ToDouble(Console.ReadLine());
+                    if (x4 * x4 + y4 * y4 >= r14 && x4 * x4 + y4 * y4 <= r24) {
+                        Console.WriteLine("Yeah ,good");
+                        cnt4 += 1;
+                    }
+                }
+            Console.WriteLine(cnt4);
+            }
+
+
+
+
+            #endregion
+            #region 3-11
+            int mark, cnt = 1, marksum = 0, uspcnt = 0, neuspcnt = 0, cnterror = 0;
+            double srbal1, srbal2 = 0;
+            string stoper;
+            Console.WriteLine("Pls enter cnt of students");
+            while (true)
+            {
+                marksum = 0;
+                cnterror = 0;
+                Console.WriteLine("If you want to stop, enter stop,if u dont want to do it enter something more");
+                stoper = Console.ReadLine();
+                if (stoper == "stop")
+                {
+                    Console.WriteLine("Ok ,bye");
+                    break;
+                }
+                Console.WriteLine("Student numb " + cnt);
+                for (int j = 0; j < 4; j++)
+                {
+                    Console.WriteLine("Pls enter mark " + (j + 1));
+                    mark = Convert.ToInt32(Console.ReadLine());
+                    if (mark == 2)
+                    {
+                        neuspcnt += 1;
+                        break;
+                    }
+                    if (mark > 2 && mark <= 5)
+                    {
+                        marksum += mark;
+                    }
+                    if (mark > 5 || mark < 2)
+                    {
+                        Console.WriteLine("Error");
+                        break;
+                        cnterror += 1;
+
+                    }
+                }
+                if (cnterror == 0 && marksum >= 12)
+                {
+                    srbal1 = Convert.ToDouble(marksum);
+                    srbal1 /= 4;
+                    uspcnt += 1;
+                    srbal2 += srbal1;
+                }
+                cnt++;
+
+            }
+            Console.WriteLine(neuspcnt + "- neusp    " + (srbal2 / uspcnt) + "- srbal");
+            #endregion
+            #region 3-12
+            double r12;
+            string answ,answ1;
+            while (true) {
+                Console.WriteLine("pls enter r if u want to continue, if u want stop, pls enter it");
+                answ1 = Console.ReadLine();
+                if (answ1 == "stop") {
+                    break;
+                }
+                Console.WriteLine("what do you want?");
+                answ = Console.ReadLine();
+                r12 = Convert.ToDouble(answ1);
+                switch (answ) {
+                    case "square":
+                        Console.WriteLine("S = " + (r12 * r12));
+                        break;
+                    case "circle":
+                        Console.WriteLine("S = " + +(Math.PI * r12 * r12));
+                        break;
+                    case "triangle":
+                        Console.WriteLine("S = " + (Math.Pow(3, 0.5) / 4 * r12 * r12));
+                        break;
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                        
+                        
+
+
+                }
+
+            }
+
+            #endregion
+            #region 3-13
+            double A, B, C;
+            string stopper,answ13;
+            while (true)
+            {
+                Console.WriteLine("pls enter r if u want to continue, if u want stop, pls enter it");
+                stopper = Console.ReadLine();
+                if (stopper == "stop")
+                {
+                    break;
+                }
+                Console.WriteLine("what do you want?");
+                answ13 = Console.ReadLine();
+                A = Convert.ToDouble(stopper);
+                B = Convert.ToDouble(Console.ReadLine());
+                if (A > B) { 
+                    C = A;
+                    A = B;
+                    B = C;
+                }
+                switch (answ13)
+                {
+                    case "square":
+                        Console.WriteLine("S = " + (A * B));
+                        break;
+                    case "circle":
+                        Console.WriteLine("S = " + ((Math.PI * B * B)-(Math.PI * A * A)));
+                        break;
+                    case "triangle":
+                        Console.WriteLine("S = " + (B / 4 * Math.Pow(4 * A * A - B * B, 0.5)));
+                        break;
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+
+
+
+
+                }
+
+
+                #endregion
+
+
+
+            }
+    } 
+}
