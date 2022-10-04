@@ -1,0 +1,300 @@
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        //Lab1Level.Ex4();
+        //Lab1Level.Ex9();
+        //Lab1Level.Ex15();
+        //Lab1Level.Ex16();
+        //Lab1Level.Ex18();
+        //Lab2Level.Ex2();
+        //Lab2Level.Ex4();
+        //Lab2Level.Ex7and8();
+        //Lab3Level.Ex1();
+        Lab2Level3.Ex13();
+    }
+}
+ public class Lab2Level1
+    {
+        public static void Ex4()
+        {
+            double a, b, c, min, max;
+            a = Convert.ToDouble(Console.ReadLine());
+            b = Convert.ToDouble(Console.ReadLine());
+            c = Convert.ToDouble(Console.ReadLine());
+            if (a < b)
+                min = a;
+            else
+                min = b;
+            if (c > min)
+                max = c;
+            else
+                max = min;
+            Console.WriteLine($"Z: {max}");
+        }
+        public static void Ex3()
+        {
+            double c = 0;
+            double a = Convert.ToDouble(Console.ReadLine());
+            double b = Convert.ToDouble(Console.ReadLine());
+            if (a > 0)
+                c = Math.Max(a, b);
+            if (a <= 0)
+                c = Math.Min(a, b);
+            Console.WriteLine($"C: {c}");
+        }
+        public static void Ex7()
+        {
+            double x = Convert.ToDouble(Console.ReadLine());
+            double y = 0;
+            if (Math.Abs(x) > 1)
+            {
+                y = 1;
+            }
+            if (Math.Abs(x) <= 1)
+            {
+                y = Math.Abs(x);
+            }
+            Console.WriteLine($"Y: {y}");
+        }
+    }
+
+    public class Lab2Level2
+    {
+        public static void Ex1()
+        {
+            double h, sh, s = 0;
+            int i;
+            Console.Write("Enter the pupils amount: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            while (n < 1)
+            {
+                Console.Write("The pupils amount can't be below 1\nEnter another: ");
+                n = Convert.ToInt32(Console.ReadLine());
+            }
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Enter height: ");
+                h = Convert.ToDouble(Console.ReadLine());
+                while (h<1)
+                {
+                    Console.Write("Height can't be below 1\nEnter another: ");
+                    h = Convert.ToInt32(Console.ReadLine());
+                }
+                s = s + h;
+            }
+            sh = s / n;
+            Console.Write($"Average height is {sh}");
+        }
+        public static void Ex5() 
+        {
+            int n = 30;
+            int counter = 0;
+            double standart = Convert.ToDouble(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write("Enter a sportsman's result: ");
+                double res = Convert.ToDouble(Console.ReadLine());
+                if (res < standart)
+                    counter++;
+            }
+            Console.WriteLine($"Number of sporstmen that have passed: {counter}");
+        }
+    }
+    public class Lab2Level3 
+    {
+        public static void Ex4() 
+        {
+            double r1, r2;
+            string x, y;
+            int counter = 0;
+            Console.WriteLine("Enter the first radius");
+            r1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter the second radius");
+            r2 = Convert.ToDouble(Console.ReadLine());
+            if (r1<1 || r2<1)
+            {
+                Console.WriteLine("Radius can't be below 1");
+                return;
+            }
+            do
+            {
+                Console.Write("Enter x (to end enter nothing):");
+                x = Console.ReadLine();
+                Console.Write("Enter y (to end enter nothing):");
+                y = Console.ReadLine();
+                if (x=="" || y =="" || x.Contains(" ") || y.Contains(" "))
+                {
+                    break;
+                }
+                double s = Math.Sqrt(Math.Pow(Convert.ToDouble(x),2)+ Math.Pow(Convert.ToDouble(y), 2));
+                if ((r1<s)&&(r2>s))
+                {
+                    counter++;
+                }
+            }
+            while ((x.ToString()!="$"));
+            Console.WriteLine(counter);
+        }
+
+        public static void Ex11() 
+        {
+            int[] ex = new int[4];
+           
+            int counterOfBadStudents = 0;
+            double sum = 0;
+            double summ = 0;
+            double studAvg = 0;
+            int counter = 0;
+            Console.WriteLine("Enter marks for exams (to end enter 1000)");
+            while (true)
+            {
+                int temp = 0;
+                Console.WriteLine(new String('_',100));
+                Console.Write("1st: ");
+                ex[0] = Convert.ToInt32(Console.ReadLine());
+                if (ex[0] == 1000)
+                {
+                    break;
+                }
+                Console.Write("2nd: ");
+                ex[1] = Convert.ToInt32(Console.ReadLine());
+                Console.Write("3rd: ");
+                ex[2] = Convert.ToInt32(Console.ReadLine());
+                Console.Write("4th: ");
+                ex[3] = Convert.ToInt32(Console.ReadLine());
+                
+                if (ex[0]<2 || ex[1]<2 || ex[2]<2 || ex[3] < 2  
+                    || ex[0] > 5 || ex[1] > 5 || ex[2] > 5 || ex[3] >5 )
+                {
+                    Console.WriteLine("Marks cant be lower than 2 and bigger than 5");
+                    return;
+                }
+                int tempsum = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    
+                    if (ex[i]!=2)
+                    {
+                        temp++;
+                    }
+                    tempsum += ex[i];
+                    if (temp == 4)
+                    {
+                        sum += tempsum;
+                        Console.WriteLine(tempsum);
+                    }
+                     
+                }
+                
+               
+
+                if (temp != 4)
+                {
+                    counterOfBadStudents++;
+                }
+                else 
+                {
+                    counter++;
+                    summ = sum / 4;
+                }
+                  
+            }
+            studAvg = summ / counter;
+            Console.WriteLine($"Number of bad students = {counterOfBadStudents}\nAverage mark = {studAvg}");
+        }
+
+        public static void Ex12()   
+        {
+            string r;
+            while (true) 
+            {
+                Console.Write("Enter r (to end enter nothing): ");
+                r = Console.ReadLine();
+                if (r == "" || r.Contains(' '))
+                {
+                    break;
+                }
+                if (Convert.ToDouble(r)<1)
+                {
+                    Console.WriteLine("Side or radius cant be negative");
+                    return;
+                }
+                Console.WriteLine("If you want to find square area enter 1 \nIf area of a circle enter 2 \nIf area of a triangle enter 3");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                while (!(choice == 1 || choice == 2 || choice == 3)) 
+                {
+                    Console.WriteLine("You have only 3 options to enter : {1, 2, 3}");
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                switch (choice) 
+                {
+                    case 1:
+                        Console.WriteLine($"The square area is {Convert.ToDouble(r)* Convert.ToDouble(r)}");
+                        break;
+                    case 2:
+                        Console.WriteLine($"The area of circle is {Math.PI * Convert.ToDouble(r)* Convert.ToDouble(r)}");
+                        break;
+                    case 3:
+                        Console.WriteLine($"The area of triangle is {Math.Sqrt(3) * Convert.ToDouble(r) * Convert.ToDouble(r) / 4}");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public static void Ex13()   
+        {
+            while (true) 
+            {
+                Console.WriteLine("Enter a (to end enter nothing):");
+                string a, b;
+                a = Console.ReadLine();
+                if (a == "" || a.Contains(' '))
+                {
+                    break;
+                }
+                Console.WriteLine("Enter b");
+                b = Console.ReadLine();
+                double doubA, doubB;
+                doubA= Convert.ToDouble(a);
+                doubB= Convert.ToDouble(b);
+                if (doubA < 1 || doubB <1)
+                {
+                    Console.WriteLine("Side or radius cant be negative");
+                    return;
+                }
+                Console.WriteLine("If you want to find rectangle area enter 1\nIf ring area enter 2\nIf area of isisceles triangle tap 3");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                while (!(choice == 1 || choice == 2 || choice == 3))
+                {
+                    Console.WriteLine("You have only 3 options to enter : {1, 2, 3}");
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine($" The rectangle area is {doubA * doubB}");
+                        break;
+                    case 2:
+                        if (doubA > doubB)
+                            Console.WriteLine($"The ring area = {Math.PI * doubA * doubA - Math.PI * doubB * doubB}");
+                        else 
+                            Console.WriteLine($"The ring area = {Math.PI * doubB * doubB - Math.PI * doubA * doubA}");
+                        break;
+                    case 3:
+                        
+                        Console.WriteLine($"The area of isisceles triangle = {0.5 * doubA * Math.Sqrt(doubB * doubB - (doubA * doubA / 4))}");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+
+    
