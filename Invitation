@@ -1,3 +1,275 @@
-You can come to class to defend 1st lab.
-You can make a fork of next lab and send the request to your branch:
-https://github.com/NemirovichMark/2nd_Lab
+using System;
+ 
+namespace _1st_Lesson
+{
+    class Program
+    {
+        static void Main(string[] args) 
+        {
+            
+            // level 1
+            Console.WriteLine("level 1");
+            // #8
+            Console.WriteLine("#8");
+            double x = double.Parse(Console.ReadLine());
+            if (x < 0)
+            {
+                x = (-1) * x;
+            }
+            if (x >= 1)
+            {
+                Console.WriteLine(0);
+            }
+            else
+            {
+                Console.WriteLine(x * x - 1);
+            }
+ 
+            // #9
+            Console.WriteLine("#9");
+            x = double.Parse(Console.ReadLine());
+            if (x <= -1)
+            {
+                Console.WriteLine(0);
+            }
+            else if (x > -1 && x <= 0)
+            {
+                Console.WriteLine(1 + x);
+            }
+            else
+            {
+                Console.WriteLine(1);
+            }
+ 
+            // #10
+            Console.WriteLine("#10");
+            x = double.Parse(Console.ReadLine());
+            if (x <= -1)
+            {
+                Console.WriteLine(1);
+            }
+            else if (x > -1 && x <= 1)
+            {
+                Console.WriteLine(-x);
+            }
+            else
+            {
+                Console.WriteLine(-1);
+            }
+            
+            
+            // level 2
+            Console.WriteLine("level 2");
+            // #1
+            Console.WriteLine("#1");
+            double sum_d = 0;
+            int d = 0;
+            double sum_m = 0;
+            int m = 0;
+            Console.Write("Введите кол-во человек в классе");
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write("Введите 0 если вводится рост девочки и 1 если мальчика");
+                int pol = int.Parse(Console.ReadLine());
+                Console.Write("Введите рост");
+                int rost = int.Parse(Console.ReadLine());
+                if (pol == 0)
+                {
+                    d++;
+                    sum_d = sum_d + rost;
+                }
+                else if (pol == 1)
+                {
+                    m++;
+                    sum_m = sum_m + rost;
+                }
+                else
+                {
+                    Console.Write("Неправильно введенные данные");
+                    i--;
+                }
+            }
+            Console.Write("Для мальчиков: ");
+            Console.WriteLine(sum_m / m);
+            Console.Write("Для девочек: ");
+            Console.WriteLine(sum_d / d);
+            
+            // #2
+            Console.WriteLine("#2");
+            Console.Write("Введите кол-во точек ");
+            n = int.Parse(Console.ReadLine());
+            Console.Write("Введите x координату центра круга ");
+            double a = double.Parse(Console.ReadLine());
+            Console.Write("Введите y координату центра круга ");
+            double b = double.Parse(Console.ReadLine());
+            Console.Write("Введите радиус ");
+            double r = double.Parse(Console.ReadLine());
+            int ii = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                Console.WriteLine("Введите x точки ");
+                double a1 = double.Parse(Console.ReadLine());
+                Console.WriteLine("Введите y точки ");
+                double b1 = double.Parse(Console.ReadLine());
+                if (((a1-a)*(a1-a) + (b1-b)*(b1-b)) <= r*r)
+                {
+                    ii++;
+                }
+            }
+            Console.WriteLine(ii);
+            
+            
+            
+            // level 3
+            Console.WriteLine("level 3");
+            // #4
+            Console.WriteLine("#4");
+            
+            
+            
+            Console.Write("Введите x координату центра  круга ");
+            double aa = double.Parse(Console.ReadLine());
+            Console.Write("Введите y координату центра круга ");
+            double bb = double.Parse(Console.ReadLine());
+            Console.Write("Введите радиус малого круга ");
+            double r1 = double.Parse(Console.ReadLine());
+            Console.Write("Введите радиус большого круга ");
+            double r2 = double.Parse(Console.ReadLine());
+            int iii = 0;
+            for ( ; ; )
+            {
+                Console.WriteLine("Введите x точки  или entr что бы закончить");
+                string a11 = Console.ReadLine();
+                if (a11 == "")
+                {
+                    break;
+                }
+                double a1 = double.Parse(a11);
+                Console.WriteLine("Введите y точки ");
+                double b1 = double.Parse(Console.ReadLine());
+                if ((((a1-aa)*(a1-aa) + (b1-bb)*(b1-bb)) >= r1*r1) && (((a1-aa)*(a1-aa) + (b1-bb)*(b1-bb)) <= r2*r2))
+                {
+                    iii++;
+                }
+            }
+            Console.WriteLine(iii);
+            
+            
+            
+            // #11
+            Console.WriteLine("#11");
+            int iiii = 0;
+            double bal1 = 0;
+            double bal2 = 0;
+            double bal3 = 0;
+            double bal4 = 0;
+            int q = 0;
+            for ( ; ; )
+            {
+                Console.Write("Введите оценку за 1 предмет или нажмите enter что бы закончить");
+                string o11 = Console.ReadLine();
+                if (o11 == "")
+                {
+                    break;
+                }
+                double o1 = double.Parse(o11);
+                Console.Write("Введите оценку за 2 предмет");
+                double o2 = double.Parse(Console.ReadLine());
+                Console.Write("Введите оценку за 3 предмет");
+                double o3 = double.Parse(Console.ReadLine());
+                Console.Write("Введите оценку за 4 предмет");
+                double o4 = double.Parse(Console.ReadLine());
+                if (o1 == 2 | o2 == 2 | o3 == 2 | o4 == 2)
+                {
+                    iiii++;
+                }
+                bal1 = bal1 + o1;
+                bal2 = bal2 + o2;
+                bal3 = bal3 + o3;
+                bal4 = bal4 + o4;
+                q++;
+            }
+            Console.Write("Средний бал за 1 предмет ");
+            Console.WriteLine(bal1 / q);
+            Console.Write("Средний бал за 2 предмет");
+            Console.WriteLine(bal2 / q);
+            Console.Write("Средний бал за 3 предмет");
+            Console.WriteLine(bal3 / q);
+            Console.Write("Средний бал за 4 предмет");
+            Console.WriteLine(bal4 / q);
+            Console.Write("Неуспевающих учеников: ");
+            Console.WriteLine(iiii);
+            
+            
+            
+            // #12
+            Console.WriteLine("#12");
+            for ( ; ; )
+            {
+                Console.Write("Введите r или нажмите enter что бы закончить  ");
+                string rr1 = Console.ReadLine();
+                if (rr1 == "")
+                {
+                    break;
+                }
+                double rr = double.Parse(rr1);
+                Console.Write("Введите: 0 что бы вычислить пощадь квадрата, 1 - круга, 2 - треугольника  ");
+                int fig = int.Parse(Console.ReadLine());
+                switch (fig)
+                {
+                    case 0: 
+                        Console.WriteLine(rr * rr);
+                        break;
+                    case 1: 
+                        Console.WriteLine(Math.PI * rr * rr);
+                        break;
+                    case 2: 
+                        Console.WriteLine(rr * rr * Math.Sqrt(3) / 4);
+                        break;
+                }
+            }
+            
+            
+            
+            // #13
+            Console.WriteLine("#13");
+            for ( ; ; )
+            {
+                Console.Write("Введите A или нажмите enter что бы закончить  ");
+                string AA1 = Console.ReadLine();
+                if (AA1 == "")
+                {
+                    break;
+                }
+                double AA = double.Parse(AA1);
+                Console.Write("Введите B  ");
+                double BB = double.Parse(Console.ReadLine());
+                
+                Console.Write("Введите: 0 что бы вычислить пощадь прямоугольника, 1 - кольца, 2 - треугольника  ");
+                int fig = int.Parse(Console.ReadLine());
+                switch (fig)
+                {
+                    case 0: 
+                        Console.WriteLine(AA * BB);
+                        break;
+                    case 1: 
+                        if (AA > BB)
+                        {
+                            Console.WriteLine(Math.PI * AA * AA - Math.PI * BB * BB);
+                        }
+                        else
+                        {
+                            Console.WriteLine(Math.PI * BB * BB - Math.PI * AA * AA);
+                        }
+                        break;
+                    case 2: 
+                        double aaa = AA / 2;
+                        double HH = BB*BB - aaa*aaa;
+                        Console.WriteLine(0.5*AA*Math.Sqrt(HH));
+                        break;
+                }
+            }
+        }
+    }
+}
