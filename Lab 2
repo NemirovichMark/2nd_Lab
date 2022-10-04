@@ -1,0 +1,239 @@
+using System;
+
+namespace LAB_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            #region 1st Level
+            #region №1
+            {
+
+                const double r = 2;
+                double x=0, y=0;
+                Console.WriteLine("Type x");
+                double.TryParse(Console.ReadLine(), out x); // поменял
+                Console.WriteLine("Type y");
+                double.TryParse(Console.ReadLine(), out y);
+                Console.WriteLine("Answer 1");
+                if (Math.Abs(x * x + y * y - r * r) <= Math.Pow(10, -3))
+                    Console.WriteLine("inside");
+                else
+                    Console.WriteLine("outside");
+            }
+            #endregion
+            #region
+            {
+
+
+            }
+            #endregion
+            #region Task 5 //Сделал другое задание
+            {
+                double norm = 0 , res = 0, counter = 0;
+                for (int i = 0; i < 30; i++)
+                {
+                    double.TryParse(Console.ReadLine(), out res);
+                    double.TryParse(Console.ReadLine(), out norm);
+                    if (res >= norm)
+                    {
+                        counter += 1;
+                    }
+                }
+                Console.WriteLine(counter);
+
+
+            }
+            #endregion
+            #endregion
+            #region 2nd Level
+            #region № 1
+            {
+                double Number = 0, sum = 0, d;
+                Number = double.Parse(Console.ReadLine());
+                if (Number > 0) // Добавил условие
+                {
+                    for (int i = 0; i < Number; i++)
+                    {
+                        Console.WriteLine("Введите рост ученика");
+                        d = double.Parse(Console.ReadLine());
+                        if (d > 0) // добавил условие
+                            sum += d;
+                    }
+                }
+                Console.WriteLine($"High= {Math.Round(sum / Number, 3)}");
+
+            }
+            #endregion
+            #region № 7
+            {
+                double x, y, counter = 0;
+                double N = double.Parse(Console.ReadLine());
+                if (N > 0) // добавил условие
+                {
+                    for (int i = 0; i < N; i++)
+                    {
+                        Console.WriteLine("Введите x");
+                        x = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Введите y");
+                        y = double.Parse(Console.ReadLine());
+                        if ((x > 0) && (y > 0))
+                        {
+                            Console.WriteLine($"Это первый квадрант");
+                            counter += 1;
+                        }
+                        if ((x < 0) && (y > 0))
+                            Console.WriteLine($"Это второй квадрант");
+                        if ((x < 0) && (y < 0))
+                        {
+                            Console.WriteLine($"Это третий квадрант");
+                            counter += 1;
+                        }
+                        if ((x > 0) && (y < 0))
+                            Console.WriteLine($"Это четвёртый квадрант");
+                        if ((x == 0) || (y == 0))
+                            Console.WriteLine($"Точка не принадледлежит квадрантам");
+
+                    }
+                }
+                Console.WriteLine($"Количество {counter}");
+            }
+            #endregion
+            #endregion
+            #region 3rd Level
+            #region № 4
+            {
+                double x, y, r1, r2;
+                Console.WriteLine("Ведите r1");
+                double.TryParse(Console.ReadLine(), out r1);
+                Console.WriteLine("Ведите r2");
+                double.TryParse(Console.ReadLine(), out r2);
+                int counter = 1;
+                if (r2 > r1 && r2 > 0)
+                {
+                    do
+                    {
+                        Console.WriteLine("Введите x (Если хотите закончить введите 1111");
+                        double.TryParse(Console.ReadLine(), out x);
+                        if (x >= 1111) break;
+                        Console.WriteLine("Введите y");
+                        double.TryParse(Console.ReadLine(), out y);
+                        if ((x * x + y * y >= r1 * r1) && (x * x + y * y <= r2 * r2)) counter += 1;
+
+                    } while (x < 1111);
+                }
+                Console.WriteLine($"Количество = {counter}");
+            }
+            #endregion
+            #region № 11
+            {
+                double idot = 0, summa = 0, counter = 0, ex1, ex2, ex3, ex4;
+                Console.WriteLine("Enter number of students");
+                int n = Convert.ToInt32(Console.ReadLine());
+                for (int i = 0; i < n; i++)
+                {
+                    Console.WriteLine("Enter grade for 4 ex");
+                    ex1 = int.Parse(Console.ReadLine());
+                    ex2 = int.Parse(Console.ReadLine());
+                    ex3 = int.Parse(Console.ReadLine());
+                    ex4 = int.Parse(Console.ReadLine());
+                    if ((2 < ex1 && ex1 < 6) && (2 < ex2 && ex2 < 6) && (2 < ex3 && ex3 < 6) && (2 < ex4 && ex4 < 6))
+                    {
+                        counter += 1;
+                        summa += (ex1 + ex2 + ex3 + ex4) / 4;
+                    }
+                    if (((2 < ex1 && ex1 < 6) && (2 < ex2 && ex2 < 6) && (2 < ex3 && ex3 < 6) && (2 < ex4 && ex4 < 6)) == false)
+                    {
+                        idot += 1;
+                    }
+
+                }
+                Console.WriteLine($"Number of faild = {idot}\t Average score = {summa / counter}");
+            }
+            #endregion
+            #region #12 
+            {
+                double r;
+                int k = 0;
+                Console.WriteLine("Enter R");
+                r = double.Parse(Console.ReadLine());
+                if (r > 0) // добавил условие
+                {
+                    Console.WriteLine("If you want to calculate the area: for a square enter 1, for a circle enter 2, for a triangle enter 3");
+                    k = int.Parse(Console.ReadLine());
+                    switch (k)
+                    {
+                        case 1:
+                            r *= r;
+                            Console.WriteLine($"Square area = {r}");
+                            break;
+                        case 2:
+                            r = Math.PI * Math.Pow(r, 2);
+                            Console.WriteLine($"Circle area = {r}");
+                            break;
+                        case 3:
+                            r = (Math.Pow(r, 2) * Math.Sqrt(3)) / 4;
+                            Console.WriteLine($"Triangle area = {r}");
+                            break;
+                    }
+                }
+            }
+            #endregion
+            #region №13
+            {
+                Console.WriteLine("Enter A and B");
+                double A = -1, B = -1, S = 0;
+                double.TryParse(Console.ReadLine(), out A);
+                double.TryParse(Console.ReadLine(), out B);
+                Console.WriteLine("If you want to calculate the area: for a square enter 1, for a circle enter 2, for a triangle enter 3");
+                int n;
+                int.TryParse(Console.ReadLine(), out n); //поменял
+                if (A >= 0 && B >= 0)
+                {
+                    switch (n)
+                    {
+                        case 1:
+                            S = A * B;
+                            Console.WriteLine($"Square area = {S}");
+                            break;
+                        case 2:
+                            if (A > B)
+                            {
+                                S = Math.PI * A * A - Math.PI * B * B;
+                                Console.WriteLine($"Circle area = {S}");
+                            }
+                            if (B > A)
+                            {
+                                S = Math.PI * B * A - Math.PI * B * B;
+                                Console.WriteLine($"Triangle area = {S}");
+                            }
+                            if (B == A)
+                            {
+                                S = Math.PI * B * A - Math.PI * B * B;
+                                Console.WriteLine($"Triangle area = {S}");
+                            }
+                            break;
+                        case 3:
+                            if (B * 2 >= A) // добавил условие
+                            {
+                                Console.WriteLine("For this pair you can't count S of triengle");
+                                break;
+                            }
+                            else
+                            {
+                                double p = (A + B * 2) / 2;
+                                Console.WriteLine(Math.Sqrt(p * (p - A) * (p - B) * (p - B)));
+                            }
+                            break;
+                    }
+                }
+
+            }
+            #endregion
+            #endregion
+        }
+    }
+}
+
+
