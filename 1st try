@@ -172,14 +172,21 @@ public class Lab2Level1
                     Console.WriteLine("Marks cant be lower than 2 and bigger than 5");
                     return;
                 }
+                int tempsum = 0;
                 for (int i = 0; i < 4; i++)
                 {
+                    
                     if (ex[i]!=2)
                     {
                         temp++;
-                        
                     }
-                    sum += ex[i];   
+                    tempsum += ex[i];
+                    if (temp == 4)
+                    {
+                        sum += tempsum;
+                        Console.WriteLine(tempsum);
+                    }
+                     
                 }
                 
                
@@ -255,6 +262,11 @@ public class Lab2Level1
                 double doubA, doubB;
                 doubA= Convert.ToDouble(a);
                 doubB= Convert.ToDouble(b);
+                if (doubA < 1 || doubB <1)
+                {
+                    Console.WriteLine("Side or radius cant be negative");
+                    return;
+                }
                 Console.WriteLine("If you want to find rectangle area enter 1\nIf ring area enter 2\nIf area of isisceles triangle tap 3");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 while (!(choice == 1 || choice == 2 || choice == 3))
@@ -283,3 +295,5 @@ public class Lab2Level1
             }
         }
     }
+
+    
