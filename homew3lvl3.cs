@@ -86,27 +86,31 @@ class homework3
                 {
                     Console.WriteLine("введите число r");
                     r = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("пожалуйста, выберите, что хотите сделать:");
-                    Console.WriteLine("вычислить площадь квадрата со стороной r -> введите 1");
-                    Console.WriteLine("вычислить площадь круга с радиусом r -> введите 2");
-                    Console.WriteLine("вычислить площадь равностороннего треугольника со стороной r -> введите 3");
-                    int choose = Convert.ToInt32(Console.ReadLine());
-                    switch (choose)
+                    if (r > 0)
                     {
-                        case 1:
-                            Console.WriteLine($"площадь квадрата со стороной {r} = {Math.Pow(r, 2)}");
-                            break;
-                        case 2:
-                            Console.WriteLine($"площадь круга с радиусом {r} = {Math.PI * Math.Pow(r, 2)}");
-                            break;
-                        case 3:
-                            Console.WriteLine($"площадь равносороннего треугольника со стороной {r} = {Math.Pow(r, 2) * Math.Pow(3, 0.5) / 4}");
-                            break;
-                        default:
-                            Console.WriteLine("пожалуйста, введите заново и выберите из предложенных действий");
-                            break;
-                   }
-                  
+                        Console.WriteLine("пожалуйста, выберите, что хотите сделать:");
+                        Console.WriteLine("вычислить площадь квадрата со стороной r -> введите 1");
+                        Console.WriteLine("вычислить площадь круга с радиусом r -> введите 2");
+                        Console.WriteLine("вычислить площадь равностороннего треугольника со стороной r -> введите 3");
+                        int choose = Convert.ToInt32(Console.ReadLine());
+                        switch (choose)
+                        {
+                            case 1:
+                                Console.WriteLine($"площадь квадрата со стороной {r} = {Math.Pow(r, 2)}");
+                                break;
+                            case 2:
+                                Console.WriteLine($"площадь круга с радиусом {r} = {Math.PI * Math.Pow(r, 2)}");
+                                break;
+                            case 3:
+                                Console.WriteLine($"площадь равносороннего треугольника со стороной {r} = {Math.Pow(r, 2) * Math.Pow(3, 0.5) / 4}");
+                                break;
+                            default:
+                                Console.WriteLine("пожалуйста, введите заново и выберите из предложенных действий");
+                                break;
+                        }
+                    }
+                    else Console.WriteLine("пожалуйста, введите значение > 0");
+
                 }
                 else  yesorno3 = false; 
             }
@@ -127,26 +131,31 @@ class homework3
                     Console.WriteLine("введите значения А, а потом В");
                     A = Convert.ToDouble(Console.ReadLine());
                     B = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("пожалуйста, выберите, что хотите сделать:");
-                    Console.WriteLine("вычислить площадь прямоугольника со сторонами A и B -> введите 1");
-                    Console.WriteLine("вычислить площадь кольца заключенного между двумя окружности с радиусами А и В -> введите 2");
-                    Console.WriteLine("вычислить площадь равнобедренного треугольника со сторонами А, В, В -> введите 3");
-                    way = Convert.ToInt32(Console.ReadLine());
-                    switch (way)
+                    if ((A > 0) && (B > 0))
                     {
-                        case 1:
-                            Console.WriteLine($"площадь прямоугольника со сторонами A и B -> {A * B}");
-                            break;
-                        case 2:
-                            Console.WriteLine($"площадь кольца заключенного между двумя окружности с радиусами А и В -> {Math.PI * (Math.Abs(Math.Pow(A, 2) - Math.Pow(B, 2)))}");
-                            break;
-                        case 3:
-                            Console.WriteLine($"площадь равнобедренного треугольника со сторонами А, В, В -> {(A * Math.Pow((4 * A * A - B * B), 0.5) / 4)}");
-                            break;
-                        default:
-                            Console.WriteLine("пожалуйста, введите значения заново и выберите команды из списка");
-                            break;
+
+                        Console.WriteLine("пожалуйста, выберите, что хотите сделать:");
+                        Console.WriteLine("вычислить площадь прямоугольника со сторонами A и B -> введите 1");
+                        Console.WriteLine("вычислить площадь кольца заключенного между двумя окружности с радиусами А и В -> введите 2");
+                        Console.WriteLine("вычислить площадь равнобедренного треугольника со сторонами А, В, В -> введите 3");
+                        way = Convert.ToInt32(Console.ReadLine());
+                        switch (way)
+                        {
+                            case 1:
+                                Console.WriteLine($"площадь прямоугольника со сторонами A и B -> {A * B}");
+                                break;
+                            case 2:
+                                Console.WriteLine($"площадь кольца заключенного между двумя окружности с радиусами А и В -> {Math.PI * (Math.Abs(Math.Pow(A, 2) - Math.Pow(B, 2)))}");
+                                break;
+                            case 3:
+                                Console.WriteLine($"площадь равнобедренного треугольника со сторонами А, В, В -> {(A * Math.Pow((4 * A * A - B * B), 0.5) / 4)}");
+                                break;
+                            default:
+                                Console.WriteLine("пожалуйста, введите значения заново и выберите команды из списка");
+                                break;
+                        }
                     }
+                    else Console.WriteLine("пожалуйста, введите значения > 0");
 
                 }
                 else yesorno4 = false;
