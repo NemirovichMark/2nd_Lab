@@ -1,0 +1,280 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            #region Task 1.1
+            {
+                Console.Write("X = ");
+                double x = double.Parse(Console.ReadLine());
+                Console.Write("Y = ");
+                double y = double.Parse(Console.ReadLine());
+                Console.Write("R = ");
+                double r = double.Parse(Console.ReadLine());
+                Console.WriteLine("\nAnswer for Task 1.1\n");
+                if (Math.Abs(x * x + y * y - r * r) <= 0.001)
+                {
+                    Console.WriteLine("THe point is inside the circle\n");
+                }
+                else Console.WriteLine("The point is not inside the circle\n");
+            }
+            #endregion
+
+            #region Task 1.5
+            {
+                Console.Write("S = ");
+                double s = double.Parse(Console.ReadLine());
+                Console.Write("R = ");
+                double r = double.Parse(Console.ReadLine());
+                Console.WriteLine("\nAnswer for Task 1.5\n");
+                if (Math.Sqrt(2 * s) / 2 <= r)
+                {
+                    Console.WriteLine("The square fits into the circle\n");
+                }
+                else Console.WriteLine("The square does not fit into the circle\n");
+            }
+            #endregion
+
+            #region Task 1.6
+            {
+                Console.Write("S = ");
+                double s = double.Parse(Console.ReadLine());
+                Console.Write("R = ");
+                double r = double.Parse(Console.ReadLine());
+                Console.WriteLine("\nAnswer for Task 1.6\n");
+                if (2 * r <= Math.Sqrt(s))
+                {
+                    Console.WriteLine("The circle fits into the square\n");
+                }
+                else Console.WriteLine("The circle does not fit into the square\n");
+            }
+            #endregion
+
+            #region Task 2.1
+            {
+                Console.Write("n = ");
+                int n = int.Parse(Console.ReadLine());
+                double HeightBoys, HeightGirls;
+                int CountBoys, CountGirls;
+                CountBoys = 0;
+                CountGirls = 0;
+                HeightBoys = 0;
+                HeightGirls = 0;
+                for (int i = 0; i != n; i++)
+                {
+                    Console.WriteLine("If you're going to write Girl's height, write 'G', else write 'B',then the height");
+                    if (char.TryParse(Console.ReadLine(), out char Sex))  //Question: If I want to check that smth is STRING and not int, how I should do it?
+                    {
+                        if (Sex.Equals('B') == true)
+                        {
+                            Console.WriteLine("Write boy's height in meters");
+                            if ((double.TryParse(Console.ReadLine(), out double HeightBoy1)) & HeightBoy1 > 0)
+                            {
+                                HeightBoys += HeightBoy1;
+                                CountBoys += 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error, please repeat");
+                                i -= 1;
+                            }
+                        }
+                        else if (Sex.Equals('G') == true)
+                        {
+                            Console.WriteLine("Write girl's height in meters");
+                            if (double.TryParse(Console.ReadLine(), out double HeightGirl1) & HeightGirl1 > 0)
+                            {
+                                HeightGirls += HeightGirl1;
+                                CountGirls += 1;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error, please repeat");
+                                i -= 1;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong char. Use only 'G' or 'B'\n");
+                            i -= 1;
+                        }
+                    }
+                    else Console.WriteLine("Wrong data type\n");
+                }
+                double ABH = HeightBoys / CountBoys;
+                double AGH = HeightGirls / CountGirls;
+
+                Console.WriteLine($"Average boys' height is {ABH} and average girls' height is {AGH}");
+            }
+            #endregion
+            #region Task 2.3
+            {
+                Console.Write("n = ");
+                int n = int.Parse(Console.ReadLine());
+                int ml = 200;
+                double litr = 0;
+                for (int i = 0; i != n; i += 1)
+                {
+                    Console.WriteLine("Write weight");
+                    if ((double.TryParse(Console.ReadLine(), out double Weight)) & Weight > 0)
+                    {
+                        if (Weight < 30)
+                        {
+                            litr += ml;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error, please repeat");
+                        i -= 1;
+                    }
+                }
+                Console.WriteLine("\nAnswer for Task 2.3\n");
+                Console.WriteLine($"{litr / 1000} liter");
+                Console.WriteLine("\n");
+            }
+            #endregion
+
+            #region Task 3.4
+            {
+                double r1, r2, mn, mx;
+                string vvod = "";
+                Console.WriteLine("Write r1");
+                r1 = double.Parse(Console.ReadLine());
+                Console.WriteLine("Write r2");
+                r2 = double.Parse(Console.ReadLine());
+                mx = Math.Max(r1, r2);
+                mn = Math.Min(r1, r2);
+                do
+                {
+
+                    Console.WriteLine("Write X and Y");
+                    if (int.TryParse(Console.ReadLine(), out int X) & (int.TryParse(Console.ReadLine(), out int Y)))
+                    {
+                        if ((Math.Sqrt(X * X + Y * Y) > mn) & (Math.Sqrt(X * X + Y * Y) <= mx))
+                        {
+                            Console.WriteLine("The point is in the circle");
+                        }
+                        else Console.WriteLine("The point is out the circle");
+                    }
+                    else Console.WriteLine("Smth went wrong");
+                    Console.WriteLine("If you want to stop, write 'Stop' in console");
+                    vvod = Console.ReadLine();
+                }
+                while (vvod != "Stop");
+                Console.WriteLine("\n");
+            }
+            #endregion
+            #region Task 3.11
+            {
+                int i = 0;
+                int n = 0;
+                string vvod = "";
+                double s = 0;
+                int K = 0;
+                do
+                {
+                    Console.WriteLine("Write results of 4 exams");
+                    if (int.TryParse(Console.ReadLine(), out int X) & (int.TryParse(Console.ReadLine(), out int Y)) & (int.TryParse(Console.ReadLine(), out int Z)) & (int.TryParse(Console.ReadLine(), out int V)))
+                    {
+                        if (X == 2 | Y == 2 | Z == 2 | V == 2)
+                        {
+                            i += 1;
+                        }
+                        else
+                        {
+                            n += 1;
+                            s += X + V + Y + Z;
+                        }
+                        K += 1;
+                    }
+                    else Console.WriteLine("Smth went wrong");
+                    Console.WriteLine("If you want to stop, write 'Stop' in console");
+                    vvod = Console.ReadLine();
+                }
+                while (vvod != "Stop");
+                Console.WriteLine($"{i}/{K} have bad marks and the average mark is {s / (n * 4)}");
+                Console.WriteLine("\n");
+            }
+            #endregion
+
+            #region Task 3.12
+            {
+                string vvod = "";
+                int k = 0;
+                do
+                {
+                    Console.WriteLine("Write R");
+                    if ((double.TryParse(Console.ReadLine(), out double R)) & R > 0)
+                    {
+                        Console.WriteLine("Write 1 to find square area, 2 - area of ​​a circle, 3 - area of ​​an equilateral triangle");
+                        k = int.Parse(Console.ReadLine());
+                        switch (k)
+                        {
+                            case 1:
+                                Console.WriteLine(R * R);
+                                break;
+                            case 2:
+                                Console.WriteLine(Math.PI * R * R);
+                                break;
+                            case 3:
+                                Console.WriteLine(R * R * Math.Pow(3, 0.5) / 4);
+                                break;
+                            default:
+                                Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3");
+                                break;
+                        }
+                    }
+                    Console.WriteLine("If you want to stop, write 'Stop' in console");
+                    vvod = Console.ReadLine();
+                }
+                while (vvod != "Stop");
+                Console.WriteLine("\n");
+            }
+            #endregion
+            #region Task 3.13
+            {
+                string vvod = "";
+                int k = 0;
+                do
+                {
+                    Console.WriteLine("Write A and B");
+                    if ((double.TryParse(Console.ReadLine(), out double A)) & A > 0 & (double.TryParse(Console.ReadLine(), out double B)) & B > 0)
+                    {
+                        Console.WriteLine("Write 1 to find rectangle area, 2 - area of ​​a circle, 3 - area of ​​an isosceles triangle");
+                        k = int.Parse(Console.ReadLine());
+                        switch (k)
+                        {
+                            case 1:
+                                Console.WriteLine(A * B);
+                                break;
+                            case 2:
+                                Console.WriteLine(Math.PI * (A + B) * (A + B));
+                                break;
+                            case 3:
+                                Console.WriteLine((A * Math.Sqrt(4 * B * B - A * A)) / 4);
+                                break;
+                            default:
+                                Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3");
+                                break;
+                        }
+                    }
+                    Console.WriteLine("If you want to stop, write 'Stop' in console");
+                    vvod = Console.ReadLine();
+                }
+                while (vvod != "Stop");
+            }
+            #endregion
+        }
+    }
+}
+
