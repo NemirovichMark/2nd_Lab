@@ -82,15 +82,22 @@ namespace lab_2
 
             #region II|1
             Console.WriteLine("II №1");
-
             int n = Convert.ToInt32(Console.ReadLine());
-            double sum = 0.0;
+            double sum = 0.0, o;
             for (int i = 0; i < n; i++)
             {   
-                Console.Write("Enter weight: ");
-                sum += Convert.ToDouble(Console.ReadLine());
+                Console.Write("Enter height: ");
+                o = Convert.ToDouble(Console.ReadLine());
+                if (o >= 0)
+                {
+                    sum += Convert.ToDouble(Console.ReadLine());
+                }
+                else
+                {
+                    n -= 1;
+                }
             }
-            Console.WriteLine($"middle wight = {sum/n}");
+            Console.WriteLine($"middle height = {sum/n}");
             
             Console.WriteLine("--------------------");
             #endregion
@@ -175,10 +182,16 @@ namespace lab_2
                 {
                     break;
                 }
-                srbal = (e1 + e2 + e3 + e4)/4;
-                if (e1 < 2.5 | e2 < 2.5 | e3 < 2.5 | e4 < 2.5)
+                if (e1 >= 2 && e1 <= 5 && e2 >= 2 && e2 <= 5 && e3 >= 2 && e3 <= 5 && e4 >= 2 && e4 <= 5)
                 {
-                    sum++;
+                    if (e1 < 2.5 | e2 < 2.5 | e3 < 2.5 | e4 < 2.5)
+                    {
+                        sum++;
+                    }
+                    else
+                    {
+                        srbal = (e1 + e2 + e3 + e4)/4;
+                    }
                 }
             }
             Console.WriteLine($"Middle mark: {srbal}; Students with bad mark: {sum}");
@@ -205,17 +218,20 @@ namespace lab_2
                 {
                     break;
                 }
-                switch(p)
+                if (r1 >= 0)
                 {
-                    case 1:
-                        sum = r1*r1;
-                        break;
-                    case 2:
-                        sum = Math.PI*r1*r1;
-                        break;
-                    case 3:
-                        sum = (r1*r1*Math.Sqrt(3))/4;
-                        break;
+                    switch(p)
+                    {
+                        case 1:
+                            sum = r1*r1;
+                            break;
+                        case 2:
+                            sum = Math.PI*r1*r1;
+                            break;
+                        case 3:
+                            sum = (r1*r1*Math.Sqrt(3))/4;
+                            break;
+                    }
                 }
                 Console.WriteLine($"S: {sum}");
             }
@@ -242,24 +258,34 @@ namespace lab_2
                 {
                     break;
                 }
-                switch(p)
+                if (a >= 0 && b >= 0)
                 {
-                    case 1:
-                        sum = a*b;
-                        break;
-                    case 2:
-                        if (a>b)
-                        {
-                            sum = Math.PI*a*a - Math.PI*b*b;
-                        }
-                        else
-                        {
-                            sum = Math.PI*b*b - Math.PI*a*a;
-                        }
-                        break;
-                    case 3:
-                        sum = 0.5*a*(Math.Sqrt(b*b - (0.5*a)*(0.5*a)));
-                        break;
+                    switch(p)
+                    {
+                        case 1:
+                            sum = a*b;
+                            break;
+                        case 2:
+                            if (a>b)
+                            {
+                                sum = Math.PI*a*a - Math.PI*b*b;
+                            }
+                            else
+                            {
+                                sum = Math.PI*b*b - Math.PI*a*a;
+                            }
+                            break;
+                        case 3:
+                            if (a>b)
+                            {
+                                sum = 0.5*a*(Math.Sqrt(b*b - (0.5*a)*(0.5*a)));
+                            }
+                            else
+                            {
+                                sum = 0.5*b*(Math.Sqrt(a*a - (0.5*b)*(0.5*b)));
+                            }
+                            break;
+                    }
                 }
                 Console.WriteLine($"S: {sum}");
             }
