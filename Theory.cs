@@ -240,55 +240,54 @@ namespace _2nd_Lab
                 }
             }
             #endregion
-            
             #region Num_13
-            double a,b;
+            double a, b;
             int selection;
             Console.WriteLine("enter stop to end");
-            while(true)
+            while (true)
             {
                 Console.WriteLine("enter a");
-                if(!double.TryParse(Console.ReadLine(), out a))
+                if (!double.TryParse(Console.ReadLine(), out a))
                 {
                     Console.WriteLine("wrong value");
                     return;
                 }
                 Console.WriteLine("enter b");
-                if(!double.TryParse(Console.ReadLine(), out b))
+                if (!double.TryParse(Console.ReadLine(), out b))
                 {
                     Console.WriteLine("wrong value");
                     return;
                 }
+                if (a < 0 || b < 0) break;
                 bool repeat = false;
                 while (!repeat)
                 {
                     Console.WriteLine("enter 1 for calculated rectangle area");
                     Console.WriteLine("enter 2 for calculated ring area");
                     Console.WriteLine("enter 3 for calculated square triangle");
-                    if(!int.TryParse(Console.ReadLine(), out selection))
+                    if (!int.TryParse(Console.ReadLine(), out selection))
                     {
                         Console.WriteLine("wrong value");
                     }
-                        repeat = true;
-                        switch (selection)
-                        {
-                            case 1:
-                                Console.WriteLine($"rectangle area = {a*b}");
-                                break;
-                            case 2:
-                                Console.WriteLine($"ring area = {Math.Abs((Math.PI * a * a) - (Math.PI * b * b))}");
-                                break;
-                            case 3:
-                                Console.WriteLine($"square triangle = {a * Math.Sqrt(b*b - a*a/4) / 2}");
-                                break;
-                            default:
-                                Console.WriteLine("enter only 1,2,3 pls");
-                                break;
-                        }
+                    repeat = true;
+                    switch (selection)
+                    {
+                        case 1:
+                            Console.WriteLine($"rectangle area = {a * b}");
+                            break;
+                        case 2:
+                            Console.WriteLine($"ring area = {Math.Abs((Math.PI * a * a) - (Math.PI * b * b))}");
+                            break;
+                        case 3:
+                            Console.WriteLine($"square triangle = {a * Math.Sqrt(Math.Abs((b * b - a * a) / 4)) / 2}");
+                            break;
+                        default:
+                            Console.WriteLine("enter only 1,2,3 pls");
+                            break;
+                    }
                 }
             }
             #endregion
-
             #endregion
         }
     }
