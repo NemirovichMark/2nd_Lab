@@ -219,6 +219,68 @@ namespace _2nd_Lab
             Console.WriteLine("Amount of suitable points is " + count);
             
             #endregion
+                
+                
+                
+                
+                
+            Part 3
+                
+                             
+            #region 4
+                
+            double R1, R2, count, x, y;
+            Console.WriteLine("Enter radius of the 1st circle");
+            R1 = Convert.ToDouble(Console.ReadLine());
+            while (R1 <= 0)
+            {
+                Console.WriteLine("1st radius must be more then 0. Please enter right 1st radius");
+                R1 = Convert.ToDouble(Console.ReadLine());
+            }
+            Console.WriteLine("Enter radius of the 2nd circle");
+            R2 = Convert.ToDouble(Console.ReadLine());
+            Console.Clear();
+            while (R2 <= 0)
+            {
+                Console.WriteLine("2nd radius must be more then 0. Please enter right 2nd radius");
+                R2 = Convert.ToDouble(Console.ReadLine());
+                Console.Clear();
+            }
+            while (R2 < R1)
+            {
+                Console.WriteLine("Radius of the 1st circle is");
+                Console.WriteLine(R1);
+                Console.WriteLine("2nd radius must be more then 1st. Please enter right 2nd radius");
+                R2 = Convert.ToDouble(Console.ReadLine());
+                Console.Clear();
+            }
+            count = 0;
+            string x1 = "";
+            while (x1 != "stop")
+            {
+                Console.WriteLine("Enter coordinates of the point, if you want to finish then enter word 'stop' in coordinate 'x'");
+                Console.Write("x: ");
+                x1 = Convert.ToString(Console.ReadLine());
+                Console.Write("y: ");
+                y = Convert.ToDouble(Console.ReadLine());
+                if (x1 != "stop") x = Convert.ToDouble(x1);
+                else continue;
+                if (Math.Sqrt(x * x + y * y) >= R1 && Math.Sqrt(x * x + y * y) <= R2 && x1 != "stop")
+                {
+                    count += 1;
+                    Console.WriteLine("The point are suitable");
+                }
+                else if (x1 != "stop")
+                {
+                    Console.WriteLine("The point aren`t suitable");
+                    Console.WriteLine(" ");
+                }
+                Console.WriteLine(" ");
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("Amount of suitable points is " + count);
+            
+            #endregion
         }
     }
 }
