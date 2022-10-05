@@ -1,0 +1,186 @@
+﻿#region 1.1
+Console.WriteLine("2nd lab.1");
+string ins = "inside";
+string outs = "outside";
+double x, y, r;
+r = 2;
+Console.WriteLine("Enter x: ");
+x = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter y: ");
+y = double.Parse(Console.ReadLine());
+if (Math.Abs(x * x + y * y - r * r) <= Math.Pow(10, -3))
+    Console.WriteLine(ins);
+else
+    Console.WriteLine(outs);
+
+#endregion
+#region 1.2
+double x2, y2;
+bool l = false;
+Console.WriteLine("Enter x: ");
+x2 = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter y: ");
+y2 = double.Parse(Console.ReadLine());
+if (y2 >= 0 && Math.Abs(x2) + y2 <= 1) l = !l;
+Console.WriteLine(l);
+#endregion
+#region 2.1
+double sr, r2, s = 0;
+double n = 0;
+do
+{
+    Console.WriteLine("Enter height. To end the program, enter 0");
+    r2 = double.Parse(Console.ReadLine());
+    if (r2 == 0) break;
+    s += r2;
+    n++;
+} while (r2 > 0);
+sr = s / n;
+Console.WriteLine("Average height is: {0}", sr);
+#endregion
+#region 2.2
+double x3, y3, r3;
+int n3 = 0;
+Console.WriteLine("Enter radius");
+r3 = double.Parse(Console.ReadLine());
+do
+{
+    Console.WriteLine("Enter X. To end the program, enter 1000");
+    x3 = double.Parse(Console.ReadLine());
+    if (x3 >= 1000) break;
+    Console.WriteLine("Enter Y");
+    y3 = double.Parse(Console.ReadLine());
+    if (x3 * x3 + y3 * y3 <= r3 * r3) n3++;
+} while (x < 1000);
+Console.WriteLine("got into the circle: {0}", n);
+#endregion
+#region 3.4
+double x4, y4, r4, r44;
+int n4 = 0;
+Console.WriteLine("Enter r1");
+r4 = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter r2");
+r44 = double.Parse(Console.ReadLine());
+do
+{
+    Console.WriteLine("Enter X. To end the program, enter 1000");
+    x4 = double.Parse(Console.ReadLine());
+    if (x4 >= 1000) break;
+    Console.WriteLine("Enter Y");
+    y4 = double.Parse(Console.ReadLine());
+    if ((x4 * x4 + y4 * y4 <= r4 * r4) && (x4 * x4 + y4 * y4 <= r44 * r44)) n4++;
+} while (x4 < 1000);
+Console.WriteLine("got into: {0}", n4);
+#endregion
+#region 3.11
+double srb = 0, a = 0, b = 0;
+int z, ot, ft = 0, sb, cal = 0;
+do
+{
+    sb = 0;
+    cal = 0;
+    Console.WriteLine($"enter points for exam 1 or type smth not in [2:5]");
+    int.TryParse(Console.ReadLine(), out ot);
+    if (ot < 2 || ot > 5)
+    {
+        break;
+    }
+    if (ot == 2)
+    {
+        cal++;
+    }
+    sb = sb + ot;
+    for (z = 2; z < 5; z++)
+    {
+        Console.WriteLine($"enter points for exam {z}");
+        int.TryParse(Console.ReadLine(), out ot);
+        while (ot < 2 || ot > 5)
+        {
+            Console.WriteLine("points can be only 2-5");
+            Console.WriteLine($"enter points for exam {z}");
+            int.TryParse(Console.ReadLine(), out ot);
+        }
+        if (ot == 2)
+        {
+            cal++;
+        }
+        sb = sb + ot;
+    }
+    if (cal > 0)
+    {
+        ft++;
+    }
+    a = a + sb;
+    b++;
+} while (ot >= 2 && ot <= 5);
+if (b > 0)
+{
+    srb = a / b / 4;
+}
+Console.WriteLine($"number of loosers - {ft}, average points - {srb}");
+#endregion
+#region 3.12
+
+Console.WriteLine("Enter number how many mach repet program:");
+int n12 = Convert.ToInt32(Console.ReadLine());
+double l12;
+for (int i12 = 0; i12 < n12; i12++)
+{
+    Console.WriteLine("Enter r:");
+    double r12 = Convert.ToDouble(Console.ReadLine());
+
+
+    Console.WriteLine("Choose the number from 1 to 3 (1-square area, 2-circle area area, 3-equilateral triangle)");
+    double c12 = Convert.ToDouble(Console.ReadLine());
+
+    switch (c12)
+    {
+        case 1:
+            Console.WriteLine($" The rectangle area = {r12 * r12}");
+            break;
+        case 2:
+            Console.WriteLine($" The rectangle area = {Math.PI * Math.Pow(r12, 2)}");
+            break;
+        case 3:
+            Console.WriteLine($" The rectangle area = {Math.Pow(r12, 2) * Math.Sqrt(3) / 4}");
+            break;
+    }
+}
+
+#endregion
+#region 3.13
+Console.WriteLine("Enter quanity A and B");
+int n13 = Convert.ToInt32(Console.ReadLine());
+double l13;
+for (int i13 = 0; i13 < n13; i13++)
+{
+    Console.WriteLine("Enter A:");
+    double a13 = Convert.ToDouble(Console.ReadLine());
+
+    Console.WriteLine("Enter B:");
+    double b13 = Convert.ToDouble(Console.ReadLine());
+
+    Console.WriteLine("Choose the number from 1 to 3 (1 - the rectangle area, 2 - the ring area, 3 - the area of isisceles triangle)");
+    double d13 = Convert.ToDouble(Console.ReadLine());
+
+    switch (d13)
+    {
+        case 1:
+            Console.WriteLine($" The rectangle area = {a13 * b13}");
+            break;
+        case 2:
+            if (a13 > b13)
+            {
+                Console.WriteLine($" The ring area = {Math.PI * a13 * a13 - Math.PI * b13 * b13}");
+            }
+            else Console.WriteLine($" The ring area = {Math.PI * b13 * b13 - Math.PI * a13 * a13}");
+            break;
+        case 3:
+            l13 = Math.Sqrt(b13 * b13 - (a13 * a13 / 4));
+            Console.WriteLine($" The area of isisceles triangle = {0.5 * a13 * l13}");
+            break;
+        default:
+            break;
+    }
+}
+#endregion
