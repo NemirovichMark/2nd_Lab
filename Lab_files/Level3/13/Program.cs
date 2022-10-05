@@ -41,7 +41,7 @@ namespace LaboratoryL3N13
                 Console.WriteLine("Input a: ");
                 string input_a = Console.ReadLine();
                 bool result_a = double.TryParse(input_a, out var a);
-                if (!result_a)
+                if (((!result_a) || (a <= 0)) == true)
                 {
                     Console.WriteLine("Incorrect data");
                     return 1;
@@ -50,7 +50,7 @@ namespace LaboratoryL3N13
                 Console.WriteLine("Input b: ");
                 string input_b = Console.ReadLine();
                 bool result_b = int.TryParse(input_b, out var b);
-                if (result_b == false)
+                if (((!result_b) || (b <= 0)) == true)
                 {
                     Console.WriteLine("Incorrect data");
                     return 1;

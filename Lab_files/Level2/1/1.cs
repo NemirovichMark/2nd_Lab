@@ -26,7 +26,7 @@ namespace LaboratoryL2N1
                 Console.Write($"Height {i+1}: ");
                 string input_height = Console.ReadLine();
                 bool result_height = double.TryParse(input_height, out var h);
-                if (result_height == false)
+                if ((result_height == false) || (h <= 0))
                 {
                     Console.WriteLine("Incorrect data");
                     Console.WriteLine($"Average height to this moment is: {sum / (i)}");
