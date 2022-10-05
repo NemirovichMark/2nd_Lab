@@ -1,0 +1,182 @@
+//часть1 задание 5
+            const double pi = 3.14;
+            double Ploshad_kruga = 70;
+            double Ploshad_kvad = 36.74;
+            Console.WriteLine("круг поместиться в квадрат если диоганаль меньше сторонв квадрата");
+            double dig_kr = Math.Sqrt(Ploshad_kruga / pi);
+            double diog_kv = Math.Sqrt(Ploshad_kvad * 2);
+            if (diog_kv <= dig_kr)
+            {
+                Console.WriteLine("Квадпат вписывается");
+            }
+            else
+            {
+                Console.WriteLine("Не умещается(");
+            }
+            double Ploshad_kruga2 = 0.86;
+            double Ploshad_kvad2 = 0.74;
+            Console.WriteLine("круг поместиться в квадрат если диоганаль меньше сторонв квадрата");
+            double diog_kr2 = Math.Sqrt(Ploshad_kruga2 / pi);
+            double diog_kv2 = Math.Sqrt(Ploshad_kvad2 * 2);
+            if (diog_kv <= diog_kr2)
+            {
+                Console.WriteLine("Квадпат вписывается");
+            }
+            else
+            {
+                Console.WriteLine("Не умещается(");
+
+            }
+            //task 6
+            double ploshad_kruga3 = 3.2;
+            double ploshad_kvad = 3.5;
+            double diog_kr3 = Math.Sqrt(ploshad_kruga3 / pi);
+            double storona3_kv = Math.Sqrt(ploshad_kvad);
+            if (diog_kr3 <= storona3_kv)
+            {
+                Console.WriteLine("умещается1");
+            }
+            
+            else
+            {
+                Console.WriteLine("не умещается");
+            }
+
+            double ploshad_kruga4 = 3.2;
+            double ploshad_kvad2 = 4;
+            double diog_kr4 = Math.Sqrt(ploshad_kruga4 / pi);
+            double storona3_kv2 = Math.Sqrt(ploshad_kvad2);
+            if (diog_kr4 <= storona3_kv2)
+            {
+                Console.WriteLine("умещается1");
+            }
+
+            else
+            {
+                Console.WriteLine("не умещается");
+            }
+
+            double ploshad_kruga5 = 6;
+            double ploshad_kvad3 = 9;
+            double diog_kr5 = Math.Sqrt(ploshad_kruga5 / pi);
+            double storona3_kv3 = Math.Sqrt(ploshad_kvad3);
+            if (diog_kr5 <= storona3_kv3)
+            {
+                Console.WriteLine("умещается1");
+            }
+
+            else
+            {
+                Console.WriteLine("не умещается");
+            }
+            //task 8
+            double x = double.Parse(Console.ReadLine());
+            double y = 0;
+            if (Math.Abs(x) >= 1)
+            {
+                y = 0;
+            }
+
+            else
+            {
+                y = Math.Pow(x, 2) - 1;
+            }
+            Console.WriteLine(y);
+            //часть 2 
+            // задание 1
+           
+            Console.WriteLine("Введите кол-во учащихся");
+            int kol = int.Parse(Console.ReadLine());
+            double sum = 0;
+            for (int i = 1; i <= kol; i++)
+            {
+                Console.Write($"Введите рост человека: {i} ");
+                double rost = int.Parse(Console.ReadLine());
+                sum += rost;
+            }
+            Console.WriteLine(sum / kol);
+            Console.ReadLine();
+            //  задание 9
+            Console.WriteLine("количество участников");
+            int s = int.Parse(Console.ReadLine());
+            int[] koli = new int[s];
+            for (int i = 0; i < koli.Length; i++)
+            {
+                Console.Write($"участник с индексом №{i + 1}  имеет результат: ");
+                koli[i] = int.Parse(Console.ReadLine());
+            }
+            Array.Sort(koli);
+            Console.WriteLine($"Лучший результат: {koli[0]} ");
+            Console.ReadLine();
+            
+            //задание 11
+            асть 3 - задание 11
+            Console.Write("Кол-во учеников: ");
+            int kol_vo = Convert.ToInt16(Console.ReadLine());
+            int col = 0;
+
+            for (int i = 0; i < kol_vo; i++) 
+            {
+                Console.Write($"Вводите результаты ученика #{i + 1}: ");
+                string[] results = Console.ReadLine().Split(' ');
+                double Math = double.Parse(results[0]);
+                double chemistry = double.Parse(results[1]);
+                double hist = double.Parse(results[2]);
+                double biol = double.Parse(results[3]);
+                if ((Math >= 3 && Math <= 5) && (chemistry >= 3 && chemistry <= 5) && (hist >= 3 && hist <= 5) &&  (biol >= 3 && biol <= 5)) col++;
+                
+            }
+            Console.WriteLine($"Число сдавших экззамен: {col} ");
+            Console.ReadLine();
+            //задание 12
+           
+            double kvadrat, krug, treyg = 0;
+            double gradusi = Math.Sin(1) / 3.14 * 180;
+            Console.Write("Введите значение r: ");
+            double r = double.Parse(Console.ReadLine());              
+            if (r > 0)
+            {
+                 kvadrat = Math.Pow(r, 2);
+                 krug =  3.14 * Math.Pow(r, 2);
+                 treyg = gradusi * Math.Pow(r, 2) * 0.5;
+                Console.WriteLine($"площадь квадрата: {kvadrat},площадь круга: {krug}, площажь треугольника: {treyg}");
+            }
+            Console.ReadLine();
+            // задание 13
+                 Console.WriteLine("Введите значения A и B, где A меньшая сторона! ");
+            Console.Write("Сторона A: ");
+            double A = double.Parse(Console.ReadLine());
+            Console.Write("Сторона B: ");
+            double B = double.Parse(Console.ReadLine());
+            if (A > 0 && B > 0 && A < B && (A < B + B) && (B < A + B))
+            {
+                double pryam = A * B;
+                double kol_co = 3.14 * (Math.Pow(B, 2) + Math.Pow((A), 2));
+                double ravn_treyg = A / 4 * (Math.Sqrt(4 * Math.Pow(B, 2) - Math.Pow(A, 2)));
+                Console.WriteLine($"площадь прямоугольника: {pryam}, площадь кольца {kol_co}, площадь треугольника {ravn_treyg}");
+            }
+            else
+            {
+                Console.WriteLine("Числа введены неправильно!");
+               
+            }
+            Console.ReadLine();
+            // задание 4
+               Console.Write("Введите количество точек: ");
+            int length = int.Parse(Console.ReadLine());
+            int counter = 0;
+            Console.Write($"Введите радиус: ");
+            int R = int.Parse(Console.ReadLine());
+            Console.WriteLine("Вводите точки через Enter по примеру:\nТочка #1: 3.25 5.74 (x и y через пробел)");
+            for (int i = 0; i < length; i++)
+            {
+                Console.Write($"Точка #{i + 1}: ");
+                string[] points = Console.ReadLine().Split(' ');
+                double x = double.Parse(points[0]);
+                double y = double.Parse(points[1]);
+                if (Math.Pow(x, 2) + Math.Pow(y, 2) < R) counter++; 
+                
+            }
+            Console.WriteLine("Точек в кругу: " + counter);
+            Console.ReadLine();
+
