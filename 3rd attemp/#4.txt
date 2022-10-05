@@ -1,0 +1,99 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        double x, y;
+        double point;
+        double r1, r2;
+        double amount = 0;
+        double test;
+
+        while (true)
+        {
+            Console.WriteLine(" Pleas enter radius 'r1'");
+            if (!double.TryParse(Console.ReadLine(), out r1))
+            {
+                Console.WriteLine(" Plese enter the correсt data");
+                continue;
+            }
+            if (r1 < 0)
+            {
+                Console.WriteLine(" Plese enter the correсt data, because 'r1' must be positive");
+                continue;
+            }
+            break;
+        }
+
+        while (true)
+        {
+            Console.WriteLine(" Pleas enter radius 'r2'");
+            if (!double.TryParse(Console.ReadLine(), out r2))
+            {
+                Console.WriteLine(" Plese enter the correсt data");
+                continue;
+            }
+            if (r2 < 0)
+            {
+                Console.WriteLine(" Plese enter the correсt data, because 'r2' must be positive");
+                continue;
+            }
+            if (r1 > r2)
+            {
+                Console.WriteLine("  Plese enter the correсt data, because 'r2' must be greater then 'r1'");
+                continue;
+            }
+            break;
+        }
+
+        for (int i = 1; i > 0; i++)
+        {
+            while (true)
+            {
+                Console.WriteLine(" Pleas enter cordinate 'x' ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(" Plese enter the correсt data");
+                    continue;
+                }
+                break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine(" Pleas enter cordinate 'y' ");
+                if (!double.TryParse(Console.ReadLine(), out y))
+                {
+                    Console.WriteLine(" Plese enter the correсt data");
+                    continue;
+                }
+                break;
+            }
+
+            point = x * x + y * y;
+
+            if (point <= r2 && point >= r1) { amount ++; }
+
+            Console.WriteLine(" Do you want enter data again? Yes = '1'; No = '0'");
+
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out test))
+                {
+                    Console.WriteLine(" Plese enter the correсt data");
+                    continue;
+                }
+                if(test == 1)
+                {
+                    break;
+                }
+                if (test == 0) 
+                {
+
+                    Console.WriteLine("Amount " + "= " + amount);
+                    return;
+                }
+            }
+        }
+    }
+}

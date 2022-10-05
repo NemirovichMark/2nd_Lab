@@ -1,0 +1,121 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        double amount_wasted = 0;
+        double sum = 0;
+        double amount_pass = 0;
+        double sum_mark = 0;
+        double test;
+        double average;
+        double pass;
+        double mark1, mark2, mark3, mark4;
+
+        for (int i = 1; i > 0; i++)
+        {
+            Console.WriteLine(" Please enter the mark for the first exam");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out mark1))
+                {
+                    Console.WriteLine(" Pleas enter the correct data");
+                    continue;
+                }
+                if (mark1 > 5 || mark1 < 2)
+                {
+                    Console.WriteLine(" Pleas enter the correct data | mark will be from '2' to '5'");
+                    continue;
+                }
+                break;
+            }
+
+            Console.WriteLine(" Please enter the mark for the second exam");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out mark2))
+                {
+                    Console.WriteLine(" Pleas enter the correct data");
+                    continue;
+                }
+                if (mark2 > 5 || mark2 < 2)
+                {
+                    Console.WriteLine(" Pleas enter the correct data | mark will be from '2' to '5'");
+                    continue;
+                }
+                break;
+
+            }
+
+            Console.WriteLine(" Please enter the mark for the third exam");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out mark3))
+                {
+                    Console.WriteLine(" Pleas enter the correct data");
+                    continue;
+                }
+                if (mark3 > 5 || mark3 < 2)
+                {
+                    Console.WriteLine(" Pleas enter the correct data | mark will be from '2' to '5'");
+                    continue;
+                }
+                break;
+            }
+
+            Console.WriteLine(" Please enter the mark for the fourth exam");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out mark4))
+                {
+                    Console.WriteLine(" Pleas enter the correct data");
+                    continue;
+                }
+                if (mark4 > 5 || mark4 < 2)
+                {
+                    Console.WriteLine(" Pleas enter the correct data | mark will be from '2' to '5'");
+                    continue;
+                }
+                break;
+            }
+
+            if ( mark1 == 2 || mark2 == 2 || mark3 == 2 || mark4 == 2)
+            {
+
+                amount_wasted++;
+
+            }
+            
+            else
+            {
+
+                amount_pass = amount_pass + 4;
+                sum_mark = sum_mark + mark1 + mark2 + mark3 + mark4;
+
+            }
+
+            Console.WriteLine(" Do you want enter more data? | (Yes = '1' | No = '0')");
+
+            while (true)
+            {
+
+                if (!double.TryParse(Console.ReadLine(), out test))
+                {
+                    Console.WriteLine(" Pleas enter the correct data");
+                    continue;
+                }
+                if (test == 1)
+                {
+                    break;
+                }
+                if (test == 0)
+                {
+                    average = sum_mark / amount_pass;
+                    Console.WriteLine("Average " + "= " + average);
+                    Console.WriteLine("Amount student who faild exam " + "= " + amount_wasted);
+                    return;
+                }
+            }
+        }
+    }        		
+}
