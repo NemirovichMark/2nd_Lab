@@ -276,7 +276,7 @@ namespace lab_2
                             }
                             break;
                         case 3:
-                            if (a>b)
+                            if (b*b - (0.5*a)*(0.5*a) <= b*b)
                             {
                                 sum = 0.5*a*(Math.Sqrt(b*b - (0.5*a)*(0.5*a)));
                             }
