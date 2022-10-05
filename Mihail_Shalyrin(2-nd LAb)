@@ -126,7 +126,7 @@
                 if ((Math >= 3 && Math <= 5) && (chemistry >= 3 && chemistry <= 5) && (hist >= 3 && hist <= 5) &&  (biol >= 3 && biol <= 5)) col++;
                 
             }
-            Console.WriteLine($"Число сдавших экзамен: {col} ");
+            Console.WriteLine($"Число сдавших экззамен: {col} ");
             Console.ReadLine();
             //задание 12
            
