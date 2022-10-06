@@ -184,7 +184,7 @@ namespace Lab2
                 do
                 {
                     Console.WriteLine("Write results of 4 exams");
-                    if (int.TryParse(Console.ReadLine(), out int X) & (int.TryParse(Console.ReadLine(), out int Y)) & (int.TryParse(Console.ReadLine(), out int Z)) & (int.TryParse(Console.ReadLine(), out int V)))
+                    if (int.TryParse(Console.ReadLine(), out int X)& X<6 & X > 1 & (int.TryParse(Console.ReadLine(), out int Y)) & Y < 6 & Y > 1 & (int.TryParse(Console.ReadLine(), out int Z)) & Z < 6 & Z > 1 & (int.TryParse(Console.ReadLine(), out int V)) & V < 6 & V > 1 )
                     {
                         if (X == 2 | Y == 2 | Z == 2 | V == 2)
                         {
@@ -261,8 +261,16 @@ namespace Lab2
                                 Console.WriteLine(Math.PI * (A + B) * (A + B));
                                 break;
                             case 3:
-                                Console.WriteLine((A * Math.Sqrt(4 * B * B - A * A)) / 4);
-                                break;
+                                if (4 * B * B - A * A > 0)
+                                {
+                                    Console.WriteLine((A * Math.Sqrt(4 * B * B - A * A)) / 4);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Smth went wrong");
+                                    break;
+                                }
                             default:
                                 Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3");
                                 break;
