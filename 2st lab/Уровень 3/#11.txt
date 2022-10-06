@@ -1,0 +1,40 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+        double summa = 0;
+        double sraref = 0;
+        double summsr = 0;
+        double koluch = 0;
+        double dvoech = 0;
+        string a;
+        for (int i = 0; i >= 0; i++)
+        {
+            Console.WriteLine("Введите оценку за 1-ый экзамен");
+            double ex1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите оценку за 2-ый экзамен");
+            double ex2 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите оценку за 3-ый экзамен");
+            double ex3 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите оценку за 4-ый экзамен");
+            double ex4 = Convert.ToDouble(Console.ReadLine());
+            if (ex1 != 2 && ex2 != 2 && ex3 != 2 && ex4 != 2)
+            {
+                koluch++;
+                summa = ex1 + ex2 + ex3 + ex4;
+                sraref = summa / 4;
+                summsr = summsr + sraref;
+            }
+            else { dvoech++; }
+            Console.WriteLine("Это всё, что вы хотели ввести? Да = '+'; Нет = '-' ");
+            a = Console.ReadLine();
+            if (a == "+") { break; }
+        }
+        double obsr = summsr / koluch;
+        Console.WriteLine("Общий средний балл " + obsr);
+        Console.WriteLine("Количество двоечников " + dvoech);
+    }
+}

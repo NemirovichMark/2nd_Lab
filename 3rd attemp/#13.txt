@@ -1,0 +1,79 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        double A, B;
+        double test;
+        for (int i = 1; i > 0; i++)
+        {
+            double area = 0;
+            Console.WriteLine(" Do you want to know area? Yes = '+'; No = '-'");
+            string a = Console.ReadLine();
+            if (a == "-") 
+            { 
+                break; 
+            }
+            Console.WriteLine("Chouse figure: 1) Rectangle = '1'; 2) Ring = '2'; 3) Isosceles triangle = '3'");
+            string figure = (Console.ReadLine());
+            Console.WriteLine(" Please enter coordinates 'A'");
+
+            while (true)
+            {
+
+                if (!double.TryParse(Console.ReadLine(), out A))
+                {
+                    Console.WriteLine(" Please enter correct data");
+                    continue;
+                }
+                if (A < 0)
+                {
+                    Console.WriteLine(" 'A' must be positive");
+                    continue;
+                }
+                break;
+
+            }
+
+            Console.WriteLine(" Please enter coordinates 'B'");
+            while (true)
+            {
+
+                if (!double.TryParse(Console.ReadLine(), out B))
+                {
+                    Console.WriteLine(" Please enter correct data");
+                    continue;
+                }
+                if (B < 0)
+                {
+                    Console.WriteLine(" 'B' must be positive");
+                    continue;
+                }
+                break;
+
+            }
+
+            switch (figure)
+            {
+                
+                case "1":
+                    area = A * B;
+                    Console.WriteLine(area);
+                    break;
+                
+                case "2":
+                    double s0 = Math.PI * A * A;
+                    double s1 = Math.PI * B * B;
+                    area = s1 - s0;
+                    Console.WriteLine(area);
+                    break;
+               
+                case "3":
+                    area = (A * Math.Sqrt(4 * B * B - A * A)) / 4;
+                    Console.WriteLine(area);
+                    break;
+
+            }
+        }
+    }
+}

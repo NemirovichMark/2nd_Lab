@@ -1,0 +1,48 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+        double summa = 0;
+        double average = 0;
+        double summsr = 0;
+        double almount = 0;
+        double almount2 = 0;
+        string a;
+        for (int i = 0; i >= 0; i++)
+        {
+        link1:
+            Console.WriteLine("Введите оценку за 1-ый экзамен от 2 до 5");
+            double ex1 = Convert.ToDouble(Console.ReadLine());
+            if (ex1 < 2 || ex1 > 5) goto link1;
+        link2:
+            Console.WriteLine("Введите оценку за 2-ый экзамен от 2 до 5");
+            double ex2 = Convert.ToDouble(Console.ReadLine());
+            if (ex2 < 2 || ex2 > 5) goto link2;
+        link3:
+            Console.WriteLine("Введите оценку за 3-ый экзамен от 2 до 5");
+            double ex3 = Convert.ToDouble(Console.ReadLine());
+            if (ex3 < 2 || ex3 > 5) goto link3;
+        link4:
+            Console.WriteLine("Введите оценку за 4-ый экзамен от 2 до 5");
+            double ex4 = Convert.ToDouble(Console.ReadLine());
+            if (ex4 < 2 || ex4 > 5) goto link4;
+            if (ex1 != 2 && ex2 != 2 && ex3 != 2 && ex4 != 2)
+            {
+                almount++;
+                summa = ex1 + ex2 + ex3 + ex4;
+                average = summa / 4;
+                summsr = summsr + average;
+            }
+            else { almount2++; }
+            Console.WriteLine("Это всё, что вы хотели ввести? Да = '+'; Нет = '-' ");
+            a = Console.ReadLine();
+            if (a == "+") { break; }
+        }
+        double obsr = summsr / almount;
+        Console.WriteLine("Общий средний балл " + obsr);
+        Console.WriteLine("Количество двоечников " + almount2);
+    }
+}

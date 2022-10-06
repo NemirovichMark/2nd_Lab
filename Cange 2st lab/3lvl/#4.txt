@@ -1,0 +1,33 @@
+using System;
+using System.Globalization;
+
+class Program
+{
+    static void Main()
+    {
+    link1:
+        Console.WriteLine("Введите внутренний радиус 'r1'");
+        double r1 = Convert.ToDouble(Console.ReadLine());
+        if (r1 < 0) goto link1;
+    link2:
+        Console.WriteLine("Введите внутренний радиус 'r2'");
+        double r2 = Convert.ToDouble(Console.ReadLine());
+        if (r2 < 0) goto link2;
+        string a;
+        double amount = 0;
+        for (int i = 1; i != 0; i++)
+        {
+            Console.WriteLine("Введите координату 'x'");
+            double x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите количество точек 'y'");
+            double y = Convert.ToDouble(Console.ReadLine());
+            double radiys = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+            if (r1 == radiys && r2 == radiys) { amount++; }
+            Console.WriteLine("Это всё, что вы хотели ввеси Да = '+'; Нет = '-'");
+            a = Console.ReadLine();
+            if (a == "+") { break; }
+        }
+
+        Console.WriteLine("Количество подходящих координат" + amount);
+    }
+}
