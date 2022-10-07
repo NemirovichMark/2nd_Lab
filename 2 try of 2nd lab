@@ -1,0 +1,215 @@
+#region 1.3
+using System.Security.Cryptography;
+
+Console.WriteLine("Enter 2 numbers");
+double a=Convert.ToDouble(Console.ReadLine());
+double b = Convert.ToDouble(Console.ReadLine());
+double c;
+if (a>0)
+{
+    c = Math.Max(a, b);
+    Console.WriteLine($"lvl1 tsk3 Max - {c}");
+}
+else
+{
+    c = Math.Min(a, b);
+    Console.WriteLine(c);
+}
+#endregion 
+#region 1.4
+Console.WriteLine("Enter 3 numbers");
+double a1 = Convert.ToDouble(Console.ReadLine());
+double b1 = Convert.ToDouble(Console.ReadLine());
+double c1 = Convert.ToDouble(Console.ReadLine());
+double z = Math.Max(Math.Min(a1,b1),c1);
+Console.WriteLine($"lvl1 tsk4 Max - {z}");
+#endregion
+#region 2.1
+double m, w, n, medm=0, medw=0;
+Console.WriteLine("Enter number of people");
+n= Convert.ToDouble(Console.ReadLine());
+Random rnd = new Random();
+Console.WriteLine("Enter number of boys");
+m= Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Enter number of girls");
+w= Convert.ToInt32(Console.ReadLine());
+if (m+w==n)
+{
+    for(int i=1;i<=m;i++)
+    {
+        int height = rnd.Next(40, 250);
+        medm += height;
+    }
+    medm = medm / m;
+    for(int i=1;i<=w;i++)
+    {
+        int height1 = rnd.Next(40, 250);
+        medw += height1;
+    }
+    medw = medw / w;
+    
+    Console.WriteLine($"lvl2 tsk1 Medium height of boys {medm} Medium height of girls {medw} ");
+}
+else
+{
+    Console.WriteLine("Please, enter correct info");
+}
+#endregion
+#region 2.3
+Console.WriteLine("Enter number of people");
+n = Convert.ToInt32(Console.ReadLine());
+double weight, milk=0;
+for (int i=1;i<=n;i++)
+{
+    Console.WriteLine("Enter weight");
+    weight = Convert.ToDouble(Console.ReadLine());
+    if (weight<30)
+    {
+        milk += 0.2;
+    }
+}
+Console.WriteLine($"lvl2 tsk3 {milk}");
+#endregion
+#region 3.4
+double r1, r2;
+Console.WriteLine("Введите внутренний радиус");
+r1 = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine("Введите внешний радиус");
+r2 = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine("Введите количество точек");
+n = Convert.ToInt32(Console.ReadLine());
+
+double x, y,counter=0;
+if (r2 > r1 && r2 > 0 && r1 > 0)
+{
+    for (int i = 1; i <= n; i++)
+    {
+        Console.WriteLine($"Введите координаты {i} точки ");
+
+        x = Convert.ToDouble(Console.ReadLine());
+
+        y = Convert.ToDouble(Console.ReadLine());
+
+        if ((x * x + y * y >= r1 * r1) && (x * x + y * y <= r2 * r2))
+        {
+            counter++;
+        }
+
+    }
+    Console.WriteLine($"{counter} раз попал в кольцо");
+}
+#endregion
+#region 3.11
+Console.WriteLine("Введите кол-во учеников");
+n = Convert.ToInt32(Console.ReadLine());
+double e1, e2, e3, e4,medium=0,low=0;
+counter = 0;
+for (int i = 1; i <= n; i++)
+{
+    Console.WriteLine($"Введите 4 оценки {i} ученика");
+    e1 = Convert.ToDouble(Console.ReadLine());
+    e2 = Convert.ToDouble(Console.ReadLine());
+    e3 = Convert.ToDouble(Console.ReadLine());
+    e4 = Convert.ToDouble(Console.ReadLine());
+    if ((e1 <= 2) || (e2 <= 2) || (e3 <= 2) || (e4 <= 2))
+    {
+        low++;
+    }
+    else if ((e1 > 5) || (e2 > 5) || (e3 > 5) || (e4 > 5))
+    {
+        medium += e1 + e2 + e3 + e4;
+        counter++;
+    }
+    else
+    {
+        Console.WriteLine("Нет бы ввести нормальную оценку по пятибалльной шкале?");
+    }
+}
+medium = medium / (counter * 4);
+Console.WriteLine($"lvl3 tsk11 кол-во неуспевающих - {low} средний балл группы {medium}");
+#endregion
+#region 3.12
+int choise;
+Console.WriteLine("Введите значение n");
+n = Convert.ToDouble(Console.ReadLine());
+for (int i = 1; i <= n; i++)
+{
+    if (r1 > 0)
+    {
+        Console.WriteLine("Введите значение r");
+        r1 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("Выберите искомую фигуру 1 - квадрат, 2 - круг, 3 - рст. треугольник");
+        choise = Convert.ToInt32(Console.ReadLine());
+        switch (choise)
+        {
+            case 1:
+                Console.WriteLine($"lvl3 tsk12 Площадь квадрата - {r1 * r1}");
+                break;
+            case 2:
+                Console.WriteLine($"lvl3 tsk12 Площадь круга - {r1 * r1 * Math.PI}");
+                break;
+            case 3:
+                Console.WriteLine($"lvl3 tsk12 Площадь равностороннего треугольника - {Math.Sqrt(3) / 4 * r1 * r1}");
+                break;
+        }
+    }
+}
+#endregion
+#region 3.13
+Console.WriteLine("Введите значение n");
+n = Convert.ToInt32(Console.ReadLine());
+for (int i = 1; i <= n; i++)
+{
+    Console.WriteLine("Введите значения а и b");
+    double a2 = Convert.ToDouble(Console.ReadLine());
+    double b2 = Convert.ToDouble(Console.ReadLine());
+    if ((a2 <= 0) || (b2 <= 0))
+    {
+        Console.WriteLine("Введите данные больше 0");
+
+    }
+    else
+    {
+        Console.WriteLine("Выберите искомую фигуру 1 - прямоугольник, 2 - кольцо, 3 - рб. треугольник");
+        choise = Convert.ToInt32(Console.ReadLine());
+        switch (choise)
+        {
+            case 1:
+                Console.WriteLine($"lvl3 tsk13 Площадь прямоугольника - {a2 * b2}");
+                break;
+            case 2:
+                if (a2 > b2)
+                {
+                    Console.WriteLine($"lvl3 tsk13 Площадь кольца - {Math.PI * (a2 - b2)}");
+                }
+                else if (a2 < b2)
+                {
+                    Console.WriteLine($"lvl3 tsk13 Площадь кольца - {Math.PI * (b2 - a2)}");
+                }
+                else
+                {
+                    Console.WriteLine("Введите разные радиусы");
+                }
+
+                break;
+            case 3:
+                if (b2 < a2)
+                {
+                    Console.WriteLine($"lvl3 tsk13 Площадь равнобедренного треугольника - {(b2 / 4 * Math.Pow(4 * a2 * a2 - b2 * b2, 0.5))}");
+                }
+                else if (a2>b2)
+                { 
+                    Console.WriteLine($"lvl3 tsk13 Площадь равнобедренного треугольника - {(a2 / 4 * Math.Pow(4 * b2 * b2 - a2 * a2, 0.5))}");
+                }
+                else
+                {
+                    Console.WriteLine("Введите разные значения");
+                }
+                    break;
+        }
+
+    }
+}
+#endregion
