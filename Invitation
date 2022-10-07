@@ -116,16 +116,13 @@ namespace Lab2
                 Console.WriteLine("Введите кол-во спортсменов");
                 if (int.TryParse(Console.ReadLine(), out int x) && x > 0)
                 {
-                    double u = 0;
+                    double u = 1000000000;
                     for (int i = 0; i < x; i++)
                     {
                         Console.WriteLine("Введите время спортсмена");
                         if (double.TryParse(Console.ReadLine(), out double time) && time >= 0)
                         {
-                            if (u < time) ;
-                            {
-                                u = time;
-                            }
+                            u = Math.Min(u, time);
                         }
                         else
                         {
@@ -149,49 +146,61 @@ namespace Lab2
                     do
                     {
                         Console.WriteLine("Введите х, для окончания значение большее 10000");
-                        x = double.Parse(Console.ReadLine());
-                        if (x >= 10000) break;
-                        Console.WriteLine("Введите у");
-                        y = double.Parse(Console.ReadLine());
-                        if ((x * x + y * y >= r1 * r1) && (x * x + y * y <= r2 * r2)) count += 1;
+                        if (double.TryParse(Console.ReadLine(), out x))
+                        {
+                            if (x >= 10000) break;
+                            Console.WriteLine("Введите у");
+                            if (double.TryParse(Console.ReadLine(), out y))
+                            {
+                                if ((x * x + y * y >= r1 * r1) && (x * x + y * y <= r2 * r2)) count += 1;
+                            }
+                        }
+                        else
+                            Console.WriteLine("Error");
                     } while (x < 10000);
                     Console.WriteLine($"В круг попало {count} точек");
                 }
                 else
                     Console.WriteLine("Error");
                 #endregion
-            #region №2.11(3 level)
+                #region №2.11(3 level)
                 {
-                    int s1, s2, s3, s4, c = 0, c1 = 0;
+                    int s1,s2,s3,s4, c = 0, c1 = 0;
                     double sr = 0, sr1 = 0;
-                    Console.WriteLine("Для окончания работы введите число большее 20000");
+                    Console.WriteLine("Для окончания работы введите число большее 100");
                     do
                     {
-                        Console.WriteLine("Введите результаты 1-го экзамена");
-                        s1 = int.Parse(Console.ReadLine());
-                        if (s1 >= 10000) break;
-                        Console.WriteLine("Введите результаты 2-го экзамена");
-                        s2 = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Введите результаты 3-го экзамена");
-                        s3 = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Введите результаты 4-го экзамена");
-                        s4 = int.Parse(Console.ReadLine());
-                        sr1 = (s1 + s2 + s3 + s4) / 4;
-                        if (s1 <= 2 || s2 <= 2 || s3 <= 2 || s4 <= 2) c++;
-                        sr += sr1;
-                        c1++;
-                    } while (s1 < 20000);
-                    Console.WriteLine($"Кол-во неуспевающих учеников {c}, средний балл группы {sr / c1}");
-
+                        Console.WriteLine("Введите результаты экзаменов");
+                        if (int.TryParse(Console.ReadLine(),out s1) && ((s1 >=2 && s1 <=5) | (s1 > 100)) && (int.TryParse(Console.ReadLine(), out s2)) && ((s2 >= 2 && s2 <= 5) && (int.TryParse(Console.ReadLine(), out s3)) && ((s3 >= 2 && s3 <= 5) && (int.TryParse(Console.ReadLine(), out s4)) && ((s4 >= 2 && s4 <= 5)))))
+                            {
+                            if (s1 > 100) break;
+                            if (s1 == 2 | s2 == 2 | s3 == 2 | s4 == 2 )
+                            {
+                                c1++;
+                            }
+                            else
+                            {
+                                sr1 = s1 + s2 + s3 + s4;
+                                sr += sr1 / 4;
+                                c++;
+                            }
+                            
+                        }
+                        else
+                            Console.WriteLine("Error");
+                    } while (s1 < 100);
+                    Console.WriteLine($"Кол-во неуспевающих учеников {c1}, средний балл группы {sr / c}");
                 }
-                #endregion
+            }
+            #endregion
             #region №2.12(3 level)
+            {
+                Console.WriteLine("Введите R");
+                if (double.TryParse(Console.ReadLine(), out double r) && r >= 0)
                 {
-                    Console.WriteLine("Введите R");
-                    if (double.TryParse(Console.ReadLine(), out double r))
+                    Console.WriteLine("Для подсчёта площади квадрата нажмите 1, круга - 2, равностроннего треугольника - 3");
+                    if (int.TryParse(Console.ReadLine(), out int a))
                     {
-                        Console.WriteLine("Для подсчёта площади квадрата нажмите 1, круга - 2, равностроннего треугольника - 3");
-                        int a = int.Parse(Console.ReadLine());
                         switch (a)
                         {
                             case 1:
@@ -211,16 +220,20 @@ namespace Lab2
                     else
                         Console.WriteLine("Error");
                 }
-                #endregion
+                else
+                    Console.WriteLine("Error");
+            }
+            #endregion
             #region №2.13
+            {
+                Console.WriteLine("Введите значения A и B");
+                if (double.TryParse(Console.ReadLine(), out double A) && double.TryParse(Console.ReadLine(), out double B) && A >= 0 && B >= 0)
                 {
-                    Console.WriteLine("Введите значения A и B");
-                    if (double.TryParse(Console.ReadLine(), out double A) && double.TryParse(Console.ReadLine(), out double B))
-                        {
-                        Console.WriteLine("Для подсчёта площади прямоугольника введите - 1, площади кольца - 2, площади равнобедренного треугольника - 3");
-                        int a = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Для подсчёта площади прямоугольника введите - 1, площади кольца - 2, площади равнобедренного треугольника - 3");
+                    if (int.TryParse(Console.ReadLine(), out int a))
+                    {
                         switch (a)
-                            {
+                        {
                             case 1:
                                 Console.WriteLine($"Площадь прямоугольника {Math.Abs(A * B)}");
                                 break;
@@ -228,9 +241,9 @@ namespace Lab2
                                 Console.WriteLine($"Площадь кольца {Math.Abs(Math.PI * (A - B))}");
                                 break;
                             case 3:
-                                Console.WriteLine($"Площадь равнобедренного треугольника {Math.Abs(A * Math.Sqrt(Math.Pow(B,2) - Math.Pow(A,2) / 4) / 2)}");
+                                Console.WriteLine($"Площадь равнобедренного треугольника {Math.Abs(A * Math.Sqrt(Math.Pow(B, 2) - Math.Pow(A, 2) / 4) / 2)}");
                                 break;
-                            default :
+                            default:
                                 Console.WriteLine("Error");
                                 break;
                         }
@@ -238,8 +251,10 @@ namespace Lab2
                     else
                         Console.WriteLine("Error");
                 }
-                #endregion
+                else
+                    Console.WriteLine("Error");
             }
+            #endregion
         }
     }
 }
