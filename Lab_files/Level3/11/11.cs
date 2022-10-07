@@ -9,11 +9,11 @@ namespace LaboratoryL3N11
             int n = 0;
             double avg = 0;
             int losers = 0;
-            bool flag = true;
             while (true)
             { 
                 int f_s = 0;
                 double sum = 0;
+                bool flag = true;
                 for (int i = 1; i <= 4; i++)
                 {
                     Console.Write($"{i} exam: ");
@@ -28,23 +28,26 @@ namespace LaboratoryL3N11
                         }
                         else
                         {
-                            Console.WriteLine($"Average grade to this moment: {avg = (avg / n)}");
+                            Console.WriteLine($"Average grade to this moment: {avg = (avg / n)}, losers: {losers}");
                         }
                         return 1;
                     }
                     if (a == 2)
                     {
-                        f_s += 1;
+                        flag = false;
+                        break;
                     }
                     sum += a;
                 }
-                if (f_s > 0)
+                if (flag == false)
                 {
                     losers += 1;
+                    Console.WriteLine();
                     continue;
                 }
                 avg += (sum / 4);
                 n += 1;
+                Console.WriteLine();
             }
         }
     }
