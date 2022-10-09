@@ -1,0 +1,217 @@
+// Лабораторная работа № 2
+// Уровень 1
+// Номер 3
+/*#region
+double c;
+double a = Convert.ToDouble(Console.ReadLine());
+double b = Convert.ToDouble(Console.ReadLine());
+if(a > 0)
+{
+    c = Math.Min(a, b);
+}
+else
+{
+    c = Math.Max(a, b);
+}
+Console.WriteLine(c);
+#endregion*/
+
+// Номер 4
+/*#region
+double z;
+double a = Convert.ToDouble(Console.ReadLine());
+double b = Convert.ToDouble(Console.ReadLine());
+double c = Convert.ToDouble(Console.ReadLine());
+z = Math.Max(Math.Min(a, b), c);
+Console.WriteLine(z);
+#endregion*/
+
+// Уровень 2
+// Номер 1
+/*#region
+using System.Diagnostics.CodeAnalysis;
+
+int n = 5;
+int i = 1;
+double sum = 0;
+while (i <= n)
+{
+    Console.WriteLine("Введите рост в метрах: ");
+    double height = Convert.ToDouble(Console.ReadLine());
+    if (height > 0)
+    {
+        sum += height;
+    }
+    i ++;
+}
+Console.WriteLine(sum);
+#endregion*/
+
+// Номер 9
+/*#region
+int n = 5;
+double cur, prev = 10000000000000000, min = 0;
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine("Введите результат в секундах: ");
+    cur = Convert.ToDouble(Console.ReadLine());
+    min = Math.Min(cur, prev);
+    prev = cur;
+}
+Console.WriteLine(min);
+#endregion*/
+
+// Уровень 3
+// Номер 4(Ограничение значений при х = 100)
+/*#region
+int i = 0;
+Console.WriteLine("Введите первый радиус");
+double r1 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите второй радиус");
+double r2 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите координату Х: ");
+double x = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите координату Y: ");
+double y = Convert.ToDouble(Console.ReadLine());
+while (x < 100)
+{
+    if (x * x + y * y > r1 * r1 && x * x + y * y <= r2 * r2)
+    Console.WriteLine("Введите координату Х: ");
+    x = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine("Введите координату Y: ");
+    y = Convert.ToDouble(Console.ReadLine());
+    {
+        i++;
+    }
+
+}
+Console.WriteLine(i);
+#endregion*/
+
+// Номер 11
+/*#region
+Console.WriteLine("Level 3 Task 11");
+
+int s = 0;
+double average = 0;
+int mark;
+bool bad_trigger = false;
+bool stop = false;
+int bad = 0;
+int n = 0;
+Console.WriteLine($"    if all data is entered, please write '-1'");
+while (true)
+{
+    for (int i = 1; i <= 4; i++)
+    {
+        Console.WriteLine($"    Please enter {i} grade of {n + 1} student");
+        if (!int.TryParse(Console.ReadLine(), out mark))
+        {
+            Console.WriteLine("    Wrong mark, please try again");
+            return;
+        }
+        if (mark == -1)
+        {
+            stop = true;
+            break;
+        }
+        if (mark < 2 || mark > 5)
+        {
+            Console.WriteLine($"    Mark must be in range from 2 to 5");
+            return;
+        }
+        if (mark == 2)
+        {
+            bad_trigger = true; ;
+        }
+        s += mark;
+    }
+    if (stop)
+    {
+        break;
+    }
+    if (bad_trigger)
+    {
+        bad++;
+    }
+    else
+    {
+        average += s;
+    }
+    bad_trigger = false;
+    s = 0;
+    n++;
+}
+Console.WriteLine($"    Bad students: {bad}, Average mark: {average / ((n - bad) * 4)}");
+#endregion*/
+
+// Номер 12
+/*#region
+int k = 1;
+while (k != 0)
+{
+    Console.WriteLine("Что хотите найти: 1 = площадь квадрата," + " 2 = площадь круга," + " 3 = площадь равностороннего треугольника" + "0 = окончание работы");
+    Console.WriteLine("Введите выбор:");
+    k = Convert.ToInt32(Console.ReadLine());
+    switch (k)
+    {
+        case 1:
+            Console.WriteLine("Введите длину стороны:");
+            double r = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine(r * r);
+            break;
+        case 2:
+            Console.WriteLine("Введите радиус окружности:");
+            r = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine(Math.PI * r * r);
+            break;
+        case 3:
+            Console.WriteLine("Введите длину стороны:");
+            r = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine(r * r * Math.Pow(3, 0.5) / 4);
+            break;
+        case 0:
+            break;
+        default:
+            Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3!");
+            break;
+    }
+}
+#endregion*/
+
+// Номер 13
+/*#region
+int k = 1;
+while (k != 0)
+{
+    Console.WriteLine("Что хотите найти: 1 = площадь прямоугольника," + " 2 = площадь кольца," + " 3 = площадь равнобедренного треугольника" + "0 = окончание работы");
+    Console.WriteLine("Введите выбор:");
+    k = Convert.ToInt32(Console.ReadLine());
+    switch (k)
+    {
+        case 1:
+            Console.WriteLine("Введите длины сторон:");
+            double A = Convert.ToDouble(Console.ReadLine());
+            double B = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine(A * B);
+            break;
+        case 2:
+            Console.WriteLine("Введите радиусы окружностей:");
+            A = Convert.ToDouble(Console.ReadLine());
+            B = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine(Math.Abs(Math.PI * A * A - Math.PI * B * B));
+            break;
+        case 3:
+            Console.WriteLine("Введите длины сторон, где первое введенное число основание:");
+            A = Convert.ToDouble(Console.ReadLine());
+            B = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine(A * Math.Pow((4 * B * B - A * A), 0.5) / 4);
+            break;
+        case 0:
+            break;
+        default:
+            Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3!");
+            break;
+    }
+}
+#endregion*/
