@@ -38,11 +38,13 @@ while (i <= n)
 {
     Console.WriteLine("Введите рост в метрах: ");
     double height = Convert.ToDouble(Console.ReadLine());
-    sum += height;
-    i++;
+    if (height > 0)
+    {
+        sum += height;
+    }
+    i ++;
 }
 Console.WriteLine(sum);
-
 #endregion*/
 
 // Номер 9
@@ -60,69 +62,97 @@ Console.WriteLine(min);
 #endregion*/
 
 // Уровень 3
-// Номер 4
+// Номер 4(Ограничение значений при х = 100)
 /*#region
-int n, i = 0;
+int i = 0;
 Console.WriteLine("Введите первый радиус");
 double r1 = Convert.ToDouble(Console.ReadLine());
 Console.WriteLine("Введите второй радиус");
 double r2 = Convert.ToDouble(Console.ReadLine());
-Console.WriteLine("Введите количество точек, которые хотите проверить");
-n = Convert.ToInt32(Console.ReadLine());
-while (n > 0)
+Console.WriteLine("Введите координату Х: ");
+double x = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите координату Y: ");
+double y = Convert.ToDouble(Console.ReadLine());
+while (x < 100)
 {
-    Console.WriteLine("Введите координату Х: ");
-    double x = Convert.ToDouble(Console.ReadLine());
-    Console.WriteLine("Введите координату Y: ");
-    double y = Convert.ToDouble(Console.ReadLine());
     if (x * x + y * y > r1 * r1 && x * x + y * y <= r2 * r2)
+    Console.WriteLine("Введите координату Х: ");
+    x = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine("Введите координату Y: ");
+    y = Convert.ToDouble(Console.ReadLine());
     {
         i++;
     }
-    n--;
+
 }
 Console.WriteLine(i);
 #endregion*/
 
 // Номер 11
 /*#region
-using System.Globalization;
-using System.Runtime.Versioning;
+Console.WriteLine("Level 3 Task 11");
 
-Console.WriteLine("Введите количество студентов:");
-int n = Convert.ToInt32(Console.ReadLine());
-int m1, m2, m3, m4; //Оценки
-double count = n * 4; //Количество оценок
-double sum = 0; //Сумма оценок(всех)
-double cur = 0, prev = 0, min = 100000000000000;
-while (n > 0)
+int s = 0;
+double average = 0;
+int mark;
+bool bad_trigger = false;
+bool stop = false;
+int bad = 0;
+int n = 0;
+Console.WriteLine($"    if all data is entered, please write '-1'");
+while (true)
 {
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= 4; i++)
     {
-        Console.WriteLine("Введите оценки студента:");
-        m1 = Convert.ToInt32(Console.ReadLine());
-        m2 = Convert.ToInt32(Console.ReadLine());
-        m3 = Convert.ToInt32(Console.ReadLine());
-        m4 = Convert.ToInt32(Console.ReadLine());
-        sum += m1 + m2 + m3 + m4;
-        cur = (m1 + m2 + m3 + m4) / 4;
-        min = Math.Min(min, cur);
-        prev = cur;
-        n--;
+        Console.WriteLine($"    Please enter {i} grade of {n + 1} student");
+        if (!int.TryParse(Console.ReadLine(), out mark))
+        {
+            Console.WriteLine("    Wrong mark, please try again");
+            return;
+        }
+        if (mark == -1)
+        {
+            stop = true;
+            break;
+        }
+        if (mark < 2 || mark > 5)
+        {
+            Console.WriteLine($"    Mark must be in range from 2 to 5");
+            return;
+        }
+        if (mark == 2)
+        {
+            bad_trigger = true; ;
+        }
+        s += mark;
     }
+    if (stop)
+    {
+        break;
+    }
+    if (bad_trigger)
+    {
+        bad++;
+    }
+    else
+    {
+        average += s;
+    }
+    bad_trigger = false;
+    s = 0;
+    n++;
 }
-Console.WriteLine("Средний балл группы: " + sum / count);
+Console.WriteLine($"    Bad students: {bad}, Average mark: {average / ((n - bad) * 4)}");
 #endregion*/
 
 // Номер 12
 /*#region
-Console.WriteLine("Введите количество повторов:");
-int n = Convert.ToInt32(Console.ReadLine());
-while (n > 0)
+int k = 1;
+while (k != 0)
 {
-    Console.WriteLine("Что хотите найти: 1 = площадь квадрата," + " 2 = площадь круга," + " 3 = площадь равностороннего треугольника");
+    Console.WriteLine("Что хотите найти: 1 = площадь квадрата," + " 2 = площадь круга," + " 3 = площадь равностороннего треугольника" + "0 = окончание работы");
     Console.WriteLine("Введите выбор:");
-    int k = Convert.ToInt32(Console.ReadLine());
+    k = Convert.ToInt32(Console.ReadLine());
     switch (k)
     {
         case 1:
@@ -140,23 +170,23 @@ while (n > 0)
             r = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine(r * r * Math.Pow(3, 0.5) / 4);
             break;
+        case 0:
+            break;
         default:
             Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3!");
             break;
     }
-    n--;
 }
 #endregion*/
 
 // Номер 13
 /*#region
-Console.WriteLine("Введите количество повторов:");
-int n = Convert.ToInt32(Console.ReadLine());
-while (n > 0)
+int k = 1;
+while (k != 0)
 {
-    Console.WriteLine("Что хотите найти: 1 = площадь прямоугольника," + " 2 = площадь кольца," + " 3 = площадь равнобедренного треугольника");
+    Console.WriteLine("Что хотите найти: 1 = площадь прямоугольника," + " 2 = площадь кольца," + " 3 = площадь равнобедренного треугольника" + "0 = окончание работы");
     Console.WriteLine("Введите выбор:");
-    int k = Convert.ToInt32(Console.ReadLine());
+    k = Convert.ToInt32(Console.ReadLine());
     switch (k)
     {
         case 1:
@@ -177,10 +207,11 @@ while (n > 0)
             B = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine(A * Math.Pow((4 * B * B - A * A), 0.5) / 4);
             break;
+        case 0:
+            break;
         default:
             Console.WriteLine("Неверный выбор. Выберите 1, 2 или 3!");
             break;
     }
-    n--;
 }
 #endregion*/
