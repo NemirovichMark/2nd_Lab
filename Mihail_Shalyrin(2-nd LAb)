@@ -85,6 +85,9 @@
             //часть 2 
             // задание 1
            
+         
+            // задание 1
+
             Console.WriteLine("Введите кол-во учащихся");
             int kol = int.Parse(Console.ReadLine());
             double sum = 0;
@@ -92,75 +95,132 @@
             {
                 Console.Write($"Введите рост человека: {i} ");
                 double rost = int.Parse(Console.ReadLine());
-                sum += rost;
+                if (rost <= 0)
+                {
+                    Console.WriteLine("Введено неправильно");
+                    break;
+                }
+                else
+                {
+                    sum += rost;
+                }
+               
             }
             Console.WriteLine(sum / kol);
             Console.ReadLine();
+            
+            
             //  задание 9
+           
+            
             Console.WriteLine("количество участников");
             int s = int.Parse(Console.ReadLine());
-            int[] koli = new int[s];
-            for (int i = 0; i < koli.Length; i++)
+            if (s > 0)
             {
-                Console.Write($"участник с индексом №{i + 1}  имеет результат: ");
-                koli[i] = int.Parse(Console.ReadLine());
+                int[] koli = new int[s];
+                for (int i = 0; i < koli.Length; i++)
+                {
+                    Console.Write($"участник с индексом №{i + 1}  имеет результат: ");
+                    koli[i] = int.Parse(Console.ReadLine());
+                }
+                Array.Sort(koli);
+                Console.WriteLine($"Лучший результат: {koli[0]} ");
+                Console.ReadLine();
             }
-            Array.Sort(koli);
-            Console.WriteLine($"Лучший результат: {koli[0]} ");
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Good try(");
+            }
             
             //задание 11
-            асть 3 - задание 11
-            Console.Write("Кол-во учеников: ");
+             Console.WriteLine("Hello World!");
+              Console.Write("Кол-во учеников: ");
             int kol_vo = Convert.ToInt16(Console.ReadLine());
             int col = 0;
-
+            int summa = 0;
             for (int i = 0; i < kol_vo; i++) 
             {
                 Console.Write($"Вводите результаты ученика #{i + 1}: ");
                 string[] results = Console.ReadLine().Split(' ');
-                double Math = double.Parse(results[0]);
-                double chemistry = double.Parse(results[1]);
-                double hist = double.Parse(results[2]);
-                double biol = double.Parse(results[3]);
-                if ((Math >= 3 && Math <= 5) && (chemistry >= 3 && chemistry <= 5) && (hist >= 3 && hist <= 5) &&  (biol >= 3 && biol <= 5)) col++;
-                
+                int Math = int.Parse(results[0]);
+                int chemistry = int.Parse(results[1]);
+                int hist = int.Parse(results[2]);
+                int biol = int.Parse(results[3]);
+
+                if (((results.Length > 4) && (results.Length < 4)) && ((5 < Math) && (Math < 2)) && ((5 < chemistry) && (chemistry < 2)) && ((5 > hist) && (hist < 2)) && ((5 < biol) && (biol < 2)))
+                {
+                    Console.WriteLine("Числа введены неправильно");
+                    break;
+                }  
+                else
+                {
+                    col++;
+                    summa = Math + hist + biol + chemistry;
+                }
+
+
             }
-            Console.WriteLine($"Число сдавших экззамен: {col} ");
+            Console.WriteLine($"Число сдавших экззамен: {col} Число неуспевающих студентовL {kol_vo - col} Средний балл группы без неуспевающих: {summa / col}");
             Console.ReadLine();
             //задание 12
            
+               //задание 12
+
             double kvadrat, krug, treyg = 0;
             double gradusi = Math.Sin(1) / 3.14 * 180;
             Console.Write("Введите значение r: ");
-            double r = double.Parse(Console.ReadLine());              
+            double r = double.Parse(Console.ReadLine());
             if (r > 0)
             {
-                 kvadrat = Math.Pow(r, 2);
-                 krug =  3.14 * Math.Pow(r, 2);
-                 treyg = gradusi * Math.Pow(r, 2) * 0.5;
-                Console.WriteLine($"площадь квадрата: {kvadrat},площадь круга: {krug}, площажь треугольника: {treyg}");
-            }
-            Console.ReadLine();
+                Console.Write("Введите: Площадь квадрата или Площадь круга или Площадь треугольника ");
+                string ploshad = Console.ReadLine();
+                switch (ploshad)
+                {
+                    case "Площадь квадрата":
+                        Console.WriteLine(kvadrat = Math.Pow(r, 2));
+                        break;
+                    case "Площадь круга":
+                        Console.WriteLine(krug = 3.14 * Math.Pow(r, 2));
+                        break;
+                    case "Площадь треугольника":
+                        Console.WriteLine(treyg = gradusi * Math.Pow(r, 2) * 0.5);
+                        break;
+                    default:
+                        Console.WriteLine("неизвестное имя");
+                        break;
             // задание 13
-                 Console.WriteLine("Введите значения A и B, где A меньшая сторона! ");
+                  
+            // задание 13
+            Console.WriteLine("Введите значения A и B, где A меньшая сторона! ");
             Console.Write("Сторона A: ");
-            double A = double.Parse(Console.ReadLine());
+            float A = float.Parse(Console.ReadLine());
             Console.Write("Сторона B: ");
-            double B = double.Parse(Console.ReadLine());
+            float B = float.Parse(Console.ReadLine());
+            
+            
             if (A > 0 && B > 0 && A < B && (A < B + B) && (B < A + B))
             {
-                double pryam = A * B;
-                double kol_co = 3.14 * (Math.Pow(B, 2) + Math.Pow((A), 2));
-                double ravn_treyg = A / 4 * (Math.Sqrt(4 * Math.Pow(B, 2) - Math.Pow(A, 2)));
-                Console.WriteLine($"площадь прямоугольника: {pryam}, площадь кольца {kol_co}, площадь треугольника {ravn_treyg}");
+                Console.WriteLine("Введите что-то из набора слов(Кольцо,Прямоугольник,Треугольник) ");
+                string ploshad = Console.ReadLine();
+                switch (ploshad)
+                {
+                    case "Кольцо":
+                       
+                        Console.Write(3.14 * (Math.Pow(B, 2) + Math.Pow(A,2)));
+                        break;
+                    case "Прямоугольник":
+                        Console.Write(A * B);
+                        break;
+                    case "Треугольник":
+                        
+                        Console.Write(A / 4 * (Math.Sqrt(4 * Math.Pow(B, 2) - Math.Pow(A, 2))));
+                        break;
+
+                }
             }
             else
             {
                 Console.WriteLine("Числа введены неправильно!");
-               
-            }
-            Console.ReadLine();
             // задание 4
                Console.Write("Введите количество точек: ");
             int length = int.Parse(Console.ReadLine());
