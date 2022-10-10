@@ -118,8 +118,12 @@ namespace _2nd_lab
                     Console.Write((i + 1) + ": ");
                     string line = Console.ReadLine();
                     string sex = line.Trim(charsToTrimSex);
-                    sex = sex.ToUpper();
                     double height = Convert.ToDouble(line.Trim(charsToTrimHeight));
+                    if (height < 0)
+                    {
+                        Console.WriteLine("You didn't follow my example! Goodbye...");
+                        return;
+                    }
                     if (sex == "M" || sex == "m")
                     {
                         male_n++;
@@ -252,6 +256,7 @@ namespace _2nd_lab
             int mark_n1 = 0, mark_n2 = 0, mark_n3 = 0, mark_n4 = 0;
             int bad_marked1 = 0, bad_marked2 = 0, bad_marked3 = 0, bad_marked4 = 0;
             double mark_sum1 = 0, mark_sum2 = 0, mark_sum3 = 0, mark_sum4 = 0;
+            double mid1 = 0, mid2 = 0, mid3 = 0, mid4 = 0;
             i = 0;
             try
             {
@@ -277,14 +282,26 @@ namespace _2nd_lab
                     double m3 = double.Parse(marks[2]);
                     double m4 = double.Parse(marks[3]);
                     i++;
-                    mark_n1++;
-                    mark_sum1 += m1;
-                    mark_n2++;
-                    mark_sum2 += m2;
-                    mark_n3++;
-                    mark_sum3 += m3;
-                    mark_n4++;
-                    mark_sum4 += m4;
+                    if (m1 != 2.0)
+                    {
+                        mark_n1++;
+                        mark_sum1 += m1;
+                    }
+                    if (m2 != 2.0)
+                    {
+                        mark_n2++;
+                        mark_sum2 += m2;
+                    }
+                    if (m3 != 2.0)
+                    {
+                        mark_n3++;
+                        mark_sum3 += m3;
+                    }
+                    if (m4 != 2.0)
+                    {
+                        mark_n4++;
+                        mark_sum4 += m4;
+                    }
                     if (m1 < goal1)
                     {
                         bad_marked1++;
@@ -302,13 +319,13 @@ namespace _2nd_lab
                         bad_marked4++;
                     }
                 }
-                double mid1 = mark_sum1 / mark_n1;
+                mid1 = mark_sum1 / mark_n1;
                 Console.WriteLine("Mid mark 1st sbj: " + mid1);
-                double mid2 = mark_sum2 / mark_n2;
+                mid2 = mark_sum2 / mark_n2;
                 Console.WriteLine("Mid mark 2st sbj: " + mid2);
-                double mid3 = mark_sum3 / mark_n3;
+                mid3 = mark_sum3 / mark_n3;
                 Console.WriteLine("Mid mark 3st sbj: " + mid3);
-                double mid4 = mark_sum4 / mark_n4;
+                mid4 = mark_sum4 / mark_n4;
                 Console.WriteLine("Mid mark 4st sbj: " + mid4);
                 Console.WriteLine("Bad marked 1st sbj: " + bad_marked1);
                 Console.WriteLine("Bad marked 2st sbj: " + bad_marked2);
@@ -341,28 +358,20 @@ namespace _2nd_lab
                     r = double.Parse(line[0]);
                     int type = int.Parse(line[1]);
                     double area = 0;
-                    if (type == 1)
+                    switch (type)
                     {
-                        area = Math.Pow(r, 2);
-                    }
-                    else
-                    {
-                        if (type == 2)
-                        {
+                        case 1:
+                            area = Math.Pow(r, 2);
+                            break;
+                        case 2:
                             area = Math.PI * Math.Pow(r, 2);
-                        }
-                        else
-                        {
-                            if (type == 3)
-                            {
-                                area = (Math.Sqrt(3) * Math.Pow(r, 2)) / 4;
-                            }
-                            else
-                            {
-                                Console.WriteLine("You didn't follow my example! Goodbye...");
-                                return;
-                            }
-                        }
+                            break;
+                        case 3:
+                            area = (Math.Sqrt(3) * Math.Pow(r, 2)) / 4;
+                            break;
+                        default:
+                            Console.WriteLine("You didn't follow my example! Goodbye...");
+                            return;
                     }
                     Console.WriteLine("Area: " + Math.Round(area, 3));
                     i++;
@@ -393,31 +402,28 @@ namespace _2nd_lab
                     string[] line = input.Split(' ');
                     double a = double.Parse(line[0]);
                     double b = double.Parse(line[1]);
+                    if (a <= 0 || b <= 0)
+                    {
+                        Console.WriteLine("You didn't follow my example! Goodbye...");
+                        return;
+                    }
                     int type = int.Parse(line[2]);
                     double area = 0;
-                    if (type == 1)
+                    switch (type)
                     {
-                        area = a * b;
-                    }
-                    else
-                    {
-                        if (type == 2)
-                        {
+                        case 1:
+                            area = a * b;
+                            break;
+                        case 2:
                             area = Math.Abs((Math.PI * Math.Pow(a, 2)) - (Math.PI * Math.Pow(b, 2)));
-                        }
-                        else
-                        {
-                            if (type == 3)
-                            {
-                                double p = (a + b + b) / 2;
-                                area = Math.Sqrt(p * (p - a) * (p - b) * (p - b));
-                            }
-                            else
-                            {
-                                Console.WriteLine("You didn't follow my example! Goodbye...");
-                                return;
-                            }
-                        }
+                            break;
+                        case 3:
+                            double p = (a + b + b) / 2;
+                            area = Math.Sqrt(p * (p - a) * (p - b) * (p - b));
+                            break;
+                        default:
+                            Console.WriteLine("You didn't follow my example! Goodbye...");
+                            return;
                     }
                     Console.WriteLine("Area: " + Math.Round(area, 3));
                     i++;
