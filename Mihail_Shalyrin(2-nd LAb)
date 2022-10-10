@@ -133,31 +133,32 @@
             }
             
             //задание 11
-             Console.WriteLine("Hello World!");
-              Console.Write("Кол-во учеников: ");
+              // задание 11
+            Console.WriteLine("Hello World!");
+            Console.Write("Кол-во учеников: ");
             int kol_vo = Convert.ToInt16(Console.ReadLine());
             int col = 0;
-            int summa = 0;
-            for (int i = 0; i < kol_vo; i++) 
+            float summa = 0;
+            float ball = 0;
+            for (int i = 0; i < kol_vo; i++)
             {
-                Console.Write($"Вводите результаты ученика #{i + 1}: ");
-                string[] results = Console.ReadLine().Split(' ');
-                int Math = int.Parse(results[0]);
-                int chemistry = int.Parse(results[1]);
-                int hist = int.Parse(results[2]);
-                int biol = int.Parse(results[3]);
+                Console.Write("введите оценку по математике: ");
+                int Math = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите оценку по химии :");
+                int chemistry = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите оценку по истории :");
+                int hist = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите оценку по биологии:");
+                int biol = Convert.ToInt32(Console.ReadLine());
 
-                if (((results.Length > 4) && (results.Length < 4)) && ((5 < Math) && (Math < 2)) && ((5 < chemistry) && (chemistry < 2)) && ((5 > hist) && (hist < 2)) && ((5 < biol) && (biol < 2)))
+                if ((Math <= 5) && (chemistry <= 5) && (hist <= 5) && (biol <= 5))
                 {
-                    Console.WriteLine("Числа введены неправильно");
-                    break;
-                }  
-                else
-                {
-                    col++;
-                    summa = Math + hist + biol + chemistry;
-                }
-
+                    if ((Math != 2) && (chemistry != 2) && (hist != 2) && (biol != 2))
+                    {
+                        col++;
+                        ball = (Math + chemistry + hist + biol) / 4;
+                        summa +=  ball;
+                    }
 
             }
             Console.WriteLine($"Число сдавших экззамен: {col} Число неуспевающих студентовL {kol_vo - col} Средний балл группы без неуспевающих: {summa / col}");
