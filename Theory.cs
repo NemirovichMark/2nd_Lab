@@ -1,158 +1,376 @@
-﻿using System;
+using System;
+using System.Reflection;
 
-namespace _2nd_Lab
+namespace _2_lab
 {
-    class Theory
+    class Program
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
-
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            #region Task 1_3
+            double a, b, c;
+            Console.Write("Enter a:");
+            string vvod_a = Console.ReadLine();
+            double.TryParse(vvod_a, out a);
+            Console.Write("Enter b:");
+            string vvod_b = Console.ReadLine();
+            double.TryParse(vvod_b, out b);
+            if (a > 0)
             {
-                // will be done, because 4th condition provide true
-            }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
-            }
-
-            #endregion
-
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
-            {
-                if (request.StartsWith('I'))
+                if (a > b)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
-                    {
-                        // very positive result
-                    }
+                    c = a;
                 }
                 else
                 {
-                    // negative result
+                    c = b;
                 }
-                // addition work
-            }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
-            #endregion
-
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
             }
             else
             {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
-            {
-
-            }
-            else
-            {
-                if (1 == (int)'a')
+                if (a < b)
                 {
-
+                    c = a;
+                }
+                else
+                {
+                    c = b;
                 }
             }
-
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
+            Console.WriteLine(c);
             #endregion
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
+            #region Task 1_4
+            double a, b, c, z;
+            Console.Write("Enter a:");
+            string vvod_a = Console.ReadLine();
+            double.TryParse(vvod_a, out a);
+            Console.Write("Enter b:");
+            string vvod_b = Console.ReadLine();
+            double.TryParse(vvod_b, out b);
+            Console.Write("Enter c:");
+            string vvod_c = Console.ReadLine();
+            double.TryParse(vvod_c, out c);
+            if (a > b)
             {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
+                if (b > c)
+                {
+                    z = b;
+                }
+                else
+                {
+                    z = c;
+                }
+            }
+            else
+            {
+                if (a > c)
+                {
+                    z = a;
+                }
+                else
+                {
+                    z = c;
+                }
+            }
+            Console.WriteLine(z);
+            #endregion
+
+            #region Task 1_5
+            double r1 = 70, s1 = 36.74, r2 = 0.86, s2 = 0.74;
+            double diagonal_1, radius_1, diagonal_2, radius_2;
+            diagonal_1 = Math.Sqrt(s1) * Math.Pow(2, 0.5);
+            radius_1 = Math.Pow(r1 / Math.PI, 0.5);
+            if (diagonal_1 <= 2 * radius_1)
+            {
+                Console.WriteLine("1) The square will fit into the circle");
+            }
+            else
+            {
+                Console.WriteLine("1) The square won't fit in a circle");
+            }
+
+            diagonal_2 = Math.Sqrt(s2) * Math.Pow(2, 0.5);
+            radius_2 = Math.Pow(r2 / Math.PI, 0.5);
+            if (diagonal_2 <= 2 * radius_2)
+            {
+                Console.WriteLine("2) The square will fit into the circle");
+            }
+            else
+            {
+                Console.WriteLine("2) The square won't fit in a circle");
+            }
+            #endregion
+
+            #region Task 2_1
+            int n = 6, sum_girls, k = 0;
+            double height, med_girls = 0, sum = 0, med_boys = 0;
+            Console.Write("How many girls?");
+            string vvod = Console.ReadLine();
+            if (int.TryParse(vvod, out sum_girls))
+            {
+                int.TryParse(vvod, out sum_girls);
+            }
+            else
+            {
+                Console.WriteLine("Enter an integer");
+            }
+            if (sum_girls < 0)
+            {
+                Console.WriteLine("Error");
+            }
+            if (sum_girls > 0)
+            {
+                Console.Write("Enter the height of the girls in one measurement system");
+                for (int i = 1; i <= sum_girls; i++)
+                {
+                    string height_vvod = Console.ReadLine();
+                    double.TryParse(height_vvod, out height);
+                    if (height > 0)
+                    {
+                        sum += height;
+                        k++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                        return;
+                    }
+                }
+                med_girls = sum / k;
+                k = 0;
+                sum = 0;
+                height = 0;
+                Console.Write("Enter the height of the boys in one measurement system");
+                for (int i = 1; i <= n - sum_girls; i++)
+                {
+                    string height_vvod = Console.ReadLine();
+                    double.TryParse(height_vvod, out height);
+                    if (height > 0)
+                    {
+                        sum += height;
+                        k++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                        return;
+                    }
+                }
+                med_boys = sum / k;
+                Console.WriteLine($"Average height of girls: {med_girls}", med_girls);
+                Console.WriteLine($"Average height of boys: {med_boys}", med_boys);
+            }
+            if (sum_girls == 0)
+            {
+                Console.Write("Enter the height of the boys in one measurement system");
+                for (int i = 1; i <= n; i++)
+                {
+                    string height_vvod = Console.ReadLine();
+                    double.TryParse(height_vvod, out height);
+                    if (height > 0)
+                    {
+                        sum += height;
+                        k++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                        return;
+                    }
+                }
+                med_boys = sum / k;
+                Console.WriteLine($"Average height of boys: {med_boys}", med_boys);
+            }
+            #endregion
+
+            #region Task 2_5
+            double min, result;
+            int k = 0;
+            Console.Write("Enter the minimum number of the standart:");
+            string vvod_min = Console.ReadLine();
+            double.TryParse(vvod_min, out min);
+            if (min <= 0)
+            {
+                Console.WriteLine("Error");
+                return;
+            }
+            for (int i = 1; i <= 30; i++)
+            {
+                Console.Write("Enter the participant's result:");
+                string vvod_result = Console.ReadLine();
+                double.TryParse(vvod_result, out result);
+                if (result < 0)
+                {
+                    Console.WriteLine("Error");
+                    return;
+                }
+                if (result >= min)
+                {
+                    k += 1;
+                }
+            }
+            Console.WriteLine(k);
+            #endregion
+
+            #region Task 3_4
+            double R, r, x, y;
+            int sum = 0;
+            Console.Write("Enter a larger radius: ");
+            string vvod_R = Console.ReadLine();
+            double.TryParse(vvod_R, out R);
+            Console.Write("Enter a smaller radius: ");
+            string vvod_r = Console.ReadLine();
+            double.TryParse(vvod_r, out r);
+            if (r <= 0 || R <= 0 || R <= r)
+            {
+                Console.WriteLine("Error");
+                return;
+            }
+            do
+            {
+                for (int i = 1; ; i++)
+                {
+                    Console.Write("Enter 1000 < x < 1000, (to end, enter '1000'): ");
+                    string vvod_x = Console.ReadLine();
+                    double.TryParse(vvod_x, out x);
+                    if (x == 1000)
+                    {
+                        break;
+                    }
+                    Console.Write("Enter y: ");
+                    string vvod_y = Console.ReadLine();
+                    double.TryParse(vvod_y, out y);
+                    if ((x * x + y * y <= R * R) && (x * x + y * y >= r * r)) ;
+                    {
+                        sum++;
+                    }
+                }
+            } while (x < 1000);
+            Console.WriteLine(sum);
+            #endregion
+
+            #region Task 3_11
+            int mark, bad = 0, bad_st = 0, k = 0, ch = 0;
+            double middle, sum = 0;
+            do
+            {
+                for (int i = 1; ; i++)
+                {
+                    ch += 1;
+                    Console.Write($"Enter mark {ch} of student {k + 1}(to end, enter '6'): ");
+                    string vvod_mark = Console.ReadLine();
+                    int.TryParse(vvod_mark, out mark);
+                    if (mark == 6)
+                    {
+                        break;
+                    }
+                    if (mark < 2 || mark > 6)
+                    {
+                        Console.Write("Error");
+                        return;
+                    }
+                    if (mark == 2)
+                    {
+                        bad++;
+                    }
+                    sum += mark;
+                    if (ch == 4)
+                    {
+                        ch = 0;
+                        k += 1;
+                        if (bad > 0)
+                        {
+                            bad_st++;
+                            bad = 0;
+                        }
+                    }
+                }
+            } while (mark < 6);
+            middle = sum / (k * 4);
+            Console.WriteLine($"Average score for the group: {middle}");
+            Console.WriteLine($"Number of underachieving students: {bad_st}");
+            #endregion
+
+            #region Task 3_12
+            int k;
+            double r;
+            Console.Write("Enter a number: ");
+            string vvod_r = Console.ReadLine();
+            double.TryParse(vvod_r, out r);
+            if (r <= 0)
+            {
+                Console.WriteLine("Error");
+                return;
+            }
+            Console.WriteLine("Command options: 1 - square area, 2 - area of the circle, 3 - area of an equilateral triangle");
+            Console.Write("Enter command 1, 2 or 3: ");
+            string vvod_k = Console.ReadLine();
+            int.TryParse(vvod_k, out k);
+            switch (k)
+            {
+                case 1:
+                    r = r * r;
+                    Console.WriteLine($"Square area: {r}");
+                    Console.ReadKey();
+                    return;
+                case 2:
+                    r = Math.PI * Math.Pow(r, 2);
+                    Console.WriteLine($"Area of the circle: {r}");
+                    Console.ReadKey();
+                    return;
+                case 3:
+                    r = (Math.Pow(r, 2) * Math.Sqrt(3)) / 4;
+                    Console.WriteLine($"Area of an equilateral triangle: {r}");
+                    Console.ReadKey();
+                    return;
                 default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
+                    Console.WriteLine("Error");
+                    Console.ReadKey();
+                    return;
             }
-            Console.WriteLine(request);
-
             #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
+            #region Task 3_13
+            int k;
+            double a, b, s;
+            Console.Write("Enter a first number: ");
+            string vvod_a = Console.ReadLine();
+            double.TryParse(vvod_a, out a);
+            Console.Write("Enter a second number: ");
+            string vvod_b = Console.ReadLine();
+            double.TryParse(vvod_b, out b);
+            if (a <= 0 || b <= 0)
             {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
-
+                Console.WriteLine("Error");
+                return;
+            }
+            Console.WriteLine("Command options: 1 - rectangle area, 2 - ring area, 3 - area of an isosceles triangle");
+            Console.Write("Enter command 1, 2 or 3: ");
+            string vvod_k = Console.ReadLine();
+            int.TryParse(vvod_k, out k);
+            switch (k)
+            {
+                case 1:
+                    s = a * b;
+                    Console.WriteLine($"Rectangle area: {s}");
+                    Console.ReadKey();
+                    return;
+                case 2:
+                    s = Math.Abs(Math.PI * a * a - Math.PI * b * b);
+                    Console.WriteLine($"Ring area: {s}");
+                    Console.ReadKey();
+                    return;
+                case 3:
+                    s = (a * Math.Sqrt(4 * b * b - a * a)) / 4;
+                    Console.WriteLine($"Area of an isosceles triangle: {s}");
+                    Console.ReadKey();
+                    return;
+                default:
+                    Console.WriteLine("Error");
+                    Console.ReadKey();
+                    return;
+            }
             #endregion
         }
     }
