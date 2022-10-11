@@ -49,7 +49,7 @@ namespace kaf
             #endregion
 
             #region task2_4
-            int r1 = 2; int r2 = 8; int n = 0; int k = 0;
+            int r1 = 2; int r2 = 8; int n = 0; 
 
             for (int i = 0; i <= 5; i++)
             {
@@ -64,6 +64,47 @@ namespace kaf
                 }
             }
             Console.WriteLine("В кольцо попало " + n + " точек");
+            #endregion
+            
+            #region task3_4
+            int r1 = 2; int r2 = 8; int n = 0; 
+            Console.WriteLine("Введите кол-во точек");
+            int zn = int.Parse(Console.ReadLine());
+            for (int i = 0; i <= zn; i++)
+            {
+                Console.WriteLine("Введите х ");
+                double x = double.Parse(Console.ReadLine());
+                Console.WriteLine("Введите у ");
+                double y = double.Parse(Console.ReadLine());
+
+                if (x * x + y * y >= r1 * r1 & x * x + y * y <= r2 * r2)
+                {
+                    n++;
+                }
+            }
+            Console.WriteLine("В кольцо попало " + n + " точек");
+            #endregion
+
+            #region task3_12
+            double S = 0;
+
+            Console.WriteLine("Выберите фигуру: круг - 0, треугольник - 1, квадрат - 2");
+            int x = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите значение для рассчета площади");
+            double r = double.Parse(Console.ReadLine());
+            if (x == 0)
+            {
+                S = Math.PI * r * r;
+            }
+            if (x == 1)
+            {
+                S = r * r * Math.Sqrt(3) / 4;
+            }
+            if (x == 2)
+            {
+                S = r * r;
+            }
+            Console.WriteLine(S);
             #endregion
 
         }
