@@ -127,6 +127,23 @@ namespace kaf
             }
             Console.WriteLine(S);
             #endregion
+            
+            #region task3_13
+             double S = 0;
+            Console.WriteLine("Введите количество фигур");
+             int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++) {
+                Console.WriteLine("Введите значения");
+                double a = double.Parse(Console.ReadLine());
+                double b = double.Parse(Console.ReadLine());
+                Console.WriteLine("Выберите фигуру: прямоугольник - 0, кольцо - 1, треугольник - 2");
+                int x = int.Parse(Console.ReadLine());
+                if (x == 0) { S = a * b; }
+                if (x == 1) { S = Math.PI * Math.Abs(a * a - b * b); }
+                if (x == 2) { S = a / 4 * Math.Sqrt(4 * b * b - a * a); }
+                Console.WriteLine(S);
+            }
+            #endregion
 
         }
     }
