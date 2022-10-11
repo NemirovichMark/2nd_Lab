@@ -84,6 +84,27 @@ namespace kaf
             }
             Console.WriteLine("В кольцо попало " + n + " точек");
             #endregion
+            
+            #region task3_11
+            int k = 0; int sum = 0; int s = 0;
+            Console.Write("Введите кол-во учеников ");
+            int n = int.Parse(Console.ReadLine());
+         for (int i = 0; i < n; i++){
+                Console.WriteLine("Введите оценки ученика ( от 1 до 5 ) ");
+                int x1 = int.Parse(Console.ReadLine());
+                int x2 = int.Parse(Console.ReadLine());
+                int x3 = int.Parse(Console.ReadLine());
+                int x4 = int.Parse(Console.ReadLine());
+          if (x1 == 2 | x2 == 2 | x3 == 2 | x4 == 2)
+          {k++;}
+
+                sum = x1 + x2 + x3 + x4;
+                s +=sum;
+         }
+            Console.WriteLine(k +" "+ (s/n/4));
+
+            #endregion
+
 
             #region task3_12
             double S = 0;
