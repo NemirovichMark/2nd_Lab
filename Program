@@ -1,0 +1,81 @@
+using System;
+namespace kaf
+{
+    class room
+    {
+        public static void Main(string[] args)
+        {
+            #region task1_1
+            double r = 2;
+            Console.Write("Введите x ");
+            double x = double.Parse(Console.ReadLine());
+            Console.Write("Введите y ");
+            double y = double.Parse(Console.ReadLine());
+
+            if (x * x + y * y <= r * r)
+            {
+                Console.Write("yes");
+            }
+            else Console.WriteLine("no");
+            #endregion
+
+            #region task1_7
+                double y;
+                double x = double.Parse(Console.ReadLine());
+                if (Math.Abs(x) > 1)
+                {
+                    y = 1;
+                }
+                else y = Math.Abs(x);
+                Console.WriteLine(y);
+            #endregion
+
+            #region task2_1
+            int n = 0; double rost = 0; double midle = 0;
+            for (int i = 0; ; i++)
+            {
+                Console.WriteLine("Введите рост ученика , для завершения программы введите 0");
+                double rt = double.Parse(Console.ReadLine());
+                if (rt == 0) { break; }
+                else
+                {
+                    n++;
+                    rost += rt;
+                    midle = rost / n;
+                }
+
+            }
+            Console.WriteLine(midle);
+            #endregion
+
+            #region task2_4
+            int r1 = 2; int r2 = 8; int n = 0; int k = 0;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                Console.WriteLine("Введите х ");
+                double x = double.Parse(Console.ReadLine());
+                Console.WriteLine("Введите у ");
+                double y = double.Parse(Console.ReadLine());
+
+                if (x * x + y * y >= r1 * r1 & x * x + y * y <= r2 * r2)
+                {
+                    n++;
+                }
+            }
+            Console.WriteLine("В кольцо попало " + n + " точек");
+            #endregion
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
