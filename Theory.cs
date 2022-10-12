@@ -13,7 +13,9 @@ namespace _2nd_Lab
             Level1();
             Level2();
             Level3();
+
         }
+
 
         static void Level1()
         {
@@ -23,80 +25,75 @@ namespace _2nd_Lab
             #region ex.1
             double radius;
             double x, y;
+            bool loopVariable = true;
 
-            for (; ; )
+            try
             {
-                try
+                while(loopVariable)
                 {
                     Console.Write("Enter radius: ");
                     radius = Convert.ToDouble(Console.ReadLine());
-
                     Console.Write("Enter x: ");
                     x = Convert.ToDouble(Console.ReadLine());
-
                     Console.Write("Enter y: ");
                     y = Convert.ToDouble(Console.ReadLine());
-
                     if (Math.Pow(x, 2) + Math.Pow(y, 2) <= Math.Pow(radius, 2))
                     {
                         Console.WriteLine("The point is inside the circle");
                         Console.WriteLine("------------------------------");
-                        break;
+                        loopVariable = false;
                     }
-
                     else
                     {
                         Console.WriteLine("The point is outside the circle");
                         Console.WriteLine("------------------------------");
-                        break;
+                        loopVariable = false;
                     }
                 }
-                catch (Exception)
-                {
-                    Console.WriteLine("Wrong input");
-                    Console.WriteLine("------------------------------");
-                }
-
+                
             }
+            catch (Exception)
+            {
+                Console.WriteLine("Wrong input");
+                Console.WriteLine("------------------------------");
+            }
+
             #endregion
             Console.WriteLine("--- ex.5 ---");
             #region ex.5
 
             double areaOfCircle;
             double areaOfSquare;
+            bool cycleVariable = true;
 
-            for (; ; )
+            try
             {
-                try
+                while(cycleVariable)
                 {
                     Console.Write("Enter the area of the circle: ");
                     areaOfCircle = Convert.ToDouble(Console.ReadLine());
-
                     Console.Write("Enter the area of the square: ");
                     areaOfSquare = Convert.ToDouble(Console.ReadLine());
-
                     double radiusOfCircle = Math.Sqrt(areaOfCircle / Math.PI);
                     double diagonal = Math.Sqrt(areaOfSquare) * Math.Sqrt(2);
-
                     if (diagonal <= 2 * radiusOfCircle)
                     {
                         Console.WriteLine("The square can be placed into the circle");
                         Console.WriteLine("----------------------------------------");
-                        break;
+                        cycleVariable = false;
                     }
-
                     else
                     {
                         Console.WriteLine("The square can't be placed into the circle");
                         Console.WriteLine("------------------------------------------");
-                        break;
+                        cycleVariable = false;
                     }
                 }
-                catch (Exception)
-                {
-                    Console.WriteLine("Wrong input");
-                    Console.WriteLine("------------------------------");
-                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Wrong input");
+                Console.WriteLine("------------------------------");
             }
 
             #endregion
@@ -105,39 +102,38 @@ namespace _2nd_Lab
 
             double argument;
             double func;
-            for (; ; )
+            bool loopVar = true;
+            try
             {
-                try
+                while(loopVar)
                 {
                     Console.Write("Enter argument: ");
                     argument = Convert.ToDouble(Console.ReadLine());
-
                     if (argument < -1 || argument > 1)
                     {
                         func = 1;
                         Console.WriteLine($"y = {func}");
                         Console.WriteLine("------------------------------------------------------------");
-                        break;
+                        loopVar = false;
                     }
                     else if (argument >= -1 || argument <= 1)
                     {
                         func = Math.Abs(argument);
                         Console.WriteLine($"y = {func}");
                         Console.WriteLine("------------------------------------------------------------");
-                        break;
+                        loopVar = false;
                     }
                     else
                     {
                         Console.WriteLine("Oopsie....Try again");
                         Console.WriteLine("------------------------------------------------------------");
                     }
-
                 }
-                catch (Exception)
-                {
-                    Console.WriteLine("Oopsie....Try again");
-                    Console.WriteLine("------------------------------------------------------------");
-                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Oopsie....Try again");
+                Console.WriteLine("------------------------------------------------------------");
             }
 
             #endregion
@@ -151,82 +147,67 @@ namespace _2nd_Lab
             #region Level 2
             Console.WriteLine("--- Level 2 ---");
             Console.WriteLine("--- ex.1 ---");
-            #region ex.1
-
+            #region ex.1 (also changed the position of try and replaced if statements with switch block because it's much more readable)
             double averageHeight;
             double sumOfHeight = 0;
             int n = 0;
-            for (; ; )
+            bool exitForLoop = true;
+            try
             {
-                try
+                while (exitForLoop)
                 {
-
                     double height;
-
-
-
                     Console.Write("Enter gender(B or G, if you want to exit the program type 'E'): ");
                     char gender = char.Parse(Console.ReadLine());
-
-                    if (gender == 'E')
+                    switch (gender)
                     {
-                        averageHeight = sumOfHeight / n;
-                        Console.WriteLine("------------------------------------------------------------");
-                        Console.WriteLine($"The average height in class: {Math.Round(averageHeight, 2)}");
-                        Console.WriteLine("------------------------------------------------------------");
-                        break;
-                    }
-
-                    if (gender == 'B')
-                    {
-                        Console.Write("Enter height: ");
-                        height = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("------------------------------------------------------------");
-                        sumOfHeight += height;
-                        n++;
-                    }
-
-                    else if (gender == 'G')
-                    {
-                        Console.Write("Enter height: ");
-                        height = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("------------------------------------------------------------");
-                        sumOfHeight += height;
-                        n++;
-                    }
-
-
-
-                    else
-                    {
-                        Console.WriteLine("There's only two genders");
-                        Console.WriteLine("------------------------------------------------------------");
-                    }
-
-
-
-
-
-
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Wrong Input =( Try Again");
+                        case 'B':
+                            Console.WriteLine("Enter height:");
+                            height = Convert.ToDouble(Console.ReadLine());
+                            Console.WriteLine("------------------------------------------------------------");
+                            sumOfHeight += height;
+                            n++;
+                            break;
+                        case 'G':
+                            Console.Write("Enter height: ");
+                            height = Convert.ToDouble(Console.ReadLine());
+                            Console.WriteLine("------------------------------------------------------------");
+                            sumOfHeight += height;
+                            n++;
+                            break;
+                        case 'E':
+                            averageHeight = sumOfHeight / n;
+                            Console.WriteLine("------------------------------------------------------------");
+                            Console.WriteLine($"The average height in class: {Math.Round(averageHeight, 2)}");
+                            Console.WriteLine("------------------------------------------------------------");
+                            exitForLoop = false;
+                            break;
+                        default:
+                            Console.WriteLine("There's only two genders");
+                            Console.WriteLine("------------------------------------------------------------");
+                            break;
+                    }          
                 }
             }
+            catch (Exception)
+            {
+                Console.WriteLine("Wrong Input =( Try Again");
+            }
+            
 
             #endregion
             Console.WriteLine("--- ex.2 ---");
-            #region ex.2
+            #region ex.2(also changed the position of try block)
 
             int numberOfDots = 0;
             double r = 10;
             double a = 4;
             double b = 3;
+            bool quitLoop = true;
 
-            for (; ; )
+            try
             {
-                try
+                while (quitLoop)
                 {
                     Console.Write("Enter x coord(to exit the program type some letters or symbols): ");
                     double xCoordinate = Convert.ToDouble(Console.ReadLine());
@@ -244,14 +225,15 @@ namespace _2nd_Lab
 
 
                 }
-
-                catch (Exception)
-                {
-                    Console.WriteLine($"Number of dots inside the ring: {numberOfDots}");
-                    break;
-                }
-
             }
+
+            catch (Exception)
+            {
+                Console.WriteLine($"Number of dots inside the ring: {numberOfDots}");
+                quitLoop = false;
+            }
+
+            
 
 
             #endregion
@@ -264,10 +246,12 @@ namespace _2nd_Lab
             #region Level 3
             Console.WriteLine("--- Level 3 ---");
             Console.WriteLine("--- ex.4 ---");
-            #region ex.4
+            #region ex.4(changed the for(;;) loop to while(true) and put it into try block instead for keeping try in loop
+            double epsilon = Math.Pow(10, -4);
             int quantity = 0;
             double innerRadius;
             double outerRadius;
+            bool loopExit = true;
 
             Console.Write("Enter inner radius: ");
             double.TryParse(Console.ReadLine(), out innerRadius);
@@ -279,36 +263,32 @@ namespace _2nd_Lab
             if (innerRadius > 0 && outerRadius > 0)
             {
 
-                for (; ; )
+                try 
                 {
-                    try
+                    while(loopExit)
                     {
                         Console.Write("Enter x coord(to exit the program type some letters or symbols): ");
                         double xCoord = Convert.ToDouble(Console.ReadLine());
-
                         Console.Write("Enter y coord: ");
                         double yCoord = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("--------------------------------------------------------");
-
-
                         if (Math.Pow(xCoord, 2) + Math.Pow(yCoord, 2) <= Math.Pow(outerRadius, 2) && Math.Pow(xCoord, 2) + Math.Pow(yCoord, 2) >= Math.Pow(innerRadius, 2))
                         {
                             quantity++;
                         }
 
                     }
+                }
 
-                    catch (Exception)
-                    {
+                catch (Exception)
+                {
                         Console.WriteLine($"Answer: {quantity}");
                         Console.WriteLine("--------------------------------------------------------");
-                        break;
-                    }
+                        loopExit = false;
+                }
 
                 }
-            }
-
-
+            
 
             #endregion
 
@@ -445,7 +425,7 @@ namespace _2nd_Lab
                         break;
 
                     case 3:
-                        Console.WriteLine($"The area of a triangle: {Math.Sqrt((b - a) * (b + a)) / 2}");
+                        Console.WriteLine($"The area of a triangle: {Math.Sqrt(Math.Abs((b - a) * (b + a))) / 2}");
                         break;
 
                     default:
@@ -458,7 +438,7 @@ namespace _2nd_Lab
             #endregion
 
             #endregion
-
+         
         }
     }
 }
