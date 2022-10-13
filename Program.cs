@@ -8,6 +8,7 @@ using System.Diagnostics.PerformanceData;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Runtime.ExceptionServices;
 
 namespace Lab_2
 {
@@ -94,16 +95,36 @@ namespace Lab_2
                     if (gen == 'B')
                     {
                         Console.Write("Enter height");
-                        height = Convert.ToDouble(Console.ReadLine());
-                        summ += height;
-                        n++;
+                        bool ok_height = double.TryParse(Console.ReadLine(), out height);
+
+                        if ((!ok_height) || (height <= 0))
+                        {
+                            Console.WriteLine($"Height should be positive");
+                            break;
+                        }
+                        else
+                        {
+                            summ += height;
+                            n++;
+                        }
+
                     }
                     else if (gen == 'G')
                     {
                         Console.WriteLine("Enter height");
-                        height = Convert.ToDouble(Console.ReadLine());
-                        summ += height;
-                        n++;
+                        bool ok_height = double.TryParse(Console.ReadLine(), out height);
+
+                        if ((!ok_height) || (height <= 0))
+                        {
+                            Console.WriteLine($"Height should be positive");
+                            break;
+                        }
+                        else
+                        {
+                            summ += height;
+                            n++;
+                        }
+
                     }
                     else if (gen == 'E')
                     {
@@ -221,142 +242,40 @@ namespace Lab_2
             #endregion
             #region Task 11
             Console.WriteLine($"Task 11");
-            double ll = 0;
-            int terrible = 0;
-            int mark1, mark2, mark3, mark4, bad = 0, countt = 0;
-            double ans;
-            do
+            double avgsu = 0, total = 0;
+            double j;
+            int ex1, ex2, ex3, ex4;
+            double good = 0, bad = 0;
+            Console.WriteLine($"Enter the amount of students");
+            double.TryParse(Console.ReadLine(), out j);
+            for (int h = 1; h <= j; h++)
             {
-                Console.WriteLine($"Enter the mark ( from 2 to 5 ) for the 1-st exam... to end enter 6");
-                bool good1 = int.TryParse(Console.ReadLine(), out mark1);
-                if (good1)
+                Console.WriteLine($"Enter mark for the 1-st exam");
+                int.TryParse(Console.ReadLine(), out ex1);
+                Console.WriteLine($"Enter mark for the 2-nd exam");
+                int.TryParse(Console.ReadLine(), out ex2);
+                Console.WriteLine($"Enter mark for the 3-rd exam");
+                int.TryParse(Console.ReadLine(), out ex3);
+                Console.WriteLine($"Enter mark for the 4-th exam");
+                int.TryParse(Console.ReadLine(), out ex4);
+
+                if ((ex1 >= 2 && ex1 <= 5) && (ex2 >= 2 && ex2 <= 5) && (ex3 >= 2 && ex3 <= 5) && (ex4 >= 2 && ex4 <= 5))
                 {
-                    if (mark1 == 6) break;
-                    if (mark1 > 0)
+                    if (ex1 == 2 || ex2 == 2 || ex3 == 2 || ex4 == 2)
                     {
-                        if (mark1 == 2)
-                        {
-                            bad++;
-                        }
-                        else
-                        {
-                            ll += mark1;
-                            countt++;
-                        }
-                        Console.WriteLine($"Enter the mark ( from 2 to 5 ) for the 2-nd exam... to end enter 6");
-                        bool good2 = int.TryParse(Console.ReadLine(), out mark2);
-                        if (good2)
-                        {
-                            if (mark2 == 0) break;
-                            if (mark2 > 0)
-                            {
-                                if (mark2 == 2)
-                                {
-                                    bad++;
-                                }
-                                else
-                                {
-                                    if (bad == 0)
-                                    {
-                                        ll += mark2;
-                                        countt++;
-                                    }
-                                }
-                                Console.WriteLine($"Enter the mark ( from 2 to 5 ) for the 3-rd exam... to end enter 6");
-                                bool good3 = int.TryParse(Console.ReadLine(), out mark3);
-                                if (good3)
-                                {
-                                    if (mark3 == 0) break;
-                                    if (mark3 > 0)
-                                    {
-                                        if (mark3 == 2)
-                                        {
-                                            bad++;
-                                        }
-                                        else
-                                        {
-                                            if (bad == 0)
-                                            {
-                                                ll += mark3;
-                                                countt++;
-                                            }
-                                        }
-                                        Console.WriteLine($"Enter the mark ( from 2 to 5 ) for the 4-th exam... to end enter 6");
-                                        bool good4 = int.TryParse(Console.ReadLine(), out mark4);
-                                        if (good4)
-                                        {
-                                            if (mark4 == 0) break;
-                                            if (mark4 > 0)
-                                            {
-                                                if (mark4 == 2)
-                                                {
-                                                    bad++;
-                                                }
-                                                else
-                                                {
-                                                    if (bad == 0)
-                                                    {
-                                                        ll += mark4;
-                                                        countt++;
-                                                    }
-                                                }
-                                                if (bad >= 1)
-                                                {
-                                                    terrible++;
-                                                    bad = 0;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Console.WriteLine("Incorrect input");
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("Wrong value");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Incorrect input");
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Wrong value");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Incorrect input");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Wrong value");
-                        }
+                        bad++;
                     }
                     else
                     {
-                        Console.WriteLine("Incorrect input");
+                        good++;
+                        avgsu = (ex1 + ex2 + ex3 + ex4) / 4;
+                        total += avgsu;
+
+
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Wrong value");
-                }
-            } while (mark1 != 0);
-            if (countt > 0)
-            {
-                ans = ll / countt;
-                Console.WriteLine($"The average marks in group are {ans}");
-                Console.WriteLine($"The number of failed exams {terrible}");
             }
-            else
-            {
-                Console.WriteLine("Wrong value :(");
-            }
-
+            Console.WriteLine($"Amount of failed students is {bad}, avg. mark for group is {total / good} ");
             #endregion
             #region Task 12
             Console.WriteLine($"Task 12");
@@ -371,32 +290,34 @@ namespace Lab_2
                 rr = double.Parse(Console.ReadLine());
                 Console.WriteLine($"For S of square type 0, for circle type 1, for triangle type 2 ");
                 choose = int.Parse(Console.ReadLine());
-                if (choose == 0)
+                switch (choose)
                 {
-                    result_12 = Math.Pow(rr, 2);
-                    Console.WriteLine($"S of square is {result_12}");
-                    break;
+                    case 0:
+                        result_12 = Math.Pow(rr, 2);
+                        Console.WriteLine($"S of the square is {result_12}");
+                        Console.ReadKey();
+                        break;
 
+                    case 1:
+                        result_12 = Math.Pow(rr, 2) * Math.PI;
+                        Console.WriteLine($"S of the circle is {result_12}");
+                        Console.ReadKey();
+                        break;
+
+                    case 2:
+                        result_12 = (Math.Pow(rr, 2) * Math.Sqrt(3)) / 4;
+                        Console.WriteLine($"S of equilateral triangle is {result_12}");
+                        Console.ReadKey();
+                        break;
+
+                    default:
+                        Console.WriteLine("Incorrect input");
+                        Console.ReadKey();
+                        break;
                 }
-                else if (choose == 1)
-                {
-                    result_12 = Math.Pow(rr, 2) * Math.PI;
-                    Console.WriteLine($"S of circle is {result_12}");
-                    break;
-                }
-                else if (choose == 2)
-                {
-                    result_12 = (Math.Pow(rr, 2) * Math.Sqrt(3)) / 4;
-                    Console.WriteLine($"S of triangle is {result_12}");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine($"Wrong choose, try 0, 1 or 2");
-                    break;
-                }
-            }
-                #endregion
+            } 
+       
+            #endregion
             #region Task 13
             Console.WriteLine($"Task 13");
             int n_13, choose_13;
@@ -405,36 +326,38 @@ namespace Lab_2
             n_13 = int.Parse(Console.ReadLine());
             for (int v = 1; v <= n_13; v++)
             {
-                Console.WriteLine($"Enter A");
+                Console.WriteLine($"Enter A (it should be more than 0)");
                     A = double.Parse(Console.ReadLine());
-                    Console.WriteLine($"Enter B");
+                    Console.WriteLine($"Enter B (it should be more than 0)");
                     B = double.Parse(Console.ReadLine());
                     Console.WriteLine($"For rectangle type 0, for annulus type 1, for isosceles triangle type 2 ");
                     choose_13 = int.Parse(Console.ReadLine());
-                    if (choose_13 == 0)
-                    {
+                switch (choose_13)
+                {
+                    case 0:
                         result_13 = A * B;
-                        Console.WriteLine($"S of the rectangle is {result_13}");
-                        break;
-                    }
-                    else if (choose_13 == 1)
-                    {
+                            Console.WriteLine($"S of the rectangle is {result_13}");
+                            Console.ReadKey();
+                            break;
+                        
+                    case 1:
                         result_13 = Math.PI * (Math.Abs(A * A - B * B));
                         Console.WriteLine($"S of the annulus is {result_13}");
+                        Console.ReadKey();
                         break;
-                    }
-                    else if (choose_13 == 2)
-                    {
+
+                    case 2:
                         result_13 = 0.5 * B * Math.Sqrt((A + 0.5 * B) * (A - 0.5 * B));
                         Console.WriteLine($"S of the isosceles triangle is {result_13}");
+                        Console.ReadKey();
                         break;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Not correct choise, you need 0, 1 or 2");
+
+                    default:
+                        Console.WriteLine("Incorrect input");
+                        Console.ReadKey();
                         break;
-                    }
                 }
+            }
 
                 #endregion
             #endregion
