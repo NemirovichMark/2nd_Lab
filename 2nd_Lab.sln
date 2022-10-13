@@ -130,6 +130,7 @@ for (int i = 1; ; i++)
             double s;
 	    Console.WriteLine("Enter r:");
             double r = double.Parse(Console.ReadLine());
+	    Console.WriteLine("Enter 1, 2 or 3");
             int a = int.Parse(Console.ReadLine());
             while (r > 0)
             {
