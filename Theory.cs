@@ -1,158 +1,216 @@
-﻿using System;
+using System;
 
-namespace _2nd_Lab
+namespace lab2
 {
-    class Theory
+    class Program
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
-
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
-            {
-                // will be done, because 4th condition provide true
-            }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
-            }
-
+            #region level 1 number 8
+            Console.WriteLine("--------level 1 number 8--------");
+            double x,y;
+            Console.WriteLine("Enter x:");
+            double.TryParse(Console.ReadLine(), out x);
+            if (Math.Abs(x) >= 1) y = 0;
+            else y = x * x - 1;
+            Console.WriteLine("y = {0}", y);
             #endregion
 
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
+            #region level 1 number 2
+            Console.WriteLine("--------level 1 number 2--------");
+            Console.WriteLine("Enter (x;y):");
+            double.TryParse(Console.ReadLine(),out x);
+            double.TryParse(Console.ReadLine(), out y);
+            if (y >= 0 && y + Math.Abs(x) <= 1) Console.WriteLine("dot in triangle");
+            else Console.WriteLine("dot not in triangle");
+            #endregion
+
+            #region level 2 number 1
+            Console.WriteLine("--------level 2 number 1--------");
+            int n;
+            double height, summary=0;
+            Console.WriteLine("Enter n: ");
+            int.TryParse(Console.ReadLine(), out n);
+            for (int i = 1; i <= n; i++)
             {
-                if (request.StartsWith('I'))
-                {
-                    // positive result
-                    if (request.EndsWith('!'))
-                    {
-                        // very positive result
-                    }
-                }
+                Console.WriteLine("Enter {0} student's height:", i);
+                double.TryParse(Console.ReadLine(),out height);
+                if(height>0) summary += height;
                 else
                 {
-                    // negative result
+                    do
+                    {
+                        Console.WriteLine("Enter positive height");
+                        double.TryParse(Console.ReadLine(), out height);
+                    } while (height <= 0);
                 }
-                // addition work
             }
+            Console.WriteLine("average height of students: {0}", summary/n);
+            #endregion
 
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
+            #region level 2 number 9
+            Console.WriteLine("--------level 2 number 9--------");
+            Console.WriteLine("Enter n");
+            int.TryParse(Console.ReadLine(), out n);
+            double maxi=0.0;
+            for (int i = 1; i <= n; i++)
+            {
+                Console.WriteLine("Enter {0} result: ", i);
+                double.TryParse(Console.ReadLine(), out x);
+                if (x > maxi) maxi = x;
+
+            }
+            Console.WriteLine("Best result: {0}", maxi);
 
             #endregion
 
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
+            #region level 3 number 4
+            Console.WriteLine("--------level 3 number 4--------");
+            double r1, r2;
+            int Res = 0;
+            Console.WriteLine("Enter r1 and r2: ");
+            double.TryParse(Console.ReadLine(), out r1);
+            double.TryParse(Console.ReadLine(), out r2);
+            while (r1 <= 0 && r2 <= r1) 
             {
 
-            }
-            else
+                Console.WriteLine("r1 must be > 0 and < r2, try again");
+                double.TryParse(Console.ReadLine(), out r1);
+                double.TryParse(Console.ReadLine(), out r2);
+            } 
+            
+           
+            Console.WriteLine("Enter x and y, or x > 1000 to exit");
+            do
             {
-                if (1 == (int)'a')
+                Console.WriteLine("x and y:");
+                double.TryParse(Console.ReadLine(), out x);
+                if (x >= 1000) break;
+                double.TryParse(Console.ReadLine(), out y);
+                if (x * x + y * y <= r2 * r2 && x * x + y * y >= r1*r1)
                 {
-
+                    Res += 1;
                 }
-            }
+            } while (x < 1000);
+            Console.WriteLine("dots in the ring: {0}", Res);
 
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
-            #endregion
-
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
-            {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
 
             #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
+            #region level 3 number 11
+            Console.WriteLine("--------level 3 number 11--------");
+            //n студентов, каждый 4 экзамена, число неуспевающих и средний балл группы - ?
+            int exam1 = 2, exam2 = 2, exam3 = 2, exam4 = 2, res = 0, amount = 0, bad_st = 0;
 
+            do
+            {
+                Console.WriteLine("Enter exam 1, for exit - 6");
+                int.TryParse(Console.ReadLine(), out exam1);
+                if (exam1 == 6) break;
+                Console.WriteLine("Enter exam 2");
+                int.TryParse(Console.ReadLine(), out exam2);
+                Console.WriteLine("Enter exam 3");
+                int.TryParse(Console.ReadLine(), out exam3);
+                Console.WriteLine("Enter exam 4");
+                int.TryParse(Console.ReadLine(), out exam4);
+                while (exam1 < 2 || exam2 < 2 || exam2 > 5 || exam3 < 2 || exam3 > 5 || exam4 < 2 || exam4 > 5)
+                {
+                    Console.WriteLine("Enter positive results");
+                    int.TryParse(Console.ReadLine(), out exam1);
+                    if (exam1 == 6) break;
+                    Console.WriteLine("Enter exam 2");
+                    int.TryParse(Console.ReadLine(), out exam2);
+                    Console.WriteLine("Enter exam 3");
+                    int.TryParse(Console.ReadLine(), out exam3);
+                    Console.WriteLine("Enter exam 4");
+                    int.TryParse(Console.ReadLine(), out exam4);
+                }
+                if (exam1 != 2 && exam2 != 2 && exam3 != 2 && exam4 != 2)
+                {
+                    amount += 4;
+                    res += (exam4 + exam3 + exam2 + exam1);
+                }
+                else bad_st++;
+            } while (exam1 < 6);
+            Console.WriteLine("Amount of bad students: {0}, average score: {1}", bad_st, res / (0.0 + (amount)));
+
+            #endregion
+
+            #region level 3 number 12
+            Console.WriteLine("--------level 3 number 12--------");
+            double r = 0;
+            int S;
+            do
+            {
+                Console.WriteLine("Enter r, for exit - 100");
+                double.TryParse(Console.ReadLine(), out r);
+                if (r == 100) break;
+                Console.WriteLine("Enter 1 for S of circle, 2 for S of square, 3 for S of triangle");
+                int.TryParse(Console.ReadLine(), out S);
+                switch (S)
+                {
+                    case 1:
+                        Console.WriteLine("S of circle with radius {0}: {1}", r, Math.PI * r * r);
+                        break;
+                    case 2:
+                        Console.WriteLine("S of square with side {0}: {1}", r,  r * r);
+                        break;
+                    case 3:
+                        Console.WriteLine("S of triangle with side {0}: {1}", r, r * r * Math.Sqrt(3) / 4);
+                        break;
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                }
+
+            } while (r < 100 && r>0);
+            #endregion
+
+            #region level 3 number 13
+            Console.WriteLine("--------level 3 number 13--------");
+            double A = 0, B;
+            do
+            {
+                Console.WriteLine("Enter A, for exit enter 100");
+                double.TryParse(Console.ReadLine(), out A);
+                while (A <= 0)
+                {
+                    Console.WriteLine("Enter positive A");
+                    double.TryParse(Console.ReadLine(), out A);
+                }
+                if (A == 100) break;
+                Console.WriteLine("Enter B");
+                double.TryParse(Console.ReadLine(), out B);
+                while (B <= 0)
+                {
+                    Console.WriteLine("Enter positive B");
+                    double.TryParse(Console.ReadLine(), out B);
+                }
+                Console.WriteLine("Enter 1 for S of rectangle, 2 for S of ring, 3 for S of triangle");
+                int.TryParse(Console.ReadLine(), out S);
+                switch (S)
+                {
+                    case 1:
+                        Console.WriteLine("S of rectangle with sides {0} and {1}: {2}", A, B, A * B);
+                        break;
+                    case 2:
+                        Console.WriteLine("S of ring between circles with radiuses {0} and {1}: {2}", A, B, Math.Abs(Math.PI*A*A-Math.PI*B*B));
+                        break;
+                    case 3:
+                        while (B * B - (A * A / 4) < 0)
+                        {
+                            Console.WriteLine("Enter another B and A (triangle with this sides is imposible");
+                            double.TryParse(Console.ReadLine(), out A);
+                            double.TryParse(Console.ReadLine(), out B);
+                        }
+                            
+                        Console.WriteLine("S of triangle with sides {0} and {1}: {2}", A, B, 1/2*A*Math.Sqrt(B*B-(A*A/4.0)));
+                        break;
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                }
+            } while (A < 100);
             #endregion
         }
     }
