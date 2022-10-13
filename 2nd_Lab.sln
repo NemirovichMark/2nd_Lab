@@ -1,25 +1,185 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2nd_Lab", "2nd_Lab.csproj", "{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5E38B41D-9AF1-4BC0-89F6-2D9FE63484C0}
-	EndGlobalSection
-EndGlobal
+﻿//1 уровень
+//1
+string outside = "точка вне круга";
+string inside = "точка внутри круга";
+double r = 2;
+double x =3;
+double y = 0;
+if (Math.Abs(x * x + y * y - r * r) <= 0.001)
+    Console.WriteLine(inside);
+else
+    Console.WriteLine(outside);
+//2
+string outs = "точка вне треугольника";
+string ins = "точка внутри треугольника";
+double x1 = 1;
+double y1 = 0;
+if (y1 >= 0 && (Math.Abs(x1) + y1) <= 1)
+    Console.WriteLine(ins);
+else
+    Console.WriteLine(outs);
+//2 уровень
+//1
+double sr, rost, s = 0;
+int n = 0;
+do
+{
+    Console.WriteLine("Введите рост ученика,для окончания 0");
+    rost = double.Parse(Console.ReadLine());
+    if (rost == 0) break;
+    s = s + rost;
+    n = n + 1;
+} while (rost > 0);
+sr = s / n;
+Console.WriteLine(sr);
+//3 уровень
+//4
+double x3, y3, r1, r2;
+int n1 = 0, k = 0;
+Console.WriteLine("Введите внутренний радиус");
+r1 = double.Parse(Console.ReadLine());
+Console.WriteLine("Введите внешний радиус");
+r2=double.Parse(Console.ReadLine());
+do
+{
+    Console.WriteLine("Введите x3 для окончания 1000 ");
+    x3 = double.Parse(Console.ReadLine());
+    if (x3 >= 1000) break;
+    Console.WriteLine("Введите y3");
+    y3 = double.Parse(Console.ReadLine());
+    n1 = n1 + 1;
+    if (x3 * x3 + y3 * y3 > r1 && x3 * x3 + y3 * y3 < r2) k = k + 1;
+}   while (x3 < 1000);
+if (n1 != 0)
+    Console.WriteLine(k);
+//11
+double srball, ball, summ = 0;
+int badst = 0;
+int exam = 0;
+int st = 0;
+do
+{
+    Console.WriteLine("Введите баллы студента за каждый его экзамен для окончания 0");
+    ball = double.Parse(Console.ReadLine());
+    if (ball == 0) break;
+    if (ball > 2) exam = exam + 1;
+    if (exam < 4) badst = badst + 1;
+    summ = summ + ball;
+    st = st + 1;
+}   while (ball > 0);
+srball = summ / st;
+Console.WriteLine(srball);
+Console.WriteLine(badst);
+//12
+do
+{
+Console.Write("enter the number of values: ");
+}
+
+while (!int.TryParse(Console.ReadLine(), out n));
+
+for (int i = 0; i < n; i++)
+{
+do
+{
+Console.Write("enter the value of \"r\": ");
+}
+
+while (!int.TryParse(Console.ReadLine(), out r));
+
+do
+{
+Console.Write("\nSelect an action (enter the desired number):\n" +
+    "area of a square with side \"r\" - 1\n" +
+    "area of a circle with radius \"r\" - 2\n" +
+    "area of an equilateral triangle with side \"r\" - 3\n" +
+    "to skip - enter any other number\n\nchoise: ");
+}
+
+while (!int.TryParse(Console.ReadLine(), out choice));
+
+switch (choice)
+{
+case 1:
+Console.WriteLine($"square area = {r * r}\n");
+break;
+
+case 2:
+Console.WriteLine($"circle area = {(Math.PI * (r * r)):f2}\n");
+break;
+
+case 3:
+Console.WriteLine($"area of an equilateral triangle = {((Math.Sqrt(3) / 4) * (r * r)):f2}\n");
+break;
+
+default:
+Console.WriteLine($"task skipped (different number entered)\n");
+break;
+}
+}
+
+#endregion
+//13
+do
+{
+    Console.Write("enter the number of values: ");
+}
+
+while (!int.TryParse(Console.ReadLine(), out n));
+
+for (int i = 0; i < n; i++)
+{
+    do
+    {
+        Console.Write("enter value \"a\": ");
+    }
+    while (!double.TryParse(Console.ReadLine(), out a));
+
+    do
+    {
+        Console.Write("enter value \"b\": ");
+    }
+    while (!double.TryParse(Console.ReadLine(), out b));
+
+    do
+    {
+        Console.Write("\nSelect an action (enter the desired number):\n" +
+            "area of a rectangle - 1\n" +
+            "area of a ring enclosed between two circles - 2\n" +
+            "area of an isosceles triangle with sides A, B, B - 3\n" +
+            "to skip - enter any other number\n\nchoise: ");
+    }
+
+    while (!int.TryParse(Console.ReadLine(), out choice));
+
+    switch (choice)
+    {
+        case 1:
+            Console.WriteLine($"area of rectangle = {a * b}\n");
+            break;
+
+        case 2:
+            Console.WriteLine($"area of a ring enclosed between two circles = " +
+                $"{(Math.Abs(Math.PI * (a * a - b * b))):f2}\n");
+            break;
+
+        case 3:
+            Console.WriteLine($"area of an isosceles triangle = " +
+                $"{((a / 4.0) * Math.Sqrt(Math.Abs(4.0 * (a * a) - (b * b)))):f2}\n");
+            break;
+
+        default:
+            Console.WriteLine($"task skipped (different number entered)\n");
+            break;
+    }
+
+}
+
+            #endregion
+
+            #endregion
+
+        }
+    }
+}
+
