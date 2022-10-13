@@ -270,11 +270,11 @@ namespace Lab_2
                 }
                 Console.WriteLine("\n");
                 avge = (a + b + c + d) / 4;
-                if (avge < 2.5)
+                if (a == 2 || b == 2 || c == 2 || d == 2) 
                 {
                     k += 1;
                 }
-                else
+                else 
                 {
                     avg += avge;
                 }
@@ -367,7 +367,7 @@ namespace Lab_2
                         Console.WriteLine($"Area of a ring: {(Math.PI * Math.Abs(a * a - b * b)):f2}\n");
                         break;
                     case 3:
-                        Console.WriteLine($"Area of an isosceles triangle: {((a / 4) * Math.Sqrt(4 * (b * b) - (a * a))):f2}\n");
+                        Console.WriteLine($"Area of an isosceles triangle: {((a / 4) * Math.Sqrt(Math.Abs(4 * (b * b) - (a * a)))):f2}\n");
                         break;
                     default:
                         Console.WriteLine("Incorrect input!");
