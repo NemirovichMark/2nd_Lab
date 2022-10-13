@@ -1,25 +1,192 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2nd_Lab", "2nd_Lab.csproj", "{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5E38B41D-9AF1-4BC0-89F6-2D9FE63484C0}
-	EndGlobalSection
-EndGlobal
+//The First level. Task 2
+double x, y;
+bool i = false;
+Console.WriteLine("Enter x");
+x = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter y");
+y = double.Parse(Console.ReadLine());
+if (y >= 0 && (y + Math.Abs(x)) <= 1) i = !i;
+Console.WriteLine($"The answer: {i}");
+
+//The First level. Task 3
+double a, b, c;
+c = 0;
+Console.WriteLine("Enter a");
+a = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter b");
+b = double.Parse(Console.ReadLine());
+if (a > 0)
+{
+    if (a > b) c = a;
+    else c = b;
+}
+else if (a <= 0)
+{
+    if (a > b) c = b;
+    else c = a;
+}
+Console.WriteLine($"The answer: {c}");
+
+//The First level. Task 10
+double x, y;
+y = 0;
+Console.WriteLine("Enter x");
+x = double.Parse(Console.ReadLine());
+if (x <= -1) y = 1;
+else if (1 < x && x <= 1) y = -x;
+else if (x > 1) y = -1;
+Console.WriteLine($"The answer: {y}");
+
+
+
+//The second level. Task 1
+double d, m, sr, s, n = 0.0;
+int i;
+s = 0.0;
+Console.WriteLine("Enter number of students: ");
+n = double.Parse(Console.ReadLine());
+for (i = 0; i < (n / 2); i++)
+{
+    Console.WriteLine("Enter the girl's height");
+    d = double.Parse(Console.ReadLine());
+    s += d;
+}
+for (i = 0; i < (n / 2); i++)
+{ 
+    Console.WriteLine("Enter the boy's height");
+    m = double.Parse(Console.ReadLine());
+    s += m;
+}
+sr = s / n;
+Console.WriteLine($"Average height of girls and boys: {sr}");
+
+//The second level. Task 3
+double summ, n, weight;
+summ = 0.0;
+Console.WriteLine("Enter number of students: ");
+n = double.Parse(Console.ReadLine());
+int i;
+for (i = 0; i < n; i++)
+{
+    Console.WriteLine("Enter weight: ");
+    weight = double.Parse(Console.ReadLine());
+    summ += 0.2;
+    if (weight < 30) summ += 0.2;
+}
+Console.WriteLine($"The amount of milk for the class: {summ}");
+
+
+
+//The third level. Task 4
+int k = 0;
+double r1, r2, x, y;
+Console.WriteLine("Enter the inner radius:");
+r1 = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter the outer radius:");
+r2 = double.Parse (Console.ReadLine ());
+do
+{
+    Console.WriteLine("Enter x, to finish use 1000");//Let for all input points x<1000
+    x = double.Parse(Console.ReadLine());
+    if (x >= 1000) break;
+    Console.WriteLine("Enter y");
+    y = double.Parse(Console.ReadLine());
+    if (x * x + y * y <= r1 * r1 && x * x + y * y <= r2 * r2) k++;
+}
+while (x < 1000);
+Console.WriteLine($"The number of points:{k}");
+
+
+//The third level. Task 11
+int gradesamount = 0;
+double students = -1;
+int amount = 0;
+int a = 0;
+for (int i = 1; ; i++)
+{
+    int m = 0;
+    Console.WriteLine("Enter the grades for the exams: ");
+    for (int k = 1; k <= 4; k++)
+    {
+        int grade = int.Parse(Console.ReadLine());
+        if (grade <= 3)
+            m = m + 1;
+        if (grade > 5)
+        {
+            a = 1;
+            break;
+        }
+        gradesamount = gradesamount + grade;
+    }
+    if (m > 0)
+        amount++;
+    students++;
+                    if (a == 1)
+                    break;
+            }
+            double sredniygrade = gradesamount / (4.0 * students);
+            Console.WriteLine(amount);
+            Console.WriteLine(sredniygrade);
+
+    
+//The third level. Task 12
+const double P = 3.14;
+double s;
+Console.WriteLine("Enter r:");
+double r = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter 1, 2 or 3");
+int a = int.Parse(Console.ReadLine());
+while (r > 0)
+{
+    switch (a)
+    {
+        case 1:
+            s = r * r;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 2:
+            s = P * r * r;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 3:
+            s = Math.Sqrt(3) * r * r / 4.0;
+            Console.WriteLine($"S = {s}");
+            break;
+    }
+    r = double.Parse(Console.ReadLine());
+}
+
+
+
+
+//The third level. Task 13
+const double P = 3.14;
+double s;
+Console.WriteLine("Enter A, B:");
+double a = double.Parse(Console.ReadLine());
+double b = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter 1, 2 or 3");
+int k = 0;
+k = int.Parse(Console.ReadLine());
+  while ((a > 0)&&(b > 0))
+{ 
+    switch (k)
+  {
+   case 1:
+            s = a * b;
+            Console.WriteLine($"S = {s}");
+        break;
+   case 2:
+            s = Math.Abs(P * a * a - P * b * b);
+            Console.WriteLine($"S = {s}");
+    break;
+   case 3:
+            s = a * Math.Sqrt(4 * b * b - a * a) / 4.0;
+            Console.WriteLine($"S = {s}");
+    break;
+  }
+    a = double.Parse(Console.ReadLine());
+    if (a == 0)
+        break;
+    b = double.Parse(Console.ReadLine());
+}
