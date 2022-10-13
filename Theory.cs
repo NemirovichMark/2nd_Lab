@@ -10,7 +10,7 @@ namespace lab2
             Console.WriteLine("--------level 1 number 8--------");
             double x,y;
             Console.WriteLine("Enter x:");
-            x = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out x);
             if (Math.Abs(x) >= 1) y = 0;
             else y = x * x - 1;
             Console.WriteLine("y = {0}", y);
@@ -19,8 +19,8 @@ namespace lab2
             #region level 1 number 2
             Console.WriteLine("--------level 1 number 2--------");
             Console.WriteLine("Enter (x;y):");
-            x = double.Parse(Console.ReadLine());
-            y = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(),out x);
+            double.TryParse(Console.ReadLine(), out y);
             if (y >= 0 && y + Math.Abs(x) <= 1) Console.WriteLine("dot in triangle");
             else Console.WriteLine("dot not in triangle");
             #endregion
@@ -30,12 +30,20 @@ namespace lab2
             int n;
             double height, summary=0;
             Console.WriteLine("Enter n: ");
-            n = int.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out n);
             for (int i = 1; i <= n; i++)
             {
                 Console.WriteLine("Enter {0} student's height:", i);
-                height = double.Parse(Console.ReadLine());
-                summary += height;
+                double.TryParse(Console.ReadLine(),out height);
+                if(height>0) summary += height;
+                else
+                {
+                    do
+                    {
+                        Console.WriteLine("Enter positive height");
+                        double.TryParse(Console.ReadLine(), out height);
+                    } while (height <= 0);
+                }
             }
             Console.WriteLine("average height of students: {0}", summary/n);
             #endregion
@@ -43,12 +51,12 @@ namespace lab2
             #region level 2 number 9
             Console.WriteLine("--------level 2 number 9--------");
             Console.WriteLine("Enter n");
-            n = int.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out n);
             double maxi=0.0;
             for (int i = 1; i <= n; i++)
             {
                 Console.WriteLine("Enter {0} result: ", i);
-                x = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out x);
                 if (x > maxi) maxi = x;
 
             }
@@ -60,38 +68,31 @@ namespace lab2
             Console.WriteLine("--------level 3 number 4--------");
             double r1, r2;
             int Res = 0;
-            Console.WriteLine("Enter r1: ");
-            r1 = double.Parse(Console.ReadLine());
-            if (r1 <= 0)
+            Console.WriteLine("Enter r1 and r2: ");
+            double.TryParse(Console.ReadLine(), out r1);
+            double.TryParse(Console.ReadLine(), out r2);
+            while (r1 <= 0 && r2 <= r1) 
             {
-                Console.WriteLine("r1 must be > 0");
-            }
-            else //if r1>0
+
+                Console.WriteLine("r1 must be > 0 and < r2, try again");
+                double.TryParse(Console.ReadLine(), out r1);
+                double.TryParse(Console.ReadLine(), out r2);
+            } 
+            
+           
+            Console.WriteLine("Enter x and y, or x > 1000 to exit");
+            do
             {
-                Console.WriteLine("Enter r2: ");
-                r2 = double.Parse(Console.ReadLine());
-                if (r2 <= r1)
+                Console.WriteLine("x and y:");
+                double.TryParse(Console.ReadLine(), out x);
+                if (x >= 1000) break;
+                double.TryParse(Console.ReadLine(), out y);
+                if (x * x + y * y <= r2 * r2 && x * x + y * y >= r1*r1)
                 {
-                    Console.WriteLine("r2 must be > r1");
+                    Res += 1;
                 }
-                else //if right conditions
-                {
-                    Console.WriteLine("Enter x and y, or x > 1000 to exit");
-                    do
-                    {
-                        x = double.Parse(Console.ReadLine());
-                        if (x >= 1000) break;
-                        y = double.Parse(Console.ReadLine());
-                        if (x * x + y * y <= r2 * r2 || x * x + y * y >= r1)
-                        {
-                            Res += 1;
-                        }
-                    } while (x < 1000);
-                    Console.WriteLine("dots in the ring: {0}", Res);
-
-                }
-            }
-
+            } while (x < 1000);
+            Console.WriteLine("dots in the ring: {0}", Res);
 
 
             #endregion
@@ -99,19 +100,31 @@ namespace lab2
             #region level 3 number 11
             Console.WriteLine("--------level 3 number 11--------");
             //n студентов, каждый 4 экзамена, число неуспевающих и средний балл группы - ?
-            int exam1 = 0, exam2 = 0, exam3 = 0, exam4 = 0, res = 0, amount = 0, bad_st = 0;
+            int exam1 = 2, exam2 = 2, exam3 = 2, exam4 = 2, res = 0, amount = 0, bad_st = 0;
 
             do
             {
                 Console.WriteLine("Enter exam 1, for exit - 6");
-                exam1 = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out exam1);
                 if (exam1 == 6) break;
                 Console.WriteLine("Enter exam 2");
-                exam2 = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out exam2);
                 Console.WriteLine("Enter exam 3");
-                exam3 = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out exam3);
                 Console.WriteLine("Enter exam 4");
-                exam4 = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out exam4);
+                while (exam1 < 2 || exam2 < 2 || exam2 > 5 || exam3 < 2 || exam3 > 5 || exam4 < 2 || exam4 > 5)
+                {
+                    Console.WriteLine("Enter positive results");
+                    int.TryParse(Console.ReadLine(), out exam1);
+                    if (exam1 == 6) break;
+                    Console.WriteLine("Enter exam 2");
+                    int.TryParse(Console.ReadLine(), out exam2);
+                    Console.WriteLine("Enter exam 3");
+                    int.TryParse(Console.ReadLine(), out exam3);
+                    Console.WriteLine("Enter exam 4");
+                    int.TryParse(Console.ReadLine(), out exam4);
+                }
                 if (exam1 != 2 && exam2 != 2 && exam3 != 2 && exam4 != 2)
                 {
                     amount += 4;
@@ -130,10 +143,10 @@ namespace lab2
             do
             {
                 Console.WriteLine("Enter r, for exit - 100");
-                r = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out r);
                 if (r == 100) break;
                 Console.WriteLine("Enter 1 for S of circle, 2 for S of square, 3 for S of triangle");
-                S = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out S);
                 switch (S)
                 {
                     case 1:
@@ -159,12 +172,22 @@ namespace lab2
             do
             {
                 Console.WriteLine("Enter A, for exit enter 100");
-                A = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out A);
+                while (A <= 0)
+                {
+                    Console.WriteLine("Enter positive A");
+                    double.TryParse(Console.ReadLine(), out A);
+                }
                 if (A == 100) break;
                 Console.WriteLine("Enter B");
-                B = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out B);
+                while (B <= 0)
+                {
+                    Console.WriteLine("Enter positive B");
+                    double.TryParse(Console.ReadLine(), out B);
+                }
                 Console.WriteLine("Enter 1 for S of rectangle, 2 for S of ring, 3 for S of triangle");
-                S = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out S);
                 switch (S)
                 {
                     case 1:
@@ -174,7 +197,14 @@ namespace lab2
                         Console.WriteLine("S of ring between circles with radiuses {0} and {1}: {2}", A, B, Math.Abs(Math.PI*A*A-Math.PI*B*B));
                         break;
                     case 3:
-                        Console.WriteLine("S of triangle with sides {0} and {1}: {2}", A, B, 1/2*A*Math.Sqrt(B*B-(A*A/4)));
+                        while (B * B - (A * A / 4) < 0)
+                        {
+                            Console.WriteLine("Enter another B and A (triangle with this sides is imposible");
+                            double.TryParse(Console.ReadLine(), out A);
+                            double.TryParse(Console.ReadLine(), out B);
+                        }
+                            
+                        Console.WriteLine("S of triangle with sides {0} and {1}: {2}", A, B, 1/2*A*Math.Sqrt(B*B-(A*A/4.0)));
                         break;
                     default:
                         Console.WriteLine("Error");
