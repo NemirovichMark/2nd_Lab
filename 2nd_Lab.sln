@@ -126,30 +126,31 @@ for (int i = 1; ; i++)
 
     
 //The third level. Task 12
-            const double PI = 3.14;
-            double s;
-	    Console.WriteLine("Enter r:");
-            double r = double.Parse(Console.ReadLine());
-	    Console.WriteLine("Enter 1, 2 or 3");
-            int a = int.Parse(Console.ReadLine());
-            while (r > 0)
-            {
-                switch (a)
-                {
-                    case 1:
-                        s = r * r;
-                        Console.WriteLine($"S = {s}");
-                        break;
-                    case 2:
-                        s = PI * r * r;
-                        Console.WriteLine($"S = {s}");
-                        break;
-                    case 3:
-                        s = 1.7 * r * r / 2.0;
-                        Console.WriteLine($"S = {s}");
-                        break;
-                }
-                r = double.Parse(Console.ReadLine());
+const double P = 3.14;
+double s;
+Console.WriteLine("Enter r:");
+double r = double.Parse(Console.ReadLine());
+Console.WriteLine("Enter 1, 2 or 3");
+int a = int.Parse(Console.ReadLine());
+while (r > 0)
+{
+    switch (a)
+    {
+        case 1:
+            s = r * r;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 2:
+            s = P * r * r;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 3:
+            s = Math.Sqrt(3) * r * r / 4.0;
+            Console.WriteLine($"S = {s}");
+            break;
+    }
+    r = double.Parse(Console.ReadLine());
+}
 
 
 //The third level. Task 13
