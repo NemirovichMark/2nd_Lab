@@ -1,0 +1,450 @@
+using System;
+using System.ComponentModel;
+
+namespace ConsoleApp
+{
+    class Program89
+    {
+
+        static void Main(string[] args)
+        {
+            
+            #region part 1 task 5
+            //1
+            double r = 70;
+            double s = 36.74;
+            double diagonal = Math.Sqrt(2 * s);
+            double diametr = 2 * (Math.Sqrt(r) / Math.Sqrt(3.14));
+            if (diagonal <= diametr)
+            {
+                Console.WriteLine("Поместится");
+            }
+            else
+            {
+                Console.WriteLine("не поместится");
+
+            }
+            //2
+            r = 0.86;
+            s = 0.74;
+            diagonal = Math.Sqrt(2 * s);
+            diametr = 2 * Math.Sqrt(r / 3.14);
+            if (diagonal <= diametr)
+            {
+                Console.WriteLine("Поместится");
+            }
+            else
+            {
+                Console.WriteLine("не поместится");
+
+            }
+            #endregion
+
+            #region part 1 task 6
+            //1
+            r = 3.2;
+            s = 3.5;
+            double storona_s = Math.Sqrt(s);
+            diametr = 2 * Math.Sqrt(r / 3.14);
+            if (storona_s >= diametr)
+            {
+                Console.WriteLine("поместится");
+            }
+            else
+            {
+                Console.WriteLine("не поместится");
+            }
+            //2
+            r = 3.2;
+            s = 4;
+            storona_s = Math.Sqrt(s);
+            diametr = 2 * Math.Sqrt(r / 3.14);
+            if (storona_s >= diametr)
+            {
+                Console.WriteLine("поместится");
+            }
+            else
+            {
+                Console.WriteLine("не поместится");
+            }
+            //3
+            r = 6;
+            s = 9;
+            storona_s = Math.Sqrt(s);
+            diametr = 2 * Math.Sqrt(r / 3.14);
+            if (storona_s >= diametr)
+            {
+                Console.WriteLine("поместится");
+            }
+            else
+            {
+                Console.WriteLine("не поместится");
+            }
+            #endregion
+
+            #region part 1 task 9
+            double y;
+            Console.WriteLine("Введите значение x ");
+            double x = Convert.ToDouble(Console.ReadLine());
+            if (x <= -1)
+            {
+                Console.WriteLine("y=0");
+            }
+            if ((-1 < x) && (x <= 0))
+            {
+                y = 1 + x;
+                Console.WriteLine("y=" + y);
+            }
+            else
+            {
+                Console.WriteLine("y=1");
+            }
+            #endregion
+
+            #region part 2 task 1
+            int p = 0;
+            int p1 = 0;
+            double sum_m = 0;
+            double sum_f = 0;
+            double srednarifm;
+            double srednarifm_m;
+            double srednarifm_f;
+            try
+            {
+                Console.WriteLine("Введите количество мальчиков ");
+                int n = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите количество девочек ");
+                int n1 = Convert.ToInt32(Console.ReadLine());
+                int N = n + n1;
+                if ((n > 0) && (n1 > 0))
+                {
+                    while (p < n)
+                    {
+                        Console.WriteLine("Введите рост мальчика ");
+                        double m = Convert.ToDouble(Console.ReadLine());
+                        sum_m += m;
+                        p++;
+
+
+                    }
+                    while (p1 < n1)
+                    {
+                        Console.WriteLine("Введите рост девочки ");
+                        double f = Convert.ToDouble(Console.ReadLine());
+                        sum_f += f;
+                        p1++;
+
+                    }
+                    srednarifm = (sum_m + sum_f) / N;
+                    Console.WriteLine("Средний рост в классе составляет: " + srednarifm);
+                    srednarifm_m = sum_m / n;
+                    Console.WriteLine("Средний рост мальчиков в классе составляет: " + srednarifm_m);
+                    srednarifm_f = sum_f / n1;
+                    Console.WriteLine("Средний рост девочек в классе составляет: " + srednarifm_f);
+                }
+                if (n == 0)
+                {
+                    while (p1 < n1)
+                    {
+                        Console.WriteLine("Введите рост девочки ");
+                        double f = Convert.ToDouble(Console.ReadLine());
+                        sum_f += f;
+                        p1++;
+
+                    }
+                    srednarifm_f = sum_f / n1;
+                    Console.WriteLine("Средний рост в классе составляет: " + srednarifm_f);
+                }
+                if (n1 == 0)
+                {
+                    while (p < n)
+                    {
+                        Console.WriteLine("Введите рост мальчика ");
+                        double m = Convert.ToDouble(Console.ReadLine());
+                        sum_m += m;
+                        p++;
+
+                    }
+                    srednarifm_m = sum_m / n;
+                    Console.WriteLine("Средний рост в классе составляет: " + srednarifm_m);
+                }
+                if ((n == 0) && (n1 == 0))
+                {
+                    Console.WriteLine("Класс пуст... ");
+                }
+                if ((n < 0) || (n1 < 0))
+                {
+                    Console.WriteLine("Такого не может быть ");
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("Что-то введено не так ");
+            }
+            #endregion
+
+            #region part 2 task 5
+            int kolvo_uch = 30;
+            p = 0;
+            double uchast = 0;
+            int winner = 0;
+            Console.WriteLine("Введите норматив ");
+            double normativ = Convert.ToDouble(Console.ReadLine());
+            try
+            {
+                if (normativ >= 0)
+                {
+                    while (p < kolvo_uch)
+                    {
+                        Console.WriteLine("Введите результат участника ");
+                        uchast = Convert.ToDouble(Console.ReadLine());
+                        p++;
+                        if (uchast >= normativ)
+                        {
+                            winner += 1;
+                        }
+                    }
+                }
+                Console.WriteLine("Выполнили норматив " + winner + " человек");
+                if (normativ < 0 || uchast < 0)
+                {
+                    Console.WriteLine("Что-то введено не так ");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Что-то введено не так ");
+            }
+
+            #endregion
+
+            #region part 3 task 4
+            int ii;
+            int schetchic=0;
+            Console.WriteLine("Радиус внутреннего кольца ");
+            double r1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Радиус внешнего кольца ");
+            double r2 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите количество точек ");
+            int nn = Convert.ToInt32(Console.ReadLine());
+            for(ii=0; ii<nn;ii++)
+            {
+                Console.WriteLine("Координаты по x ");
+                double xx = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Координаты по y ");
+                double yy = Convert.ToDouble(Console.ReadLine());
+                if (r2 > r1)
+                {
+                    if (xx < r2 && xx > r1 && yy < r2 && yy > r1)
+                    {
+                        Console.WriteLine("Точка лежит в кольце ");
+                        schetchic+=1;    
+                    }
+                    else
+                    {
+                        Console.WriteLine("точка не лежит в кольце ");
+                        
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Что-то введено не так ");
+                    return;
+                }
+                
+                
+            }
+            Console.WriteLine(schetchic+" точек лежит в заданном кольце");
+            #endregion
+
+            #region part 3 task 11
+            int sum_stud_fall=0;
+            int sum_stud_pass = 0;
+            double ex1=0;
+            double ex2=0;
+            double ex3=0;
+            double ex4=0;
+            Console.WriteLine("Введите количество студентов ");
+            int kolvo_stud=Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите порог первого экзамена ");
+            double porog1=Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите порог второго экзамена ");
+            double porog2 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите порог третьего экзамена ");
+            double porog3 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите порог четвёртого экзамена ");
+            double porog4 = Convert.ToDouble(Console.ReadLine());
+
+            for (int i = 0; i < kolvo_stud; i++)
+            {
+                Console.WriteLine("Введите результат первого экзамена студента");
+                ex1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Введите  результат второго экзамена студента");
+                ex2 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Введите результат третьего экзамена студента");
+                ex3 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Введите результат четвёртого экзамена студента");
+                ex4 = Convert.ToDouble(Console.ReadLine());
+                try
+                {
+                    if (kolvo_stud > 0 && porog1 > 0 && porog2 > 0 && porog3 > 0 && porog4 > 0 && ex1 > 0 && ex2 > 0 && ex3 > 0 && ex4 > 0)
+                    {
+                        if (porog1 >= ex1 && porog2 >= ex2 && porog3 >= ex3 && porog4 >= ex4)
+                        {
+                            sum_stud_fall += 1;
+                        }
+                        if (0<porog1 && porog1 < ex1 && 0< porog2 && porog2 < ex2 && 0 < porog3 && porog3 < ex3 && 0 < porog4 && porog4 < ex4 )
+                        {
+                            sum_stud_pass += 1;
+                            ex1 += ex1;
+                            ex2 += ex2;
+                            ex3 += ex3;
+                            ex4 += ex4;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то введено не так ");
+                        return;
+                    }
+
+
+                    Console.WriteLine("Количество не сдавших экзамен " + sum_stud_fall);
+                    Console.WriteLine("Средний балл сдавших по первому экзамену " + (ex1 / sum_stud_pass));
+                    Console.WriteLine("Средний балл сдавших по второму экзамену " + (ex2 / sum_stud_pass));
+                    Console.WriteLine("Средний балл сдавших по третьему экзамену " + (ex3 / sum_stud_pass));
+                    Console.WriteLine("Средний балл сдавших по четвёртому экзамену " + (ex4 / sum_stud_pass));
+                }
+                catch
+                {
+                    Console.WriteLine("Что-то введено не так ");
+                }
+            }
+            #endregion
+            
+            
+
+            #region part 3 task 12
+            Console.WriteLine("Для вычисления площади круга напишите round");
+            Console.WriteLine("Для вычисления площади квадрата напишите square");
+            Console.WriteLine("Для вычисления площади равностороннего треугольника напишите triangle");
+            string l= Console.ReadLine();
+            switch (l)
+            {
+                case "round":
+                    Console.WriteLine("Введите радиус");
+                    double rround = Convert.ToDouble(Console.ReadLine());
+                    if (rround > 0)
+                    {
+                        s = Math.PI * Math.Pow(rround, 2);
+                        Console.WriteLine("Площадь " + l + " " + s);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то пошло не так ");
+                        break;
+                    }
+
+                case "square":
+                    Console.WriteLine("Введите сторону");
+                    double rsquare = Convert.ToDouble(Console.ReadLine());
+                    if (rsquare > 0)
+                    {
+                        s = Math.Pow(rsquare, 2);
+                        Console.WriteLine("Площадь " + l + " " + s);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то пошло не так ");
+                        break;
+                    }
+
+
+                case "triangle":
+                    Console.WriteLine("Введите сторону");
+                    double rtriangle = Convert.ToDouble(Console.ReadLine());
+                    if (rtriangle > 0)
+                    {
+                        s = rtriangle * Math.Sqrt(3) / 4;
+                        Console.WriteLine("Площадь " + l + " " + s);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то пошло не так ");
+                        break;
+                    } 
+            }
+            #endregion
+            
+
+            #region part 3 task 13
+            double ss = 0;
+            Console.WriteLine("Для вычисления площади кольца напишите round");
+            Console.WriteLine("Для вычисления площади прямоугольника напишите rectangle");
+            Console.WriteLine("Для вычисления площади равнобедренного треугольника напишите triangle");
+            l = Console.ReadLine();
+            switch (l)
+            {
+                case "round":
+                    Console.WriteLine("Введите радиус внешнего кольца");
+                    double vnround = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Введите радиус внутреннего кольца");
+                    double vnutround = Convert.ToDouble(Console.ReadLine());
+
+                    if (vnround > 0 && vnutround>0 && vnround> vnutround)
+                    {
+                        ss = (Math.PI * Math.Pow(vnround, 2))-(Math.PI* Math.Pow(vnutround, 2));
+                        Console.WriteLine("Площадь " + l + " " + ss);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то пошло не так ");
+                        break;
+                    }
+
+                case "rectangle":
+                    Console.WriteLine("Введите сторону A");
+                    double A = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Введите сторону B");
+                    double B=Convert.ToDouble(Console.ReadLine());
+                    if (A > 0 && B>0)
+                    {
+                        ss = A*B;
+                        Console.WriteLine("Площадь " + l + " " + ss);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то пошло не так ");
+                        break;
+                    }
+
+
+                case "triangle":
+                    Console.WriteLine("Введите сторону A");
+                    double A1 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Введите сторону B");
+                    double B1= Convert.ToDouble(Console.ReadLine());
+                    if (A1 > 0 && B1>0)
+                    {
+                        ss = B1/4*Math.Sqrt(4*Math.Pow(A1,2)-Math.Pow(B1,2));
+                        Console.WriteLine("Площадь " + l + " " + ss);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Что-то пошло не так ");
+                        break;
+                    }
+            }
+            #endregion
+
+
+        }
+    }
+}
