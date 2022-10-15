@@ -1,4 +1,8 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Transactions;
 
 namespace _2nd_Lab
 {
@@ -6,154 +10,435 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
+            Level1();
+            Level2();
+            Level3();
 
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
+        }
 
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+
+        static void Level1()
+        {
+            #region Level 1
+            Console.WriteLine("--- Level 1 ---");
+            Console.WriteLine("--- ex.1 ---");
+            #region ex.1
+            double radius;
+            double x, y;
+            bool loopVariable = true;
+
+            try
             {
-                // will be done, because 4th condition provide true
-            }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
-            }
-            else
-            {
-                // do work
-            }
-
-            #endregion
-
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
-            {
-                if (request.StartsWith('I'))
+                while(loopVariable)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
+                    Console.Write("Enter radius: ");
+                    radius = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter x: ");
+                    x = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter y: ");
+                    y = Convert.ToDouble(Console.ReadLine());
+                    if (Math.Pow(x, 2) + Math.Pow(y, 2) <= Math.Pow(radius, 2))
                     {
-                        // very positive result
+                        Console.WriteLine("The point is inside the circle");
+                        Console.WriteLine("------------------------------");
+                        loopVariable = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The point is outside the circle");
+                        Console.WriteLine("------------------------------");
+                        loopVariable = false;
                     }
                 }
-                else
-                {
-                    // negative result
-                }
-                // addition work
+                
             }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
+            catch (Exception)
+            {
+                Console.WriteLine("Wrong input");
+                Console.WriteLine("------------------------------");
+            }
 
             #endregion
+            Console.WriteLine("--- ex.5 ---");
+            #region ex.5
 
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
+            double areaOfCircle;
+            double areaOfSquare;
+            bool cycleVariable = true;
 
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
+            try
             {
-
-            }
-            else
-            {
-                if (1 == (int)'a')
+                while(cycleVariable)
                 {
-
+                    Console.Write("Enter the area of the circle: ");
+                    areaOfCircle = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter the area of the square: ");
+                    areaOfSquare = Convert.ToDouble(Console.ReadLine());
+                    double radiusOfCircle = Math.Sqrt(areaOfCircle / Math.PI);
+                    double diagonal = Math.Sqrt(areaOfSquare) * Math.Sqrt(2);
+                    if (diagonal <= 2 * radiusOfCircle)
+                    {
+                        Console.WriteLine("The square can be placed into the circle");
+                        Console.WriteLine("----------------------------------------");
+                        cycleVariable = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The square can't be placed into the circle");
+                        Console.WriteLine("------------------------------------------");
+                        cycleVariable = false;
+                    }
                 }
             }
-
-            // Transforming to
-
-            if (0 != 0)
+            catch (Exception)
             {
-
-            }
-            else if (1 == (int)'a')
-            {
-
+                Console.WriteLine("Wrong input");
+                Console.WriteLine("------------------------------");
             }
 
-            // But if int this else can be more than 1 if operator, do not do so!
             #endregion
+            Console.WriteLine("--- ex.7 ---");
+            #region ex.7
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
-
-            switch ((int)Console.ReadLine().Length)
+            double argument;
+            double func;
+            bool loopVar = true;
+            try
             {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
+                while(loopVar)
+                {
+                    Console.Write("Enter argument: ");
+                    argument = Convert.ToDouble(Console.ReadLine());
+                    if (argument < -1 || argument > 1)
+                    {
+                        func = 1;
+                        Console.WriteLine($"y = {func}");
+                        Console.WriteLine("------------------------------------------------------------");
+                        loopVar = false;
+                    }
+                    else if (argument >= -1 || argument <= 1)
+                    {
+                        func = Math.Abs(argument);
+                        Console.WriteLine($"y = {func}");
+                        Console.WriteLine("------------------------------------------------------------");
+                        loopVar = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Oopsie....Try again");
+                        Console.WriteLine("------------------------------------------------------------");
+                    }
+                }
             }
-            Console.WriteLine(request);
-
-            #endregion
-
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
+            catch (Exception)
             {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
+                Console.WriteLine("Oopsie....Try again");
+                Console.WriteLine("------------------------------------------------------------");
+            }
 
             #endregion
+
+            #endregion
+        }
+
+        static void Level2()
+        {
+
+            #region Level 2
+            Console.WriteLine("--- Level 2 ---");
+            Console.WriteLine("--- ex.1 ---");
+            #region ex.1 (also changed the position of try and replaced if statements with switch block because it's much more readable)
+            double averageHeight;
+            double sumOfHeight = 0;
+            int n = 0;
+            bool exitForLoop = true;
+            try
+            {
+                while (exitForLoop)
+                {
+                    double height;
+                    Console.Write("Enter gender(B or G, if you want to exit the program type 'E'): ");
+                    char gender = char.Parse(Console.ReadLine());
+                    switch (gender)
+                    {
+                        case 'B':
+                            Console.WriteLine("Enter height:");
+                            height = Convert.ToDouble(Console.ReadLine());
+                            Console.WriteLine("------------------------------------------------------------");
+                            sumOfHeight += height;
+                            n++;
+                            break;
+                        case 'G':
+                            Console.Write("Enter height: ");
+                            height = Convert.ToDouble(Console.ReadLine());
+                            Console.WriteLine("------------------------------------------------------------");
+                            sumOfHeight += height;
+                            n++;
+                            break;
+                        case 'E':
+                            averageHeight = sumOfHeight / n;
+                            Console.WriteLine("------------------------------------------------------------");
+                            Console.WriteLine($"The average height in class: {Math.Round(averageHeight, 2)}");
+                            Console.WriteLine("------------------------------------------------------------");
+                            exitForLoop = false;
+                            break;
+                        default:
+                            Console.WriteLine("There's only two genders");
+                            Console.WriteLine("------------------------------------------------------------");
+                            break;
+                    }          
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Wrong Input =( Try Again");
+            }
+            
+
+            #endregion
+            Console.WriteLine("--- ex.2 ---");
+            #region ex.2(also changed the position of try block)
+
+            int numberOfDots = 0;
+            double r = 10;
+            double a = 4;
+            double b = 3;
+            bool quitLoop = true;
+
+            try
+            {
+                while (quitLoop)
+                {
+                    Console.Write("Enter x coord(to exit the program type some letters or symbols): ");
+                    double xCoordinate = Convert.ToDouble(Console.ReadLine());
+
+                    Console.Write("Enter y coord: ");
+                    double yCoordinate = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("--------------------------------------------------------");
+
+
+                    if (Math.Pow(xCoordinate - a, 2) + Math.Pow(yCoordinate - b, 2) - Math.Pow(r, 2) < Math.Pow(10, -4))
+                    {
+                        numberOfDots++;
+                    }
+
+
+
+                }
+            }
+
+            catch (Exception)
+            {
+                Console.WriteLine($"Number of dots inside the ring: {numberOfDots}");
+                quitLoop = false;
+            }
+
+            
+
+
+            #endregion
+
+            #endregion
+        }
+
+        static void Level3() 
+        {
+            #region Level 3
+            Console.WriteLine("--- Level 3 ---");
+            Console.WriteLine("--- ex.4 ---");
+            #region ex.4(changed the for(;;) loop to while(true) and put it into try block instead for keeping try in loop
+            double epsilon = Math.Pow(10, -4);
+            int quantity = 0;
+            double innerRadius;
+            double outerRadius;
+            bool loopExit = true;
+
+            Console.Write("Enter inner radius: ");
+            double.TryParse(Console.ReadLine(), out innerRadius);
+            Console.Write("Enter outer radius: ");
+            double.TryParse(Console.ReadLine(), out outerRadius);
+            Console.WriteLine("--------------------------------------------------------");
+
+
+            if (innerRadius > 0 && outerRadius > 0)
+            {
+
+                try 
+                {
+                    while(loopExit)
+                    {
+                        Console.Write("Enter x coord(to exit the program type some letters or symbols): ");
+                        double xCoord = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Enter y coord: ");
+                        double yCoord = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("--------------------------------------------------------");
+                        if (Math.Pow(xCoord, 2) + Math.Pow(yCoord, 2) <= Math.Pow(outerRadius, 2) && Math.Pow(xCoord, 2) + Math.Pow(yCoord, 2) >= Math.Pow(innerRadius, 2))
+                        {
+                            quantity++;
+                        }
+
+                    }
+                }
+
+                catch (Exception)
+                {
+                        Console.WriteLine($"Answer: {quantity}");
+                        Console.WriteLine("--------------------------------------------------------");
+                        loopExit = false;
+                }
+
+                }
+            
+
+            #endregion
+
+            Console.WriteLine("--- ex.11 ---");
+            #region ex.11
+
+            int[] student = new int[4];
+            double[] averageMark = new double[] { 0, 0, 0, 0};
+            int numberOfFools = 0;
+            int numberOfGeniuses = 0;
+            bool badMark;
+            int numberOfStudent = 1;
+            try
+            {
+                while (true)
+                {
+                    Console.WriteLine($"--- {numberOfStudent} ---");
+                    badMark = false;
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Console.Write("Enter mark: ");
+                        student[i] = int.Parse(Console.ReadLine());
+                        if (student[i] >= 2 && student[i] <=5)
+                        {
+                            if (student[i] == 2)
+                            {
+                                numberOfFools++;
+                                badMark = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong mark");
+                            throw new Exception();
+                        }
+                    }
+                    if (!badMark)
+                    {
+                        numberOfGeniuses++;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            averageMark[i] += student[i];
+                            
+                        }
+                    }
+                    numberOfStudent++;
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("You have quitted the input");
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                try
+                {
+                    averageMark[i] /= numberOfGeniuses;
+                    Console.WriteLine($"Average score on exam №{i + 1} is {averageMark[i]}");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"No one passed exam №{i + 1}");
+                }
+            }
+
+
+            #endregion
+            Console.WriteLine("--- ex.12 ---");
+            #region ex.12
+
+            while (true)
+            {
+                Console.WriteLine("If you want to stop input type -1");
+                Console.Write("Enter r: ");
+                double.TryParse(Console.ReadLine(), out double r);
+                if (r < 0)
+                {
+                    break;
+                }
+                Console.WriteLine("If you want to count the area of rectangle, type 1\nIf you want to count the area of ring, type 2\nIf you want to count the area of triangle, type 3");
+                Console.Write("Choose: ");
+                int.TryParse(Console.ReadLine(), out int chooseAreaType);
+                switch (chooseAreaType)
+                {
+                    case 1:
+                        Console.WriteLine($"Square: {Math.Pow(r, 2)}");
+                        break;
+
+                    case 2:
+                        Console.WriteLine($"Circle: {Math.PI * Math.Pow(r, 2)}");
+                        break;
+
+                    case 3:
+                        Console.WriteLine($"Triangle: {(Math.Sqrt(3) * Math.Pow(r, 2)) / 4}");
+                        break;
+
+                    default:
+                        Console.WriteLine("Try again");
+                        break;
+
+                }
+
+            }
+
+            #endregion
+            Console.WriteLine("--- ex.13 ---");
+            #region ex.13
+            while (true)
+            {
+                int chooseArea;
+                Console.WriteLine("If you want to stop input type -1");
+                Console.Write("Enter a: ");
+                double.TryParse(Console.ReadLine(), out double a);
+                Console.Write("Enter b: ");
+                double.TryParse(Console.ReadLine(), out double b);
+                if (a < 0 || b < 0)
+                {
+                    break;
+                }
+                Console.WriteLine("If you want to count the area of square, type 1\nIf you want to count the area of circle, type 2\nIf you want to count the area of triangle, type 3");
+                Console.Write("Choose: ");
+                int.TryParse(Console.ReadLine(), out chooseArea);
+                switch (chooseArea)
+                {
+                    case 1:
+                        Console.WriteLine($"Rectangle: {a * b}");
+                        break;
+
+                    case 2:
+                        Console.WriteLine($"Ring: {Math.Abs((Math.PI * Math.Pow(a, 2)) - (Math.PI * Math.Pow(b, 2)))}");
+                        break;
+
+                    case 3:
+                        Console.WriteLine($"The area of a triangle: {Math.Sqrt(Math.Abs((b - a) * (b + a))) / 2}");
+                        break;
+
+                    default:
+                        Console.WriteLine("Wrong Input");
+                        break;
+
+                }
+
+            }
+            #endregion
+
+            #endregion
+         
         }
     }
 }
