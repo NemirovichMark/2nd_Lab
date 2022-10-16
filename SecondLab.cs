@@ -302,7 +302,7 @@ namespace _1st_Lab
                 int bad_students_counter = 0;
                 bool bad_grade = false;
                 double average = 0;
-                double rating = 0;
+                double rating;
                 bool stop_input = false;
 
 
@@ -320,9 +320,10 @@ namespace _1st_Lab
                             Console.WriteLine($"    incorrect format");
                             return;
                         }
+
                         if (mark == -1)
                         {
-                            stop_input = !stop_input;
+                            stop_input = true;
                             break;
                         }
 
@@ -330,14 +331,15 @@ namespace _1st_Lab
                         {
                             Console.WriteLine($"    Marks must be in range from 2 to 5");
                             return;
+                        } else
+                        {
+                            rating += mark;
                         }
 
                         if (mark == 2)
                         {
                             bad_grade = true;
                         }
-
-                        rating += Math.Max(0, mark);
                     }
 
                     if (stop_input)
@@ -355,7 +357,7 @@ namespace _1st_Lab
                 }
 
                 Console.WriteLine($"    the amount of bad students: {bad_students_counter}");
-                Console.WriteLine($"    group average mark: {average / n}");  
+                Console.WriteLine($"    group average mark: {average / (n - bad_students_counter)}");
             }
             #endregion
 
@@ -491,20 +493,25 @@ namespace _1st_Lab
                         break;
                     }
 
-                    switch(choice)
+                    switch (choice)
                     {
                         case 1:
                             area = a * b;
                             break;
                         case 2:
-                             double maxx = Math.Max(a, b);
-                             double minn = Math.Min(a, b);
-                             area = Math.PI * (maxx - minn);
-                             break;
+                            double maxx = Math.Max(a, b);
+                            double minn = Math.Min(a, b);
+                            area = Math.PI * (maxx - minn);
+                            break;
                         case 3:
-                             double height = Math.Sqrt(b * b - a * a / 4);
-                             area = a * height / 2;
-                             break;
+                            if (a > b + b)
+                            {
+                                Console.WriteLine("triangle undefined");
+                                continue;
+                            }
+                            double height = Math.Sqrt(b * b - a * a / 4);
+                            area = a * height / 2;
+                            break;
                     }
 
                     Console.WriteLine($"    Area: {area}");
