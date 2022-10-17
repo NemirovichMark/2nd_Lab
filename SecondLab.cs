@@ -315,6 +315,7 @@ namespace _1st_Lab
 
                     for (int j = 1; j <= 4; j++)
                     {
+
                         if (!int.TryParse(Console.ReadLine(), out mark))
                         {
                             Console.WriteLine($"    incorrect format");
@@ -332,14 +333,13 @@ namespace _1st_Lab
                             Console.WriteLine($"    Marks must be in range from 2 to 5");
                             return;
                         } else
-                        {
-                            rating += mark;
-                        }
 
                         if (mark == 2)
                         {
                             bad_grade = true;
                         }
+
+                        rating += mark;
                     }
 
                     if (stop_input)
@@ -351,8 +351,12 @@ namespace _1st_Lab
                     {
                         bad_students_counter++;
                     }
+                    else
+                    {
+                        average += rating / 4;
+                    }
 
-                    average += rating / 4;
+               
                     n++;
                 }
 
