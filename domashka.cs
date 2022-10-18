@@ -1,3 +1,5 @@
+using System;
+// See https://aka.ms/new-console-template for more information
 #region 1.3
 double a= Convert.ToDouble(Console.ReadLine());
 double b= Convert.ToDouble(Console.ReadLine());
@@ -53,14 +55,18 @@ Console.WriteLine(y);
 int n = 5;
 int i = 1;
 double sum = 0;
-while (i <= n)
-{
+while (i <= n){
     Console.WriteLine("Введите рост в метрах: ");
     double height = Convert.ToDouble(Console.ReadLine());
-    sum += height;
-    i++;
+    if(height>0){
+        sum += height;i++;
+    }
+    else{
+        Console.WriteLine("Рост должен быть положительным");
+        return;
+    }
 }
-Console.WriteLine(sum);
+Console.WriteLine("Средний рост: "+sum/n);
 
 #endregion
 #region 2.9
@@ -98,6 +104,21 @@ for (int i = 1; i <= n; i++)
 Console.WriteLine($"The best result is {best}");
 
 #endregion
+#region 2.5
+Console.WriteLine("Введите норматив");
+double norm=Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите 30 результатов");
+double vipolnili=0;
+double schet=0;
+while(schet<30){
+    double result=Convert.ToDouble(Console.ReadLine());
+    if(result>=norm){
+        vipolnili++;
+    }
+    schet++;
+}
+Console.WriteLine(vipolnili);
+#endregion
 #region 3.4
 Console.WriteLine("Введите абсциссу центра окружности"); 
 double a = Convert.ToDouble((Console.ReadLine())); 
@@ -116,7 +137,7 @@ if (Math.Pow((x - a), 2) + Math.Pow((y - b), 2) >= Math.Pow(R1, 2) && Math.Pow((
     n += 1;     
 }  
 Console.WriteLine(n); 
-#endregion*/
+#endregion
 #region 3.11
 Console.WriteLine("Введите число учеников");
 double q=Convert.ToDouble(Console.ReadLine());
@@ -189,7 +210,7 @@ double b = Convert.ToDouble((Console.ReadLine()));
 Console.WriteLine("Для вычисления введите:\n" + 
     "1 - площадь прямоугольника сторонами А, В \n" + 
     "2 - площадь кольца, заключенного между окружностями радиусами А и В\n" + 
-    "3 - площадь равнобедренного треугольника со стороной B и основанием A"); 
+    "3 - площадь равнобедренного треугольника со стороной A и основанием B"); 
 double k = Convert.ToDouble((Console.ReadLine())); 
 if(a>=0&&b>=0){
 switch (k) 
@@ -200,17 +221,12 @@ switch (k)
     case 2: 
         Console.WriteLine(Math.Abs(Math.PI * ((a * a) - (b * b)))); 
         break; 
-    case 3: 
-        if (b * 2 >= a) // добавил условие
-        {
-            Console.WriteLine("Для этой пары вы не можете найти площадь треугольника");
-            break;
-        }
-        else
-        {
-            double p = (a + b * 2) / 2;
-            Console.WriteLine(Math.Sqrt(p * (p - a) * (p - b) * (p - b)));
-        }
+     case 3:
+        Console.WriteLine(Math.Sqrt(Math.Abs((b - a) * (b + a))) / 2);
+        break;
+
+    default:
+        Console.WriteLine("Неправильное значение");
         break;
 } 
 
