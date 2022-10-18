@@ -62,7 +62,7 @@ do
     Console.WriteLine("Введите баллы студента за каждый его экзамен для окончания 0");
     ball = double.Parse(Console.ReadLine());
     if (ball == 0) break;
-    if (ball > 2) exam = exam + 1;
+    if (ball > 3) exam = exam + 1;
     if (exam < 4) badst = badst + 1;
     summ = summ + ball;
     st = st + 1;
