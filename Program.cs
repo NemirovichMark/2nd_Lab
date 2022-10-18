@@ -323,15 +323,31 @@ namespace Lab_2
             int n_13, choose_13;
             double A, B, result_13;
             Console.WriteLine($"Enter amount of pairs");
-            n_13 = int.Parse(Console.ReadLine());
+            if (!int.TryParse(Console.ReadLine(), out n_13) || n_13 <= 0)
+            {
+                Console.WriteLine($"Incorrect input");
+                return;
+            }
             for (int v = 1; v <= n_13; v++)
             {
                 Console.WriteLine($"Enter A (it should be more than 0)");
-                    A = double.Parse(Console.ReadLine());
+                    if (!double.TryParse(Console.ReadLine(), out A) || A <= 0)
+                {
+                    Console.WriteLine($"Not correct input...");
+                    return;
+                }
                     Console.WriteLine($"Enter B (it should be more than 0)");
-                    B = double.Parse(Console.ReadLine());
+                    if (!double.TryParse(Console.ReadLine(), out B) || B <= 0)
+                {
+                    Console.WriteLine($"Not correct input...");
+                    return;
+                }
                     Console.WriteLine($"For rectangle type 0, for annulus type 1, for isosceles triangle type 2 ");
-                    choose_13 = int.Parse(Console.ReadLine());
+                    if (!int.TryParse(Console.ReadLine(), out choose_13))
+                {
+                    Console.WriteLine($"Incorrect input");
+                    return;
+                }
                 switch (choose_13)
                 {
                     case 0:
