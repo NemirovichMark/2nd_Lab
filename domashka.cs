@@ -1,4 +1,5 @@
 using System;
+// See https://aka.ms/new-console-template for more information
 #region 1.3
 double a= Convert.ToDouble(Console.ReadLine());
 double b= Convert.ToDouble(Console.ReadLine());
@@ -220,9 +221,13 @@ switch (k)
     case 2: 
         Console.WriteLine(Math.Abs(Math.PI * ((a * a) - (b * b)))); 
         break; 
-    case 3: 
-       Console.WriteLine((b/4)*Math.Sqrt(4*Math.Pow(a,2)-Math.Pow(b,2)));
-       break;
+     case 3:
+        Console.WriteLine(Math.Sqrt(Math.Abs((b - a) * (b + a))) / 2);
+        break;
+
+    default:
+        Console.WriteLine("Неправильное значение");
+        break;
 } 
 
   }
