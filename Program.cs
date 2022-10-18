@@ -363,7 +363,7 @@ namespace Lab_2
                         break;
 
                     case 2:
-                        result_13 = 0.5 * B * Math.Sqrt((A + 0.5 * B) * (A - 0.5 * B));
+                        result_13 = ((A / 4) * Math.Sqrt(Math.Abs(4 * (B * B) - (A * A))));
                         Console.WriteLine($"S of the isosceles triangle is {result_13}");
                         Console.ReadKey();
                         break;
