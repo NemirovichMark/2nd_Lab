@@ -64,7 +64,7 @@ do
     if (ball == 0) break;
     if (ball > 3) exam = exam + 1;
     if (exam < 4) badst = badst + 1;
-    summ = summ + ball;
+    if (ball>2) summ = summ + ball;
     st = st + 1;
 }   while (ball > 0);
 srball = summ / st;
