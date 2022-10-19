@@ -257,7 +257,8 @@ namespace _2nd_Lab
 
             Console.WriteLine("solution for task 3.11:");
 
-            double score, sum_score, unsuccessful = 0, final_sum_score = 0;
+            double unsuccessful = 0, final_sum_score = 0;
+            int score, sum_score;
             bool unsuccessful_bool;
 
             do
@@ -281,22 +282,28 @@ namespace _2nd_Lab
                     {
                         Console.Write($"enter result of {i} student for {j} subject: ");
                     }
-                    while (!double.TryParse(Console.ReadLine(), out score));
+                    while (!int.TryParse(Console.ReadLine(), out score));
 
-                    if (score < 2.5) unsuccessful_bool = true;
+                    if (score == 2) unsuccessful_bool = true;
 
                     sum_score += score;
 
                 }
 
                 if (unsuccessful_bool) unsuccessful += 1;
-
-                final_sum_score += sum_score;
+                
+                else final_sum_score += sum_score;
 
             }
 
-            Console.WriteLine($"Answer for task 3.11:\nnumber of failing students: {unsuccessful}\n" +
-                $"group average: {(final_sum_score / (n * 4)):f2}\n");
+            try
+            {
+                Console.WriteLine($"answer for task 3.11:\nnumber of failing students: {unsuccessful}\n" +
+               $"group average: {(final_sum_score / ((n - unsuccessful) * 4)):f2}\n");
+            }
+            catch {
+                Console.WriteLine("answer for task 3.11: no good students\n");
+            }
 
             #endregion
 
