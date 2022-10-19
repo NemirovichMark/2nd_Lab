@@ -368,7 +368,41 @@ namespace _2nd_Lab
                 
                 
             #region 12
-            
+            Int16 l;
+            Int32 R;
+            while (true)
+            {
+                Console.WriteLine("Enter number, if you want to stop enter 0");
+                R = Convert.ToInt32(Console.ReadLine());
+                if (R <= 0) break;
+                Console.WriteLine("If you want to find square area enter 3, if circle area enter 1, if triangle area enter 2");
+                l = Convert.ToInt16(Console.ReadLine());
+                if (l == 1) Console.WriteLine(3.14 * R * R);
+                else if (l == 2) Console.WriteLine(R * R * Math.Sqrt(3) / 4);
+                else if (R == 3) Console.WriteLine(R * R);
+            #endregion
+                
+                
+            #region 13
+            Int16 l;
+            Int32 A, B;
+            while (true)
+            {
+                Console.WriteLine("Enter number A, if you want to stop enter 0");
+                A = Convert.ToInt32(Console.ReadLine());
+                if (A <= 0) break;
+                Console.WriteLine("Enter number B");
+                B = Convert.ToInt32(Console.ReadLine());
+                if (A <= 0) break;
+                Console.WriteLine("If you want to find rectangle area enter 1, if ring area between circles with A and B radiouses enter 2, if triangle area with A, B, B sides enter 3");
+                l = Convert.ToInt16(Console.ReadLine());
+                if (l == 1) Console.WriteLine(A * B);
+                else if (l == 2)
+                {
+                    if (A > B) Console.WriteLine(3.14 * A * A - 3.14 * B * B);
+                    else if (A < B) Console.WriteLine(-3.14 * A * A + 3.14 * B * B);
+                }
+                else if (l == 3) Console.WriteLine(A * Math.Sqrt(4 * B * B - A * A) / 4);
             #endregion
         }
     }
