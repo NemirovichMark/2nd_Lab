@@ -159,15 +159,68 @@ namespace _2nd_Lab
                 
                 
             TASKS
+                
+                
+                
+           Part 1
+                
+                
+           #region 1
+            double x, y;
+            x = Convert.ToDouble(Console.ReadLine());
+            y = Convert.ToDouble(Console.ReadLine());
+            if (Math.Abs(x * x + y * y - 4) <= 0.001)
+            {
+                Console.WriteLine("The point belongs to the circle");
+            }
+            else
+            {
+                Console.WriteLine("The point don't belongs to the circle");
+            }
              
+           #endregion 
+               
+               
+               
+           #region 4
+            double a, b, c, min;
+            a = Convert.ToDouble(Console.ReadLine());
+            b = Convert.ToDouble(Console.ReadLine());
+            c = Convert.ToDouble(Console.ReadLine());
+            if (a < b) min = a;
+            else min = b;
+            if (min > c) Console.WriteLine(min);
+            else Console.WriteLine(c);
+           #endregion
                 
-                
+               
+               
+               
+                   
            Part 2
+               
+               
+           #region 1
+            double height, n, S;
+            Console.WriteLine("Enter amount of pupils");
+            n = Convert.ToDouble(Console.ReadLine());
+            while (n <= 0)
+            {
+                Console.WriteLine("Enter amount of pupils");
+                n = Convert.ToDouble(Console.ReadLine());
+            }
+            S = 0;
+            for (double i = 0; i == n; i++)
+            {
+                height = Convert.ToDouble(Console.ReadLine());
+                S += height;
+            }
+            Console.WriteLine(S/n);
+           #endregion 
                 
                 
            #region 4
-                
-           double n, R1, R2, count, x, y;
+            double n, R1, R2, count, x, y;
             Console.WriteLine("Enter amount of points");
             n = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
@@ -217,7 +270,6 @@ namespace _2nd_Lab
             }
             Console.WriteLine(" ");
             Console.WriteLine("Amount of suitable points is " + count);
-            
             #endregion
                 
                 
@@ -227,8 +279,7 @@ namespace _2nd_Lab
             Part 3
                 
                              
-            #region 4
-                
+            #region 4 
             double R1, R2, count, x, y;
             Console.WriteLine("Enter radius of the 1st circle");
             R1 = Convert.ToDouble(Console.ReadLine());
@@ -279,6 +330,44 @@ namespace _2nd_Lab
             }
             Console.WriteLine(" ");
             Console.WriteLine("Amount of suitable points is " + count);
+            #endregion
+                
+            #region 11
+            Int16 E1, E2, E3, E4, count, n;
+            Int32 S, genS;
+            E1 = 1;
+            count = 0;
+            n = 1;
+            genS = 0;
+            S = 0;
+            while (E1 != 0)
+            {
+                Console.WriteLine("Student" + n);
+                Console.WriteLine("Enter student's marks for exams(from 1st to 4th), if you want to end enter '0' in 1st string:");
+                E1 = Convert.ToInt16(Console.ReadLine());
+                E2 = Convert.ToInt16(Console.ReadLine());
+                E3 = Convert.ToInt16(Console.ReadLine());
+                E4 = Convert.ToInt16(Console.ReadLine());
+                if (E1 == 0) continue;
+                else
+                {
+                    S = E1 + E2 + E3 + E4;
+                    if (S <= 16 || E1 == 2 || E2 == 2 || E3 == 2 || E4 == 2)
+                    {
+                        count += 1;
+                    }
+                    genS += S;
+                    n += 1;
+                }
+            }
+            n -= 1;
+            n *= 4;
+            Console.WriteLine("Amount of students who have poor academic performance is:" + count);
+            Console.WriteLine("Average mark in the group is:" + genS/n);
+            #endregion
+                
+                
+            #region 12
             
             #endregion
         }
