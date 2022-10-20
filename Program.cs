@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace Project
 {
-    class Programm
+    class Program
     {
         static void Main(string[] args)
         {
@@ -222,6 +222,7 @@ namespace Project
                 int[] intMarks = { 0, 0, 0, 0 };
                 bool isFailng = false;
                 bool wrongInput = false;
+                int recheck = 0;
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -242,16 +243,26 @@ namespace Project
                     if (mark <= 2)
                     {
                         isFailng = true;
+                        recheck = 0;
+                        break;
                     }
-                    sumOfMarks += mark;
+                    else
+                    {
+                        recheck += mark;
+                        
+                    }
                 }
+
+                sumOfMarks += recheck;
+                recheck = 0;
 
                 if (isFailng)
                 {
                     failingStudents += 1;
+                    numberOfStudents -= 1;
                 }
-
                 numberOfStudents += 1;
+
             }
 
             Console.WriteLine($" 3.11 Answer: Failing students: {failingStudents} Average mark: {sumOfMarks / 4.0 / numberOfStudents}");
