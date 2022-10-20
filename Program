@@ -1,165 +1,169 @@
 using System;
-namespace kaf
-{
-    class room
+
+class kaf {
+
+    public static void Main(String[] args)
     {
-        public static void Main(string[] args)
+
+
+        #region task1_1
+        double r = 2;
+        Console.Write("Введите x ");
+        double x; double.TryParse(Console.ReadLine(), out x);
+        Console.Write("Введите y ");
+        double y; double.TryParse(Console.ReadLine(),out y);
+
+        if (x * x + y * y <= r * r)
         {
-            #region task1_1
-            double r = 2;
-            Console.Write("Введите x ");
-            double x = double.Parse(Console.ReadLine());
-            Console.Write("Введите y ");
-            double y = double.Parse(Console.ReadLine());
+            Console.Write("yes");
+        }
+        else Console.WriteLine("no");
+        #endregion
 
-            if (x * x + y * y <= r * r)
+        #region task1_7
+        double y;
+        double x; double.TryParse(Console.ReadLine(), out x);
+        if (Math.Abs(x) > 1)
+        {
+            y = 1;
+        }
+        else y = Math.Abs(x);
+        Console.WriteLine(y);
+        #endregion
+
+        #region task2_1
+        int n = 0; double rost = 0; double midle = 0; double rt = 0; double ma = 0;
+        for (int i = 0; ; i++)
+        {
+            Console.WriteLine("Введите рост ученика , для завершения программы введите 0");
+            double.TryParse(Console.ReadLine(), out ma);
+            rt = Math.Abs(ma);
+            if (rt == 0) { break; }
+            else
             {
-                Console.Write("yes");
+                n++;
+                rost += rt;
+                midle = rost / n;
             }
-            else Console.WriteLine("no");
-            #endregion
-
-            #region task1_7
-                double y;
-                double x = double.Parse(Console.ReadLine());
-                if (Math.Abs(x) > 1)
-                {
-                    y = 1;
-                }
-                else y = Math.Abs(x);
-                Console.WriteLine(y);
-            #endregion
-
-            #region task2_1
-           int n = 0; double rost = 0; double midle = 0; double rt = 0;double ma = 0;
-            for (int i = 0; ; i++)
-            {
-                Console.WriteLine("Введите рост ученика , для завершения программы введите 0");
-                ma = double.Parse(Console.ReadLine());
-                rt = Math.Abs(ma);
-                if (rt == 0) { break; }
-                else
-                {
-                    n++;
-                    rost += rt;
-                    midle = rost / n;
-                }
-                
-            }
-            Console.WriteLine(midle);
-            #endregion
-
-            #region task2_4
-            int r1 = 2; int r2 = 8; int n = 0; 
-
-            for (int i = 0; i <= 5; i++)
-            {
-                Console.WriteLine("Введите х ");
-                double x = double.Parse(Console.ReadLine());
-                Console.WriteLine("Введите у ");
-                double y = double.Parse(Console.ReadLine());
-
-                if (x * x + y * y >= r1 * r1 & x * x + y * y <= r2 * r2)
-                {
-                    n++;
-                }
-            }
-            Console.WriteLine("В кольцо попало " + n + " точек");
-            #endregion
-            
-            #region task3_4
-            int r1 = 2; int r2 = 8; int n = 0; 
-            Console.WriteLine("Введите кол-во точек");
-            int zn = int.Parse(Console.ReadLine());
-            for (int i = 0; i <= zn; i++)
-            {
-                Console.WriteLine("Введите х ");
-                double x = double.Parse(Console.ReadLine());
-                Console.WriteLine("Введите у ");
-                double y = double.Parse(Console.ReadLine());
-
-                if (x * x + y * y >= r1 * r1 & x * x + y * y <= r2 * r2)
-                {
-                    n++;
-                }
-            }
-            Console.WriteLine("В кольцо попало " + n + " точек");
-            #endregion
-            
-            #region task3_11
-            int k = 0; int sum = 0; int s = 0;int j = 0;
-            Console.Write("Введите кол-во учеников ");
-            int n = int.Parse(Console.ReadLine());
-            for (int i = 0; i < n; i++)
-            {
-                Console.WriteLine("Введите оценки ученика ( от 2 до 5 ) ");
-                int x1 = int.Parse(Console.ReadLine());
-                int x2 = int.Parse(Console.ReadLine());
-                int x3 = int.Parse(Console.ReadLine());
-                int x4 = int.Parse(Console.ReadLine());
-                if (x1 == 2 | x2 == 2 | x3 == 2 | x4 == 2)
-                { k++; }
-                if (x1 != 2 & x2 != 2 & x3 != 2 & x4 != 2)
-                {
-                    sum = x1 + x2 + x3 + x4;
-                    s += sum;
-                    j++;
-                }
-            }
-            Console.WriteLine("Кол-во неуспевающих "+ k + " " + " Средний балл " + (s / j / 4));
-
-            #endregion
-
-
-            #region task3_12
-            double S = 0;
-
-            Console.WriteLine("Выберите фигуру: круг - 0, треугольник - 1, квадрат - 2");
-            int x = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите значение для рассчета площади");
-            double r = double.Parse(Console.ReadLine());
-            if (x == 0)
-            {
-                S = Math.PI * r * r;
-            }
-            if (x == 1)
-            {
-                S = r * r * Math.Sqrt(3) / 4;
-            }
-            if (x == 2)
-            {
-                S = r * r;
-            }
-            Console.WriteLine(S);
-            #endregion
-            
-            #region task3_13
-             double S = 0;
-            Console.WriteLine("Введите количество фигур");
-             int n = int.Parse(Console.ReadLine());
-            for (int i = 0; i < n; i++) {
-                Console.WriteLine("Введите значения");
-                double a = double.Parse(Console.ReadLine());
-                double b = double.Parse(Console.ReadLine());
-                Console.WriteLine("Выберите фигуру: прямоугольник - 0, кольцо - 1, треугольник - 2");
-                int x = int.Parse(Console.ReadLine());
-                if (x == 0) { S = a * b; }
-                if (x == 1) { S = Math.PI * Math.Abs(a * a - b * b); }
-                if (x == 2) { S = a / 4 * Math.Sqrt(4 * b * b - a * a); }
-                Console.WriteLine(S);
-            }
-            #endregion
 
         }
+        Console.WriteLine(midle);
+        #endregion
+
+        #region task2_4
+        int r1 = 2; int r2 = 8; int n = 0;
+
+        for (int i = 0; i <= 5; i++)
+        {
+            Console.WriteLine("Введите х ");
+            double x; double.TryParse(Console.ReadLine(),out x);
+            Console.WriteLine("Введите у ");
+            double y; double.TryParse(Console.ReadLine()), out y;
+
+            if (x * x + y * y >= r1 * r1 & x * x + y * y <= r2 * r2)
+            {
+                n++;
+            }
+        }
+        Console.WriteLine("В кольцо попало " + n + " точек");
+        #endregion
+
+        #region task3_4
+        int r1 = 2; int r2 = 8; int n = 0;
+        Console.WriteLine("Введите кол-во точек");
+        int zn; int.TryParse(Console.ReadLine(), out zn);
+        for (int i = 0; i <= zn; i++)
+        {
+            Console.WriteLine("Введите х ");
+            double x;  double.TryParse(Console.ReadLine(),x);
+            Console.WriteLine("Введите у ");
+            double y; double.TryParse(Console.ReadLine(),y);
+
+            if (x * x + y * y >= r1 * r1 & x * x + y * y <= r2 * r2)
+            {
+                n++;
+            }
+        }
+        Console.WriteLine("В кольцо попало " + n + " точек");
+        #endregion
+
+        #region task3_11
+        int k = 0; int sum = 0; int s = 0; int j = 0;
+        Console.Write("Введите кол-во учеников ");
+        int n;  int.TryParse(Console.ReadLine(), out n);
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine("Введите оценки ученика ( от 2 до 5 ) ");
+            int x1;  int.TryParse(Console.ReadLine(), out x1);
+            int x2; int.TryParse(Console.ReadLine(), out x2);
+            int x3; int.TryParse(Console.ReadLine(), out x3);
+            int x4; int.TryParse(Console.ReadLine(), out x4);
+            if (x1 == 1 | x2 == 1 | x3 == 1 | x4 == 1 | x > 5){break;}
+             if (x1 >5 | x2 >5 | x3 >5 | x4 >5){break;}
+            if (x1 == 2 | x2 == 2 | x3 == 2 | x4 == 2)
+            { k++; }
+            if (x1 != 2 & x2 != 2 & x3 != 2 & x4 != 2)
+            {
+                sum = x1 + x2 + x3 + x4;
+                s += sum;
+                j++;
+            }
+        }
+        Console.WriteLine("Кол-во неуспевающих " + k + " " + " Средний балл " + (s / j / 4));
+
+        #endregion
+
+
+       #region task3_12
+        double S = 0;
+
+        Console.WriteLine("Выберите фигуру: круг - 0, треугольник - 1, квадрат - 2");
+        int x; int.TryParse(Console.ReadLine(), out x);
+        Console.WriteLine("Введите значение для рассчета площади");
+        double r; double.TryParse(Console.ReadLine(), out r);
+        switch (x)
+        {
+            case 0:
+                S = S = Math.PI * r * r;
+                break;
+            case 1:
+                S = r * r * Math.Sqrt(3) / 4;
+                break;
+            case 2:
+                S = r * r;
+                break;
+
+        }
+        Console.WriteLine(S);
+        #endregion
+
+        #region task3_13
+        double S = 0;
+        Console.WriteLine("Введите количество фигур");
+        int n; int.TryParse(Console.ReadLine(), out n);
+        for (int i = 0; i < n; i++)
+        {
+            Console.WriteLine("Введите значения");
+            double a; double.TryParse(Console.ReadLine(), out a);
+            double b; double.TryParse(Console.ReadLine(),out b);
+            Console.WriteLine("Выберите фигуру: прямоугольник - 0, кольцо - 1, треугольник - 2");
+            int x;  int.TryParse(Console.ReadLine(),out x);
+            switch(x){
+                case 0: S = Math.Abs(a) * Math.Abs(b);
+                    break;
+                case 1: S = Math.PI * Math.Abs(a * a - b * b);
+                    break;
+                case 2: S = a / 4 * Math.Sqrt(Math.Abs(4 * b * b - a * a));
+                    break;
+
+            }
+           
+            Console.WriteLine(S);
+        }
+        #endregion
+  
+
+
     }
+
 }
-
-
-
-
-
-
-
-
-
-
