@@ -203,53 +203,48 @@ namespace _2nd_Lab
             Console.WriteLine("Solution for task 3.4:");
 
             double r1, r2;
-
-            do
-            {
-                Console.Write("enter the number of points: ");
-            }
-
-            while (!int.TryParse(Console.ReadLine(), out n));
+            int counter = 1;
+            string next;
 
             do
             {
                 Console.Write("enter inner radius: ");
             }
-
             while (!double.TryParse(Console.ReadLine(), out r1));
 
             do
             {
                 Console.Write("enter outer radius: ");
             }
-
             while (!double.TryParse(Console.ReadLine(), out r2));
 
             Console.WriteLine("");
 
-            if (r1 > r2) Console.WriteLine("inner radius cannot be greater than outer (task skipped)\n");
-            else
+            do
             {
-                for (int i = 1; i <= n; i++)
+                if (r1 > r2) Console.WriteLine("inner radius cannot be greater than outer (task skipped)\n");
+                else
                 {
                     do
                     {
-                        Console.Write($"enter \"x{i}\" (point coordinate): ");
+                        Console.Write($"enter \"x{counter}\" (point coordinate): ");
                     }
-
                     while (!double.TryParse(Console.ReadLine(), out x));
 
                     do
                     {
-                        Console.Write($"enter \"y{i}\" (point coordinate): ");
+                        Console.Write($"enter \"y{counter}\" (point coordinate): ");
                     }
-
                     while (!double.TryParse(Console.ReadLine(), out y));
 
-                    if ((x * x + y * y > r1 * r1) && (x * x + y * y < r2 * r2)) Console.WriteLine($"{i} point: yes\n");
-                    else Console.WriteLine($"{i} point: no\n");
+                    if ((x * x + y * y > r1 * r1) && (x * x + y * y < r2 * r2)) Console.WriteLine($"{counter} point: yes\n");
+                    else Console.WriteLine($"{counter} point: no\n");
                 }
+                Console.WriteLine("do you want to continue? (Y - yes; other - no)");
+                next = Console.ReadLine();
+                counter++;
             }
+            while (next == "Y");
 
             #endregion
 
@@ -260,52 +255,59 @@ namespace _2nd_Lab
             double unsuccessful = 0, final_sum_score = 0;
             int score, sum_score;
             bool unsuccessful_bool;
+            counter = 0;
 
             do
-            {
-                Console.Write("enter number of students: ");
-            }
-
-            while (!int.TryParse(Console.ReadLine(), out n));
-
-            for (int i = 1; i <= n; i++) // student
             {
 
                 unsuccessful_bool = false;
 
                 sum_score = 0;
 
+                counter++;
+
                 for (int j = 1; j <= 4; j++) // subject
                 {
-
-                    do
+                    try
                     {
-                        Console.Write($"enter result of {i} student for {j} subject: ");
+                        Console.Write($"enter result of {counter} student for {j} subject: ");
+                        score = Convert.ToInt32(Console.ReadLine());
                     }
-                    while (!int.TryParse(Console.ReadLine(), out score));
+                    catch
+                    {
+                        j--;
+                        continue;
+                    };
 
-                    if (score == 2) unsuccessful_bool = true;
+                    if (score < 2 || score > 5)
+                    {
+                        j--;
+                        continue;
+                    }
+
+                    else if (score == 2) unsuccessful_bool = true;
 
                     sum_score += score;
-
                 }
 
                 if (unsuccessful_bool) unsuccessful += 1;
-                
+
                 else final_sum_score += sum_score;
 
+                Console.WriteLine("do you want to continue? (Y - yes; other - no)");
+                next = Console.ReadLine();
             }
 
-            try
-            {
+            while (next == "Y");
+
+            if (final_sum_score / ((counter - unsuccessful) * 4) > 2)
                 Console.WriteLine($"answer for task 3.11:\nnumber of failing students: {unsuccessful}\n" +
-               $"group average: {(final_sum_score / ((n - unsuccessful) * 4)):f2}\n");
-            }
-            catch {
-                Console.WriteLine("answer for task 3.11: no good students\n");
-            }
+                $"group average: {(final_sum_score / ((counter - unsuccessful) * 4)):f2}\n");
+
+            else Console.WriteLine("answer for task 3.11: no good students\n");
 
             #endregion
+
 
             #region Task 3.12
 
@@ -314,13 +316,6 @@ namespace _2nd_Lab
             int choice;
 
             do
-            {
-                Console.Write("enter the number of values: ");
-            }
-
-            while (!int.TryParse(Console.ReadLine(), out n));
-
-            for (int i = 0; i < n; i++)
             {
                 do
                 {
@@ -358,8 +353,12 @@ namespace _2nd_Lab
                         Console.WriteLine($"task skipped (different number entered)\n");
                         break;
                 }
-            }
 
+                Console.WriteLine("do you want to continue? (Y - yes; other - no)");
+                next = Console.ReadLine();
+
+            }
+            while (next == "Y");
             #endregion
 
             #region Task 3.13
@@ -368,24 +367,19 @@ namespace _2nd_Lab
 
             do
             {
-                Console.Write("enter the number of values: ");
-            }
-
-            while (!int.TryParse(Console.ReadLine(), out n));
-
-            for (int i = 0; i < n; i++)
-            {
                 do
                 {
                     Console.Write("enter value \"a\": ");
+                    double.TryParse(Console.ReadLine(), out a);
                 }
-                while (!double.TryParse(Console.ReadLine(), out a));
+                while (a <= 0);
 
                 do
                 {
                     Console.Write("enter value \"b\": ");
+                    double.TryParse(Console.ReadLine(), out b);
                 }
-                while (!double.TryParse(Console.ReadLine(), out b));
+                while (b <= 0);
 
                 do
                 {
@@ -419,7 +413,11 @@ namespace _2nd_Lab
                         break;
                 }
 
+                Console.WriteLine("do you want to continue? (Y - yes; other - no)");
+                next = Console.ReadLine();
+
             }
+            while (next == "Y");
 
             #endregion
 
