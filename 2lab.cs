@@ -1,11 +1,16 @@
+using System.Drawing;
+
+Console.WriteLine("Hello, World!");
+
 #region task2
 double x, y;
 bool q = false;
-Console.WriteLine("x=");
+Console.Write("x=");
 x = double.Parse(Console.ReadLine());
-Console.WriteLine("y=");
+Console.Write("y=");
 y = double.Parse(Console.ReadLine());
-if (y >= 0 && (y + Math.Abs(x)) <= 1) q = !q;
+if (y >= 0 && (y + Math.Abs(x)) <= 1)
+    q = !q;
 Console.WriteLine($"{q}");
 #endregion
 
@@ -14,40 +19,65 @@ double a;
 double b;
 double c;
 c = 0;
-Console.WriteLine("A=");
+Console.Write("A=");
 a = double.Parse(Console.ReadLine());
-Console.WriteLine("B=");
+Console.Write("B=");
 b = double.Parse(Console.ReadLine());
 if (a > 0)
 {
-    if (a > b) c = a;
-    else c = b;
+    if (a > b)
+        c = a;
+    else 
+        c = b;
 }
-else if(a <= 0);
+else if(a <= 0)
 {
-    if (a > b) c = b;
-    else c = a;
+    if (a > b)
+        c = b;
+    else 
+        c = a;
 }
 Console.WriteLine($"c={c}");
 #endregion
 
 #region 2task1
-double grls, boys, grlsh, boysh,i,l=0,s=0;
-Console.WriteLine("Количество мальчиков=: ");
-boys = double.Parse(Console.ReadLine());
+int grls, boys;
+double grlsh, boysh,i,l=0,s=0;
+
+do
+{
+    Console.WriteLine("Количество мальчиков=: ");
+    boys = int.Parse(Console.ReadLine());
+    if (boys < 0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (boys<0);
 for (i = 0; i < boys; i++)
 {
-    Console.WriteLine("рост мальчиков");
-    boysh = double.Parse(Console.ReadLine());
+    do {
+        Console.Write("рост мальчиков");
+        boysh = double.Parse(Console.ReadLine());
+        if (boysh < 0)
+            Console.WriteLine("Вы ввели неверные входные данные!;(");
+        //boysh=Convert.ToDouble(Console.ReadLine());
+    } while(boysh <= 0);
     s += boysh;
 }
-
-Console.WriteLine("Количество девочек=: ");
-grls = double.Parse(Console.ReadLine());
+do
+{
+    Console.WriteLine("Количество девочек=: ");
+    grls = int.Parse(Console.ReadLine());
+    if (grls < 0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (grls < 0);
 for (i = 0; i < grls; i++)
 {
-    Console.WriteLine("рост девочек");
-    grlsh = double.Parse(Console.ReadLine());
+    do
+    {
+        Console.Write("рост девочек:");
+       grlsh = double.Parse(Console.ReadLine());
+        if (grlsh <= 0)
+            Console.WriteLine("Вы ввели неверные входные данные!;(");
+    } while (grlsh <= 0);
     l += grlsh;
 }
 
@@ -55,15 +85,25 @@ Console.WriteLine($"cредний рост= {(s + l) / (grls + boys)}");
 #endregion
 
 #region 2task3
-double summa, number, weight;
+double summa, weight;
 summa = 0;
-int j;
+int j, number;
 Console.WriteLine("Количество учеников ");
-number = double.Parse(Console.ReadLine());
-for (j = 0; j < number; j++)
+do
 {
-    Console.WriteLine("Вес ученика= ");
-    weight = double.Parse(Console.ReadLine());
+    number = int.Parse(Console.ReadLine());
+    if (number < 0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (number<0);
+for (j = 0; j < number;j++) ;
+{
+    do
+    {
+        Console.Write("Вес ученика= ");
+        weight = double.Parse(Console.ReadLine());
+        if (weight < 0)
+            Console.WriteLine("Вы ввели неверные входные данные!;(");
+    } while (weight<0);
     if (weight < 30) summa += 0.2;
 }
 Console.WriteLine($" {summa}");
@@ -72,10 +112,18 @@ Console.WriteLine($" {summa}");
 #region 3task4
 int tochki = 0;
 double r1, r2, x1, y1;
-Console.WriteLine("Введите r1");
-r1 = double.Parse(Console.ReadLine());
-Console.WriteLine("Введите r2");
-r2 = double.Parse(Console.ReadLine());
+do {
+    Console.WriteLine("Введите r1");
+    r1 = double.Parse(Console.ReadLine());
+    if(r1<=0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (r1 <= 0) ;
+do {
+    Console.WriteLine("Введите r2");
+    r2 = double.Parse(Console.ReadLine());
+    if (r1 <= 0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (r2<=0) ;
 do
 {
     Console.WriteLine("Введите х");
@@ -93,44 +141,61 @@ Console.WriteLine($"{tochki}");
 #endregion
 
 #region 11task3
-double students = 0;
-int allpoints = 0, loxi = 0, u = 0;
-for (int ii = 1; ; ii++)
+int students,j3 = 0;
+int allpoints = 0, loxi = 0, u = 0,dop_point=0;
+int point;
+bool flag3;
+do
 {
-    int m = 0;
-    Console.WriteLine("Оценки за экзамен ");
-    for (int k2 = 1; k2 <= 4; k2++)
+    Console.Write("Введите количество студентов:");
+    students = int.Parse(Console.ReadLine());
+    if (students <= 0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (students<=0);
+for (int ii = 0;ii<students; ii++)
+{
+    Console.WriteLine($"Студент {ii+1}");
+    flag3 = true;
+    j3 = 0;
+    dop_point = 0;
+    while (flag3 && (j3 <= 3))
     {
-        int point = int.Parse(Console.ReadLine());
-        if (point <= 3)
-            m = m + 1;
-
-        if (point > 5)
+        do
         {
-            u = 1;
-            break;
+            Console.WriteLine("Оценки за экзамен ");
+            point = int.Parse(Console.ReadLine());
+            if (point <= 1 || point > 5)
+                Console.WriteLine("Вы ввели неверные входные данные!;(");
+        } while (point <= 1 || point > 5);
+        dop_point += point;
+        if (point == 2)
+        {
+            flag3 = false;
+            dop_point =0;
+            loxi++;
         }
-        allpoints = allpoints + point;
+        j3++;
     }
-    if (m > 0)
-        loxi++;
-    students++;
-    if (u == 1)
-        break;
+    allpoints += dop_point;
 }
 Console.WriteLine($"Число неуспевающих студентов = {loxi}");
-Console.WriteLine($"Средний балл группы = {(allpoints / 4 / (students - 1))}");
+if (loxi != students)
+    Console.WriteLine($"Средний балл группы = {(allpoints / 4 / (students - loxi))}");
+else Console.WriteLine("Средний балл группы =2");
 #endregion
 
 
 #region 3task12
 double ploschad;
-Console.WriteLine("r=");
-double r = double.Parse(Console.ReadLine());
-Console.WriteLine("1-квадрат 2-круг 3-треугольник?");
+double r;
+do {
+    Console.WriteLine("r=");
+     r = double.Parse(Console.ReadLine());
+    if(r<=0)
+        Console.WriteLine("Вы ввели неверные входные данные!;(");
+} while (r<=0);
+Console.WriteLine("1-квадрат\n2-круг\n3-треугольник\n4-выход");
 int f = int.Parse(Console.ReadLine());
-while (r > 0)
-{
     switch (f)
     {
         case 1:
@@ -145,43 +210,60 @@ while (r > 0)
             ploschad = Math.Sqrt(3) * r * r / 4;
             Console.WriteLine($"площадь треугольника = {ploschad}");
             break;
+        case 4:
+            break;
+        default:
+            Console.WriteLine("Нет такой команды!");
+            break;
+
     }
-    r = double.Parse(Console.ReadLine());
-    break;
-}
 
 #endregion
 
 #region 3task13
 double s1;
-Console.WriteLine("a=");
-double a1 = double.Parse(Console.ReadLine());
-Console.WriteLine("b=");
-double b1 = double.Parse(Console.ReadLine());
-Console.WriteLine("1-прямоугольник, 2-кольца, 3-треугольник");
-int k = 0;
-k = int.Parse(Console.ReadLine());
-while ((a1 > 0) && (b1 > 0))
+double a1;
+double b1;
+do {
+    Console.WriteLine("a=");
+     a1 = double.Parse(Console.ReadLine());
+    if (a1 <= 0)
+        Console.WriteLine("Неверные входные данные:");
+} while (a1<=0);
+do
 {
-    switch (k)
-    {
-        case 1:
-            s1 = a1 * b1;
-            Console.WriteLine($"площадь прямоугольника = {s1}");
-            break;
-        case 2:
-            s1 = Math.Abs(3.14 * a1 * a1 - 3.14 * b1 * b1);
-            Console.WriteLine($"площадь колец = {s1}");
-            break;
-        case 3:
-            s1 = a1 * Math.Sqrt(4 * b1 * b1 - a1 * a1) / 4;
-            Console.WriteLine($"площадь равнобедренного треугольника = {s1}");
-            break;
-    }
-    a1 = double.Parse(Console.ReadLine());
-    if (a1 == 0)
-        break;
+    Console.WriteLine("b=");
     b1 = double.Parse(Console.ReadLine());
+    if (b1 <= 0)
+        Console.WriteLine("Неверные входные данные:");
+} while (b1 <= 0);
+
+Console.WriteLine("1-прямоугольник \n2-кольца \n3-треугольник\n4-выход");
+int k = 0;
+do
+{
+    Console.WriteLine("k=");
+    k = int.Parse(Console.ReadLine());
+    if (k <= 0)
+        Console.WriteLine("Неверные входные данные:");
+} while (k <= 0);
+switch (k) {
+    case 1:
+    s1 = a1 * b1;
+    Console.WriteLine($"площадь прямоугольника = {s1}");
+    break;
+case 2:
+    s1 = Math.Abs(3.14 * a1 * a1 - 3.14 * b1 * b1);
+    Console.WriteLine($"площадь колец = {s1}");
+    break;
+case 3:
+    if (a1 * a1 / 4 > b1 * b1)
+        Console.WriteLine("Треугольника с такими сторонами не существует");
+    else
+    {
+        s1 = a1 * Math.Sqrt(b1 * b1 - a1 * a1 / 4) / 2;
+        Console.WriteLine($"площадь равнобедренного треугольника = {s1}");
+    }
     break;
 }
 
