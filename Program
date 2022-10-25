@@ -99,6 +99,7 @@ class kaf {
             int x3; int.TryParse(Console.ReadLine(), out x3);
             int x4; int.TryParse(Console.ReadLine(), out x4);
             if (x1 == 1 | x2 == 1 | x3 == 1 | x4 == 1 ){break;}
+            if (x1 < 2 | x2 < 2 | x3 < 2 | x4 < 2) { break; }
              if (x1 >5 | x2 >5 | x3 >5 | x4 >5){break;}
             if (x1 == 2 | x2 == 2 | x3 == 2 | x4 == 2)
             { k++; }
