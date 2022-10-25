@@ -1,3 +1,123 @@
+//The First level. Task 2
+double x, y;
+bool i = false;
+double s = 0;
+double d = 0;
+Console.WriteLine("Enter x");
+double.TryParse(Console.ReadLine(), out s);
+x = s;
+Console.WriteLine("Enter y");
+double.TryParse(Console.ReadLine(), out d);
+y = d;
+if (y >= 0 && (y + Math.Abs(x)) <= 1)
+    i = !i;
+Console.WriteLine($"The answer: {i}");
+
+//The First level. Task 3
+double a, b, c;
+c = 0;
+double s = 0;
+double d = 0;
+Console.WriteLine("Enter a");
+double.TryParse(Console.ReadLine(), out s);
+a = s;
+Console.WriteLine("Enter b");
+double.TryParse(Console.ReadLine(), out d);
+b = d;
+if (a > 0)
+{
+    if (a > b) 
+        c = a;
+    else c = b;
+}
+else if (a <= 0)
+{
+    if (a > b) 
+        c = b;
+    else c = a;
+}
+Console.WriteLine($"The answer: {c}");
+
+//The First level. Task 10
+double x, y;
+y = 0;
+double s = 0;
+Console.WriteLine("Enter x");
+double.TryParse(Console.ReadLine(), out s);
+x = s;
+if (x <= -1) y = 1;
+else if (1 < x && x <= 1) y = -x;
+else if (x > 1) y = -1;
+Console.WriteLine($"The answer: {y}");
+
+//The second level. Task 1
+double d, m, sr, s, n = 0.0;
+int i;
+s = 0.0;
+double k, f, e = 0;
+Console.WriteLine("Enter number of students: ");
+double.TryParse(Console.ReadLine(), out s); 
+n = s;
+for (i = 0; i < (n / 2); i++)
+{
+    Console.WriteLine("Enter the girl's height");
+    double.TryParse(Console.ReadLine(), out f);
+    d = f;
+    s += d;
+}
+for (i = 0; i < (n / 2); i++)
+{
+    Console.WriteLine("Enter the boy's height");
+    double.TryParse(Console.ReadLine(), out e);
+    m = e;
+    s += m;
+}
+sr = s / n;
+Console.WriteLine($"Average height of girls and boys: {sr}");
+
+//The second level. Task 3
+double summ, n, weight;
+summ = 0.0;
+double s, d = 0;
+Console.WriteLine("Enter number of students: ");
+double.TryParse(Console.ReadLine(), out s);
+n = s;
+int i;
+for (i = 0; i < n; i++)
+{
+    Console.WriteLine("Enter weight: ");
+    double.TryParse(Console.ReadLine(), out d);
+    weight = d;
+    summ += 0.2;
+    if (weight < 30) summ += 0.2;
+}
+Console.WriteLine($"The amount of milk for the class: {summ}");
+
+//The third level. Task 4
+int k = 0;
+double r1, r2, x, y;
+double s, t, d, e = 0;
+Console.WriteLine("Enter the inner radius:");
+double.TryParse(Console.ReadLine(), out s);
+r1 = s;
+Console.WriteLine("Enter the outer radius:");
+double.TryParse(Console.ReadLine(), out t);
+r2 = t;
+do
+{
+    Console.WriteLine("Enter x, to finish use 1000");//Let for all input points x<1000
+    double.TryParse(Console.ReadLine(), out d);
+    x = d;
+    if (x >= 1000) break;
+    Console.WriteLine("Enter y");
+    double.TryParse(Console.ReadLine(), out e);
+    y = e;
+    if (x * x + y * y <= r1 * r1 && x * x + y * y <= r2 * r2) k++;
+}
+while (x < 1000);
+Console.WriteLine($"The number of points: {k}");
+
+
 //The third level. Task 11
 int exam1 = 2, exam2 = 2, exam3 = 2, exam4 = 2, gradesamount = 0, students = 0, bad = 0;
 do
@@ -5,28 +125,105 @@ do
     Console.WriteLine("Enter exam 1, for exit - 6");
     int.TryParse(Console.ReadLine(), out exam1);
     if (exam1 == 6) break;
-
+      
     Console.WriteLine("Enter exam 2");
     int.TryParse(Console.ReadLine(), out exam2);
-
+        
     Console.WriteLine("Enter exam 3");
     int.TryParse(Console.ReadLine(), out exam3);
-
+    
     Console.WriteLine("Enter exam 4");
     int.TryParse(Console.ReadLine(), out exam4);
-    if (exam1 < 2 || exam2 < 2 || exam2 > 5 || exam3 < 2 || exam3 > 5 || exam4 < 2 || exam4 > 5 || exam1 > 5)
-    {
-        Console.WriteLine("Error");
-        break;
-    }
-        
+        while (exam1 < 2 || exam2 < 2 || exam2 > 5 || exam3 < 2 || exam3 > 5 || exam4 < 2 || exam4 > 5)
+        {
+           Console.WriteLine("Enter positive results");
+           int.TryParse(Console.ReadLine(), out exam1);
+           if (exam1 == 6) break;
+           Console.WriteLine("Enter exam 2");
+           int.TryParse(Console.ReadLine(), out exam2);
+           Console.WriteLine("Enter exam 3");
+           int.TryParse(Console.ReadLine(), out exam3);
+           Console.WriteLine("Enter exam 4");
+        int.TryParse(Console.ReadLine(), out exam4);
+        }
     if (exam1 != 2 && exam2 != 2 && exam3 != 2 && exam4 != 2)
     {
         students += 4;
         gradesamount += (exam1 + exam2 + exam3 + exam4);
     }
     else bad++;
-} while (true);
+} while (exam1 < 6);
 double sredniygrade = gradesamount / (4.0 * students);
 Console.WriteLine($"Amount of bad students = {bad}");
 Console.WriteLine($"Srgrade = {sredniygrade}");
+    
+//The third level. Task 12
+const double P = 3.14;
+double s;
+Console.WriteLine("Enter r:");
+double r = 0;
+double.TryParse(Console.ReadLine(), out r);
+Console.WriteLine("Enter 1, 2 or 3");
+int a = 0;
+int.TryParse(Console.ReadLine(), out a);
+while (r > 0)
+{
+    switch (a)
+    {
+        case 1:
+            s = r * r;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 2:
+            s = P * r * r;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 3:
+            s = Math.Sqrt(3) * r * r / 4.0;
+            Console.WriteLine($"S = {s}");
+            break;
+    }
+    Console.WriteLine("Enter r:");
+    double.TryParse(Console.ReadLine(), out r);
+}
+//The third level. Task 13
+const double P = 3.14;
+double s;
+Console.WriteLine("Enter A, B:");
+double a = 0;
+double.TryParse(Console.ReadLine(), out a);
+double b = 0;
+double.TryParse(Console.ReadLine(), out b);
+Console.WriteLine("Enter 1, 2 or 3");
+int k = 0;
+int.TryParse(Console.ReadLine(), out k);
+while ((a > 0) && (b > 0))
+{
+    switch (k)
+    {
+        case 1:
+            s = a * b;
+            Console.WriteLine($"S = {s}");
+            break;
+        case 2:
+            s = Math.Abs(P * a * a - P * b * b);
+            Console.WriteLine($"S = {s}");
+            break;
+        case 3:
+            if ((4 * b * b - a * a) > 0)
+            {
+                s = a * Math.Sqrt(4 * b * b - a * a) / 4.0;
+                Console.WriteLine($"S = {s}");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Error");
+                break;
+            }
+    }
+    double.TryParse(Console.ReadLine(), out a);
+    if (a == 0)
+        break;
+    double.TryParse(Console.ReadLine(), out b);
+}
