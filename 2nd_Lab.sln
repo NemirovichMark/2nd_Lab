@@ -1,25 +1,32 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2nd_Lab", "2nd_Lab.csproj", "{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34993FA5-3A63-4A3E-9E9D-1270668A8B4C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5E38B41D-9AF1-4BC0-89F6-2D9FE63484C0}
-	EndGlobalSection
-EndGlobal
+//The third level. Task 11
+int exam1 = 2, exam2 = 2, exam3 = 2, exam4 = 2, gradesamount = 0, students = 0, bad = 0;
+do
+{
+    Console.WriteLine("Enter exam 1, for exit - 6");
+    int.TryParse(Console.ReadLine(), out exam1);
+    if (exam1 == 6) break;
+
+    Console.WriteLine("Enter exam 2");
+    int.TryParse(Console.ReadLine(), out exam2);
+
+    Console.WriteLine("Enter exam 3");
+    int.TryParse(Console.ReadLine(), out exam3);
+
+    Console.WriteLine("Enter exam 4");
+    int.TryParse(Console.ReadLine(), out exam4);
+    if (exam1 < 2 || exam2 < 2 || exam2 > 5 || exam3 < 2 || exam3 > 5 || exam4 < 2 || exam4 > 5 || exam1 > 5)
+    {
+        Console.WriteLine("Error");
+        break;
+    }
+        
+    if (exam1 != 2 && exam2 != 2 && exam3 != 2 && exam4 != 2)
+    {
+        students += 4;
+        gradesamount += (exam1 + exam2 + exam3 + exam4);
+    }
+    else bad++;
+} while (true);
+double sredniygrade = gradesamount / (4.0 * students);
+Console.WriteLine($"Amount of bad students = {bad}");
+Console.WriteLine($"Srgrade = {sredniygrade}");
