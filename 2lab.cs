@@ -2,13 +2,22 @@ using System.Drawing;
 
 Console.WriteLine("Hello, World!");
 
+
 #region task2
 double x, y;
 bool q = false;
 Console.Write("x=");
-x = double.Parse(Console.ReadLine());
+while (!double.TryParse(Console.ReadLine(), out x))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("x=");
+}
 Console.Write("y=");
-y = double.Parse(Console.ReadLine());
+while (!double.TryParse(Console.ReadLine(), out y))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("y=");
+}
 if (y >= 0 && (y + Math.Abs(x)) <= 1)
     q = !q;
 Console.WriteLine($"{q}");
@@ -20,9 +29,17 @@ double b;
 double c;
 c = 0;
 Console.Write("A=");
-a = double.Parse(Console.ReadLine());
+while (!double.TryParse(Console.ReadLine(), out a))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("А=");
+}
 Console.Write("B=");
-b = double.Parse(Console.ReadLine());
+while (!double.TryParse(Console.ReadLine(), out b))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("В=");
+}
 if (a > 0)
 {
     if (a > b)
@@ -47,7 +64,11 @@ double grlsh, boysh,i,l=0,s=0;
 do
 {
     Console.WriteLine("Количество мальчиков=: ");
-    boys = int.Parse(Console.ReadLine());
+    while (!int.TryParse(Console.ReadLine(), out boys))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("количество мальчиков=");
+    }
     if (boys < 0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (boys<0);
@@ -55,7 +76,11 @@ for (i = 0; i < boys; i++)
 {
     do {
         Console.Write("рост мальчиков");
-        boysh = double.Parse(Console.ReadLine());
+        while (!double.TryParse(Console.ReadLine(), out boysh))
+        {
+            Console.WriteLine("Неверные входные данные");
+            Console.Write("рост мальчиков=");
+        }
         if (boysh < 0)
             Console.WriteLine("Вы ввели неверные входные данные!;(");
         //boysh=Convert.ToDouble(Console.ReadLine());
@@ -65,7 +90,11 @@ for (i = 0; i < boys; i++)
 do
 {
     Console.WriteLine("Количество девочек=: ");
-    grls = int.Parse(Console.ReadLine());
+    while (!int.TryParse(Console.ReadLine(), out grls))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("количество девочек=");
+    }
     if (grls < 0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (grls < 0);
@@ -74,7 +103,11 @@ for (i = 0; i < grls; i++)
     do
     {
         Console.Write("рост девочек:");
-       grlsh = double.Parse(Console.ReadLine());
+        while (!double.TryParse(Console.ReadLine(), out grlsh))
+        {
+            Console.WriteLine("Неверные входные данные");
+            Console.Write("рост девочек=");
+        }
         if (grlsh <= 0)
             Console.WriteLine("Вы ввели неверные входные данные!;(");
     } while (grlsh <= 0);
@@ -91,20 +124,31 @@ int j, number;
 Console.WriteLine("Количество учеников ");
 do
 {
-    number = int.Parse(Console.ReadLine());
+    while (!int.TryParse(Console.ReadLine(), out number))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("количество учеников=");
+    }
     if (number < 0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (number<0);
-for (j = 0; j < number;j++) ;
+for (j = 0; j < number;j++)
 {
     do
     {
         Console.Write("Вес ученика= ");
-        weight = double.Parse(Console.ReadLine());
+        while (!double.TryParse(Console.ReadLine(), out weight))
+        {
+            Console.WriteLine("Неверные входные данные");
+            Console.Write("вес ученика=");
+        }
         if (weight < 0)
             Console.WriteLine("Вы ввели неверные входные данные!;(");
     } while (weight<0);
-    if (weight < 30) summa += 0.2;
+    if (weight < 30)
+    {
+        summa += 0.2;
+    }
 }
 Console.WriteLine($" {summa}");
 #endregion
@@ -114,23 +158,39 @@ int tochki = 0;
 double r1, r2, x1, y1;
 do {
     Console.WriteLine("Введите r1");
-    r1 = double.Parse(Console.ReadLine());
-    if(r1<=0)
+    while (!double.TryParse(Console.ReadLine(), out r1))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("r1=");
+    }
+    if (r1<=0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (r1 <= 0) ;
 do {
     Console.WriteLine("Введите r2");
-    r2 = double.Parse(Console.ReadLine());
+    while (!double.TryParse(Console.ReadLine(), out r2))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("r2=");
+    }
     if (r1 <= 0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (r2<=0) ;
 do
 {
     Console.WriteLine("Введите х");
-    x1 = double.Parse(Console.ReadLine());
+    while (!double.TryParse(Console.ReadLine(), out x1))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("x=");
+    }
     if (x1 >= 20000) break;
     Console.WriteLine("Введите y");
-    y1 = double.Parse(Console.ReadLine());
+    while (!double.TryParse(Console.ReadLine(), out y1))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("y=");
+    }
     if ((x1 * x1) + (y1 * y1) <= r1 * r1 && (x1 * x1) + (y1 * y1) <= r2 * r2) 
     {
         tochki++;
@@ -148,7 +208,11 @@ bool flag3;
 do
 {
     Console.Write("Введите количество студентов:");
-    students = int.Parse(Console.ReadLine());
+    while (!int.TryParse(Console.ReadLine(), out students))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("Введите количество студентов=");
+    }
     if (students <= 0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (students<=0);
@@ -163,7 +227,11 @@ for (int ii = 0;ii<students; ii++)
         do
         {
             Console.WriteLine("Оценки за экзамен ");
-            point = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out point))
+            {
+                Console.WriteLine("Неверные входные данные");
+                Console.Write("оценки за экзамен=");
+            }
             if (point <= 1 || point > 5)
                 Console.WriteLine("Вы ввели неверные входные данные!;(");
         } while (point <= 1 || point > 5);
@@ -190,13 +258,22 @@ double ploschad;
 double r;
 do {
     Console.WriteLine("r=");
-     r = double.Parse(Console.ReadLine());
-    if(r<=0)
+    while (!double.TryParse(Console.ReadLine(), out r))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("r=");
+    }
+    if (r<=0)
         Console.WriteLine("Вы ввели неверные входные данные!;(");
 } while (r<=0);
 Console.WriteLine("1-квадрат\n2-круг\n3-треугольник\n4-выход");
-int f = int.Parse(Console.ReadLine());
-    switch (f)
+int f;
+while (!int.TryParse(Console.ReadLine(), out f))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("1-квадрат 2-круг 3-треугольник 4-выход");
+}
+switch (f)
     {
         case 1:
             ploschad = r * r;
@@ -226,14 +303,22 @@ double a1;
 double b1;
 do {
     Console.WriteLine("a=");
-     a1 = double.Parse(Console.ReadLine());
+    while (!double.TryParse(Console.ReadLine(), out a1))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("a=");
+    }
     if (a1 <= 0)
         Console.WriteLine("Неверные входные данные:");
 } while (a1<=0);
 do
 {
     Console.WriteLine("b=");
-    b1 = double.Parse(Console.ReadLine());
+    while (!double.TryParse(Console.ReadLine(), out b1))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("b=");
+    }
     if (b1 <= 0)
         Console.WriteLine("Неверные входные данные:");
 } while (b1 <= 0);
@@ -243,7 +328,11 @@ int k = 0;
 do
 {
     Console.WriteLine("k=");
-    k = int.Parse(Console.ReadLine());
+    while (!int.TryParse(Console.ReadLine(), out k))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write("k=");
+    }
     if (k <= 0)
         Console.WriteLine("Неверные входные данные:");
 } while (k <= 0);
@@ -265,6 +354,6 @@ case 3:
         Console.WriteLine($"площадь равнобедренного треугольника = {s1}");
     }
     break;
+#endregion
 }
 
-#endregion
