@@ -171,67 +171,67 @@ namespace LB2
             #endregion
 
             #region ex11
-            
+
+            int[] st = new int[4];
+            double[] Mark = new double[] { 0, 0, 0, 0 };
+            int NF = 0;
+            int NG = 0;
+            bool bMark;
+            int numberOfStudent = 1;
             try
             {
-                int k3 = 0;
-                double bal1 = 0;
-                double bal2 = 0;
-                double bal3 = 0;
-                double bal4 = 0;
-                int n3 = 0;
-                for (;;)
+                while (true)
                 {
-                    Console.Write("Введите оценку за 1 предмет или нажмите enter что бы закончить");
-                    string OC11 = Console.ReadLine();
-                    if (OC11 == "")
-                    {
-                        break;
-                    }
+                    Console.WriteLine($"--- {numberOfStudent} ---");
+                    bMark = false;
 
-                    double OC1 = double.Parse(OC11);
-                    Console.Write("Введите оценку за 2 предмет");
-                    double OC2 = double.Parse(Console.ReadLine());
-                    Console.Write("Введите оценку за 3 предмет");
-                    double OC3 = double.Parse(Console.ReadLine());
-                    Console.Write("Введите оценку за 4 предмет");
-                    double OC4 = double.Parse(Console.ReadLine());
-                    if (OC1 < 2 || OC1 > 5 || OC2 < 2 || OC2 > 5 || OC3 < 2 || OC3 > 5 || OC4 < 2 || OC4 > 5)
+                    for (int i = 0; i < 4; i++)
                     {
-                        Console.Write("Таких оценок не бывает");
-                        bal1 = 0;
-                        bal2 = 0;
-                        bal3 = 0;
-                        bal4 = 0;
-                        n3++;
-                        break;
+                        Console.Write("Введите оценку: ");
+                        st[i] = int.Parse(Console.ReadLine());
+                        if (st[i] >= 2 && st[i] <= 5)
+                        {
+                            if (st[i] == 2)
+                            {
+                                NF++;
+                                bMark = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Такой оценки нет");
+                            throw new Exception();
+                        }
                     }
-                    if (OC1 == 2 | OC2 == 2 | OC3 == 2 | OC4 == 2)
+                    if (!bMark)
                     {
-                        k3++;
+                        NG++;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            Mark[i] += st[i];
+
+                        }
                     }
-                    bal1 += OC1;
-                    bal2 += OC2;
-                    bal3 += OC3;
-                    bal4 += OC4;
-                    n3++;
+                    numberOfStudent++;
                 }
-
-
-                Console.Write("Средний бал за 1 предмет ");
-                Console.WriteLine(bal1 / n3);
-                Console.Write("Средний бал за 2 предмет ");
-                Console.WriteLine(bal2 / n3);
-                Console.Write("Средний бал за 3 предмет ");
-                Console.WriteLine(bal3 / n3);
-                Console.Write("Средний бал за 4 предмет ");
-                Console.WriteLine(bal4 / n3);
-                Console.Write("Неуспевающих учеников: ");
-                Console.WriteLine(k3);
             }
             catch (Exception)
             {
-                Console.WriteLine("wrong input");
+                Console.WriteLine("Вы вышли из ввода");
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                try
+                {
+                    Mark[i] /= NG;
+                    Console.WriteLine($"Средний балл на экзамене номер{i + 1} - {Mark[i]}");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Никто не сдал экзамен номер {i + 1}");
+                }
             }
 
             #endregion
