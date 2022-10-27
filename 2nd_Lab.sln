@@ -53,23 +53,65 @@ do
 if (n1 != 0)
     Console.WriteLine(k);
 //11
-double srball, ball, summ = 0;
-int badst = 0;
-int exam = 0;
-int st = 0;
-do
-{
-    Console.WriteLine("Введите баллы студента за каждый его экзамен для окончания 0");
-    ball = double.Parse(Console.ReadLine());
-    if (ball == 0) break;
-    if (ball > 3) exam = exam + 1;
-    if (exam < 4) badst = badst + 1;
-    if (ball>2) summ = summ + ball;
-    st = st + 1;
-}   while (ball > 0);
-srball = summ / st;
-Console.WriteLine(srball);
-Console.WriteLine(badst);
+#region Task 3.11
+
+            Console.WriteLine("solution for task 3.11:");
+
+            double unsuccessful = 0, final_sum_score = 0;
+            int score, sum_score;
+            bool unsuccessful_bool;
+            counter = 0;
+
+            do
+            {
+
+                unsuccessful_bool = false;
+
+                sum_score = 0;
+
+                counter++;
+
+                for (int j = 1; j <= 4; j++) // subject
+                {
+                    try
+                    {
+                        Console.Write($"enter result of {counter} student for {j} subject: ");
+                        score = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        j--;
+                        continue;
+                    };
+
+                    if (score < 2 || score > 5)
+                    {
+                        j--;
+                        continue;
+                    }
+
+                    else if (score == 2) unsuccessful_bool = true;
+
+                    sum_score += score;
+                }
+
+                if (unsuccessful_bool) unsuccessful += 1;
+
+                else final_sum_score += sum_score;
+
+                Console.WriteLine("do you want to continue? (Y - yes; other - no)");
+                next = Console.ReadLine();
+            }
+
+            while (next == "Y");
+
+            if (final_sum_score / ((counter - unsuccessful) * 4) > 2)
+                Console.WriteLine($"answer for task 3.11:\nnumber of failing students: {unsuccessful}\n" +
+                $"group average: {(final_sum_score / ((counter - unsuccessful) * 4)):f2}\n");
+
+            else Console.WriteLine("answer for task 3.11: no good students\n");
+
+            #endregion
 //12
 do
 {
