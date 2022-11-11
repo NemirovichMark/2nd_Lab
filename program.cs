@@ -115,7 +115,7 @@ namespace _2nd_Lab
             #region Third Level Excercise 11
             int nStudents;
             int score, nStudent = 0, disaprovedStudents = 0, IndividualScoreSummatory = 0;
-            double averageScoreOfAllStudents, averageScore = 0;
+            double averageScoreOfGoodStudents, averageScore = 0;
             while (true)
             {
                 Console.Write("Introduce the amount of students: ");
@@ -142,21 +142,22 @@ namespace _2nd_Lab
                 {
                     Console.Write($"Introduce the score of the exam number {exams}:  ");
                     int.TryParse(Console.ReadLine(), out score);
-                    averageScore += score;
                     exams++;
-                    //IndividualScoreSummatory = score;
                     if (score < 3)
                     {
                         hasFs = true;
+                    }
+                    else
+                    {
+                        averageScore += score;
                     }
                 }
                 if (hasFs) disaprovedStudents++;
                 nStudents--;
             }
-
-            averageScoreOfAllStudents = averageScore / (nStudent * 3);
+            averageScoreOfGoodStudents = averageScore / ((nStudent - disaprovedStudents) * 3);
             Console.WriteLine($"the amount of disaproved students are {disaprovedStudents}");
-            Console.WriteLine($"the average score of all students is {averageScoreOfAllStudents}");
+            Console.WriteLine($"the average score of all students is {averageScoreOfGoodStudents}");
             #endregion
             #region Third Level Excercise 12
             int functionSelected = 0;
@@ -178,194 +179,119 @@ namespace _2nd_Lab
                 }
                 break;
             }
+            while (true)
+            {
+                Console.Write("Introduce the value r: ");
+                if (!double.TryParse(Console.ReadLine(), out r))
+                {
+                    Console.WriteLine("Please enter a correct value");
+                }
+                if (r <= 0)
+                {
+                    Console.WriteLine("The value of r has to be bigger than 0");
+                    continue;
+                }
+                break;
+            }
             switch (functionSelected)
             {
-                //Area of a square
+                //Area of square
                 case 1:
-                    while (true)
-                    {
-                        Console.Write("Introduce the value of the side of the square: ");
-                        if (!double.TryParse(Console.ReadLine(), out r))
-                        {
-                            Console.WriteLine("Please enter a correct value");
-                        }
-                        if (r <= 0)
-                        {
-                            Console.WriteLine("The value of r has to be bigger than 0");
-                            continue;
-                        }
-                        break;
-                    }
                     AreaSquare = r * r;
                     Console.WriteLine($"The area of the square is {AreaSquare}");
                     break;
-                //Area of a circle
+                //Area of circle
                 case 2:
-                    while (true)
-                    {
-                        Console.Write("Introduce the value of the radius of the circle: ");
-                        if (!double.TryParse(Console.ReadLine(), out r))
-                        {
-                            Console.WriteLine("Please enter a correct value");
-                        }
-                        if (r <= 0)
-                        {
-                            Console.WriteLine("The value of r has to be bigger than 0");
-                            continue;
-                        }
-                        break;
-                    }
                     AreaCircle = Math.PI * r * r;
                     Console.WriteLine($"The area of the square is {AreaCircle}");
                     break;
+                //Area of equilateral
                 case 3:
-                    while (true)
-                    {
-                        Console.Write("Introduce the value of the side of the square: ");
-                        if (!double.TryParse(Console.ReadLine(), out r))
-                        {
-                            Console.WriteLine("Please enter a correct value");
-                        }
-                        if (r <= 0)
-                        {
-                            Console.WriteLine("The value of r has to be bigger than 0");
-                            continue;
-                        }
-                        break;
-                    }
                     AreaEquilateral = (Math.Pow(3, 0.5) * r * r) / 4;
                     Console.WriteLine($"The area of the square is {AreaEquilateral}");
                     break;
             }
-        }
-        #endregion
-        #region Third Level Excercise 13
-        int FSelected = 0;
-        double a = 0, b = 0, AreaRectangle = 0, AreaRingEnclosed = 0, AreaIsosceles = 0;
-        Console.WriteLine("write 1 to calculate the area of a rectangle with sides A, B");
-    Console.WriteLine("write 2 to calculate the area of a ring enclosed between two circles with radiuses A and B");
-    Console.WriteLine("write 3 to calculate the area of an isosceles triangle with sides A, B");
-    while(true){
-    Console.Write("Choose one of the functions that you want to use: ");
-        if(!int.TryParse(Console.ReadLine(), out FSelected)){
-            Console.WriteLine("You havent chosen correctly");
-            }
-        if (FSelected <= 0 || FSelected > 3){
-            Console.WriteLine("Please choose correctly");
-            continue;
-            }
+            #endregion
+            #region Third Level Excercise 13
+            int FSelected = 0;
+        double a = 0, b = 0, AreaRectangle = 0, AreaRingEnclosed =
+          0, AreaIsosceles = 0;
+        Console.
+        WriteLine
+      ("write 1 to calculate the area of a rectangle with sides A, B");
+      Console.
+      WriteLine
+      ("write 2 to calculate the area of a ring enclosed between two circles with radiuses A and B");
+      Console.
+      WriteLine
+      ("write 3 to calculate the area of an isosceles triangle with sides A, B");
+    while (true)
+      {
+	Console.Write("Choose one of the functions that you want to use: ");
+	if (!int.TryParse(Console.ReadLine (), out FSelected))
+	  {
+	    Console.WriteLine("You havent chosen correctly");
+	  }
+	if (FSelected <= 0 || FSelected > 3)
+	  {
+	    Console.WriteLine("Please choose correctly");
+	    continue;
+	  }
 break;
-        }
-    switch (FSelected)
+      }
+    while (true)
+{
+    Console.Write("Introduce the value of A: ");
+    if (!double.TryParse(Console.ReadLine(), out a))
+    {
+        Console.WriteLine("Please enter a correct value");
+        continue;
+    }
+    if (a <= 0)
+    {
+        Console.WriteLine("The value of A has to be bigger than 0");
+        continue;
+    }
+    break;
+}
+while (true)
+{
+    Console.Write("Introduce the value of B: ");
+    if (!double.TryParse(Console.ReadLine(), out b))
+    {
+        Console.WriteLine("Please enter a correct value");
+        continue;
+    }
+    if (b <= 0)
+    {
+        Console.WriteLine("The value of B has to be bigger than 0");
+        continue;
+    }
+    break;
+}
+switch (FSelected)
 {
     //Area of a rectangle
     case 1:
-        while (true)
-        {
-            Console.Write("Introduce the value of A: ");
-            if (!double.TryParse(Console.ReadLine(), out a))
-            {
-                Console.WriteLine("Please enter a correct value");
-                continue;
-            }
-            if (a <= 0)
-            {
-                Console.WriteLine("The value of A has to be bigger than 0");
-                continue;
-            }
-            break;
-        }
-        while (true)
-        {
-            Console.Write("Introduce the value of B: ");
-            if (!double.TryParse(Console.ReadLine(), out b))
-            {
-                Console.WriteLine("Please enter a correct value");
-                continue;
-            }
-            if (b <= 0)
-            {
-                Console.WriteLine("The value of B has to be bigger than 0");
-                continue;
-            }
-            break;
-        }
         AreaRectangle = a * b;
-        Console.WriteLine($"The area of the rectangle is {AreaRectangle}");
+        Console.WriteLine($ "The area of the rectangle is {AreaRectangle}");
         break;
     //Area of a ring enclosed between two circles
     case 2:
-        while (true)
-        {
-            Console.Write("Introduce the value of A: ");
-            if (!double.TryParse(Console.ReadLine(), out a))
-            {
-                Console.WriteLine("Please enter a correct value");
-                continue;
-            }
-            if (a <= 0)
-            {
-                Console.WriteLine("The value of A has to be bigger than 0");
-                continue;
-            }
-            break;
-        }
-        while (true)
-        {
-            Console.Write("Introduce the value of B: ");
-            if (!double.TryParse(Console.ReadLine(), out b))
-            {
-                Console.WriteLine("Please enter a correct value");
-                continue;
-            }
-            if (b <= 0)
-            {
-                Console.WriteLine("The value of B has to be bigger than 0");
-                continue;
-            }
-            break;
-        }
         AreaRingEnclosed = Math.PI * (a + b);
-        Console.WriteLine($"The area of a ring enclosed between two circles is {AreaRingEnclosed}");
+        Console.
+          WriteLine($
+		     "The area of a ring enclosed between two circles is {AreaRingEnclosed}");
         break;
     //Area of an isosceles triangle
     case 3:
-        while (true)
-        {
-            Console.Write("Introduce the value of A: ");
-            if (!double.TryParse(Console.ReadLine(), out a))
-            {
-                Console.WriteLine("Please enter a correct value");
-                continue;
-            }
-            if (a <= 0)
-            {
-                Console.WriteLine("The value of A has to be bigger than 0");
-                continue;
-            }
-            break;
-        }
-        while (true)
-        {
-            Console.Write("Introduce the value of B: ");
-            if (!double.TryParse(Console.ReadLine(), out b))
-            {
-                Console.WriteLine("Please enter a correct value");
-                continue;
-            }
-            if (b <= 0)
-            {
-                Console.WriteLine("The value of B has to be bigger than 0");
-                continue;
-            }
-            break;
-        }
         AreaIsosceles = a * b * 0.5;
-        Console.WriteLine($"The area of an isosceles triangle is {AreaIsosceles}");
+        Console.
+          WriteLine($
+		     "The area of an isosceles triangle is {AreaIsosceles}");
         break;
 }
-    }
-            #endregion
+#endregion
     }
     }
 }
