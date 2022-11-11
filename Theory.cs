@@ -10,11 +10,12 @@ namespace _2nd_Lab
             #region lvl1-1
             Console.WriteLine("LVL1-1");
             Console.WriteLine("Введите r");
-            double r = double.Parse(Console.ReadLine());
+            double r, x, y;
+            double.TryParse(Console.ReadLine(), out r);
             Console.WriteLine("Введите x");
-            double x = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out x);
             Console.WriteLine("Введите y");
-            double y = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out  y);
 
             if (Math.Abs(Math.Pow(x, 2) + Math.Pow(y, 2) - Math.Pow(r, 2)) <= Math.Pow(10, -3))
             {
@@ -28,10 +29,12 @@ namespace _2nd_Lab
             #region lvl1-3
             Console.WriteLine("LVL1-3");
             Console.WriteLine("введите а");
-            double a = double.Parse(Console.ReadLine());
+            double a;
+            double.TryParse(Console.ReadLine(), out a);
             Console.WriteLine("введите b");
-            double b = double.Parse(Console.ReadLine());
-            double c;
+            double b;
+            double.TryParse(Console.ReadLine(), out b);
+
 
             if (a > 0)
             {
@@ -65,7 +68,7 @@ namespace _2nd_Lab
             for (int i = 0; i < n; i++)
             {
                 Console.WriteLine("Введите рост ученика");
-                rm = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out rm);
                 s += rm;
 
             }
@@ -79,7 +82,7 @@ namespace _2nd_Lab
             for (int i = 0; i < l; i++)
             {
                 Console.WriteLine("спортсмен проплыл: ");
-                f = double.Parse(Console.ReadLine());
+                double.TryParse(Console.ReadLine(), out f);
                 if (f > 200)
                 {
                     Console.WriteLine("Ошибка максимально допустимое значение 200");
@@ -100,20 +103,21 @@ namespace _2nd_Lab
             #endregion
             #region lvl3-4
             Console.WriteLine("LVL3-4");
-            double r1, r2, x1, y2, nx, k = 0;
+            double r1, r2, x1, y2, k = 0;
+            int nx;
             Console.WriteLine("Введите внутренний радиус");
-            r1 = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out r1);
             Console.WriteLine("Введите внешний радиус");
-            r2 = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out r2);
             Console.WriteLine("Введите количество точек");
-            nx = int.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(),out nx);
             if (r2 > r1 && r2 > 0)
             {
                 for (int i = 0; i < nx; i++)
                 {
                     Console.WriteLine("Введите координаты точек");
-                    x1 = double.Parse(Console.ReadLine());
-                    y2 = double.Parse(Console.ReadLine());
+                    double.TryParse(Console.ReadLine(), out x1);
+                    double.TryParse(Console.ReadLine(), out y2);
                     if (x1 * x1 + y2 * y2 <= r1 * r1 || x1 * x1 + y2 * y2 <= r2 * r2)
                     {
                         k++;
@@ -134,14 +138,14 @@ namespace _2nd_Lab
             double srz, nz, sumz = 0;
 
             Console.WriteLine("Введите количесвто студентов");
-            nz = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out nz);
             for (int i = 0; i < nz; i++)
             {
                 Console.WriteLine("Введите оценки ученика");
-                z1 = int.Parse(Console.ReadLine());
-                z2 = int.Parse(Console.ReadLine());
-                z3 = int.Parse(Console.ReadLine());
-                z4 = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out z1);
+                int.TryParse(Console.ReadLine(), out z2);
+                int.TryParse(Console.ReadLine(), out z3);
+                int.TryParse(Console.ReadLine(), out z4);
                 if (z1 == 2 | z2 == 2 | z3 == 2 | z4 == 2)
                 {
                     k3++;
@@ -156,6 +160,7 @@ namespace _2nd_Lab
                 
                 
             }
+            nz = nz - k3;
             srz = sumz / nz;
             Console.WriteLine($"Среднийй бал: {srz}");
             Console.WriteLine($"Количество неуспевающих: {k3}");
@@ -165,12 +170,12 @@ namespace _2nd_Lab
             double rc;
             int kc;
             Console.WriteLine("Ввидите r");
-            rc = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out rc);
             if (rc > 0)
             {
                     Console.WriteLine("Если вы хотите вычислить площадь: для квадрата введите 1, для круга введите 2, для треугольника введите 3");
-                    kc = int.Parse(Console.ReadLine());
-                    switch (kc)
+                    int.TryParse(Console.ReadLine(), out kc);
+                switch (kc)
                     {
                         case 1:
                             rc *= rc;
@@ -192,12 +197,12 @@ namespace _2nd_Lab
             Console.WriteLine("LVL3-13");
             double A, B, S;
             Console.WriteLine("Введите значение А");
-            A = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out A);
             Console.WriteLine("Введите значение B");
-            B = double.Parse(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out B);
             Console.WriteLine("для площади прямоугольника введите 1,для площади кольца 2,для площади равнобедренного треугольника 3");
             int v;
-            v = int.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out v);
             if (A > 0 && B > 0)
             {
                 switch (v)
@@ -212,9 +217,17 @@ namespace _2nd_Lab
                         break;
                     case 3:
                         double pl = A / 2;
-                        double sd = Math.Sqrt(B * B - pl * pl);
-                        S = (A * sd) / 2;
-                        Console.WriteLine($"Площадь Равнобедренного треугольника равна {S}");
+                        if (B < pl)
+                        {
+                            Console.WriteLine("ОШИБКА");
+                        }
+                        else
+                        {
+                            double sd = Math.Sqrt(B * B - pl * pl);
+                            S = (A * sd) / 2;
+                            Console.WriteLine($"Площадь Равнобедренного треугольника равна {S}");
+                            
+                        }
                         break;
                 }
             }
