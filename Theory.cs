@@ -6,154 +6,239 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
+            
+            #region lvl1-1
+            Console.WriteLine("LVL1-1");
+            Console.WriteLine("Введите r");
+            double r, x, y;
+            double.TryParse(Console.ReadLine(), out r);
+            Console.WriteLine("Введите x");
+            double.TryParse(Console.ReadLine(), out x);
+            Console.WriteLine("Введите y");
+            double.TryParse(Console.ReadLine(), out  y);
 
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            if (Math.Abs(Math.Pow(x, 2) + Math.Pow(y, 2) - Math.Pow(r, 2)) <= Math.Pow(10, -3))
             {
-                // will be done, because 4th condition provide true
-            }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
+                Console.WriteLine("лежит внутри окружности");
             }
             else
             {
-                // do work
+                Console.WriteLine("не лежит внутри окружности");
             }
-
             #endregion
+            #region lvl1-3
+            Console.WriteLine("LVL1-3");
+            Console.WriteLine("введите а");
+            double a;
+            double.TryParse(Console.ReadLine(), out a);
+            Console.WriteLine("введите b");
+            double b;
+            double.TryParse(Console.ReadLine(), out b);
 
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
+
+            if (a > 0)
             {
-                if (request.StartsWith('I'))
+                if (a > b)
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
-                    {
-                        // very positive result
-                    }
+                    Console.WriteLine(a);
                 }
                 else
                 {
-                    // negative result
+                    Console.WriteLine(b);
                 }
-                // addition work
-            }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
-            #endregion
-
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
-            {
 
             }
             else
             {
-                if (1 == (int)'a')
+                if (a > b)
                 {
+                    Console.WriteLine(b);
+                }
+                else
+                {
+                    Console.WriteLine(a);
+                }
+                
+            }
+            #endregion
+            #region lvl2-1
+            Console.WriteLine("LVL2-1");
+            double sr, rm, s = 0;
+            int n = 5;
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine("Введите рост ученика");
+                double.TryParse(Console.ReadLine(), out rm);
+                s += rm;
+
+            }
+            sr = s/ n;
+            Console.WriteLine(sr);
+            #endregion
+            #region lvl2-9
+            Console.WriteLine("LVL2-9");
+            double mx = 0, f;
+            int l = 5;
+            for (int i = 0; i < l; i++)
+            {
+                Console.WriteLine("спортсмен проплыл: ");
+                double.TryParse(Console.ReadLine(), out f);
+                if (f > 200)
+                {
+                    Console.WriteLine("Ошибка максимально допустимое значение 200");
+                    return;
+                    
+                }
+                
+                else
+                {
+                    if (f > mx)
+                    {
+                        mx = f;
+                    }
+                }
+              
+            }
+            Console.WriteLine($"Лучший результат: {mx}");
+            #endregion
+            #region lvl3-4
+            Console.WriteLine("LVL3-4");
+            double r1, r2, x1, y2, k = 0;
+            int nx;
+            Console.WriteLine("Введите внутренний радиус");
+            double.TryParse(Console.ReadLine(), out r1);
+            Console.WriteLine("Введите внешний радиус");
+            double.TryParse(Console.ReadLine(), out r2);
+            Console.WriteLine("Введите количество точек");
+            int.TryParse(Console.ReadLine(),out nx);
+            if (r2 > r1 && r2 > 0)
+            {
+                for (int i = 0; i < nx; i++)
+                {
+                    Console.WriteLine("Введите координаты точек");
+                    double.TryParse(Console.ReadLine(), out x1);
+                    double.TryParse(Console.ReadLine(), out y2);
+                    if (x1 * x1 + y2 * y2 <= r1 * r1 || x1 * x1 + y2 * y2 <= r2 * r2)
+                    {
+                        k++;
+                    }
 
                 }
+                Console.WriteLine($"количество точек:{k}");
             }
-
-            // Transforming to
-
-            if (0 != 0)
+            else
             {
-
+                Console.WriteLine("Внешний радиус должен быть больше внутреннего");
+                
             }
-            else if (1 == (int)'a')
+            #endregion
+            #region lvl3-11
+            Console.WriteLine("LVL3-11");
+            int z1, z2, z3, z4, k3 = 0;
+            double srz, nz, sumz = 0;
+
+            Console.WriteLine("Введите количесвто студентов");
+            double.TryParse(Console.ReadLine(), out nz);
+            for (int i = 0; i < nz; i++)
             {
-
+                Console.WriteLine("Введите оценки ученика");
+                int.TryParse(Console.ReadLine(), out z1);
+                int.TryParse(Console.ReadLine(), out z2);
+                int.TryParse(Console.ReadLine(), out z3);
+                int.TryParse(Console.ReadLine(), out z4);
+                if (z1 == 2 | z2 == 2 | z3 == 2 | z4 == 2)
+                {
+                    k3++;
+                }
+                else
+                {
+                    if (z1 <= 5 | z2 <= 5 | z4 <= 5 | z4 <= 5 | z1 > 2 | z2 > 2 | z3 > 2 | z4 > 2)
+                    {
+                        sumz =  sumz + z1 + z2 + z3 + z4;
+                    }
+                }
+                
+                
+            }
+            nz = nz - k3;
+            srz = sumz / nz;
+            Console.WriteLine($"Среднийй бал: {srz}");
+            Console.WriteLine($"Количество неуспевающих: {k3}");
+            #endregion
+            #region lvl3-12
+            Console.WriteLine("LVL3-12");
+            double rc;
+            int kc;
+            Console.WriteLine("Ввидите r");
+            double.TryParse(Console.ReadLine(), out rc);
+            if (rc > 0)
+            {
+                    Console.WriteLine("Если вы хотите вычислить площадь: для квадрата введите 1, для круга введите 2, для треугольника введите 3");
+                    int.TryParse(Console.ReadLine(), out kc);
+                switch (kc)
+                    {
+                        case 1:
+                            rc *= rc;
+                            Console.WriteLine($"Площадь квадрата = {rc}");
+                            break;
+                        case 2:
+                            rc = Math.PI * Math.Pow(rc, 2);
+                            Console.WriteLine($"Площадь круга = {rc}");
+                            break;
+                        case 3:
+                            rc = (Math.Pow(rc, 2) * Math.Sqrt(3)) / 4;
+                            Console.WriteLine($"Площадь треугольника = {rc}");
+                            break;
+                    }
             }
 
-            // But if int this else can be more than 1 if operator, do not do so!
+            #endregion
+            #region lvl3-13
+            Console.WriteLine("LVL3-13");
+            double A, B, S;
+            Console.WriteLine("Введите значение А");
+            double.TryParse(Console.ReadLine(), out A);
+            Console.WriteLine("Введите значение B");
+            double.TryParse(Console.ReadLine(), out B);
+            Console.WriteLine("для площади прямоугольника введите 1,для площади кольца 2,для площади равнобедренного треугольника 3");
+            int v;
+            int.TryParse(Console.ReadLine(), out v);
+            if (A > 0 && B > 0)
+            {
+                switch (v)
+                {
+                    case 1:
+                        S = A * B;
+                        Console.WriteLine($"Площадь прямоугольника = {S}");
+                        break;
+                    case 2:
+                        S = Math.Abs(Math.PI * A * A - Math.PI * B * B);
+                        Console.WriteLine($"Площадь кольца равна{S}");
+                        break;
+                    case 3:
+                        double pl = A / 2;
+                        if (B < pl)
+                        {
+                            Console.WriteLine("ОШИБКА");
+                        }
+                        else
+                        {
+                            double sd = Math.Sqrt(B * B - pl * pl);
+                            S = (A * sd) / 2;
+                            Console.WriteLine($"Площадь Равнобедренного треугольника равна {S}");
+                            
+                        }
+                        break;
+                }
+            }
             #endregion
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
 
-            switch ((int)Console.ReadLine().Length)
-            {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
 
-            #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
 
-            #endregion
+
+
         }
     }
 }
