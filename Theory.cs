@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection.Emit;
+using System.Runtime.ConstrainedExecution;
 
 namespace _2nd_Lab
 {
@@ -6,154 +8,215 @@ namespace _2nd_Lab
     {
         static void Main(string[] args)
         {
-            #region Booleans Logic
-            bool truth = true, failure; // can have only 2 values
-            failure = false;
-            truth = 5 > 2; // can take a result of inequality
-            truth = (1 == 0) || ((1 > 0) && true); // logic sum & multiply going from left to right (and braces change the order as usual)
-            failure = !truth; // reverting (NOT)
-
-            // when you use if operator with several conditions
-            // if you use a multiply &&, it will go till first false condition or all conditions would checked (that take part in multi)
-            // if you use a sum ||, it will go till first true condition or all conditions would checked (that take part in sum)
-
-            if (1 == 0 || 5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2)
+            #region Level 1
+            #region Task 3
+            Console.WriteLine("Task 3");
+            double a, b, c;
+            Console.WriteLine("enter the a value");
+            double.TryParse(Console.ReadLine(), out a);
+            Console.WriteLine("enter the b value");
+            double.TryParse(Console.ReadLine(), out b);
+            if (a > 0)
             {
-                // will be done, because 4th condition provide true
-            }
-
-            if (1 == 0 && (5 < 2 || "a" == "abc" || 1 * 78 > 5 / 2))
-            {
-                // never will be done because 1st condition is false
-            }
-
-            if ((1 == 0 && (5 < 2 || "a" == "abc")) || (1 * 78 > 5 / 2 && false))
-            {
-                // will be checked 1st condition (1==0) than 4th (1 * 78 > 5 / 2) and than 5th (false) and go to else block
+                c = a;
+                if (b > a)
+                    c = b;
             }
             else
             {
-                // do work
-            }
-
+                c = a;
+                if (b < a)
+                    c = b;
+            } Console.WriteLine(c);
             #endregion
-
-            #region Nested conditions
-            string request = "I want to divide";
-            if (request.Length > 5)
+            #region Task 4
+            Console.WriteLine("Task 4");
+            double a1, b1, c1, z, d;
+            Console.WriteLine("enter the a value");
+            double.TryParse(Console.ReadLine(), out a1);
+            Console.WriteLine("enter the b value");
+            double.TryParse(Console.ReadLine(), out b1);
+            Console.WriteLine("enter the c value");
+            double.TryParse(Console.ReadLine(), out c1);
+            d = a1;
+            if (b1 < a1)
+                d = b1;
+            z = c1;
+            if (d > c1)
+                z = d;
+            Console.WriteLine(z);
+            #endregion
+            #endregion
+            #region Level 2
+            #region Task 1
+            Console.WriteLine("Task 1");
+            double hight, srhight, s = 0;
+            int n = 3;
+            for (int i = 0; i < n; i++)
             {
-                if (request.StartsWith('I'))
+                Console.WriteLine("enter the hight of the student ");
+                double.TryParse(Console.ReadLine(), out hight);
+                s += hight;
+            }
+            srhight = s / n;
+            Console.WriteLine(srhight);
+            #endregion
+            #region Task 3
+            Console.WriteLine("Task 3");
+            int k = 7;
+            double weight, glass = 200;
+            double num = 0;
+            for (int i = 0; i < k; i++)
+            {
+                Console.WriteLine("enter the weight of the student");
+                double.TryParse(Console.ReadLine(), out weight);
+                num += 200;
+                if (weight < 30)
+                    num = num + glass;
+            }
+            num /= 1000;
+            Console.WriteLine($"liters {num}");
+            #endregion
+            #endregion
+            #region Level 3
+            #region Task 4
+            double r, R, x1, y1;
+            int numb = 0;
+            Console.WriteLine("Enter r");
+            double.TryParse(Console.ReadLine(), out r);
+            Console.WriteLine("Enter R");
+            double.TryParse(Console.ReadLine(), out R);
+            if (R > r && R > 0)
+            {
+                do
                 {
-                    // positive result
-                    if (request.EndsWith('!'))
+                    Console.WriteLine("enter the x value or '12345' to end");
+                    double.TryParse(Console.ReadLine(), out x1);
+                    if (x1 >= 12345)
+                        break;
+                    Console.WriteLine("enter the y value");
+                    double.TryParse(Console.ReadLine(), out y1);
+                    if ((x1 * x1 + y1 * y1 <= r * r) && (x1 * x1 + y1 * y1 <= R * R))
+                        numb++;
+
+                } while (x1 < 12345);
+            }
+            else
+                Console.WriteLine("enter the correct data");
+            Console.WriteLine(numb);
+            #endregion
+            #region Task 11
+            int mark1, mark2, mark3, mark4, badstud = 0, num11 = 0;
+            double j, sum11 = 0, mem = 0;
+            do
+            {
+                Console.WriteLine("Enter mark for exams,'1'to end");
+                mark1 = Convert.ToInt32(Console.ReadLine());
+                if (mark1 == 1) break;
+                mark2 = Convert.ToInt32(Console.ReadLine());
+                mark3 = Convert.ToInt32(Console.ReadLine());
+                mark4 = Convert.ToInt32(Console.ReadLine());
+                if ((mark1 <= 5) && (mark2 <= 5) && (mark3 <= 5) && (mark4 <= 5))
+                {
+                    if ((mark1 != 2) && (mark2 != 2) && (mark3 != 2) && (mark4 != 2))
                     {
-                        // very positive result
+                        mem++;
+                        j = mark1 + mark2 + mark3 + mark4;
+                        sum11 += j;
+
+                    }
+                    if ((mark1 == 2) || (mark2 == 2) || (mark3 == 2) || (mark4 == 2))
+                    {
+                        badstud++;
                     }
                 }
-                else
+                num11++;
+            } while (true);
+            Console.WriteLine($"Bad student={badstud}");
+            Console.WriteLine($"Group average={sum11 / (4 * num11)}");
+            #endregion
+            #region Task 12
+            Console.WriteLine("task 12");
+            double Rad;
+            int num12;
+            Console.WriteLine("enter the R value");
+            double.TryParse(Console.ReadLine(), out Rad);
+            if (Rad > 0)
+            {
+                Console.WriteLine("choose what you want to count:(1) is the area of the square, (2) is the area of the circle,(3) is the area of an equilateral triangle");
+                int.TryParse(Console.ReadLine(), out num12);
+                switch (num12)
                 {
-                    // negative result
+                    case 1:
+                        Rad *= Rad;
+                        Console.WriteLine($"the area of the square={Rad}");
+                        break;
+                    case 2:
+                        Rad = Math.PI * Rad * Rad;
+                        Console.WriteLine($"the area of the circle={Rad}");
+                        break;
+                    case 3:
+                        Rad = (Math.Pow(Rad, 2) * Math.Sqrt(3)) / 4;
+                        Console.WriteLine($"the area of an equilateral triangle={Rad}");
+                        break;
                 }
-                // addition work
-            }
-
-            // Try to use <= 3 levels of nesting (include cycles!)
-            // You can miss else block if it is not needed
-
-            #endregion
-
-            #region If/Else for smart students
-            // if variable changes both in if and else blocks, we can make program faster by changing order.
-            var a = 10;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-            else
-            {
-                a = 30;
-            }
-            // Better to transform to:
-            a = 30;
-            if (new Random().NextDouble() > 0.5)
-            {
-                a = 20;
-            }
-
-            /* This hocus-pocus can be done if: 
-             * 1) if variables we change don't take part in condition 
-             * 2) an error should not occur 
-             */
-
-            #endregion
-
-            #region If/Else for smart students Part 2
-            // If block else contain 1 if term, it can be merged to one line:
-            if (0 != 0)
-            {
 
             }
             else
+                Console.WriteLine("enter the correct data");
+            #endregion
+            #region Task 13
+            Console.WriteLine("task 13");
+            double A, B, S;
+            int f;
+            Console.WriteLine("Enter the A value");
+            double.TryParse(Console.ReadLine(), out A);
+            Console.WriteLine("Enter the B value");
+            double.TryParse(Console.ReadLine(), out B);
+            if (A > 0 && B > 0)
             {
-                if (1 == (int)'a')
+                Console.WriteLine(" if you want to count the area of the triangle press(1),ring area(2),the area of the triangle(3)");
+                int.TryParse(Console.ReadLine(), out f);
+                switch (f)
                 {
-
+                    case 1:
+                        S = A * B;
+                        Console.WriteLine($"area of the triangle={S}");
+                        break;
+                    case 2:
+                        S = Math.Abs(Math.PI * A * A - Math.PI * B * B);
+                        Console.WriteLine($"ring area={S}");
+                        break;
+                    case 3:
+                        double s13 = A / 2;
+                        if (B < s13)
+                            Console.WriteLine("Error");
+                        else
+                        {
+                            double o = Math.Sqrt(B * B - s13 * s13);
+                            S = (A * o) / 2;
+                            Console.WriteLine($"the area of the triangle={S}");
+                        }
+                        break;
                 }
             }
-
-            // Transforming to
-
-            if (0 != 0)
-            {
-
-            }
-            else if (1 == (int)'a')
-            {
-
-            }
-
-            // But if int this else can be more than 1 if operator, do not do so!
+            else
+                Console.WriteLine("enter the correct data ");
+            #endregion
             #endregion
 
-            #region Switch
-            // Many people hate this block, but it is very effective & sharp weapon Clever man will do good job with it, but other people cut themselves.
-            // So! Use it very carefully. When another methods too difficult.
-            // But we cannot to use ranges in the cases (1 - 9 => -8) or (1:9 => 0)
 
-            switch ((int)Console.ReadLine().Length)
-            {
-                case 0:
-                    Console.WriteLine("Cannot be empty");
-                    break;
-                case 11: // select some
-                    request = "Good job!";
-                    break;
-                case 4:   // merge
-                case 5:   // merge
-                case 13:    // with this one
-                    request += "!!!";
-                    break;
-                default:
-                    Console.WriteLine("No suitable condition above");
-                    break;
-            }
-            Console.WriteLine(request);
 
-            #endregion
 
-            #region Switch for smart students
-            // if you sure that you have to use switch and it have to return some value, you can make it shorter:
-            var mark = request.Length / 2 switch
-            {
-                0 => 0,
-                1 => 0,
-                2 => 1,
-                3 => 2,
-                4 => 4,
-                _ => 5 // any other input(!) value (default)
-            };
 
-            #endregion
+
+
+
+
+
+
+
         }
     }
-}
+    
+} 
