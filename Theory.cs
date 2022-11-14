@@ -99,41 +99,43 @@ namespace _2nd_Lab
                     if ((x1 * x1 + y1 * y1 <= r * r) && (x1 * x1 + y1 * y1 <= R * R))
                         numb++;
 
-                } while (x1 < 12345);
+                } while (true);
             }
             else
                 Console.WriteLine("enter the correct data");
             Console.WriteLine(numb);
             #endregion
             #region Task 11
-            int mark1, mark2, mark3, mark4, badstud = 0, num11 = 0;
-            double j, sum11 = 0, mem = 0;
-            do
+            int mark1, mark2, mark3, mark4, badstud= 0;
+            double srball, stud,sumz=0;
+            Console.WriteLine("Enter tne student's amount");
+            double.TryParse(Console.ReadLine(), out stud);
+            for (int i = 0; i < stud; i++)
             {
-                Console.WriteLine("Enter mark for exams,'1'to end");
-                mark1 = Convert.ToInt32(Console.ReadLine());
-                if (mark1 == 1) break;
-                mark2 = Convert.ToInt32(Console.ReadLine());
-                mark3 = Convert.ToInt32(Console.ReadLine());
-                mark4 = Convert.ToInt32(Console.ReadLine());
-                if ((mark1 <= 5) && (mark2 <= 5) && (mark3 <= 5) && (mark4 <= 5))
+                Console.WriteLine("Enter the marks for the exams ");
+                int.TryParse(Console.ReadLine(), out mark1);
+                int.TryParse(Console.ReadLine(), out mark2);
+                int.TryParse(Console.ReadLine(), out mark3);
+                int.TryParse(Console.ReadLine(), out mark4);
+                if (mark1 == 2 || mark2 == 2 || mark3 == 2 || mark4 == 2)
                 {
-                    if ((mark1 != 2) && (mark2 != 2) && (mark3 != 2) && (mark4 != 2))
+                    badstud++;
+                }
+                else
+                {
+                    if (mark1 <= 5 && mark2<= 5 && mark3 <= 5 && mark4 <= 5 && mark1 > 2 && mark2 > 2 && mark3 > 2 && mark4 > 2)
                     {
-                        mem++;
-                        j = mark1 + mark2 + mark3 + mark4;
-                        sum11 += j;
-
-                    }
-                    if ((mark1 == 2) || (mark2 == 2) || (mark3 == 2) || (mark4 == 2))
-                    {
-                        badstud++;
+                        sumz = sumz + mark1 + mark2 + mark3 + mark4;
                     }
                 }
-                num11++;
-            } while (true);
-            Console.WriteLine($"Bad student={badstud}");
-            Console.WriteLine($"Group average={sum11 / (4 * num11)}");
+
+
+            }
+            stud= stud - badstud;
+            srball = stud / sumz;
+            Console.WriteLine($"Group average: {srball}");
+            Console.WriteLine($"Number of underachievers: {badstud}");
+            #endregion
             #endregion
             #region Task 12
             Console.WriteLine("task 12");
@@ -203,7 +205,7 @@ namespace _2nd_Lab
             else
                 Console.WriteLine("enter the correct data ");
             #endregion
-            #endregion
+            
 
 
 
