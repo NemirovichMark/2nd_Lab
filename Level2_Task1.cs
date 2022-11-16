@@ -11,21 +11,30 @@ namespace SoloLearn
 	{
 		static void Main(string[] args)
 		{
-		    #region Level 2 Task 1
-		    Console.WriteLine("Enter N: ");
-		    int n;
-		    double sum;
+		    Console.Write("Enter N: ");
+		    int n,b=0,g=0;
+		    double sum=0,boys=0,girls=0,height;
+		    string choice;
 		    if(!int.TryParse(Console.ReadLine(),out n))
-    			return;
-		    double studet_height;
+    			return;
 		    for(int i=0; i<n; i++){
-    		        Console.Write($"Enter {i} students height: ");
-    			if(!int.TryParse(Console.ReadLine(),out student_height));
-        		    return;
-    			sum+=student_height;
+    		    Console.Write($"Enter {i+1} students height: ");
+    			if(!double.TryParse(Console.ReadLine(),out height))
+        		    return;
+        		Console.Write("It is a boy(B) or girl(G): ");
+        		choice = Console.ReadLine();
+        		switch(choice){
+        		    case "B":
+        		        boys+=height;
+        		        b++;
+        		        break;
+        		    case "G":
+        		        girls+=height;
+        		        g++;
+        		        break;
+        		}
 		    }
-		    Console.Write($"Average students height is {sum/n}");
-		    #endregion 
+		    Console.Write($"Average boys height: {boys/b}\nAverage girls height: {girls/g}");
 		}
 	}
 }
