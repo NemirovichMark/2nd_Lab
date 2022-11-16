@@ -11,13 +11,21 @@ namespace SoloLearn
 	{
 		static void Main(string[] args)
 		{
-		    double s=0,x,meat=1;
-            if(!double.TryParse(Console.ReadLine(),out x)) return;
-            for(int i=1; meat>=0.0001; i++){
-                meat=Math.Cos(i*x)/(i*i);
-                s+=meat;
-            }
-            Console.WriteLine($"S = {s}");
+		    #region Level 2 Task 1
+		    Console.WriteLine("Enter N: ");
+		    int n;
+		    double sum;
+		    if(!int.TryParse(Console.ReadLine(),out n))
+    			return;
+		    double studet_height;
+		    for(int i=0; i<n; i++){
+    		        Console.Write($"Enter {i} students height: ");
+    			if(!int.TryParse(Console.ReadLine(),out student_height));
+        		    return;
+    			sum+=student_height;
+		    }
+		    Console.Write($"Average students height is {sum/n}");
+		    #endregion 
 		}
 	}
 }
