@@ -11,7 +11,7 @@ namespace Sololearn
     {
         static void Main(string[] args)
         {
-            int n;
+            int n,c=0;
             Console.Write("Enter n: ");
             if(!int.TryParse(Console.ReadLine(),out n))
                 return;
@@ -24,13 +24,14 @@ namespace Sololearn
                     Console.Write($"Enter {j} exam of the {i+1} student: ");
                     if(!double.TryParse(Console.ReadLine(),out meat))
                         return;
-                    average+=meat;
                     if(meat<3) f=true;
+                    if(!f) average+=meat;
                 }
                 if(f) lohi++;
+                else c++;
                 f=false;
             }
-            average/=(n*4);
+            average/=(c*4);
             Console.Write($"Disapproved: {lohi}\nAverage: {average}");
         }
     }
