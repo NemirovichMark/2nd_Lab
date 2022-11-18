@@ -1,22 +1,49 @@
 #region lvl1_task1 
-int rad = 2;
-Console.WriteLine("Введите координаты X и Y :");
-string[] x_y = Console.ReadLine().Split(' ');
-int x = int.Parse(x_y[0]);
-int y = int.Parse(x_y[1]);
 
-if (Math.Abs(x * x + y * y - rad * rad) < 0.001)
+using System;
+
+int rad = 4;
+int y = 0;
+int x = 0;
+try
+{
+    Console.Write("Введите координаты X: ");
+    x = int.Parse(Console.ReadLine());
+    Console.Write("Введите координаты Y: ");
+    y = int.Parse(Console.ReadLine());
+}
+catch (Exception)
+{
+    Console.WriteLine("Wrong Input");
+}
+
+bool onCircle = Math.Abs(x * x + y * y) == rad * rad;
+if (onCircle)
+{
     Console.WriteLine("Точка лежит на окружности");
+}
 else
-    Console.WriteLine("Точка не лежит на прямой");
+{
+    Console.WriteLine("Точка не лежит на окружности");
+}
 #endregion
 
-#region lvl1_task3 
+    #region lvl1_task3 
 Console.WriteLine("Введите a и b:");
 string[] x__y = Console.ReadLine().Split(' ');
-int a = int.Parse(x__y[0]);
-int b = int.Parse(x__y[1]);
-
+int a = 0;
+int b = 0;
+try
+{
+    Console.Write("Введите a: ");
+    a = int.Parse(Console.ReadLine());
+    Console.Write("Введите b: ");
+    b = int.Parse(Console.ReadLine());
+}
+catch (Exception)
+{
+    Console.WriteLine("Wrong Input");
+}
 if (a > 0)
     Console.WriteLine(Math.Max(a, b));
 else
@@ -25,38 +52,79 @@ else
 #region lvl1_task4
 Console.WriteLine("Введите a, b, c:");
 string[] x___y = Console.ReadLine().Split(' ');
-int aaa = int.Parse(x___y[0]);
-int bbb = int.Parse(x___y[1]);
-int c = int.Parse(x___y[2]);
-
+int aaa = 0;
+int bbb = 0;
+int c = 0;
+try
+{
+    Console.Write("Введите a");
+    aaa = int.Parse(Console.ReadLine());
+    Console.Write("Введите b: ");
+    bbb = int.Parse(Console.ReadLine());
+    Console.Write("Введите c: ");
+    c = int.Parse(Console.ReadLine());
+}
+catch (Exception)
+{
+    Console.WriteLine("Wrong Input");
+}
 Console.WriteLine(Math.Max(Math.Min(aaa, bbb), c));
 #endregion
 
 #region lvl2_task1
 Console.WriteLine("Введите кол-во учеников:");
-int n = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите рост и пол ученика через пробел:");
-int m_count = 0, w_count = 0, m_sum = 0, w_sum = 0, m_avg = 0, w_agv = 0;
-for (int i = 0; i < n; i++)
+bool canN = int.TryParse(Console.ReadLine(), out int n);
+
+if (!canN)
 {
-    string[] str = Console.ReadLine().Split(' ');
-    if (str[1] == "м" || str[1] == "М" && str[1] != null)
+    Console.WriteLine("Неверные данные");
+}
+
+if (canN)
+{
+    Console.WriteLine("Введите рост и пол ученика через пробел:");
+    int manCount = 0, wCount = 0, mSum = 0, wSum = 0;
+
+    for (int i = 0; i < n; i++)
     {
-        m_count++;
-        m_sum += int.Parse(str[0]);
+        // 180 м 190 ж 300 м
+        string[] input = Console.ReadLine()?.Split(' ') ?? new string[] { };
+        if (input.Length != 0 && input.Length % 2 == 0)
+        {
+            try
+            {
+                if (input[1].ToLower() == "м")
+                {
+                    mSum += int.Parse(input[0]);
+                    manCount++;
+                }
+
+                if (input[1].ToLower() == "ж")
+                {
+                    wSum += int.Parse(input[0]);
+                    wCount++;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Неверные данные");
+            }
+        }
     }
-    else if (str[1] == "д" || str[1] == "Д" && str[1] != null)
+
+    if (manCount <= 0 && wCount <= 0)
     {
-        w_count++;
-        w_sum += int.Parse(str[0]);
+        Console.WriteLine("Нет данных");
+    }
+    else
+    {
+        double mAvg = (double)mSum / manCount;
+        double wAgv = (double)wSum / wCount;
+        Console.WriteLine($"Средний рост мальчиков: {mAvg}\nСредний рост девочек: {wAgv}");
     }
 }
-if (m_count <= 0 && w_count<= 0)
-    Console.WriteLine("Пережмакивай");
-else
-    m_avg = m_sum / m_count;
-w_agv = w_sum / w_count;
-Console.WriteLine("Средний рост мальчиков " + m_avg + ", а девочек " + w_agv);
+
+
 #endregion
 
 #region lvl2_task5
@@ -65,10 +133,17 @@ int norm = 10;
 int count = 0;
 for (int i = 0; i < array.Length; i++)
 {
-    array[i] = int.Parse(Console.ReadLine());
-    if (array[i] > norm)
+    try
     {
-        count++;
+        array[i] = int.Parse(Console.ReadLine());
+        if (array[i] > norm)
+        {
+            count++;
+        }
+    }
+    catch
+    {
+        Console.WriteLine("err");
     }
 }
 Console.WriteLine(count + " спортсменов выполнило норматив");
@@ -77,13 +152,20 @@ Console.WriteLine(count + " спортсменов выполнило норма
 int sum = 0;
 Console.WriteLine("Вот так пиши: N: [x] [y]");
 int ii = 0;
+double r1 = 0;
+double r2 = 0;
 try
 {
     Console.Write("r1: ");
-    double r1 = Convert.ToDouble(Console.ReadLine());
+    r1 = double.Parse(Console.ReadLine());
     Console.Write("r2: ");
-    double r2 = Convert.ToDouble(Console.ReadLine());
-    while (true)
+    r2 = double.Parse(Console.ReadLine());
+}
+catch (Exception)
+{
+    Console.WriteLine("Wrong Input");
+}
+while (true)
     {
         Console.Write((ii + 1) + ": ");
         string input = Console.ReadLine();
@@ -102,11 +184,6 @@ try
         ii += 1;
     }
     Console.WriteLine("Sum: " + sum);
-}
-catch
-{
-    Console.WriteLine("Не то жмакаешь, как в примере делай пж");
-}
 #endregion
 
 #region 3.11
@@ -151,96 +228,101 @@ Console.WriteLine($"Неуспевающих студентов: {s} \nСред�
 
 #region lvl3_task12  
 ii = 0;
-try
+Console.WriteLine("(Input example) N: [r] [Type]");
+Console.WriteLine("(Input example) Type 1 - Square");
+Console.WriteLine("(Input example) Type 2 - Circle");
+Console.WriteLine("(Input example) Type 3 - Equilateral triangle");
+while (true)
 {
-    Console.WriteLine("(Input example) N: [r] [Type]");
-    Console.WriteLine("(Input example) Type 1 - Square");
-    Console.WriteLine("(Input example) Type 2 - Circle");
-    Console.WriteLine("(Input example) Type 3 - Equilateral triangle");
-    while (true)
+    Console.Write((ii + 1) + ": ");
+    string input = "";
+    try
     {
-        Console.Write((ii + 1) + ": ");
-        string input = Console.ReadLine();
-        if (input == "")
-        {
-            break;
-        }
-        string[] line = input.Split(' ');
-        double r = double.Parse(line[0]);
-        int type = int.Parse(line[1]);
-        double area = 0;
-        switch (type)
-        {
-            case 1:
-                area = Math.Pow(r, 2);
-                break;
-            case 2:
-                area = Math.PI * Math.Pow(r, 2);
-                break;
-            case 3:
-                area = (Math.Sqrt(3) * Math.Pow(r, 2)) / 4;
-                break;
-            default:
-                Console.WriteLine("Там есть пример кста, может так же делать будешь?");
-                return;
-        }
-        Console.WriteLine("Area: " + Math.Round(area, 3));
-        ii++;
+        input = Console.ReadLine();
     }
+    catch
+    {
+        Console.WriteLine("Ну ек макарёк, как в примере делай и не беси");
+    }
+
+    if (input == "") break;
+    string[] line = input.Split(' ');
+    double r = double.Parse(line[0]);
+    int type = int.Parse(line[1]);
+    double area = 0;
+    switch (type)
+    {
+        case 1:
+            area = Math.Pow(r, 2);
+            break;
+        case 2:
+            area = Math.PI * Math.Pow(r, 2);
+            break;
+        case 3:
+            area = (Math.Sqrt(3) * Math.Pow(r, 2)) / 4;
+            break;
+        default:
+            Console.WriteLine("Там есть пример кста, может так же делать будешь?");
+            return;
+    }
+    Console.WriteLine("Area: " + Math.Round(area, 3));
+    ii++;
 }
-catch
-{
-    Console.WriteLine("Ну ек макарёк, как в примере делай и не беси");
-}
+
+
 #endregion
 #region lvl3_task13 
+
 ii = 0;
-try
+
+Console.WriteLine("(Input example) N: [a] [b] [Type]");
+Console.WriteLine("(Input example) Type 1 - Rectangle");
+Console.WriteLine("(Input example) Type 2 - Ring");
+Console.WriteLine("(Input example) Type 3 - Isosceles");
+
+while (true)
 {
-    Console.WriteLine("(Input example) N: [a] [b] [Type]");
-    Console.WriteLine("(Input example) Type 1 - Rectangle");
-    Console.WriteLine("(Input example) Type 2 - Ring");
-    Console.WriteLine("(Input example) Type 3 - Isosceles");
-    while (true)
+    Console.Write((ii + 1) + ": ");
+    string input = "";
+    try
     {
-        Console.Write((ii + 1) + ": ");
-        string input = Console.ReadLine();
-        if (input == "")
-        {
-            break;
-        }
-        string[] line = input.Split(' ');
-        double aa = double.Parse(line[0]);
-        double bb = double.Parse(line[1]);
-        if (aa <= 0 || bb <= 0)
-        {
-            Console.WriteLine("Там пример сверху написан кста ");
-            return;
-        }
-        int type = int.Parse(line[2]);
-        double area = 0;
-        switch (type)
-        {
-            case 1:
-                area = Math.Abs(aa * bb);
-                break;
-            case 2:
-                area = Math.Abs((Math.PI * Math.Pow(aa, 2)) - (Math.PI * Math.Pow(bb, 2)));
-                break;
-            case 3:
-                double p = (aa + bb + bb) / 2;
-                area = Math.Sqrt(p * (p - aa) * (p - bb) * (p - bb));
-                break;
-            default:
-                Console.WriteLine("Как в примере делай");
-                return;
-        }
-        Console.WriteLine("Area: " + Math.Round(area, 3));
-        ii++;
+        input = Console.ReadLine();
     }
-}
-catch
-{
-    Console.WriteLine("Опять не как в примере");
+    catch
+    {
+        Console.WriteLine("Ну ек макарёк, как в примере делай и не беси");
+    }
+
+    if (input == "") break;
+    string[] line = input.Split(' ');
+    double aa = double.Parse(line[0]);
+    double bb = double.Parse(line[1]);
+    if (aa <= 0 || bb <= 0)
+    {
+        Console.WriteLine("Там пример сверху написан кста ");
+        return;
+    }
+
+    int type = int.Parse(line[2]);
+    double area = 0;
+    switch (type)
+    {
+        case 1:
+            area = Math.Abs(aa * bb);
+            break;
+        case 2:
+            area = Math.Abs((Math.PI * Math.Pow(aa, 2)) - (Math.PI * Math.Pow(bb, 2)));
+            break;
+        case 3:
+            double p = (aa + bb + bb) / 2;
+            area = Math.Sqrt(p * (p - aa) * (p - bb) * (p - bb));
+            break;
+        default:
+            Console.WriteLine("Как в примере делай");
+            return;
+    }
+
+    Console.WriteLine("Area: " + Math.Round(area, 3));
+    ii++;
 }
 #endregion
