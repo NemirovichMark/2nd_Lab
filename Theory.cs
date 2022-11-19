@@ -210,9 +210,14 @@ namespace _2nd_Lab
                 n = Convert.ToDouble(Console.ReadLine());
             }
             S = 0;
-            for (double i = 0; i == n; i++)
+            for (double i = 1; i == n; i++)
             {
                 height = Convert.ToDouble(Console.ReadLine());
+                while (height <= 0)
+            {
+                Console.WriteLine("Enter height");
+                height = Convert.ToDouble(Console.ReadLine());
+            }
                 S += height;
             }
             Console.WriteLine(S/n);
@@ -314,21 +319,22 @@ namespace _2nd_Lab
                 x1 = Convert.ToString(Console.ReadLine());
                 Console.Write("y: ");
                 y = Convert.ToDouble(Console.ReadLine());
-                if (x1 != "stop") x = Convert.ToDouble(x1);
-                else continue;
-                if (Math.Sqrt(x * x + y * y) >= R1 && Math.Sqrt(x * x + y * y) <= R2 && x1 != "stop")
+                if (x1 != "stop")
                 {
-                    count += 1;
-                    Console.WriteLine("The point are suitable");
+                    x = Convert.ToDouble(x1);
+                    if (Math.Sqrt(x * x + y * y) >= R1 && Math.Sqrt(x * x + y * y) <= R2)
+                    {
+                        count += 1;
+                        Console.WriteLine("The point are suitable");
+                    }
+                    else
+                    {
+                        Console.WriteLine("The point aren`t suitable");
+                    }
                 }
-                else if (x1 != "stop")
-                {
-                    Console.WriteLine("The point aren`t suitable");
-                    Console.WriteLine(" ");
-                }
+                
                 Console.WriteLine(" ");
             }
-            Console.WriteLine(" ");
             Console.WriteLine("Amount of suitable points is " + count);
             #endregion
                 
@@ -352,7 +358,7 @@ namespace _2nd_Lab
                 else
                 {
                     S = E1 + E2 + E3 + E4;
-                    if (S <= 16 || E1 == 2 || E2 == 2 || E3 == 2 || E4 == 2)
+                    if (S <= 16 || E1 == 3 || E2 == 3 || E3 == 3 || E4 == 3)
                     {
                         count += 1;
                     }
@@ -377,9 +383,18 @@ namespace _2nd_Lab
                 if (R <= 0) break;
                 Console.WriteLine("If you want to find square area enter 3, if circle area enter 1, if triangle area enter 2");
                 l = Convert.ToInt16(Console.ReadLine());
-                if (l == 1) Console.WriteLine(3.14 * R * R);
-                else if (l == 2) Console.WriteLine(R * R * Math.Sqrt(3) / 4);
-                else if (R == 3) Console.WriteLine(R * R);
+                switch (l)
+                {
+                    case 1:
+                        Console.WriteLine(3.14 * R * R);
+                        break;
+                    case 2:
+                        Console.WriteLine(R * R * Math.Sqrt(3) / 4);
+                        break;
+                    case 3: 
+                        Console.WriteLine(R * R);
+                        break;
+                }
             #endregion
                 
                 
@@ -393,16 +408,19 @@ namespace _2nd_Lab
                 if (A <= 0) break;
                 Console.WriteLine("Enter number B");
                 B = Convert.ToInt32(Console.ReadLine());
-                if (A <= 0) break;
+                if (B <= 0) break;
                 Console.WriteLine("If you want to find rectangle area enter 1, if ring area between circles with A and B radiouses enter 2, if triangle area with A, B, B sides enter 3");
                 l = Convert.ToInt16(Console.ReadLine());
-                if (l == 1) Console.WriteLine(A * B);
-                else if (l == 2)
+                switch (l)
                 {
-                    if (A > B) Console.WriteLine(3.14 * A * A - 3.14 * B * B);
-                    else if (A < B) Console.WriteLine(-3.14 * A * A + 3.14 * B * B);
+                    case 1:
+                        Console.WriteLine(A * B);
+                    case 2:
+                        if (A > B) Console.WriteLine(3.14 * A * A - 3.14 * B * B);
+                        else if (A < B) Console.WriteLine(-3.14 * A * A + 3.14 * B * B);
+                    case 3:
+                        Console.WriteLine(A * Math.Sqrt(4 * B * B - A * A) / 4);
                 }
-                else if (l == 3) Console.WriteLine(A * Math.Sqrt(4 * B * B - A * A) / 4);
             #endregion
         }
     }
