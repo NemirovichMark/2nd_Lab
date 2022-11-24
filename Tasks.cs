@@ -273,31 +273,34 @@ namespace ConsoleApp1
              #endregion
 
              #region 11
-             Int32 E1, E2, E3, E4, count, n;
+             Int32 E1, E2, E3, E4, count, n, n1;
              Int32 S, genS;
              E1 = 1;
              count = 0;
              n = 1;
              genS = 0;
              S = 0;
+             n1 = 1;
              while (E1 != 0)
              {
-                 Console.WriteLine("Student" + n);
-                 Console.WriteLine("Enter student's marks for exams(from 1st to 4th), if you want to end enter '0' in 1st string:");
+                 Console.WriteLine("Student" + n1);
+                 Console.WriteLine("Enter student's marks for exams(from 1st to 4th), marks should be from 2 to 5, if you want to end enter '0' in 1st string:");
                  E1 = inputInt32();
                  E2 = inputInt32();
                  E3 = inputInt32();
-                 E4 = inputInt32(); ());
+                 E4 = inputInt32();
                  if (E1 == 0) continue;
                  else
                  {
                      S = E1 + E2 + E3 + E4;
-                     if (S <= 16 || E1 == 2 || E2 == 2 || E3 == 2 || E4 == 2)
+                     if ( (S <= 16 || E1 == 2 || E2 == 2 || E3 == 2 || E4 == 2) == false)
                      {
-                         count += 1;
+                        genS += S;
+                        n += 1;
                      }
-                     genS += S;
-                     n += 1;
+                     else
+                        count += 1;
+                    n1 ++;
                  }
              }
              n -= 1;
@@ -305,7 +308,7 @@ namespace ConsoleApp1
              Console.WriteLine("Amount of students who have poor academic performance is:" + count);
              Console.WriteLine("Average mark in the group is:" + genS / n);
              #endregion
-
+            
             
              #region 12
              int A, B, R, l;
@@ -331,7 +334,7 @@ namespace ConsoleApp1
                          break;
                  }
              }
-                 #endregion
+             #endregion
             
 
             #region 13
@@ -340,10 +343,10 @@ namespace ConsoleApp1
             while (true)
             {
                 Console.WriteLine("Enter number A, if you want to stop enter 0");
-                A = Convert.ToInt32(Console.ReadLine());
+                A = inputInt32();
                 if (A <= 0) break;
                 Console.WriteLine("Enter number B");
-                B = Convert.ToInt32(Console.ReadLine());
+                B = inputInt32();
                 if (B <= 0) break;
                 Console.WriteLine("If you want to find rectangle area enter 1, if ring area between circles with A and B radiouses enter 2, if triangle area with A, B, B sides enter 3");
                 l = inputInt32();
@@ -358,10 +361,16 @@ namespace ConsoleApp1
                         else if (A < B) Console.WriteLine(-3.14 * A * A + 3.14 * B * B);
                         break;
                     case "3":
+                        if ((A* Math.Sqrt(4 * B * B - A * A) / 4) <= 0)
+                        {
+                            Console.WriteLine("You entered the wrong lenght of trinagle's sides");
+                            break;
+                        }
                         Console.WriteLine(A * Math.Sqrt(4 * B * B - A * A) / 4);
                         break;
                 }
                 #endregion
+                
             }
         } 
     }
