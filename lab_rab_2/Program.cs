@@ -182,7 +182,7 @@ for (int i_3_13 = 0; i_3_13 < n_3_13; i_3_13++)
 			else Console.WriteLine($" The ring area = {Math.PI * b_3_13 * b_3_13 - Math.PI * a_3_13 * a_3_13}");
 			break;
 		case 3:
-			l_3_13 = Math.Sqrt(b_3_13 * b_3_13 - (a_3_13 * a_3_13 / 4));
+			l_3_13 = Math.Sqrt(Math.Abs(b_3_13 * b_3_13 - (a_3_13 * a_3_13 / 4)));
 			Console.WriteLine($" The area of isisceles triangle = {0.5 * a_3_13 * l_3_13}");
 			break;
 		default:
