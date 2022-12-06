@@ -1,4 +1,4 @@
-﻿#region Level 1 Task 1
+#region Level 1 Task 1
 
 Console.WriteLine("Level 1 Task 1: \n");
 string ins = "inside";
@@ -6,9 +6,9 @@ string outs = "outside";
 double x_1_1, y_1_1, r_1_1;
 r_1_1 = 2;
 Console.Write("Enter x: ");
-x_1_1 = double.Parse(Console.ReadLine());
+Double.TryParse(Console.ReadLine(), out x_1_1);
 Console.Write("Enter y: ");
-y_1_1 = double.Parse(Console.ReadLine());
+Double.TryParse(Console.ReadLine(), out y_1_1);
 if (Math.Abs(x_1_1 * x_1_1 + y_1_1 * y_1_1 - r_1_1 * r_1_1) <= Math.Pow(10, -3)) Console.WriteLine(ins);
 else Console.WriteLine(outs);
 
@@ -96,51 +96,33 @@ Console.WriteLine("got into: {0}", n_3_4);
 #region Level 3 Task 11
 
 Console.WriteLine("Level 3 Task 11: \n");
-double srb_3_11 = 0, a_3_11 = 0, b_3_11 = 0;
-int z_3_11, ot_3_11, ft_3_11 = 0, sb_3_11, cal_3_11;
+int n_3_11 = 0, exam1, exam2, exam3, exam4, bad_students = 0;
+double s_3_11, sum_3_11 = 0, count_3_11 = 0;
 do
 {
-	sb_3_11 = 0;
-	cal_3_11 = 0;
-	Console.Write($"enter points for exam 1 or type smth not in [2:5]");
-	int.TryParse(Console.ReadLine(), out ot_3_11);
-	if (ot_3_11 < 2 || ot_3_11 > 5)
+	Console.WriteLine("Enter mark for exams (Enter - 1 to stop)");
+	exam1 = Convert.ToInt32(Console.ReadLine());
+	if (exam1 == -1) break;
+	exam2 = Convert.ToInt32(Console.ReadLine());
+	exam3 = Convert.ToInt32(Console.ReadLine());
+	exam4 = Convert.ToInt32(Console.ReadLine());
+	if ((exam1 <= 5) && (exam2 <= 5) && (exam3 <= 5) && (exam4 <= 5))
 	{
-		break;
-	}
-	if (ot_3_11 == 2)
-	{
-		cal_3_11++;
-	}
-	sb_3_11 = sb_3_11 + ot_3_11;
-	for (z_3_11 = 2; z_3_11 < 5; z_3_11++)
-	{
-		Console.Write($"enter points for exam {z_3_11}");
-		int.TryParse(Console.ReadLine(), out ot_3_11);
-		while (ot_3_11 < 2 || ot_3_11 > 5)
+		if ((exam1 != 2) && (exam2 != 2) && (exam3 != 2) && (exam4 != 2))
 		{
-			Console.WriteLine("points can be only 2-5");
-			Console.WriteLine($"enter points for exam {z_3_11}");
-			int.TryParse(Console.ReadLine(), out ot_3_11);
+			count_3_11++;
+			s_3_11 = (exam1 + exam2 + exam3 + exam4);
+			sum_3_11 += s_3_11;
+			n_3_11++;
 		}
-		if (ot_3_11 == 2)
+		if ((exam1 == 2) || (exam2 == 2) || (exam3 == 2) || (exam4 == 2))
 		{
-			cal_3_11++;
+			bad_students++;
 		}
-		sb_3_11 = sb_3_11 + ot_3_11;
 	}
-	if (cal_3_11 > 0)
-	{
-		ft_3_11++;
-	}
-	a_3_11 = a_3_11 + sb_3_11;
-	b_3_11++;
-} while (ot_3_11 >= 2 && ot_3_11 <= 5);
-if (b_3_11 > 0)
-{
-	srb_3_11 = a_3_11 / b_3_11 / 4;
-}
-Console.WriteLine($"number of loosers - {ft_3_11}, average points - {srb_3_11}");
+} while (true);
+Console.WriteLine("Count bad studenst:" + bad_students);
+Console.WriteLine("Group average:" + sum_3_11 / (4 * n_3_11));
 
 #endregion
 
@@ -190,7 +172,7 @@ for (int i_3_13 = 0; i_3_13 < n_3_13; i_3_13++)
 	switch (d_3_13)
 	{
 		case 1:
-			Console.WriteLine($" The rectangle area = {a_3_13 * b_3_13}");
+			Console.WriteLine($" The rectangle area = {Math.Abs(a_3_13 * b_3_13)}");
 			break;
 		case 2:
 			if (a_3_13 > b_3_13)
