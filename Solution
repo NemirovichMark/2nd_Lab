@@ -61,8 +61,15 @@ namespace _2nd_Lab
             for (int i = 0; i < n; i++)
             {
                 Console.WriteLine("enter height of student");
-                double.TryParse(Console.ReadLine(), out height);
-                s += height;
+                bool stat = double.TryParse(Console.ReadLine(), out height);
+                if (stat && height > 0)
+                {
+                    s += height;
+                }
+                else
+                {
+                    Console.WriteLine("unreal height");
+                }
             }
             avheight = s / n;
             Console.WriteLine(avheight);
@@ -76,10 +83,19 @@ namespace _2nd_Lab
             for (int i = 0; i < k; i++)
             {
                 Console.WriteLine("enter the weight of the student");
-                double.TryParse(Console.ReadLine(), out weight);
-                num += 200;
-                if (weight < 30)
-                    num = num + glass;
+                bool stat = double.TryParse(Console.ReadLine(), out weight);
+                if (stat && weight > 0)
+                {
+                    num += 200;
+                    if (weight < 30)
+                    {
+                        num += glass;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("unreal weight");
+                }
             }
             num /= 1000;
             Console.WriteLine($"liters {num}");
@@ -116,33 +132,46 @@ namespace _2nd_Lab
             
             #region Level_3_Task_11
             Console.WriteLine("Level 3 Task 11");
-            int mark1, mark2, mark3, mark4, badstud= 0;
-            double srball, stud,sumz=0;
-            Console.WriteLine("Enter tne student's amount");
-            double.TryParse(Console.ReadLine(), out stud);
-            for (int i = 0; i < stud; i++)
+            string znak;
+            bool flag = true;
+            double mark1, mark2, mark3, mark4;
+            double res, sum = 0, badstud = 0, goodstud = 0;
+            while (flag)
             {
-                Console.WriteLine("Enter the marks for the exams ");
-                int.TryParse(Console.ReadLine(), out mark1);
-                int.TryParse(Console.ReadLine(), out mark2);
-                int.TryParse(Console.ReadLine(), out mark3);
-                int.TryParse(Console.ReadLine(), out mark4);
-                if (mark1 == 2 || mark2 == 2 || mark3 == 2 || mark4 == 2)
+                Console.WriteLine("To continue programm enter +, to end -");
+                znak = Console.ReadLine();
+                if (znak == "-")
                 {
-                    badstud++;
+                    flag = false;
                 }
-                else
+                if (znak == "+")
                 {
-                    if (mark1 <= 5 && mark2<= 5 && mark3 <= 5 && mark4 <= 5 && mark1 > 2 && mark2 > 2 && mark3 > 2 && mark4 > 2)
+                    Console.WriteLine("enter 4 marks");
+                    double.TryParse(Console.ReadLine(), out mark1);
+                    double.TryParse(Console.ReadLine(), out mark2);
+                    double.TryParse(Console.ReadLine(), out mark3);
+                    double.TryParse(Console.ReadLine(), out mark4);
+                    if ((mark1 >= 2) && (mark1 <= 5) && (mark2 >= 2) && (mark2 <= 5) && (mark3 >= 2) && (mark3 <= 5) && (mark4 >= 2) && (mark4 <= 5))
                     {
-                        sumz = sumz + mark1 + mark2 + mark3 + mark4;
+                        if ((mark1 != 2) && (mark2 != 2) && (mark3 != 2) && (mark4 != 2))
+                        {
+                            goodstud = goodstud + 1;
+                            res = (mark1 + mark2 + mark3 + mark4) / 4;
+                            sum += res;
+                        }
+                        if ((mark1 <= 2) || (mark2 <= 2) || (mark3 <= 2) || (mark4 <= 2))
+                        {
+                            badstud = badstud + 1;
+                        }
+                        Console.WriteLine("$failed students = {badstud}");
+                        Console.WriteLine("$avg of good marks = {sum / goodstud}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("PLS ENTER NUMBER FROM 1 TO 5");
                     }
                 }
             }
-            stud = stud - badstud;
-            srball = stud / sumz;
-            Console.WriteLine($"Group average: {srball}");
-            Console.WriteLine($"Number of underachievers: {badstud}");
             #endregion
             
             
