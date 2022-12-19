@@ -2,7 +2,7 @@ using System;
 using System.Reflection.Emit;
 using System.Runtime.ConstrainedExecution;
 
-namespace _2nd_Lab
+namespace _2nd_Lab_
 {
     class Theory
     {
