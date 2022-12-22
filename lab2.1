@@ -7,7 +7,7 @@ namespace laba2
     {
         static void Main(string[] args)
         {
-            
+
             Console.WriteLine($"Level 1");
             #region task 2
             {
@@ -32,7 +32,7 @@ namespace laba2
                     break;
                 }
 
-                
+
                 if (y >= 0 && Math.Abs(x) + y <= 1)
                 {
                     Console.WriteLine($"    The point ({x};{y}) is inside the triangle");
@@ -115,10 +115,10 @@ namespace laba2
                 }
                 Console.WriteLine($"    y = {y}");
             }
-            
+
             #endregion
 
-            
+
             Console.WriteLine($"Level 2");
 
             #region task 1
@@ -207,10 +207,10 @@ namespace laba2
                 Console.WriteLine($"    The best result: {best}");
 
             }
-            
+
             #endregion
 
-            
+
             Console.WriteLine($"Level 3");
 
             #region task 4
@@ -297,234 +297,241 @@ namespace laba2
             #region task 11
             Console.WriteLine($"Task 11");
             {
-                int n = 0;
                 int mark;
-                int bad_students_counter = 0;
-                bool bad_grade = false;
-                double average = 0;
-                double rating = 0;
-                bool stop_input = false;
+                double marksSum = 0;
+                double avgMarksSum = 0;
+                double groupAverageMark;
+                int badStudentsCount = 0;
+                bool continueInput = true;
+                bool hasBadGrade = false;
 
+                int n = 0;
 
-                Console.WriteLine($"    if input data is all fed, write '-1'");
+                Console.WriteLine("Write -1 to stop.");
 
-                while (true)
+                for (; continueInput; n++)
                 {
-                    Console.WriteLine($"    Enter marks for student {n + 1}");
-                    rating = 0.0;
+                    Console.WriteLine($"\nEnter {n + 1} student marks:");
 
-                    for (int j = 1; j <= 4; j++)
+                    marksSum = 0;
+
+                    for (int i = 1; i <= 4; i++)
                     {
-                        if (!int.TryParse(Console.ReadLine(), out mark))
+                        Console.Write($"   Mark #{i}: ");
+                        string input = Console.ReadLine();
+
+                        if (input == "-1")
                         {
-                            Console.WriteLine($"    incorrect format");
-                            return;
-                        }
-                        if (mark == -1)
-                        {
-                            stop_input = !stop_input;
+                            continueInput = false;
                             break;
+                        }
+
+                        if (!int.TryParse(input, out mark))
+                        {
+                            Console.WriteLine("Value has an incorrect format!");
+                            return;
                         }
 
                         if (mark < 2 || mark > 5)
                         {
-                            Console.WriteLine($"    Marks must be in range from 2 to 5");
+                            Console.WriteLine("Mark value must be between 2 and 5");
                             return;
                         }
 
                         if (mark == 2)
                         {
-                            bad_grade = true;
+                            hasBadGrade = true;
+                            continue;
                         }
 
-                        rating += Math.Max(0, mark);
+
+                        marksSum += mark;
                     }
 
-                    if (stop_input)
-                    {
+                    if (!continueInput)
                         break;
-                    }
 
-                    if (bad_grade)
-                    {
-                        bad_students_counter++;
-                    }
+                    if (hasBadGrade)
+                        badStudentsCount++;
 
-                    average += rating / 4;
-                    n++;
+                    avgMarksSum += marksSum / 4;
                 }
 
-                Console.WriteLine($"    the amount of bad students: {bad_students_counter}");
-                Console.WriteLine($"    group average mark: {average / n}");
-            }
-            #endregion
+                if (n == 0)
+                    groupAverageMark = 0;
+                else
+                    groupAverageMark = avgMarksSum / n;
 
-            #region task 12
-            Console.WriteLine($"Task 12");
-            {
-                double r;
-                int choice;
+                Console.WriteLine($"\nBad students count: {badStudentsCount}");
+                Console.WriteLine($"Group average mark: {Math.Round(groupAverageMark, 3)}");
 
-                while (true)
+                #endregion
+
+                #region task 12
+                Console.WriteLine($"Task 12");
                 {
-                    while (true)
-                    {
-                        Console.WriteLine($"    Please enter r: ");
-                        if (!double.TryParse(Console.ReadLine(), out r))
-                        {
-                            Console.WriteLine($"    Wrong r, try again");
-                            continue;
-                        }
-                        if (r <= 0)
-                        {
-                            Console.WriteLine($"    r must be positive");
-                        }
-                        break;
-                    }
-
-                    Console.WriteLine($"    1 - Area of a square");
-                    Console.WriteLine($"    2 - Area of a circle");
-                    Console.WriteLine($"    3 - Area of equiliteral triangle");
+                    double r;
+                    int choice;
 
                     while (true)
                     {
-                        Console.WriteLine($"    Choose what to calculate (1, 2, 3):");
-                        if (!int.TryParse(Console.ReadLine(), out choice))
+                        while (true)
                         {
-                            Console.WriteLine($"    incorrect format, try again");
-                            continue;
+                            Console.WriteLine($"    Please enter r: ");
+                            if (!double.TryParse(Console.ReadLine(), out r))
+                            {
+                                Console.WriteLine($"    Wrong r, try again");
+                                continue;
+                            }
+                            if (r <= 0)
+                            {
+                                Console.WriteLine($"    r must be positive");
+                            }
+                            break;
                         }
-                        break;
+
+                        Console.WriteLine($"    1 - Area of a square");
+                        Console.WriteLine($"    2 - Area of a circle");
+                        Console.WriteLine($"    3 - Area of equiliteral triangle");
+
+                        while (true)
+                        {
+                            Console.WriteLine($"    Choose what to calculate (1, 2, 3):");
+                            if (!int.TryParse(Console.ReadLine(), out choice))
+                            {
+                                Console.WriteLine($"    incorrect format, try again");
+                                continue;
+                            }
+                            break;
+                        }
+
+                        double square = r * r;
+
+                        switch (choice)
+                        {
+                            case 1:
+                                Console.WriteLine($"    Area if a square: {square}");
+                                break;
+                            case 2:
+                                Console.WriteLine($"    Area of a circle: {Math.PI * square}");
+                                break;
+                            case 3:
+                                Console.WriteLine($"    Area of a triangle: {square * Math.Sqrt(3) / 4}");
+                                break;
+                            default:
+                                Console.WriteLine($"    Wrong choice: choose only 1, 2 or 3.");
+                                break;
+                        }
+
+                        Console.WriteLine($"    Do you want to repeat the process? yes or no?");
+                        string command = Console.ReadLine().ToLower();
+                        if (command == "no")
+                        {
+                            break;
+                        }
+                        if (command != "no" && command != "yes")
+                        {
+                            Console.WriteLine($"    you should write yes or no only");
+                        }
                     }
 
-                    double square = r * r;
-
-                    switch (choice)
-                    {
-                        case 1:
-                            Console.WriteLine($"    Area if a square: {square}");
-                            break;
-                        case 2:
-                            Console.WriteLine($"    Area of a circle: {Math.PI * square}");
-                            break;
-                        case 3:
-                            Console.WriteLine($"    Area of a triangle: {square * Math.Sqrt(3) / 4}");
-                            break;
-                        default:
-                            Console.WriteLine($"    Wrong choice: choose only 1, 2 or 3.");
-                            break;
-                    }
-
-                    Console.WriteLine($"    Do you want to repeat the process? yes or no?");
-                    string command = Console.ReadLine().ToLower();
-                    if (command == "no")
-                    {
-                        break;
-                    }
-                    if (command != "no" && command != "yes")
-                    {
-                        Console.WriteLine($"    you should write yes or no only");
-                    }
                 }
+                #endregion
 
-            }
-            #endregion
-
-            #region task 13
-            Console.WriteLine("Task 13");
-            {
-                int choice;
-                double a, b;
-                double area = 0;
-
-                while (true)
+                #region task 13
+                Console.WriteLine("Task 13");
                 {
-                    Console.WriteLine("     what should i calculate?");
-                    Console.WriteLine("     1 - Area of a rectangle");
-                    Console.WriteLine("     2 - area of a ring");
-                    Console.WriteLine("     3 - area of isosceles triangle");
+                    double a;
+                    int choice;
+                    double b;
+                    double area = 0;
+                    string input;
 
                     while (true)
                     {
+                        Console.WriteLine("\nWhich area I should calculate?:");
+                        Console.WriteLine("[1] - Rectangle, [2] - Ring, [3] - Isosceles triangle\n");
+                        Console.Write("Your choice: ");
+
                         if (!int.TryParse(Console.ReadLine(), out choice))
                         {
-                            Console.WriteLine("     incorrect format, try again");
-                            continue;
+                            Console.WriteLine("Value has an incorrect format!");
+                            return;
                         }
-                        if (choice != 1 && choice != 2 && choice != 3)
-                        {
-                            Console.WriteLine("     you should choose only 1, 2 or 3. try again");
-                            continue;
-                        }
-                        break;
-                    }
 
-                    while (true)
-                    {
-                        Console.Write("     enter a (positive):");
+                        if (choice < 1 || choice > 3)
+                        {
+                            Console.WriteLine("You can choose olny 1, 2 or 3!");
+                            return;
+                        }
+
+                        Console.Write("   Enter a (must be positive): ");
                         if (!double.TryParse(Console.ReadLine(), out a))
                         {
-                            Console.WriteLine("     incorrect format, try again");
-                            continue;
+                            Console.WriteLine("Value has an incorrect format!");
+                            return;
                         }
-                        if (a <= 0)
-                        {
-                            Console.WriteLine("     a must be positive, try again");
-                            continue;
-                        }
-                        break;
-                    }
 
-                    while (true)
-                    {
-                        Console.Write("     enter b (positive):");
+                        if (a < 0)
+                        {
+                            Console.WriteLine("Value of a must be positive!");
+                            return;
+                        }
+
+                        Console.Write("   Enter b (must be positive): ");
                         if (!double.TryParse(Console.ReadLine(), out b))
                         {
-                            Console.WriteLine("     incorrect format, try again");
-                            continue;
+                            Console.WriteLine("Value has an incorrect format!");
+                            return;
                         }
-                        if (b <= 0)
+
+                        if (b < 0)
                         {
-                            Console.WriteLine("     b must be positive, try again");
-                            continue;
+                            Console.WriteLine("Value of a must be positive!");
+                            return;
                         }
-                        break;
-                    }
 
-                    switch (choice)
-                    {
-                        case 1:
-                            area = a * b;
-                            break;
-                        case 2:
-                            double maxx = Math.Max(a, b);
-                            double minn = Math.Min(a, b);
-                            area = Math.PI * (maxx - minn);
-                            break;
-                        case 3:
-                            double height = Math.Sqrt(b * b - a * a / 4);
-                            area = a * height / 2;
-                            break;
-                    }
+                        switch (choice)
+                        {
+                            case 1:
+                                area = a * b;
+                                break;
+                            case 2:
+                                if (a >= b)
+                                    area = Math.PI * (a * a - b * b);
+                                else
+                                    area = Math.PI * (b * b - a * a);
+                                break;
+                            case 3:
+                                if (b < a)
+                                {
+                                    double c = b;
+                                    b = a;
+                                    a = c;
+                                }
+                                double h = Math.Sqrt((b * b) - 0.25 * a * a);
+                                area = 0.5 * a * h;
+                                break;
+                        }
 
-                    Console.WriteLine($"    Area: {area}");
-                    Console.WriteLine("     do you want to repeat the process? yes or no?");
-                    string command = Console.ReadLine().ToLower();
+                        Console.WriteLine($"\nArea: {Math.Round(area, 3)}\n");
+                        Console.Write("Do this again? [y/n]: ");
 
-                    if (command == "no")
-                    {
-                        break;
+                        input = Console.ReadLine().ToLower();
+                        if (input == "n")
+                            break;
+                        else if (input != "y")
+                        {
+                            Console.WriteLine("You need to enter y or n!");
+                            return;
+                        }
                     }
-                    if (command != "no" && command != "yes")
-                    {
-                        Console.WriteLine("     You need to answer only yes or no");
-                        return;
-                    }
+                    #endregion
+
+
                 }
             }
-            #endregion
-
-            
         }
     }
 }
+
