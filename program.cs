@@ -273,3 +273,35 @@ do
     }
 } while (n.Key != ConsoleKey.Enter);
 #endregion
+
+#region_FIX_3_12
+ConsoleKeyInfo n;
+Console.WriteLine("Введите значение 'r':");
+double r = Convert.ToDouble(Console.ReadLine());
+do
+{
+    Console.WriteLine("Нажмите любую клавишу, чтобы продолжить. Enter - Конец программы\n");
+    n = Console.ReadKey();
+    if (n.Key == ConsoleKey.Enter)
+    {
+        Console.WriteLine("Конец.");
+    }
+    else
+    {
+        Console.WriteLine("\n1 2 3");
+        int.TryParse(Console.ReadLine(), out int t);
+        switch (t)
+        {
+            case 1:
+                Console.WriteLine("\nПлощадь квадрата: " + (r * r) + "\n");
+                break;
+            case 2:
+                Console.WriteLine("\nПлощадь круга: " + (3.14 * r * r) + "\n");
+                break;
+            case 3:
+                Console.WriteLine("\nПлощадь тругольника: " + (0.4 * r * r) + "\n");
+                break;
+        }
+    }
+} while (n.Key != ConsoleKey.Enter);
+#endregion
